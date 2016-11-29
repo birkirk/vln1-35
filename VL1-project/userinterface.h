@@ -6,7 +6,11 @@ class UserInterface
 {
 public:
     UserInterface();
+
+    // main mennu
     void run();
+private:
+
 };
 
 #endif // USERINTERFACE_H

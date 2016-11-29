@@ -1,5 +1,6 @@
 #include <iostream>
 #include "userinterface.h"
+#include "scientist.h"
 #include <string>
 #include <vector>
 
@@ -23,29 +24,66 @@ void UserInterface::run() {
         cin >> command;
 
         if (command == "add") {
+            string name;
+            char gender, stillAlive;
+            int born, death;
+            cout << "======= Add a scientist =======" << endl;
+            do {
+                cout << "Name: ";
+                cin >> name;
+            } while(name.length() <= 1);
+
+            do {
+                cout << "Gender (M/F):";
+                cin >> gender;
+            } while(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f');
+
+            do {
+                cout << "Year of birth: ";
+                cin >> born;
+            } while(born <= 0 && born > 2016);
+
+            do {
+                cout << "Is he/her still alive? (y/n)";
+                cin >> stillAlive;
+                if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n') {
+                    cout << "You can only enter 'y' or 'n' " << endl;
+                }
+            } while (stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n');
+
+            if(stillAlive == 'Y' || stillAlive == 'y') {
+                death = 0;
+            } else {
+                do {
+                    cout << "Year of death: ";
+                    cin >> death;
+                } while(death > 2016 && death <= 0);
+            }
+
+            Scientist aScientist(name, gender, born, death);
 
         } else if (command == "list") {
             cout << "How would you like to list the scientists?" << endl;
             cout << "alpha (alphabetically)" << endl;
             cout << "gender (by gender)" << endl;
-            cout << "otoy (oldest to youngest)" << endl;
-            cout << "ytoo (youngest to oldest)" << endl;
+            cout << "fromold (oldest to youngest)" << endl;
+            cout << "fromyoung (youngest to oldest)" << endl;
 
             cin >> listCommand;
-            if (listCommand == "aplha") {
+            if (listCommand == "alpha") {
 
             } else if (listCommand == "gender") {
 
-            } else if (listCommand == "otoy") {
+            } else if (listCommand == "fromold") {
 
-            } else if (listCommand == "ytoo") {
+            } else if (listCommand == "fromyoung") {
 
             } else {
                 cout << "Please enter a valid command!" << endl;
             }
         } else if (command == "search") {
 
-        } else {
+        } else if (command != "q") {
             cout << "Please enter a valid command!" << endl;
         }
     } while (command != "q");

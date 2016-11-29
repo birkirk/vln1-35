@@ -7,12 +7,12 @@ Scientist::Scientist()
 {
 }
 
-Scientist::Scientist(string n, bool g, int dOB, int dOD)
+Scientist::Scientist(string name, char gender,int born,int death)
 {
-    name = n;
-    gender = g;
-    yearOfBirth = dOB;
-    yearOfDeath = dOD;
+    _name = name;
+    _gender = gender;
+    _born = born;
+    _death = death;
 }
 
 int Scientist::getBirth()
