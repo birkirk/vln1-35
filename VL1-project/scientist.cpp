@@ -17,18 +17,18 @@ Scientist::Scientist(string name, char gender,int born,int death)
 
 int Scientist::getBirth()
 {
-    return yearOfBirth;
+    return _born;
 }
 int Scientist::getDeath()
 {
-    return yearOfDeath;
+    return _death;
 }
 bool Scientist::getGender()
 {
-    return gender;
+    return _gender;
 }
 string Scientist::getName()
 {
-    return name;
+    return _name;
 }
 
