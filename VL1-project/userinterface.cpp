@@ -34,17 +34,17 @@ void UserInterface::run() {
             } while(name.length() <= 1);
 
             do {
-                cout << "Gender (M/F):";
+                cout << "Gender (M/F): ";
                 cin >> gender;
             } while(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f');
 
             do {
                 cout << "Year of birth: ";
                 cin >> born;
-            } while(born <= 0 && born > 2016);
+            } while(born <= 0 || born > 2016);
 
             do {
-                cout << "Is he/her still alive? (y/n)";
+                cout << "Is he/her still alive? (y/n) ";
                 cin >> stillAlive;
                 if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n') {
                     cout << "You can only enter 'y' or 'n' " << endl;
@@ -57,7 +57,7 @@ void UserInterface::run() {
                 do {
                     cout << "Year of death: ";
                     cin >> death;
-                } while(death > 2016 && death <= 0);
+                } while(death > 2016 || death < born);
             }
 
             Scientist aScientist(name, gender, born, death);
