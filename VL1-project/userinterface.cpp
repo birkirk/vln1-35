@@ -1,6 +1,7 @@
 #include <iostream>
 #include "userinterface.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 
