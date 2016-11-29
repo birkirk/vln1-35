@@ -7,9 +7,10 @@ Scientist::Scientist()
 {
 }
 
-Scientist::Scientist(string name, char gender,int born,int death)
+Scientist::Scientist(string fName, string lName, char gender,int born,int death)
 {
-    _name = name;
+    _firstName = fName;
+    _lastName = lName;
     _gender = gender;
     _born = born;
     _death = death;
@@ -27,8 +28,12 @@ bool Scientist::getGender()
 {
     return _gender;
 }
-string Scientist::getName()
+string Scientist::getFirstName()
 {
-    return _name;
+    return _firstName;
+}
+string Scientist::getLastName()
+{
+    return _lastName;
 }
 
