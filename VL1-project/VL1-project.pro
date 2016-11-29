@@ -10,7 +10,10 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-<<<<<<< HEAD
+<<<<<<< HEAD \
+    datalayer.cpp \
+    scientist.cpp \
+    servicelayer.cpp
     datalayer.cpp \
     scientist.cpp \
     servicelayer.cpp
