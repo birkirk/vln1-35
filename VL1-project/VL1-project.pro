@@ -13,7 +13,8 @@ SOURCES += main.cpp \
 <<<<<<< HEAD \
     datalayer.cpp \
     scientist.cpp \
-    servicelayer.cpp
+    servicelayer.cpp \
+    userinterface.cpp
     datalayer.cpp \
     scientist.cpp \
     servicelayer.cpp
