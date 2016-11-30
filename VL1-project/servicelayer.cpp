@@ -24,15 +24,20 @@ vector<Scientist> ServiceLayer::sortAlphabetical()
 }
 vector<Scientist> ServiceLayer::sortByBirthAscendng()
 {
-    //TODO
+    vector<Scientist> vBirth = dataL.readFile();
+    ScientistComparison cmp;
+    std::sort(vAlpha.begin(), vAlpha.end(), cmp);
+    return vBirth;
 }
 vector<Scientist> ServiceLayer::sortByBirthDescending()
 {
-    //TODO
+    vector<Scientist> vBirth = dataL.readFile();
+    return vBirth;
 }
 vector<Scientist> ServiceLayer::sortByGender()
 {
-    //TODO
+    vector<Scientist> vGender = dataL.readFile();
+    return vGender;
 }
 void ServiceLayer::sortByDeathAscending()
 {
