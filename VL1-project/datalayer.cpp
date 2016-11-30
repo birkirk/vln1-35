@@ -53,25 +53,4 @@ void DataLayer::writeFile(vector<Scientist> vScientist) {
     outputFile.close();
 }
 
-/* void DataLayer::addScientist(Scientist newScientist)
-{
-    bool inputTest = false;
-    for(unsigned int i = 0; i < dataVector.size(); i++)
-    {
-        if(newScientist.getFirstName() == dataVector[i].getFirstName() && newScientist.getLastName() == dataVector[i].getLastName()) inputTest = true;
-    }
-    ofstream outputFile;
-    outputFile.open ("ScientistData.txt", ios_base::app);
-    string returnString;
-    if(inputTest == false)
-    {
-        outputFile << endl << newScientist.getFirstName() << " ";
-        outputFile << newScientist.getLastName();
-        outputFile << newScientist.getGender() << " ";
-        outputFile << newScientist.getBirth() << " " << newScientist.getDeath();
-        returnString = "successful";
-    }
-    else returnString = "unsuccessful!";
-} */
-
 

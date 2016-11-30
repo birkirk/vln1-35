@@ -15,11 +15,12 @@ void UserInterface::run() {
     string command, listCommand;
 
     do {
-        cout << "Enter one of the following commands: " << endl;
-        cout << "add (to add a scientist)" << endl;
-        cout << "list (to see the list of scientists)" << endl;
-        cout << "search (to search in the list of scientists)" << endl;
-        cout << "q (quit)" << endl;
+        cout << "== Enter one of the following commands: ==" << endl;
+        cout << "add" << '\t' << '\t' << "(to add a scientist)" << endl;
+        cout << "list" << '\t' << "(to see the list of scientists)" << endl;
+        cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
+        cout << "q" << '\t' << '\t' << "(quit)" << endl;
+        cout << "=> Command: ";
 
         cin >> command;
 
@@ -71,11 +72,12 @@ void UserInterface::run() {
             service.addScientitst(aScientist);
 
         } else if (command == "list") {
-            cout << "How would you like to list the scientists?" << endl;
-            cout << "alpha (sort alphabetically)" << endl;
-            cout << "gender (sort by gender)" << endl;
-            cout << "fromold (oldest to youngest)" << endl;
-            cout << "fromyoung (youngest to oldest)" << endl;
+            cout << endl << "=== In which order? ===" << endl;
+            cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
+            cout << "gender" << '\t' << '\t' << "(sort by gender)" << endl;
+            cout << "fromold" << '\t' << '\t' << "(oldest to youngest)" << endl;
+            cout << "fromyoung" << '\t' << "(youngest to oldest)" << endl;
+            cout << "=> Order: ";
 
             cin >> listCommand;
             if (listCommand == "alpha") {
@@ -100,7 +102,7 @@ void UserInterface::run() {
 
 void UserInterface::printOut(vector<Scientist> vScientist) {
     for(size_t i = 0; i < vScientist.size(); i++) {
-        cout << "Name: " << vScientist[i].getFirstName() << " " << vScientist[i].getLastName() << endl;
+        cout << endl << "Name: " << vScientist[i].getFirstName() << " " << vScientist[i].getLastName() << endl;
         if(vScientist[i].getGender() == 'm' || vScientist[i].getGender() == 'M') {
             cout << "Gender: Male" << endl;
         } else {
@@ -110,7 +112,7 @@ void UserInterface::printOut(vector<Scientist> vScientist) {
         if(vScientist[i].getDeath() == 0) {
             cout << vScientist[i].getFirstName() << " is still alive." << endl << endl;
         } else {
-            cout << "Year of death: " << vScientist[i].getDeath() << endl << endl;
+            cout << "Year of death: " << vScientist[i].getDeath() << endl;
         }
     }
 }
