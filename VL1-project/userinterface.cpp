@@ -66,7 +66,9 @@ void UserInterface::run() {
                 } while(death > 2016 || death < born);
             }
 
+            cout << "=== Successfully added a scientist ===" << endl << endl;
             Scientist aScientist(fName, lName, gender, born, death);
+            service.addScientitst(aScientist);
 
         } else if (command == "list") {
             cout << "How would you like to list the scientists?" << endl;

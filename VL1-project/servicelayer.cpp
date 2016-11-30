@@ -5,6 +5,10 @@ ServiceLayer::ServiceLayer()
 
 }
 
+void ServiceLayer::addScientitst(Scientist aScientist) {
+    vScientists.push_back(aScientist);
+}
+
 void ServiceLayer::sortAlphabetical()
 {
     //TODO
