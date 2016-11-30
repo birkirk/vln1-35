@@ -30,7 +30,7 @@ void UserInterface::run() {
     string command, listCommand;
 
     do {
-        cout << endl << "== Enter one of the following commands: ==" << endl;
+        cout << "== Enter one of the following commands: ==" << endl;
         cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
@@ -134,7 +134,7 @@ void UserInterface::run() {
                 char cont;
                 do
                 {
-                    cout << "Continue? y/n" << endl;
+                    cout << "Press y when ready to continue: " << endl;
                     cin >> cont;
                 } while(cont != 'Y' && cont != 'y');
                 cout << endl;
@@ -150,7 +150,7 @@ void UserInterface::run() {
                 char cont;
                 do
                 {
-                    cout << "Continue? y/n" << endl;
+                    cout << "Press y when ready to continue: " << endl;
                     cin >> cont;
                 } while(cont != 'Y' && cont != 'y');
                 cout << endl;
@@ -186,11 +186,12 @@ void UserInterface::printOut(vector<Scientist> vScientist) {
         }
         cout << "Year born: " << vScientist[i].getBirth() << endl;
         if(vScientist[i].getDeath() == 0) {
-            cout << vScientist[i].getFirstName() << " is still alive." << endl;
+            cout << "Year of death: ?" << endl;
         } else {
             cout << "Year of death: " << vScientist[i].getDeath() << endl;
         }
     }
+    cout << endl;
 }
 
 
