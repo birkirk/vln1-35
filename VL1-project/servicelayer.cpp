@@ -26,7 +26,7 @@ vector<Scientist> ServiceLayer::sortByBirthAscendng()
 {
     vector<Scientist> vBirth = dataL.readFile();
     ScientistComparison cmp;
-    std::sort(vAlpha.begin(), vAlpha.end(), cmp);
+    std::sort(vBirth.begin(), vBirth.end(), cmp);
     return vBirth;
 }
 vector<Scientist> ServiceLayer::sortByBirthDescending()
