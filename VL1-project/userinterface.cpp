@@ -99,19 +99,13 @@ void UserInterface::run() {
                 vector<Scientist> vTemp = service.sortByGender();
                 printOut(vTemp);
             } else if (listCommand == "fromold") {
-<<<<<<< Updated upstream
                 vector<Scientist> vTemp = service.sortByBirthDescending();
                 printOut(vTemp);
             } else if (listCommand == "fromyoung") {
                 vector<Scientist> vTemp = service.sortByBirthAscendng();
                 printOut(vTemp);
-=======
-                //vector<Scientist> vTemp = service.sortByBirthDescending()();
-                //printOut(vTemp);
-            } else if (listCommand == "fromyoung") {
-                //vector<Scientist> vTemp = service.sortByBirthAscendng()();
-                //printOut(vTemp);
->>>>>>> Stashed changes
+
+
             } else {
                 cout << "Please enter a valid command!" << endl;
             }
