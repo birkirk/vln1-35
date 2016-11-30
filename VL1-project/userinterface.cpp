@@ -14,7 +14,7 @@ ostream& operator << (ostream& out, vector<Scientist> sVector)
         out << "Name: " << sVector[i].getFirstName() << " " << sVector[i].getLastName() << endl;
         out << "Born in " << sVector[i].getBirth() << endl;
         if(sVector[i].getDeath() != 0) out << "Died in " << sVector[i].getDeath() << endl;
-        if(sVector[i].getGender() == 'M') out << "Male" << endl;
+        if(sVector[i].getGender() == 'M' || sVector[i].getGender() == 'm') out << "Male" << endl;
         else out << "Female" << endl;
         out << endl;
     }
@@ -28,9 +28,10 @@ UserInterface::UserInterface()
 
 void UserInterface::run() {
     string command, listCommand;
-
+    
     do {
-        cout << "== Enter one of the following commands: ==" << endl;
+        
+        cout << "<--- Enter one of the following commands: --->" << endl;
         cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
@@ -44,7 +45,7 @@ void UserInterface::run() {
             string lName;
             char gender, stillAlive;
             int born, death;
-            cout << "======= Add a scientist =======" << endl;
+            cout << "<--- Add a scientist --->" << endl;
             do {
                 cout << "First name: ";
                 cin >> fName;
@@ -88,12 +89,12 @@ void UserInterface::run() {
                 } while(death > 2016 || death < born);
             }
 
-            cout << "=== Successfully added a scientist ===" << endl << endl;
+            cout << "<--- Successfully added a scientist --->" << endl << endl;
             Scientist aScientist(fName, lName, gender, born, death);
             service.addScientitst(aScientist);
 
         } else if (command == "list") {
-            cout << endl << "=== In which order? ===" << endl;
+            cout << endl << "<--- In which order? --->" << endl;
             cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
             cout << "gender" << '\t' << '\t' << "(sort by gender)" << endl;
             cout << "fromold" << '\t' << '\t' << "(oldest to youngest)" << endl;
