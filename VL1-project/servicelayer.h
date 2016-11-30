@@ -2,6 +2,7 @@
 #define SERVICELAYER_H
 #include "scientist.h"
 #include "datalayer.h"
+#include <algorithm>
 
 class ServiceLayer
 {

@@ -87,10 +87,10 @@ void UserInterface::run() {
                 vector<Scientist> vTemp = service.sortByGender();
                 printOut(vTemp);
             } else if (listCommand == "fromold") {
-                vector<Scientist> vTemp = service.sortByBirthDescending()();
+                vector<Scientist> vTemp = service.sortByBirthDescending();
                 printOut(vTemp);
             } else if (listCommand == "fromyoung") {
-                vector<Scientist> vTemp = service.sortByBirthAscendng()();
+                vector<Scientist> vTemp = service.sortByBirthAscendng();
                 printOut(vTemp);
             } else {
                 cout << "Please enter a valid command!" << endl;
