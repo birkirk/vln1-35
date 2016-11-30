@@ -166,7 +166,7 @@ void UserInterface::run() {
                 char cont;
                 do
                 {
-                    cout << "Continue? y/n" << endl;
+                    cout << "Press y when ready to continue: " << endl;
                     cin >> cont;
                 } while(cont != 'Y' && cont != 'y');
             }
