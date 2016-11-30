@@ -1,6 +1,7 @@
 #ifndef SERVICELAYER_H
 #define SERVICELAYER_H
 #include "scientist.h"
+#include "datalayer.h"
 
 class ServiceLayer
 {
@@ -16,6 +17,7 @@ public:
     void search();
 private:
     vector<Scientist> vScientists;
+    DataLayer dataL;
 };
 
 #endif // SERVICELAYER_H

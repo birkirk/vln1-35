@@ -10,6 +10,10 @@ using namespace std;
 
 DataLayer::DataLayer()
 {
+    
+}
+
+void DataLayer::readFile() {
     ifstream inputFile;
     inputFile.open ("ScientistData.txt");
     string fName;
@@ -17,7 +21,7 @@ DataLayer::DataLayer()
     bool isMale;
     int yearOfBirth;
     int yearOfDeath;
-
+    
     while(inputFile >> fName)
     {
         inputFile >> lName;
@@ -30,7 +34,7 @@ DataLayer::DataLayer()
     inputFile.close();
 }
 
-string DataLayer::addScientist(Scientist newScientist)
+void DataLayer::addScientist(Scientist newScientist)
 {
     bool inputTest = false;
     for(unsigned int i = 0; i < dataVector.size(); i++)
@@ -49,7 +53,6 @@ string DataLayer::addScientist(Scientist newScientist)
         returnString = "successful";
     }
     else returnString = "unsuccessful!";
-    return returnString;
 }
 
 

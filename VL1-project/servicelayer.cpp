@@ -6,7 +6,7 @@ ServiceLayer::ServiceLayer()
 }
 
 void ServiceLayer::addScientitst(Scientist aScientist) {
-    vScientists.push_back(aScientist);
+    dataL.addScientist(aScientist);
 }
 
 void ServiceLayer::sortAlphabetical()

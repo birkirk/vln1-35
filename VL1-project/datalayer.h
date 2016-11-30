@@ -10,8 +10,9 @@ class DataLayer
 {
 public:
     DataLayer();
-    string addScientist(Scientist newScientist);
+    void addScientist(Scientist newScientist);
     vector<Scientist> dataVector;
+    void readFile();
 private:
 
 };
