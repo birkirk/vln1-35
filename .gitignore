@@ -24,6 +24,7 @@ qrc_*.cpp
 ui_*.h
 Makefile*
 *build-*
+*.xcodeproj
 
 # QtCreator
 
@@ -35,4 +36,3 @@ Makefile*
 
 # QtCtreator CMake
 CMakeLists.txt.user
-
