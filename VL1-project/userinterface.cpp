@@ -38,7 +38,7 @@ void UserInterface::run() {
         cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
 
-        getline(cin, command);
+        cin >> command;
 
         if (command == "add") {
             string fName;
@@ -66,10 +66,8 @@ void UserInterface::run() {
                 cin.ignore();
                 cout << "Year of birth: ";
                 cin >> born;
-                if(cin.fail())
-                {
-                    cout << "Please enter a valid year!" << endl;
-                }
+                if(cin.fail()) cout << "Please enter a valid year!" << endl;
+
             } while(born <= 0 || born > 2016);
 
             do {
@@ -84,9 +82,14 @@ void UserInterface::run() {
                 death = 0;
             } else {
                 do {
+                    cin.clear();
+                    cin.ignore();
                     cout << "Year of death: ";
                     cin >> death;
+                    if(cin.fail()) cout << "Please enter a valid year!" << endl;
                 } while(death > 2016 || death < born);
+
+
             }
 
             cout << "<--- Successfully added a scientist --->" << endl << endl;
