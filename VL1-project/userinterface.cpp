@@ -37,7 +37,7 @@ void UserInterface::run() {
         cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
 
-        cin >> command;
+        getline(cin, command);
 
         if (command == "add") {
             string fName;
@@ -61,8 +61,14 @@ void UserInterface::run() {
             } while(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f');
 
             do {
+                cin.clear();
+                cin.ignore();
                 cout << "Year of birth: ";
                 cin >> born;
+                if(cin.fail())
+                {
+                    cout << "Please enter a valid year!" << endl;
+                }
             } while(born <= 0 || born > 2016);
 
             do {
@@ -107,8 +113,6 @@ void UserInterface::run() {
             } else if (listCommand == "fromyoung") {
                 vector<Scientist> vTemp = service.sortByBirthAscendng();
                 printOut(vTemp);
-
-
             } else {
                 cout << "Please enter a valid command!" << endl;
             }
