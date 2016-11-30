@@ -113,7 +113,7 @@ void UserInterface::printOut(vector<Scientist> vScientist) {
         }
         cout << "Year born: " << vScientist[i].getBirth() << endl;
         if(vScientist[i].getDeath() == 0) {
-            cout << vScientist[i].getFirstName() << " is still alive." << endl << endl;
+            cout << vScientist[i].getFirstName() << " is still alive." << endl;
         } else {
             cout << "Year of death: " << vScientist[i].getDeath() << endl;
         }
