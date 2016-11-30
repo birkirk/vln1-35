@@ -22,15 +22,15 @@ vector<Scientist> ServiceLayer::sortAlphabetical()
     std::sort(vAlpha.begin(), vAlpha.end(), cmp);
     return vAlpha;
 }
-void ServiceLayer::sortByBirthAscendng()
+vector<Scientist> ServiceLayer::sortByBirthAscendng()
 {
     //TODO
 }
-void ServiceLayer::sortByBirthDescending()
+vector<Scientist> ServiceLayer::sortByBirthDescending()
 {
     //TODO
 }
-void ServiceLayer::sortByGender()
+vector<Scientist> ServiceLayer::sortByGender()
 {
     //TODO
 }
