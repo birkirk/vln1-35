@@ -16,10 +16,10 @@ void UserInterface::run() {
 
     do {
         cout << "== Enter one of the following commands: ==" << endl;
-        cout << "add" << '\t' << '\t' << "(to add a scientist)" << endl;
+        cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
-        cout << "q" << '\t' << '\t' << "(quit)" << endl;
+        cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
 
         cin >> command;
