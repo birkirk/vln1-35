@@ -70,8 +70,8 @@ void UserInterface::run() {
 
         } else if (command == "list") {
             cout << "How would you like to list the scientists?" << endl;
-            cout << "alpha (alphabetically)" << endl;
-            cout << "gender (by gender)" << endl;
+            cout << "alpha (sort alphabetically)" << endl;
+            cout << "gender (sort by gender)" << endl;
             cout << "fromold (oldest to youngest)" << endl;
             cout << "fromyoung (youngest to oldest)" << endl;
 
