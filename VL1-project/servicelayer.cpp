@@ -6,7 +6,9 @@ ServiceLayer::ServiceLayer()
 }
 
 void ServiceLayer::addScientitst(Scientist aScientist) {
-    dataL.addScientist(aScientist);
+    vector<Scientist> vUse = dataL.readFile();
+    vUse.push_back(aScientist);
+    dataL.writeFile(vUse);
 }
 
 void ServiceLayer::sortAlphabetical()

@@ -11,10 +11,11 @@ class DataLayer
 public:
     DataLayer();
     void addScientist(Scientist newScientist);
-    vector<Scientist> dataVector;
-    void readFile();
+    vector<Scientist> readFile();
+    void writeFile(vector<Scientist> vScientist);
+    friend ostream& operator << (ostream& out, Scientist aScientist);
 private:
-
+    vector<Scientist> dataVector;
 };
 
 
