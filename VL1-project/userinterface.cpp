@@ -30,7 +30,7 @@ void UserInterface::run() {
     string command, listCommand;
 
     do {
-        cout << "== Enter one of the following commands: ==" << endl;
+        cout << endl << "== Enter one of the following commands: ==" << endl;
         cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
@@ -113,7 +113,7 @@ void UserInterface::run() {
                 cout << "Please enter a valid command!" << endl;
             }
         } else if (command == "search") {
-            cout << "Would you like to search by name, year of birth, or year of death?" << endl << "==> command:";
+            cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
             string inputString;
             cin.ignore();
             getline(cin, inputString);
