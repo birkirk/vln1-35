@@ -24,14 +24,20 @@ void UserInterface::run() {
         cin >> command;
 
         if (command == "add") {
-            string name;
+            string fName;
+            string lName;
             char gender, stillAlive;
             int born, death;
             cout << "======= Add a scientist =======" << endl;
             do {
-                cout << "Name: ";
-                cin >> name;
-            } while(name.length() <= 1);
+                cout << "First name: ";
+                cin >> fName;
+            } while(fName.length() <= 1);
+
+            do {
+                cout << "Last name: ";
+                cin >> lName;
+            } while(fName.length() <= 1);
 
             do {
                 cout << "Gender (M/F): ";
@@ -60,7 +66,7 @@ void UserInterface::run() {
                 } while(death > 2016 || death < born);
             }
 
-            Scientist aScientist(name, gender, born, death);
+            Scientist aScientist(fName, lName, gender, born, death);
 
         } else if (command == "list") {
             cout << "How would you like to list the scientists?" << endl;

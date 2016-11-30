@@ -10,17 +10,18 @@ class Scientist
 public:
     Scientist();
 
-    Scientist(string name, char gender,int born,int death);
+    Scientist(string fName, string lName, char gender,int born,int death);
 
     int getBirth();
     int getDeath();
     bool getGender();
-    string getName();
+    string getFirstName();
+    string getLastName();
 
 
 private:
     char _gender;
-    string _name;
+    string _firstName, _lastName;
     int _born, _death;
 };
 
