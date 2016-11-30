@@ -10,10 +10,11 @@ class DataLayer
 {
 public:
     DataLayer();
+    friend istream& operator >> (istream& in, Scientist& s);
+    friend ostream& operator << (ostream& out, Scientist aScientist);
     void addScientist(Scientist newScientist);
     vector<Scientist> readFile();
     void writeFile(vector<Scientist> vScientist);
-    friend ostream& operator << (ostream& out, Scientist aScientist);
 private:
     vector<Scientist> dataVector;
 };

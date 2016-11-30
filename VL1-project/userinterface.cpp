@@ -66,7 +66,7 @@ void UserInterface::run() {
                 } while(death > 2016 || death < born);
             }
 
-            // cout << "=== Successfully added a scientist ===" << endl << endl;
+            cout << "=== Successfully added a scientist ===" << endl << endl;
             Scientist aScientist(fName, lName, gender, born, death);
             service.addScientitst(aScientist);
 
@@ -79,7 +79,8 @@ void UserInterface::run() {
 
             cin >> listCommand;
             if (listCommand == "alpha") {
-                
+                vector<Scientist> vTemp = service.sortAlphabetical();
+                printOut(vTemp);
             } else if (listCommand == "gender") {
 
             } else if (listCommand == "fromold") {
@@ -96,3 +97,13 @@ void UserInterface::run() {
         }
     } while (command != "q");
 }
+
+void UserInterface::printOut(vector<Scientist> vScientist) {
+    for(size_t i = 0; i < vScientist.size(); i++) {
+        cout << "Name: " << vScientist[i].getFirstName() << endl;
+    }
+}
+
+
+
+

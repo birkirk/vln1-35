@@ -6,9 +6,9 @@
 class ServiceLayer
 {
 public:
-    void addScientitst(Scientist aScientist);
     ServiceLayer();
-    void sortAlphabetical();
+    void addScientitst(Scientist aScientist);
+    vector<Scientist> sortAlphabetical();
     void sortByBirthAscendng();
     void sortByBirthDescending();
     void sortByGender();

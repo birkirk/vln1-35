@@ -7,9 +7,9 @@ class UserInterface
 {
 public:
     UserInterface();
-
     // main mennu
     void run();
+    void printOut(vector<Scientist> vScientist);
 private:
     ServiceLayer service;
 };
