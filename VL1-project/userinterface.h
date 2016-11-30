@@ -9,6 +9,7 @@ public:
     UserInterface();
     // main mennu
     void run();
+    friend ostream& operator << (ostream& out, vector<Scientist> sVector);
     void printOut(vector<Scientist> vScientist);
 private:
     ServiceLayer service;

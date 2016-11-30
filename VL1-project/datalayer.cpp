@@ -44,6 +44,8 @@ ostream& operator << (ostream& out, Scientist aScientist) {
     return out;
 }
 
+
+
 void DataLayer::writeFile(vector<Scientist> vScientist) {
     ofstream outputFile;
     outputFile.open ("../ScientistData.txt");

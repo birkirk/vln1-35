@@ -15,7 +15,7 @@ public:
     vector<Scientist> sortByGender();
     void sortByDeathAscending();
     void sortByDeathDescending();
-    void search();
+    vector<Scientist> search(string s1);
 private:
     vector<Scientist> vScientists;
     DataLayer dataL;

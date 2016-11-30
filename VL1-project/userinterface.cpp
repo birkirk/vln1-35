@@ -6,6 +6,18 @@
 
 using namespace std;
 
+ostream& operator << (ostream& out, vector<Scientist> sVector)
+{
+    for(unsigned int i = 0; i < sVector.size(); i++)
+    {
+        out << "Name: " << sVector[i].getFirstName() << " " << sVector[i].getLastName() << endl;
+        out << "Born in " << sVector[i].getBirth();
+        if(sVector[i].getDeath() != 0) out << "Died" << sVector[i].getDeath() << endl;
+        out << endl;
+    }
+    return out;
+}
+
 UserInterface::UserInterface()
 {
 
@@ -87,15 +99,41 @@ void UserInterface::run() {
                 vector<Scientist> vTemp = service.sortByGender();
                 printOut(vTemp);
             } else if (listCommand == "fromold") {
+<<<<<<< Updated upstream
                 vector<Scientist> vTemp = service.sortByBirthDescending();
                 printOut(vTemp);
             } else if (listCommand == "fromyoung") {
                 vector<Scientist> vTemp = service.sortByBirthAscendng();
                 printOut(vTemp);
+=======
+                //vector<Scientist> vTemp = service.sortByBirthDescending()();
+                //printOut(vTemp);
+            } else if (listCommand == "fromyoung") {
+                //vector<Scientist> vTemp = service.sortByBirthAscendng()();
+                //printOut(vTemp);
+>>>>>>> Stashed changes
             } else {
                 cout << "Please enter a valid command!" << endl;
             }
         } else if (command == "search") {
+            cout << "Would you like to search by name, year of birth, or year of death?" << endl << "==> command:";
+            string inputString;
+            cin >> inputString;
+
+            if(inputString == "name" && inputString == "Name");
+            {
+                string searchString;
+                cout << "Enter name for search: ";
+                cin >> searchString;
+                vector<Scientist> tempVector;
+                tempVector = service.search(searchString);
+                if(tempVector.size() > 0)
+                {
+                    cout << tempVector;
+                }
+                else cout << "Not found";
+            }
+
 
         } else if (command != "q") {
             cout << "Please enter a valid command!" << endl;
