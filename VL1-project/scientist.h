@@ -11,10 +11,10 @@ public:
     Scientist();
 
     Scientist(string fName, string lName, char gender,int born,int death);
-
+    friend istream& operator >> (istream& in, Scientist& s);
     int getBirth();
     int getDeath();
-    bool getGender();
+    char getGender();
     string getFirstName();
     string getLastName();
 

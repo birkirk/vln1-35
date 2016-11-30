@@ -14,27 +14,33 @@ DataLayer::DataLayer()
 }
 
 istream& operator >> (istream& in, Scientist& s) {
-    in >> s.getFirstName() >> s.getLastName() >> s.getGender() >> s.getBirth() >> s.getDeath();
+    in >> s._firstName;
+    in >> s._lastName;
+    in >> s._gender;
+    in >> s._born;
+    in >> s._death;
     return in;
 }
 
 vector<Scientist> DataLayer::readFile() {
     ifstream inputFile;
-    inputFile.open ("/Users/Birkir/Desktop/ScientistData.txt", ios::app);
+    inputFile.open ("/Users/Birkir/Desktop/ScientistData.txt");
     Scientist tempSci;
+    vector<Scientist> tempV;
+    string test;
     
     if(inputFile) {
         while(inputFile >> tempSci)
         {
-            dataVector.push_back(tempSci);
+            tempV.push_back(tempSci);
         }
         inputFile.close();
     }
-    return dataVector;
+    return tempV;
 }
 
 ostream& operator << (ostream& out, Scientist aScientist) {
-    out << aScientist.getFirstName() << " " << aScientist.getLastName() << " " << aScientist.getGender() << " " << aScientist.getBirth() << " " << aScientist.getDeath() << " ";
+    out << aScientist.getFirstName() << endl << aScientist.getLastName() << endl << aScientist.getGender() << endl << aScientist.getBirth() << endl << aScientist.getDeath() << endl;
     return out;
 }
 
@@ -42,9 +48,7 @@ void DataLayer::writeFile(vector<Scientist> vScientist) {
     ofstream outputFile;
     outputFile.open ("/Users/Birkir/Desktop/ScientistData.txt", ios::app);
     if(outputFile) {
-        for(size_t i = 0; i < vScientist.size(); i++) {
-            outputFile << vScientist[i] << endl;
-        }
+        outputFile << vScientist[vScientist.size() - 1];
     }
     outputFile.close();
 }

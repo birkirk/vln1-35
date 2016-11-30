@@ -24,7 +24,7 @@ int Scientist::getDeath()
 {
     return _death;
 }
-bool Scientist::getGender()
+char Scientist::getGender()
 {
     return _gender;
 }

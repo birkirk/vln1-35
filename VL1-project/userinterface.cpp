@@ -100,7 +100,18 @@ void UserInterface::run() {
 
 void UserInterface::printOut(vector<Scientist> vScientist) {
     for(size_t i = 0; i < vScientist.size(); i++) {
-        cout << "Name: " << vScientist[i].getFirstName() << endl;
+        cout << "Name: " << vScientist[i].getFirstName() << " " << vScientist[i].getLastName() << endl;
+        if(vScientist[i].getGender() == 'm' || vScientist[i].getGender() == 'M') {
+            cout << "Gender: Male" << endl;
+        } else {
+            cout << "Gender: Female" << endl;
+        }
+        cout << "Year born: " << vScientist[i].getBirth() << endl;
+        if(vScientist[i].getDeath() == 0) {
+            cout << vScientist[i].getFirstName() << " is still alive." << endl << endl;
+        } else {
+            cout << "Year of death: " << vScientist[i].getDeath() << endl << endl;
+        }
     }
 }
 
