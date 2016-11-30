@@ -3,6 +3,7 @@
 #include "scientist.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,8 +12,10 @@ ostream& operator << (ostream& out, vector<Scientist> sVector)
     for(unsigned int i = 0; i < sVector.size(); i++)
     {
         out << "Name: " << sVector[i].getFirstName() << " " << sVector[i].getLastName() << endl;
-        out << "Born in " << sVector[i].getBirth();
-        if(sVector[i].getDeath() != 0) out << "Died" << sVector[i].getDeath() << endl;
+        out << "Born in " << sVector[i].getBirth() << endl;
+        if(sVector[i].getDeath() != 0) out << "Died in " << sVector[i].getDeath() << endl;
+        if(sVector[i].getGender() == 'M') out << "Male" << endl;
+        else out << "Female" << endl;
         out << endl;
     }
     return out;
@@ -112,23 +115,61 @@ void UserInterface::run() {
         } else if (command == "search") {
             cout << "Would you like to search by name, year of birth, or year of death?" << endl << "==> command:";
             string inputString;
-            cin >> inputString;
+            cin.ignore();
+            getline(cin, inputString);
+            std::transform(inputString.begin(), inputString.end(), inputString.begin(), ::tolower);
 
-            if(inputString == "name" && inputString == "Name");
+            if(inputString == "name")
             {
                 string searchString;
-                cout << "Enter name for search: ";
+                cout << "Enter name: ";
                 cin >> searchString;
                 vector<Scientist> tempVector;
-                tempVector = service.search(searchString);
+                tempVector = service.searchByName(searchString);
                 if(tempVector.size() > 0)
                 {
                     cout << tempVector;
                 }
-                else cout << "Not found";
+                else cout << "Not found" << endl << endl;
+                char cont;
+                do
+                {
+                    cout << "Continue? y/n" << endl;
+                    cin >> cont;
+                } while(cont != 'Y' && cont != 'y');
+                cout << endl;
             }
-
-
+            else if(inputString == "birth" || inputString == "year of birth" || inputString == "yearofbirth")
+            {
+                int searchString;
+                cout << "Enter year: ";
+                cin >> searchString;
+                vector<Scientist> tempVector = service.searchByBirth(searchString);
+                if(tempVector.size() > 0) cout << tempVector;
+                else cout << "Not found" << endl;
+                char cont;
+                do
+                {
+                    cout << "Continue? y/n" << endl;
+                    cin >> cont;
+                } while(cont != 'Y' && cont != 'y');
+                cout << endl;
+            }
+            else if(inputString == "death" || inputString == "year of death" || inputString == "yearofdeath")
+            {
+                int searchString;
+                cout << "Enter year: ";
+                cin >> searchString;
+                vector<Scientist> tempVector = service.searchByDeath(searchString);
+                if(tempVector.size() > 0) cout << tempVector;
+                else cout << "Not found" << endl;
+                char cont;
+                do
+                {
+                    cout << "Continue? y/n" << endl;
+                    cin >> cont;
+                } while(cont != 'Y' && cont != 'y');
+            }
         } else if (command != "q") {
             cout << "Please enter a valid command!" << endl;
         }

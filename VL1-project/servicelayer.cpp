@@ -66,14 +66,42 @@ void ServiceLayer::sortByDeathDescending()
 
 }
 
-vector<Scientist> ServiceLayer::search(string s1)
+vector<Scientist> ServiceLayer::searchByName(string s1)
 {
     vector<Scientist> dataVector = dataL.readFile();
     vector<Scientist> returnVector;
 
     for(unsigned int i = 0; i < dataVector.size(); i++)
     {
-        if(icompare(s1, dataVector[i].getFirstName()) )
+        if(icompare(s1, dataVector[i].getFirstName()) || icompare(s1, dataVector[i].getLastName()))
+        {
+            returnVector.push_back(dataVector[i]);
+        }
+    }
+    return returnVector;
+}
+vector<Scientist> ServiceLayer::searchByBirth(int s1)
+{
+    vector<Scientist> dataVector = dataL.readFile();
+    vector<Scientist> returnVector;
+
+    for(unsigned int i = 0; i < dataVector.size(); i++)
+    {
+        if(s1 == dataVector[i].getBirth())
+        {
+            returnVector.push_back(dataVector[i]);
+        }
+    }
+    return returnVector;
+}
+vector<Scientist> ServiceLayer::searchByDeath(int s1)
+{
+    vector<Scientist> dataVector = dataL.readFile();
+    vector<Scientist> returnVector;
+
+    for(unsigned int i = 0; i < dataVector.size(); i++)
+    {
+        if(s1 == dataVector[i].getDeath())
         {
             returnVector.push_back(dataVector[i]);
         }
