@@ -16,10 +16,10 @@ void UserInterface::run() {
 
     do {
         cout << "== Enter one of the following commands: ==" << endl;
-        cout << "add" << '\t' << '\t' << "(to add a scientist)" << endl;
+        cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
-        cout << "q" << '\t' << '\t' << "(quit)" << endl;
+        cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
 
         cin >> command;
@@ -87,10 +87,10 @@ void UserInterface::run() {
                 vector<Scientist> vTemp = service.sortByGender();
                 printOut(vTemp);
             } else if (listCommand == "fromold") {
-                vector<Scientist> vTemp = service.sortByBirthDescending()();
+                vector<Scientist> vTemp = service.sortByBirthDescending();
                 printOut(vTemp);
             } else if (listCommand == "fromyoung") {
-                vector<Scientist> vTemp = service.sortByBirthAscendng()();
+                vector<Scientist> vTemp = service.sortByBirthAscendng();
                 printOut(vTemp);
             } else {
                 cout << "Please enter a valid command!" << endl;

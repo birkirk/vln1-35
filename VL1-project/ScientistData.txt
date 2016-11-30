@@ -1,2 +1,0 @@
-Siggi true 1995 2016
-Fríða false 1000 1065

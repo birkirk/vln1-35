@@ -24,7 +24,7 @@ istream& operator >> (istream& in, Scientist& s) {
 
 vector<Scientist> DataLayer::readFile() {
     ifstream inputFile;
-    inputFile.open ("/Users/Birkir/Desktop/ScientistData.txt");
+    inputFile.open ("ScientistData.txt");
     Scientist tempSci;
     vector<Scientist> tempV;
     string test;
@@ -46,9 +46,11 @@ ostream& operator << (ostream& out, Scientist aScientist) {
 
 void DataLayer::writeFile(vector<Scientist> vScientist) {
     ofstream outputFile;
-    outputFile.open ("/Users/Birkir/Desktop/ScientistData.txt", ios::app);
+    outputFile.open ("ScientistData.txt");
     if(outputFile) {
-        outputFile << vScientist[vScientist.size() - 1];
+        for(size_t i = 0; i < vScientist.size(); i++) {
+            outputFile << vScientist[i] << endl;
+        }
     }
     outputFile.close();
 }
