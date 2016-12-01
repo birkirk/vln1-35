@@ -154,5 +154,9 @@ vector<Scientist> ServiceLayer::searchByDeath(int s1)
     return returnVector;
 }
 
+void ServiceLayer::clearAll() {
+    dataL.clearFile();
+}
+
 
 

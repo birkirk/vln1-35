@@ -35,6 +35,7 @@ void UserInterface::run() {
         cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
+        cout << "clear" << '\t' << "(to clear the list of scientists)" << endl;
         cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
 
@@ -66,7 +67,7 @@ void UserInterface::run() {
                 cin.ignore();
                 cout << "Year of birth: ";
                 cin >> born;
-                if(cin.fail()) cout << "Please enter a valid year!" << endl;
+                if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl;
 
             } while(born <= 0 || born > 2016);
 
@@ -86,7 +87,7 @@ void UserInterface::run() {
                     cin.ignore();
                     cout << "Year of death: ";
                     cin >> death;
-                    if(cin.fail()) cout << "Please enter a valid year!" << endl;
+                    if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl << endl;
                 } while(death > 2016 || death < born);
 
 
@@ -110,7 +111,7 @@ void UserInterface::run() {
                 printOut(vTemp);
             } else if (listCommand == "gender") {
                 char choice;
-                cout << "Type m for males first or f for females first" << endl << "==> ";
+                cout << "<--- Type m for males first or f for females first --->" << endl << "==> ";
                 cin >> choice;
                 if(choice == 'm' || choice == 'M') {
                     vector<Scientist> vTemp = service.sortByMaleFemale();
@@ -119,7 +120,7 @@ void UserInterface::run() {
                     vector<Scientist> vTemp = service.sortByFemaleMale();
                     printOut(vTemp);
                 } else {
-                    cout << "You must only type M or F!" << endl;
+                    cout << "!--- You must only type M or F ---!" << endl;
                 }
 
             } else if (listCommand == "fromold") {
@@ -129,7 +130,7 @@ void UserInterface::run() {
                 vector<Scientist> vTemp = service.sortByBirthAscendng();
                 printOut(vTemp);
             } else {
-                cout << "Please enter a valid command!" << endl;
+                cout << "!--- Please enter a valid command ---!" << endl << endl;
             }
         } else if (command == "search") {
             cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
@@ -153,7 +154,7 @@ void UserInterface::run() {
                 char cont;
                 do
                 {
-                    cout << "Press y when ready to continue: " << endl;
+                    cout << "Type y when ready to continue: " << endl;
                     cin >> cont;
                 } while(cont != 'Y' && cont != 'y');
                 cout << endl;
@@ -169,7 +170,7 @@ void UserInterface::run() {
                 char cont;
                 do
                 {
-                    cout << "Press y when ready to continue: " << endl;
+                    cout << "Type y when ready to continue: " << endl;
                     cin >> cont;
                 } while(cont != 'Y' && cont != 'y');
                 cout << endl;
@@ -189,26 +190,33 @@ void UserInterface::run() {
                     cin >> cont;
                 } while(cont != 'Y' && cont != 'y');
             }
+        } else if (command == "clear") {
+            service.clearAll();
+            cout << "<--- Successfully cleared list --->" << endl << endl;
         } else if (command != "q") {
-            cout << "Please enter a valid command!" << endl;
+            cout << "!--- Please enter a valid command --->" << endl << endl;
         }
     } while (command != "q");
 }
 
 void UserInterface::printOut(vector<Scientist> vScientist) {
-    for(size_t i = 0; i < vScientist.size(); i++) {
-        cout << endl << "Name: " << vScientist[i].getFirstName() << " " << vScientist[i].getLastName() << endl;
-        if(vScientist[i].getGender() == 'm' || vScientist[i].getGender() == 'M') {
-            cout << "Gender: Male" << endl;
-        } else {
-            cout << "Gender: Female" << endl;
+    if(vScientist.size() != 0) {
+        for(size_t i = 0; i < vScientist.size(); i++) {
+            cout << endl << "Name: " << vScientist[i].getFirstName() << " " << vScientist[i].getLastName() << endl;
+            if(vScientist[i].getGender() == 'm' || vScientist[i].getGender() == 'M') {
+                cout << "Gender: Male" << endl;
+            } else {
+                cout << "Gender: Female" << endl;
+            }
+            cout << "Year born: " << vScientist[i].getBirth() << endl;
+            if(vScientist[i].getDeath() == 0) {
+                cout << "Year of death: ?" << endl;
+            } else {
+                cout << "Year of death: " << vScientist[i].getDeath() << endl;
+            }
         }
-        cout << "Year born: " << vScientist[i].getBirth() << endl;
-        if(vScientist[i].getDeath() == 0) {
-            cout << "Year of death: ?" << endl;
-        } else {
-            cout << "Year of death: " << vScientist[i].getDeath() << endl;
-        }
+    } else {
+        cout << "!--- There are no scientist on the list ---!" << endl;
     }
     cout << endl;
 }

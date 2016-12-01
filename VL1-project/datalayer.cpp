@@ -57,4 +57,9 @@ void DataLayer::writeFile(vector<Scientist> vScientist) {
     outputFile.close();
 }
 
+void DataLayer::clearFile() {
+    ofstream clear;
+    clear.open("../ScientistData.txt", ios::out | ios::trunc);
+    clear.close();
+}
 
