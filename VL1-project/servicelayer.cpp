@@ -82,6 +82,9 @@ vector<Scientist> ServiceLayer::sortByMaleFemale()
 {
     vector<Scientist> tempF, tempM, retVec;
     vector<Scientist> vGender = dataL.readFile();
+    ScientistComparison cmp;
+    std::sort(vGender.begin(), vGender.end(), cmp);
+
     for(size_t i = 0; i < vGender.size(); i++) {
         if(vGender[i].getGender() == 'M' || vGender[i].getGender() == 'm') {
             tempM.push_back(vGender[i]);
