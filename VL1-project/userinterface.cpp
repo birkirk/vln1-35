@@ -216,7 +216,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             }
         }
     } else {
-        cout << "!--- There are no scientist on the list ---!" << endl;
+        cout << "!--- There are no scientists on the list ---!" << endl;
     }
     cout << endl;
 
