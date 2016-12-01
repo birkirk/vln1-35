@@ -42,157 +42,13 @@ void UserInterface::run() {
         cin >> command;
 
         if (command == "add") {
-            string fName;
-            string lName;
-            char gender, stillAlive;
-            int born, death;
-            cout << "<--- Add a scientist --->" << endl;
-            do {
-                cout << "First name: ";
-                cin >> fName;
-            } while(fName.length() <= 1);
-
-            do {
-                cout << "Last name: ";
-                cin >> lName;
-            } while(fName.length() <= 1);
-
-            do {
-                cout << "Gender (M/F): ";
-                cin >> gender;
-            } while(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f');
-
-            do {
-                cin.clear();
-                cin.ignore();
-                cout << "Year of birth: ";
-                cin >> born;
-                if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl;
-
-            } while(born <= 0 || born > 2016);
-
-            do {
-                cout << "Is he/her still alive? (y/n) ";
-                cin >> stillAlive;
-                if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n') {
-                    cout << "You can only enter 'y' or 'n' " << endl;
-                }
-            } while (stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n');
-
-            if(stillAlive == 'Y' || stillAlive == 'y') {
-                death = 0;
-            } else {
-                do {
-                    cin.clear();
-                    cin.ignore();
-                    cout << "Year of death: ";
-                    cin >> death;
-                    if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl << endl;
-                } while(death > 2016 || death < born);
-
-
-            }
-
-            cout << "<--- Successfully added a scientist --->" << endl << endl;
-            Scientist aScientist(fName, lName, gender, born, death);
-            service.addScientitst(aScientist);
-
+            addSci();
         } else if (command == "list") {
-            cout << endl << "<--- In which order? --->" << endl;
-            cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
-            cout << "gender" << '\t' << '\t' << "(sort by gender)" << endl;
-            cout << "fromold" << '\t' << '\t' << "(oldest to youngest)" << endl;
-            cout << "fromyoung" << '\t' << "(youngest to oldest)" << endl;
-            cout << "=> Order: ";
-
-            cin >> listCommand;
-            if (listCommand == "alpha") {
-                vector<Scientist> vTemp = service.sortAlphabetical();
-                printOut(vTemp);
-            } else if (listCommand == "gender") {
-                char choice;
-                cout << "<--- Type m for males first or f for females first --->" << endl << "==> ";
-                cin >> choice;
-                if(choice == 'm' || choice == 'M') {
-                    vector<Scientist> vTemp = service.sortByMaleFemale();
-                    printOut(vTemp);
-                } else if(choice == 'f' || choice == 'F') {
-                    vector<Scientist> vTemp = service.sortByFemaleMale();
-                    printOut(vTemp);
-                } else {
-                    cout << "!--- You must only type M or F ---!" << endl;
-                }
-
-            } else if (listCommand == "fromold") {
-                vector<Scientist> vTemp = service.sortByBirthDescending();
-                printOut(vTemp);
-            } else if (listCommand == "fromyoung") {
-                vector<Scientist> vTemp = service.sortByBirthAscendng();
-                printOut(vTemp);
-            } else {
-                cout << "!--- Please enter a valid command ---!" << endl << endl;
-            }
+            listSci(listCommand);
         } else if (command == "search") {
-            cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
-            string inputString;
-            cin.ignore();
-            getline(cin, inputString);
-            std::transform(inputString.begin(), inputString.end(), inputString.begin(), ::tolower);
-
-            if(inputString == "name")
-            {
-                string searchString;
-                cout << "Enter name: ";
-                cin >> searchString;
-                vector<Scientist> tempVector;
-                tempVector = service.searchByName(searchString);
-                if(tempVector.size() > 0)
-                {
-                    cout << tempVector;
-                }
-                else cout << "Not found" << endl << endl;
-                char cont;
-                do
-                {
-                    cout << "Type y when ready to continue: " << endl;
-                    cin >> cont;
-                } while(cont != 'Y' && cont != 'y');
-                cout << endl;
-            }
-            else if(inputString == "birth" || inputString == "year of birth" || inputString == "yearofbirth")
-            {
-                int searchString;
-                cout << "Enter year: ";
-                cin >> searchString;
-                vector<Scientist> tempVector = service.searchByBirth(searchString);
-                if(tempVector.size() > 0) cout << tempVector;
-                else cout << "Not found" << endl;
-                char cont;
-                do
-                {
-                    cout << "Type y when ready to continue: " << endl;
-                    cin >> cont;
-                } while(cont != 'Y' && cont != 'y');
-                cout << endl;
-            }
-            else if(inputString == "death" || inputString == "year of death" || inputString == "yearofdeath")
-            {
-                int searchString;
-                cout << "Enter year: ";
-                cin >> searchString;
-                vector<Scientist> tempVector = service.searchByDeath(searchString);
-                if(tempVector.size() > 0) cout << tempVector;
-                else cout << "Not found" << endl;
-                char cont;
-                do
-                {
-                    cout << "Press y when ready to continue: " << endl;
-                    cin >> cont;
-                } while(cont != 'Y' && cont != 'y');
-            }
+            searchSci();
         } else if (command == "clear") {
-            service.clearAll();
-            cout << "<--- Successfully cleared list --->" << endl << endl;
+            clearSci();
         } else if (command != "q") {
             cout << "!--- Please enter a valid command --->" << endl << endl;
         }
@@ -220,6 +76,175 @@ void UserInterface::printOut(vector<Scientist> vScientist) {
     }
     cout << endl;
 }
+
+void UserInterface::addSci() {
+    string fName;
+    string lName;
+    char gender, stillAlive;
+    int born, death;
+    cout << "<--- Add a scientist --->" << endl;
+    do {
+        cout << "First name: ";
+        cin >> fName;
+    } while(fName.length() <= 1);
+    
+    do {
+        cout << "Last name: ";
+        cin >> lName;
+    } while(fName.length() <= 1);
+    
+    do {
+        cout << "Gender (M/F): ";
+        cin >> gender;
+    } while(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f');
+    
+    do {
+        cin.clear();
+        cin.ignore();
+        cout << "Year of birth: ";
+        cin >> born;
+        if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl;
+        
+    } while(born <= 0 || born > 2016);
+    
+    do {
+        cout << "Is he/her still alive? (y/n) ";
+        cin >> stillAlive;
+        if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n') {
+            cout << "You can only enter 'y' or 'n' " << endl;
+        }
+    } while (stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n');
+    
+    if(stillAlive == 'Y' || stillAlive == 'y') {
+        death = 0;
+    } else {
+        do {
+            cin.clear();
+            cin.ignore();
+            cout << "Year of death: ";
+            cin >> death;
+            if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl << endl;
+        } while(death > 2016 || death < born);
+        
+        
+    }
+    
+    cout << "<--- Successfully added a scientist --->" << endl << endl;
+    Scientist aScientist(fName, lName, gender, born, death);
+    service.addScientitst(aScientist);
+}
+
+void UserInterface::listSci(string listCommand) {
+    cout << endl << "<--- In which order? --->" << endl;
+    cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
+    cout << "gender" << '\t' << '\t' << "(sort by gender)" << endl;
+    cout << "fromold" << '\t' << '\t' << "(oldest to youngest)" << endl;
+    cout << "fromyoung" << '\t' << "(youngest to oldest)" << endl;
+    cout << "=> Order: ";
+    
+    cin >> listCommand;
+    if (listCommand == "alpha") {
+        vector<Scientist> vTemp = service.sortAlphabetical();
+        printOut(vTemp);
+    } else if (listCommand == "gender") {
+        char choice;
+        cout << "<--- Type m for males first or f for females first --->" << endl << "==> ";
+        cin >> choice;
+        if(choice == 'm' || choice == 'M') {
+            vector<Scientist> vTemp = service.sortByMaleFemale();
+            printOut(vTemp);
+        } else if(choice == 'f' || choice == 'F') {
+            vector<Scientist> vTemp = service.sortByFemaleMale();
+            printOut(vTemp);
+        } else {
+            cout << "!--- You must only type M or F ---!" << endl;
+        }
+        
+    } else if (listCommand == "fromold") {
+        vector<Scientist> vTemp = service.sortByBirthDescending();
+        printOut(vTemp);
+    } else if (listCommand == "fromyoung") {
+        vector<Scientist> vTemp = service.sortByBirthAscendng();
+        printOut(vTemp);
+    } else {
+        cout << "!--- Please enter a valid command ---!" << endl << endl;
+    }
+}
+void UserInterface::searchSci() {
+    cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
+    string inputString;
+    cin.ignore();
+    getline(cin, inputString);
+    std::transform(inputString.begin(), inputString.end(), inputString.begin(), ::tolower);
+    
+    if(inputString == "name")
+    {
+        string searchString;
+        cout << "Enter name: ";
+        cin >> searchString;
+        vector<Scientist> tempVector;
+        tempVector = service.searchByName(searchString);
+        if(tempVector.size() > 0)
+        {
+            cout << tempVector;
+        }
+        else cout << "Not found" << endl << endl;
+        char cont;
+        do
+        {
+            cout << "Type y when ready to continue: " << endl;
+            cin >> cont;
+        } while(cont != 'Y' && cont != 'y');
+        cout << endl;
+    }
+    else if(inputString == "birth" || inputString == "year of birth" || inputString == "yearofbirth")
+    {
+        int searchString;
+        cout << "Enter year: ";
+        cin >> searchString;
+        vector<Scientist> tempVector = service.searchByBirth(searchString);
+        if(tempVector.size() > 0) cout << tempVector;
+        else cout << "Not found" << endl;
+        char cont;
+        do
+        {
+            cout << "Type y when ready to continue: " << endl;
+            cin >> cont;
+        } while(cont != 'Y' && cont != 'y');
+        cout << endl;
+    }
+    else if(inputString == "death" || inputString == "year of death" || inputString == "yearofdeath")
+    {
+        int searchString;
+        cout << "Enter year: ";
+        cin >> searchString;
+        vector<Scientist> tempVector = service.searchByDeath(searchString);
+        if(tempVector.size() > 0) cout << tempVector;
+        else cout << "Not found" << endl;
+        char cont;
+        do
+        {
+            cout << "Press y when ready to continue: " << endl;
+            cin >> cont;
+        } while(cont != 'Y' && cont != 'y');
+    }
+}
+
+void UserInterface::clearSci() {
+    char answer;
+    cout << "<--- Are you sure you want to clear all? (y/n) --->" << endl << "==> ";
+    cin >> answer;
+    if(answer == 'y' || answer == 'Y') {
+        service.clearAll();
+        cout << "<--- Successfully cleared list --->" << endl << endl;
+    } else if(answer == 'n' || answer == 'N') {
+        cout << "<--- Clear cancelled --->" << endl << endl;
+    } else {
+        cout << "!--- You must only type M or F ---!" << endl << endl;
+    }
+}
+
+
 
 
 

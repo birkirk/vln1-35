@@ -11,6 +11,10 @@ public:
     void run();
     friend ostream& operator << (ostream& out, vector<Scientist> sVector);
     void printOut(vector<Scientist> vScientist);
+    void addSci();
+    void listSci(string listCommand);
+    void searchSci();
+    void clearSci();
 private:
     ServiceLayer service;
 };
