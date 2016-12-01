@@ -23,8 +23,24 @@ ServiceLayer::ServiceLayer()
 
 }
 
-struct ScientistComparison {
+struct ScientistComparison {            //Alphabetical
     bool operator() (Scientist i,Scientist j) { return (i.getFirstName()<j.getFirstName());}
+};
+
+struct ScientistComparisonBa {          //Birth ascending
+    bool operator() (Scientist i,Scientist j) { return (i.getBirth()<j.getBirth());}
+};
+
+struct ScientistComparisonBd {          //Birth descending
+    bool operator() (Scientist i,Scientist j) { return (i.getBirth()>j.getBirth());}
+};
+
+struct ScientistComparisonFM {           //Females and then males
+    bool operator() (Scientist i,Scientist j) { return (i.getGender()<j.getGender());}
+};
+
+struct ScientistComparisonMF {           //Males then Females
+    bool operator() (Scientist i,Scientist j) { return (i.getGender()>j.getGender());}
 };
 
 void ServiceLayer::addScientitst(Scientist aScientist) {
@@ -43,20 +59,33 @@ vector<Scientist> ServiceLayer::sortAlphabetical()
 vector<Scientist> ServiceLayer::sortByBirthAscendng()
 {
     vector<Scientist> vBirth = dataL.readFile();
-    ScientistComparison cmp;
+    ScientistComparisonBa cmp;
     std::sort(vBirth.begin(), vBirth.end(), cmp);
     return vBirth;
 }
 vector<Scientist> ServiceLayer::sortByBirthDescending()
 {
     vector<Scientist> vBirth = dataL.readFile();
+    ScientistComparisonBd cmp;
+    std::sort(vBirth.begin(), vBirth.end(), cmp);
     return vBirth;
 }
-vector<Scientist> ServiceLayer::sortByGender()
+vector<Scientist> ServiceLayer::sortByMaleFemale()
 {
     vector<Scientist> vGender = dataL.readFile();
+    ScientistComparisonMF cmp;
+    std::sort(vGender.end(), vGender.begin(), cmp);
     return vGender;
 }
+
+vector<Scientist> ServiceLayer::sortByFemaleMale()
+{
+    vector<Scientist> vGender = dataL.readFile();
+    ScientistComparisonFM cmp;
+    std::sort(vGender.end(), vGender.begin(), cmp);
+    return vGender;
+}
+
 void ServiceLayer::sortByDeathAscending()
 {
     //TODO

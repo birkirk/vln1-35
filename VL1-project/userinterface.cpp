@@ -109,8 +109,17 @@ void UserInterface::run() {
                 vector<Scientist> vTemp = service.sortAlphabetical();
                 printOut(vTemp);
             } else if (listCommand == "gender") {
-                vector<Scientist> vTemp = service.sortByGender();
-                printOut(vTemp);
+                char choice;
+                cout << "Type m for males first or f for females first" << endl;
+                cin >> choice;
+                if(choice == 'm' || choice == 'M') {
+                    vector<Scientist> vTemp = service.sortByMaleFemale();
+                    printOut(vTemp);
+                } else if(choice == 'f' || choice == 'F') {
+                    vector<Scientist> vTemp = service.sortByFemaleMale();
+                    printOut(vTemp);
+                }
+
             } else if (listCommand == "fromold") {
                 vector<Scientist> vTemp = service.sortByBirthDescending();
                 printOut(vTemp);

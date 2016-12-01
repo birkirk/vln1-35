@@ -12,7 +12,8 @@ public:
     vector<Scientist> sortAlphabetical();
     vector<Scientist> sortByBirthAscendng();
     vector<Scientist> sortByBirthDescending();
-    vector<Scientist> sortByGender();
+    vector<Scientist> sortByMaleFemale();
+    vector<Scientist> sortByFemaleMale();
     void sortByDeathAscending();
     void sortByDeathDescending();
     vector<Scientist> searchByName(string s1);
