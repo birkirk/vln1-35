@@ -188,6 +188,7 @@ void UserInterface::clearSci() {
     char answer;
     cout << "<--- Are you sure you want to clear all? (y/n) --->" << endl << "==> ";
     cin >> answer;
+    cin.ignore();
     if(answer == 'y' || answer == 'Y') {
         service.clearAll();
         cout << "<--- Successfully cleared list --->" << endl << endl;
