@@ -21,6 +21,27 @@ ostream& operator << (ostream& out, vector<Scientist> sVector)
     return out;
 }
 
+void printResault(vector<Scientist> resaultVector)
+{
+    if(resaultVector.size() > 0)
+    {
+        cout << resaultVector;
+    }
+    else cout << "Not found" << endl << endl;
+}
+
+void askContinue()
+{
+    char cont;
+    do
+    {
+        cout << "Press y when ready to continue: " << endl;
+        cin >> cont;
+        cin.ignore();
+    } while(cont != 'Y' && cont != 'y');
+    cout << endl;
+}
+
 UserInterface::UserInterface()
 {
 
@@ -35,11 +56,15 @@ void UserInterface::run() {
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
         cout << "q" << '\t' << "(quit)" << endl;
-        cout << "=> Command: ";
+        cout << "=> Command: " << endl;
 
-        // cin >> command;
+       // cin >> command;
+        //cin.ignore();
         getline(cin, command);
+        cout << "*" << command << "*" << endl;
         std::transform(command.begin(), command.end(), command.begin(), ::tolower);
+
+
 
         if (command == "add") {
             string fName;
@@ -130,30 +155,16 @@ void UserInterface::run() {
         } else if (command == "search") {
             cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
             string inputString;
-            cin.ignore();
             getline(cin, inputString);
-            cin.ignore();
             std::transform(inputString.begin(), inputString.end(), inputString.begin(), ::tolower);
-
             if(inputString == "name")
             {
+                cout << "Name: ";
                 string searchString;
-                cout << "Enter name: ";
                 cin >> searchString;
                 vector<Scientist> tempVector;
                 tempVector = service.searchByName(searchString);
-                if(tempVector.size() > 0)
-                {
-                    cout << tempVector;
-                }
-                else cout << "Not found" << endl << endl;
-                char cont;
-                do
-                {
-                    cout << "Press y when ready to continue: " << endl;
-                    cin >> cont;
-                } while(cont != 'Y' && cont != 'y');
-                cout << endl;
+                printResault(tempVector);
             }
             else if(inputString == "birth" || inputString == "year of birth" || inputString == "yearofbirth")
             {
@@ -161,15 +172,7 @@ void UserInterface::run() {
                 cout << "Enter year: ";
                 cin >> searchString;
                 vector<Scientist> tempVector = service.searchByBirth(searchString);
-                if(tempVector.size() > 0) cout << tempVector;
-                else cout << "Not found" << endl;
-                char cont;
-                do
-                {
-                    cout << "Press y when ready to continue: " << endl;
-                    cin >> cont;
-                } while(cont != 'Y' && cont != 'y');
-                cout << endl;
+                printResault(tempVector);
             }
             else if(inputString == "death" || inputString == "year of death" || inputString == "yearofdeath")
             {
@@ -177,19 +180,13 @@ void UserInterface::run() {
                 cout << "Enter year: ";
                 cin >> searchString;
                 vector<Scientist> tempVector = service.searchByDeath(searchString);
-                if(tempVector.size() > 0) cout << tempVector;
-                else cout << "Not found" << endl;
-                char cont;
-                do
-                {
-                    cout << "Press y when ready to continue: " << endl;
-                    cin >> cont;
-                } while(cont != 'Y' && cont != 'y');
+                printResault(tempVector);
             }
         } else if (command != "q") {
             cout << "Please enter a valid command!" << endl;
         }
     } while (command != "q");
+
 }
 
 void UserInterface::printOut(vector<Scientist> vScientist) {
