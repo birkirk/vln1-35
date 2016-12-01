@@ -14,6 +14,7 @@ public:
     friend ostream& operator << (ostream& out, Scientist aScientist);
     void addScientist(Scientist newScientist);
     vector<Scientist> readFile();
+    void clearFile();
     void writeFile(vector<Scientist> vScientist);
 private:
     vector<Scientist> dataVector;

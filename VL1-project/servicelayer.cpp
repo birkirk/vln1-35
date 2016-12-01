@@ -16,20 +16,28 @@ bool icompare(std::string const& a, std::string const& b)
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////
 
 ServiceLayer::ServiceLayer()
 {
 
 }
 
-struct ScientistComparisonAlphabet {
+
+struct ScientistComparison {            //Alphabetical
     bool operator() (Scientist i,Scientist j) { return (i.getFirstName()<j.getFirstName());}
 };
 struct ScientistComparisonReverseAlphabet {
     bool operator() (Scientist i,Scientist j) { return (i.getFirstName()>j.getFirstName());}
 };
 
+
+struct ScientistComparisonBa {          //Birth ascending
+    bool operator() (Scientist i,Scientist j) { return (i.getBirth()<j.getBirth());}
+};
+
+struct ScientistComparisonBd {          //Birth descending
+    bool operator() (Scientist i,Scientist j) { return (i.getBirth()>j.getBirth());}
+};
 
 void ServiceLayer::addScientitst(Scientist aScientist) {
     vector<Scientist> vUse = dataL.readFile();
@@ -40,7 +48,7 @@ void ServiceLayer::addScientitst(Scientist aScientist) {
 vector<Scientist> ServiceLayer::sortAlphabetical()
 {
     vector<Scientist> vAlpha = dataL.readFile();
-    ScientistComparisonAlphabet cmp;
+    ScientistComparison cmp;
     std::sort(vAlpha.begin(), vAlpha.end(), cmp);
     return vAlpha;
 }
@@ -55,20 +63,58 @@ vector<Scientist> ServiceLayer::sortReverseAlphabetical()
 vector<Scientist> ServiceLayer::sortByBirthAscendng()
 {
     vector<Scientist> vBirth = dataL.readFile();
-    ScientistComparisonAlphabet cmp;
+
+    ScientistComparisonBa cmp;
     std::sort(vBirth.begin(), vBirth.end(), cmp);
     return vBirth;
 }
 vector<Scientist> ServiceLayer::sortByBirthDescending()
 {
     vector<Scientist> vBirth = dataL.readFile();
+    ScientistComparisonBd cmp;
+    std::sort(vBirth.begin(), vBirth.end(), cmp);
     return vBirth;
 }
-vector<Scientist> ServiceLayer::sortByGender()
+vector<Scientist> ServiceLayer::sortByMaleFemale()
 {
+    vector<Scientist> tempF, tempM, retVec;
     vector<Scientist> vGender = dataL.readFile();
-    return vGender;
+    for(size_t i = 0; i < vGender.size(); i++) {
+        if(vGender[i].getGender() == 'M' || vGender[i].getGender() == 'm') {
+            tempM.push_back(vGender[i]);
+        } else if(vGender[i].getGender() == 'F' || vGender[i].getGender() == 'f') {
+            tempF.push_back(vGender[i]);
+        }
+    }
+    for(size_t i = 0; i < tempM.size(); i++) {
+        retVec.push_back(tempM[i]);
+    }
+    for(size_t i = 0; i < tempF.size(); i++) {
+        retVec.push_back(tempF[i]);
+    }
+    return retVec;
 }
+
+vector<Scientist> ServiceLayer::sortByFemaleMale()
+{
+    vector<Scientist> tempF, tempM, retVec;
+    vector<Scientist> vGender = dataL.readFile();
+    for(size_t i = 0; i < vGender.size(); i++) {
+        if(vGender[i].getGender() == 'M' || vGender[i].getGender() == 'm') {
+            tempM.push_back(vGender[i]);
+        } else if(vGender[i].getGender() == 'F' || vGender[i].getGender() == 'f') {
+            tempF.push_back(vGender[i]);
+        }
+    }
+    for(size_t i = 0; i < tempF.size(); i++) {
+        retVec.push_back(tempF[i]);
+    }
+    for(size_t i = 0; i < tempM.size(); i++) {
+        retVec.push_back(tempM[i]);
+    }
+    return retVec;
+}
+
 void ServiceLayer::sortByDeathAscending()
 {
     //TODO
@@ -119,6 +165,10 @@ vector<Scientist> ServiceLayer::searchByDeath(int s1)
         }
     }
     return returnVector;
+}
+
+void ServiceLayer::clearAll() {
+    dataL.clearFile();
 }
 
 

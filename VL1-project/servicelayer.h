@@ -9,11 +9,13 @@ class ServiceLayer
 public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
+    void clearAll();
     vector<Scientist> sortAlphabetical();
     vector<Scientist> sortReverseAlphabetical();
     vector<Scientist> sortByBirthAscendng();
     vector<Scientist> sortByBirthDescending();
-    vector<Scientist> sortByGender();
+    vector<Scientist> sortByMaleFemale();
+    vector<Scientist> sortByFemaleMale();
     void sortByDeathAscending();
     void sortByDeathDescending();
     vector<Scientist> searchByName(string s1);
