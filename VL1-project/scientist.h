@@ -12,6 +12,7 @@ public:
 
     Scientist(string fName, string lName, char gender,int born,int death);
     friend istream& operator >> (istream& in, Scientist& s);
+    friend vector<Scientist> sortByFemaleMale();
     int getBirth();
     int getDeath();
     char getGender();

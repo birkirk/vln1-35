@@ -35,14 +35,6 @@ struct ScientistComparisonBd {          //Birth descending
     bool operator() (Scientist i,Scientist j) { return (i.getBirth()>j.getBirth());}
 };
 
-struct ScientistComparisonFM {           //Females and then males
-    bool operator() (Scientist i,Scientist j) { return (i.getGender()<j.getGender());}
-};
-
-struct ScientistComparisonMF {           //Males then Females
-    bool operator() (Scientist i,Scientist j) { return (i.getGender()>j.getGender());}
-};
-
 void ServiceLayer::addScientitst(Scientist aScientist) {
     vector<Scientist> vUse = dataL.readFile();
     vUse.push_back(aScientist);
@@ -72,18 +64,42 @@ vector<Scientist> ServiceLayer::sortByBirthDescending()
 }
 vector<Scientist> ServiceLayer::sortByMaleFemale()
 {
+    vector<Scientist> tempF, tempM, retVec;
     vector<Scientist> vGender = dataL.readFile();
-    ScientistComparisonMF cmp;
-    std::sort(vGender.end(), vGender.begin(), cmp);
-    return vGender;
+    for(size_t i = 0; i < vGender.size(); i++) {
+        if(vGender[i].getGender() == 'M' || vGender[i].getGender() == 'm') {
+            tempM.push_back(vGender[i]);
+        } else if(vGender[i].getGender() == 'F' || vGender[i].getGender() == 'f') {
+            tempF.push_back(vGender[i]);
+        }
+    }
+    for(size_t i = 0; i < tempM.size(); i++) {
+        retVec.push_back(tempM[i]);
+    }
+    for(size_t i = 0; i < tempF.size(); i++) {
+        retVec.push_back(tempF[i]);
+    }
+    return retVec;
 }
 
 vector<Scientist> ServiceLayer::sortByFemaleMale()
 {
+    vector<Scientist> tempF, tempM, retVec;
     vector<Scientist> vGender = dataL.readFile();
-    ScientistComparisonFM cmp;
-    std::sort(vGender.end(), vGender.begin(), cmp);
-    return vGender;
+    for(size_t i = 0; i < vGender.size(); i++) {
+        if(vGender[i].getGender() == 'M' || vGender[i].getGender() == 'm') {
+            tempM.push_back(vGender[i]);
+        } else if(vGender[i].getGender() == 'F' || vGender[i].getGender() == 'f') {
+            tempF.push_back(vGender[i]);
+        }
+    }
+    for(size_t i = 0; i < tempF.size(); i++) {
+        retVec.push_back(tempF[i]);
+    }
+    for(size_t i = 0; i < tempM.size(); i++) {
+        retVec.push_back(tempM[i]);
+    }
+    return retVec;
 }
 
 void ServiceLayer::sortByDeathAscending()

@@ -110,7 +110,7 @@ void UserInterface::run() {
                 printOut(vTemp);
             } else if (listCommand == "gender") {
                 char choice;
-                cout << "Type m for males first or f for females first" << endl;
+                cout << "Type m for males first or f for females first" << endl << "==> ";
                 cin >> choice;
                 if(choice == 'm' || choice == 'M') {
                     vector<Scientist> vTemp = service.sortByMaleFemale();
@@ -118,6 +118,8 @@ void UserInterface::run() {
                 } else if(choice == 'f' || choice == 'F') {
                     vector<Scientist> vTemp = service.sortByFemaleMale();
                     printOut(vTemp);
+                } else {
+                    cout << "You must only type M or F!" << endl;
                 }
 
             } else if (listCommand == "fromold") {
