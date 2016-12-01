@@ -19,8 +19,9 @@ UserInterface::UserInterface()
 void UserInterface::run() {
     string command, listCommand;
     
+    //Program loop
     do {
-        
+        //Menu
         cout << "<--- Enter one of the following commands: --->" << endl;
         cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
@@ -33,7 +34,7 @@ void UserInterface::run() {
         std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 
 
-
+        // Selection
         if (command == "add") {
             addSci();
         } else if (command == "list") {
@@ -49,6 +50,7 @@ void UserInterface::run() {
 
 }
 
+//Funcition that adds to the database file
 void UserInterface::addSci() {
     string fName;
     string lName;
@@ -106,6 +108,7 @@ void UserInterface::addSci() {
     service.addScientitst(aScientist);
 }
 
+//Function that lists every scientist in the database
 void UserInterface::listSci(string listCommand) {
     cout << endl << "<--- In which order? --->" << endl;
     cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
@@ -148,6 +151,8 @@ void UserInterface::listSci(string listCommand) {
         cout << "!--- Please enter a valid command ---!" << endl << endl;
     }
 }
+
+//Function that searches in the scientist database
 void UserInterface::searchSci() {
     cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
     string inputString;
@@ -184,6 +189,7 @@ void UserInterface::searchSci() {
     }
 }
 
+//Function that clears the database file
 void UserInterface::clearSci() {
     char answer;
     cout << "<--- Are you sure you want to clear all? (y/n) --->" << endl << "==> ";

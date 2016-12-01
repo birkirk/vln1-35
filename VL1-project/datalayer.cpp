@@ -22,6 +22,7 @@ istream& operator >> (istream& in, Scientist& s) {
     return in;
 }
 
+//Reads the database file
 vector<Scientist> DataLayer::readFile() {
     ifstream inputFile;
     inputFile.open ("../ScientistData.txt");
@@ -44,8 +45,7 @@ ostream& operator << (ostream& out, Scientist aScientist) {
     return out;
 }
 
-
-
+//Adds to the database file
 void DataLayer::writeFile(vector<Scientist> vScientist) {
     ofstream outputFile;
     outputFile.open ("../ScientistData.txt");
@@ -57,6 +57,7 @@ void DataLayer::writeFile(vector<Scientist> vScientist) {
     outputFile.close();
 }
 
+//Clears the whole database file
 void DataLayer::clearFile() {
     ofstream clear;
     clear.open("../ScientistData.txt", ios::out | ios::trunc);
