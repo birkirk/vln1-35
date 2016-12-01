@@ -23,9 +23,13 @@ ServiceLayer::ServiceLayer()
 
 }
 
-struct ScientistComparison {
+struct ScientistComparisonAlphabet {
     bool operator() (Scientist i,Scientist j) { return (i.getFirstName()<j.getFirstName());}
 };
+struct ScientistComparisonReverseAlphabet {
+    bool operator() (Scientist i,Scientist j) { return (i.getFirstName()>j.getFirstName());}
+};
+
 
 void ServiceLayer::addScientitst(Scientist aScientist) {
     vector<Scientist> vUse = dataL.readFile();
@@ -36,14 +40,22 @@ void ServiceLayer::addScientitst(Scientist aScientist) {
 vector<Scientist> ServiceLayer::sortAlphabetical()
 {
     vector<Scientist> vAlpha = dataL.readFile();
-    ScientistComparison cmp;
+    ScientistComparisonAlphabet cmp;
     std::sort(vAlpha.begin(), vAlpha.end(), cmp);
     return vAlpha;
 }
+vector<Scientist> ServiceLayer::sortReverseAlphabetical()
+{
+    vector<Scientist> vAlpha = dataL.readFile();
+    ScientistComparisonReverseAlphabet cmp;
+    std::sort(vAlpha.begin(), vAlpha.end(), cmp);
+    return vAlpha;
+}
+
 vector<Scientist> ServiceLayer::sortByBirthAscendng()
 {
     vector<Scientist> vBirth = dataL.readFile();
-    ScientistComparison cmp;
+    ScientistComparisonAlphabet cmp;
     std::sort(vBirth.begin(), vBirth.end(), cmp);
     return vBirth;
 }

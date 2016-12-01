@@ -10,6 +10,7 @@ public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
     vector<Scientist> sortAlphabetical();
+    vector<Scientist> sortReverseAlphabetical();
     vector<Scientist> sortByBirthAscendng();
     vector<Scientist> sortByBirthDescending();
     vector<Scientist> sortByGender();

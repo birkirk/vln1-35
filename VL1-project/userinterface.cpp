@@ -37,7 +37,9 @@ void UserInterface::run() {
         cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
 
-        cin >> command;
+        // cin >> command;
+        getline(cin, command);
+        std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 
         if (command == "add") {
             string fName;
@@ -98,22 +100,28 @@ void UserInterface::run() {
         } else if (command == "list") {
             cout << endl << "=== In which order? ===" << endl;
             cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
+            cout << "rAlpha" << '\t' << '\t' << "(sort in reverse alphabetical order)" << endl;
             cout << "gender" << '\t' << '\t' << "(sort by gender)" << endl;
             cout << "fromold" << '\t' << '\t' << "(oldest to youngest)" << endl;
             cout << "fromyoung" << '\t' << "(youngest to oldest)" << endl;
             cout << "=> Order: ";
 
-            cin >> listCommand;
-            if (listCommand == "alpha") {
+            getline(cin, listCommand);
+            std::transform(listCommand.begin(), listCommand.end(), listCommand.begin(), ::tolower);
+
+            if (listCommand == "alpha" || listCommand == "alphabetical") {
                 vector<Scientist> vTemp = service.sortAlphabetical();
                 printOut(vTemp);
-            } else if (listCommand == "gender") {
+            }else if (listCommand == "ralpha" || listCommand == "reversealpha" || listCommand ==  "reverse alpha") {
+                vector<Scientist> vTemp = service.sortReverseAlphabetical();
+                printOut(vTemp);
+            }else if (listCommand == "gender") {
                 vector<Scientist> vTemp = service.sortByGender();
                 printOut(vTemp);
-            } else if (listCommand == "fromold") {
+            } else if (listCommand == "fromold" || listCommand == "from old") {
                 vector<Scientist> vTemp = service.sortByBirthDescending();
                 printOut(vTemp);
-            } else if (listCommand == "fromyoung") {
+            } else if (listCommand == "fromyoung" || listCommand == "from young") {
                 vector<Scientist> vTemp = service.sortByBirthAscendng();
                 printOut(vTemp);
             } else {
@@ -124,6 +132,7 @@ void UserInterface::run() {
             string inputString;
             cin.ignore();
             getline(cin, inputString);
+            cin.ignore();
             std::transform(inputString.begin(), inputString.end(), inputString.begin(), ::tolower);
 
             if(inputString == "name")
