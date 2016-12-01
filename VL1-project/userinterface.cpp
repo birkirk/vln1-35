@@ -7,51 +7,9 @@
 
 using namespace std;
 
-ostream& operator << (ostream& out, vector<Scientist> vScientist)
-{
-    if(vScientist.size() != 0) {
-        for(size_t i = 0; i < vScientist.size(); i++) {
-            cout << endl << "Name: " << vScientist[i].getFirstName() << " " << vScientist[i].getLastName() << endl;
-            if(vScientist[i].getGender() == 'm' || vScientist[i].getGender() == 'M') {
-                cout << "Gender: Male" << endl;
-            } else {
-                cout << "Gender: Female" << endl;
-            }
-            cout << "Year born: " << vScientist[i].getBirth() << endl;
-            if(vScientist[i].getDeath() == 0) {
-                cout << "Year of death: ?" << endl;
-            } else {
-                cout << "Year of death: " << vScientist[i].getDeath() << endl;
-            }
-        }
-    } else {
-        cout << "!--- There are no scientist on the list ---!" << endl;
-    }
-    cout << endl;
-
-    return out;
-}
-
-void printResault(vector<Scientist> resaultVector)
-{
-    if(resaultVector.size() > 0)
-    {
-        cout << resaultVector;
-    }
-    else cout << "Not found" << endl << endl;
-}
-
-void askContinue()
-{
-    char cont;
-    do
-    {
-        cout << "Press y when ready to continue: " << endl;
-        cin >> cont;
-        cin.ignore();
-    } while(cont != 'Y' && cont != 'y');
-    cout << endl;
-}
+ostream& operator << (ostream& out, vector<Scientist> vScientist);
+void printResault(vector<Scientist> resaultVector);
+void askContinue();
 
 UserInterface::UserInterface()
 {
@@ -239,6 +197,53 @@ void UserInterface::clearSci() {
         cout << "!--- You must only type M or F ---!" << endl << endl;
     }
 }
+
+ostream& operator << (ostream& out, vector<Scientist> vScientist)
+{
+    if(vScientist.size() != 0) {
+        for(size_t i = 0; i < vScientist.size(); i++) {
+            cout << endl << "Name: " << vScientist[i].getFirstName() << " " << vScientist[i].getLastName() << endl;
+            if(vScientist[i].getGender() == 'm' || vScientist[i].getGender() == 'M') {
+                cout << "Gender: Male" << endl;
+            } else {
+                cout << "Gender: Female" << endl;
+            }
+            cout << "Year born: " << vScientist[i].getBirth() << endl;
+            if(vScientist[i].getDeath() == 0) {
+                cout << "Year of death: ?" << endl;
+            } else {
+                cout << "Year of death: " << vScientist[i].getDeath() << endl;
+            }
+        }
+    } else {
+        cout << "!--- There are no scientist on the list ---!" << endl;
+    }
+    cout << endl;
+
+    return out;
+}
+
+void printResault(vector<Scientist> resaultVector)
+{
+    if(resaultVector.size() > 0)
+    {
+        cout << resaultVector;
+    }
+    else cout << "Not found" << endl << endl;
+}
+
+void askContinue()
+{
+    char cont;
+    do
+    {
+        cout << "Press y when ready to continue: " << endl;
+        cin >> cont;
+        cin.ignore();
+    } while(cont != 'Y' && cont != 'y');
+    cout << endl;
+}
+
 
 
 
