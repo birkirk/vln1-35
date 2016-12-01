@@ -12,7 +12,7 @@ public:
     void clearAll();
     vector<Scientist> sortAlphabetical();
     vector<Scientist> sortReverseAlphabetical();
-    vector<Scientist> sortByBirthAscendng();
+    vector<Scientist> sortByBirthAscending();
     vector<Scientist> sortByBirthDescending();
     vector<Scientist> sortByMaleFemale();
     vector<Scientist> sortByFemaleMale();

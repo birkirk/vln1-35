@@ -60,19 +60,22 @@ vector<Scientist> ServiceLayer::sortReverseAlphabetical()
     return vAlpha;
 }
 
-vector<Scientist> ServiceLayer::sortByBirthAscendng()
+vector<Scientist> ServiceLayer::sortByBirthAscending()
 {
     vector<Scientist> vBirth = dataL.readFile();
-
-    ScientistComparisonBa cmp;
+    ScientistComparison cmp;
     std::sort(vBirth.begin(), vBirth.end(), cmp);
+    ScientistComparisonBa cmp2;
+    std::sort(vBirth.begin(), vBirth.end(), cmp2);
     return vBirth;
 }
 vector<Scientist> ServiceLayer::sortByBirthDescending()
 {
     vector<Scientist> vBirth = dataL.readFile();
-    ScientistComparisonBd cmp;
+    ScientistComparison cmp;
     std::sort(vBirth.begin(), vBirth.end(), cmp);
+    ScientistComparisonBd cmp2;
+    std::sort(vBirth.begin(), vBirth.end(), cmp2);
     return vBirth;
 }
 vector<Scientist> ServiceLayer::sortByMaleFemale()

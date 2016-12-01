@@ -58,12 +58,9 @@ void UserInterface::run() {
         cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
         cout << "clear" << '\t' << "(to clear the list of scientists)" << endl;
         cout << "q" << '\t' << "(quit)" << endl;
-        cout << "=> Command: " << endl;
+        cout << "=> Command: ";
 
-       // cin >> command;
-        //cin.ignore();
         getline(cin, command);
-        cout << "*" << command << "*" << endl;
         std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 
 
@@ -171,6 +168,7 @@ void UserInterface::listSci(string listCommand) {
     cout << "=> Order: ";
     
     cin >> listCommand;
+    cin.ignore();
     if (listCommand == "alpha") {
         vector<Scientist> vTemp = service.sortAlphabetical();
         printOut(vTemp);
@@ -178,6 +176,7 @@ void UserInterface::listSci(string listCommand) {
         char choice;
         cout << "<--- Type m for males first or f for females first --->" << endl << "==> ";
         cin >> choice;
+        cin.ignore();
         if(choice == 'm' || choice == 'M') {
             vector<Scientist> vTemp = service.sortByMaleFemale();
             printOut(vTemp);
@@ -189,10 +188,10 @@ void UserInterface::listSci(string listCommand) {
         }
         
     } else if (listCommand == "fromold") {
-        vector<Scientist> vTemp = service.sortByBirthDescending();
+        vector<Scientist> vTemp = service.sortByBirthAscending();
         printOut(vTemp);
     } else if (listCommand == "fromyoung") {
-        vector<Scientist> vTemp = service.sortByBirthAscendng();
+        vector<Scientist> vTemp = service.sortByBirthDescending();
         printOut(vTemp);
     } else {
         cout << "!--- Please enter a valid command ---!" << endl << endl;
