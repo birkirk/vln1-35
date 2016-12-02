@@ -48,6 +48,10 @@ void UserInterface::run() {
     } while (command != "q");
 
 }
+/*
+void UserInterface::editSci(){
+
+}*/
 
 void UserInterface::addSci() {
     string fName;
@@ -95,6 +99,7 @@ void UserInterface::addSci() {
             cin.ignore();
             cout << "Year of death: ";
             cin >> death;
+            cin.ignore();
             if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl << endl;
         } while(death > 2016 || death < born);
         
@@ -148,6 +153,7 @@ void UserInterface::listSci(string listCommand) {
         cout << "!--- Please enter a valid command ---!" << endl << endl;
     }
 }
+
 void UserInterface::searchSci() {
     cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
     string inputString;
