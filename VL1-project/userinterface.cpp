@@ -9,7 +9,7 @@ using namespace std;
 
 ostream& operator << (ostream& out, vector<Scientist> vScientist);
 void printResault(vector<Scientist> resaultVector);
-void askContinue();
+void enterToContinue();
 
 UserInterface::UserInterface()
 {
@@ -19,8 +19,9 @@ UserInterface::UserInterface()
 void UserInterface::run() {
     string command, listCommand;
     
+    //Program loop
     do {
-        
+        //Menu
         cout << "<--- Enter one of the following commands: --->" << endl;
         cout << "add" << '\t' << "(to add a scientist)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists)" << endl;
@@ -33,7 +34,7 @@ void UserInterface::run() {
         std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 
 
-
+        // Selection
         if (command == "add") {
             addSci();
         } else if (command == "list") {
@@ -53,6 +54,7 @@ void UserInterface::editSci(){
 
 }*/
 
+//Funcition that adds to the database file
 void UserInterface::addSci() {
     string fName;
     string lName;
@@ -111,48 +113,60 @@ void UserInterface::addSci() {
     service.addScientitst(aScientist);
 }
 
+//Function that lists every scientist in the database
 void UserInterface::listSci(string listCommand) {
-    cout << endl << "<--- In which order? --->" << endl;
-    cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
-    cout << "rAlpha" << '\t' << '\t' << "(sort in reverse alphabetical order)" << endl;
-    cout << "gender" << '\t' << '\t' << "(sort by gender)" << endl;
-    cout << "fromold" << '\t' << '\t' << "(oldest to youngest)" << endl;
-    cout << "fromyoung" << '\t' << "(youngest to oldest)" << endl;
-    cout << "=> Order: ";
-    
-    cin >> listCommand;
-    cin.ignore();
-    if (listCommand == "alpha") {
-        vector<Scientist> vTemp = service.sortAlphabetical();
-        cout << vTemp;
-    }else if (listCommand == "ralpha" || listCommand == "reverse" || listCommand == "reverse alphabetical"){
-        vector<Scientist> vTemp = service.sortReverseAlphabetical();
-        cout << vTemp;
-    } else if (listCommand == "gender") {
-        char choice;
-        cout << "<--- Type m for males first or f for females first --->" << endl << "==> ";
-        cin >> choice;
-        cin.ignore();
-        if(choice == 'm' || choice == 'M') {
-            vector<Scientist> vTemp = service.sortByMaleFemale();
+    do{
+        cout << endl << "<--- In which order? --->" << endl;
+        cout << "alpha" << '\t' << '\t' << "(sort alphabetically)" << endl;
+        cout << "rAlpha" << '\t' << '\t' << "(sort in reverse alphabetical order)" << endl;
+        cout << "gender" << '\t' << '\t' << "(sort by gender)" << endl;
+        cout << "fromold" << '\t' << '\t' << "(oldest to youngest)" << endl;
+        cout << "fromyoung" << '\t' << "(youngest to oldest)" << endl;
+        cout << "=> Order: ";
+
+        getline(cin, listCommand);
+        if (listCommand == "alpha") {
+            vector<Scientist> vTemp = service.sortAlphabetical();
             cout << vTemp;
-        } else if(choice == 'f' || choice == 'F') {
-            vector<Scientist> vTemp = service.sortByFemaleMale();
+            break;
+        }else if (listCommand == "ralpha" || listCommand == "reverse" || listCommand == "reverse alphabetical"){
+            vector<Scientist> vTemp = service.sortReverseAlphabetical();
             cout << vTemp;
+            break;
+        } else if (listCommand == "gender") {
+            char choice;
+            cout << "<--- Type m for males first or f for females first --->" << endl << "==> ";
+            cin >> choice;
+            cin.ignore();
+            if(choice == 'm' || choice == 'M') {
+                vector<Scientist> vTemp = service.sortByMaleFemale();
+                cout << vTemp;
+                break;
+            } else if(choice == 'f' || choice == 'F') {
+                vector<Scientist> vTemp = service.sortByFemaleMale();
+                cout << vTemp;
+            } else {
+                cout << "!--- You must only type M or F ---!" << endl;
+            }
+
+        } else if (listCommand == "fromold") {
+            vector<Scientist> vTemp = service.sortByBirthAscending();
+            cout << vTemp;
+            break;
+        } else if (listCommand == "fromyoung") {
+            vector<Scientist> vTemp = service.sortByBirthDescending();
+            cout << vTemp;
+            break;
         } else {
-            cout << "!--- You must only type M or F ---!" << endl;
+            cout << "!--- Please enter a valid command ---!" << endl << endl;
         }
-        
-    } else if (listCommand == "fromold") {
-        vector<Scientist> vTemp = service.sortByBirthAscending();
-        cout << vTemp;
-    } else if (listCommand == "fromyoung") {
-        vector<Scientist> vTemp = service.sortByBirthDescending();
-        cout << vTemp;
-    } else {
-        cout << "!--- Please enter a valid command ---!" << endl << endl;
-    }
+
+    } while(listCommand != "q");
+    enterToContinue();
 }
+
+
+//Function that searches in the scientist database
 
 void UserInterface::searchSci() {
     cout << "Would you like to search by name, year of birth, or year of death?" << endl << "=> command: ";
@@ -168,7 +182,7 @@ void UserInterface::searchSci() {
         vector<Scientist> tempVector;
         tempVector = service.searchByName(searchString);
         printResault(tempVector);
-        askContinue();
+        enterToContinue();
     }
     else if(inputString == "birth" || inputString == "year of birth" || inputString == "yearofbirth")
     {
@@ -177,7 +191,7 @@ void UserInterface::searchSci() {
         cin >> searchString;
         vector<Scientist> tempVector = service.searchByBirth(searchString);
         printResault(tempVector);
-        askContinue();
+        enterToContinue();
     }
     else if(inputString == "death" || inputString == "year of death" || inputString == "yearofdeath")
     {
@@ -186,10 +200,11 @@ void UserInterface::searchSci() {
         cin >> searchString;
         vector<Scientist> tempVector = service.searchByDeath(searchString);
         printResault(tempVector);
-        askContinue();
+        enterToContinue();
     }
 }
 
+//Function that clears the database file
 void UserInterface::clearSci() {
     char answer;
     cout << "<--- Are you sure you want to clear all? (y/n) --->" << endl << "==> ";
@@ -223,7 +238,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             }
         }
     } else {
-        cout << "!--- There are no scientist on the list ---!" << endl;
+        cout << "!--- There are no scientists on the list ---!" << endl;
     }
     cout << endl;
 
@@ -239,16 +254,10 @@ void printResault(vector<Scientist> resaultVector)
     else cout << "Not found" << endl << endl;
 }
 
-void askContinue()
+void enterToContinue()
 {
-    char cont;
-    do
-    {
-        cout << "Press y when ready to continue: " << endl;
-        cin >> cont;
-        cin.ignore();
-    } while(cont != 'Y' && cont != 'y');
-    cout << endl;
+    cout << "Press enter/return to continue." << endl;
+    cin.ignore();
 }
 
 
