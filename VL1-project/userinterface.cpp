@@ -49,10 +49,6 @@ void UserInterface::run() {
     } while (command != "q");
 
 }
-/*
-void UserInterface::editSci(){
-
-}*/
 
 //Funcition that adds to the database file
 void UserInterface::addSci() {
@@ -95,6 +91,7 @@ void UserInterface::addSci() {
     
     if(stillAlive == 'Y' || stillAlive == 'y') {
         death = 0;
+        cin.ignore();
     } else {
         do {
             cin.clear();

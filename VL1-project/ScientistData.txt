@@ -1,6 +1,0 @@
-<<<<<<< Updated upstream
-
-=======
-Siggi 1 1995 2016
-Fríğa 0 1000 1065
->>>>>>> Stashed changes
