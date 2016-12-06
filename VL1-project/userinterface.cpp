@@ -13,7 +13,7 @@ void enterToContinue();
 
 UserInterface::UserInterface()
 {
-
+    
 }
 
 void UserInterface::run() {
