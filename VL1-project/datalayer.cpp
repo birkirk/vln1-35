@@ -14,8 +14,7 @@ DataLayer::DataLayer()
 }
 
 istream& operator >> (istream& in, Scientist& s) {
-    in >> s._firstName;
-    in >> s._lastName;
+    in >> s._name;
     in >> s._gender;
     in >> s._born;
     in >> s._death;
@@ -41,7 +40,7 @@ vector<Scientist> DataLayer::readFile() {
 }
 
 ostream& operator << (ostream& out, Scientist aScientist) {
-    out << aScientist.getFirstName() << endl << aScientist.getLastName() << endl << aScientist.getGender() << endl << aScientist.getBirth() << endl << aScientist.getDeath() << endl;
+    out << aScientist.getName() << endl << aScientist.getGender() << endl << aScientist.getBirth() << endl << aScientist.getDeath() << endl;
     return out;
 }
 

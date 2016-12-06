@@ -7,7 +7,7 @@ Computer::Computer()
 {
 }
 
-Computer::Computer(char ifMade, string name, string type, int yearMade)
+Computer::Computer(bool ifMade, string name, string type, int yearMade)
 {
     _name = name;
     _ifMade = ifMade;
@@ -15,7 +15,7 @@ Computer::Computer(char ifMade, string name, string type, int yearMade)
     _yearMade = yearMade;
 }
 
-char Computer::getIfMade()
+bool Computer::getIfMade()
 {
     return _ifMade;
 }

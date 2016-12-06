@@ -10,14 +10,14 @@ class Computer
 public:
     Computer();
     
-    Computer(char ifMade, string name, string type, int yearMade);
+    Computer(bool ifMade, string name, string type, int yearMade);
     int getYearMade();
-    char getIfMade();
+    bool getIfMade();
     string getName();
     string getType();
     
 private:
-    char _ifMade;
+    bool _ifMade;
     string _name, _type;
     int _yearMade;
 };

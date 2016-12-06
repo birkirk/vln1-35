@@ -263,7 +263,8 @@ void enterToContinue()
 
 void UserInterface::addComp() {
     string name, type;
-    char ifMade;
+    char check;
+    bool ifMade = false;
     int yearMade;
     cout << "<--- Add a computer --->" << endl;
     do {
@@ -278,16 +279,20 @@ void UserInterface::addComp() {
     
     do {
         cout << "Was it ever made? (y/n) ";
-        cin >> ifMade;
-        if(ifMade != 'Y' && ifMade != 'y' && ifMade != 'N' && ifMade != 'n') {
+        cin >> check;
+        if(check != 'Y' && check != 'y' && check != 'N' && check != 'n') {
             cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
         }
-    } while (ifMade != 'Y' && ifMade != 'y' && ifMade != 'N' && ifMade != 'n');
+        if(check == 'Y' || check == 'y') {
+            ifMade = true;
+        } else if(check == 'N' || check == 'n') {
+            ifMade = false;
+            yearMade = 0;
+            cin.ignore();
+        }
+    } while (check != 'Y' && check != 'y' && check != 'N' && check != 'n');
     
-    if(ifMade == 'N' || ifMade == 'n') {
-        yearMade = 0;
-        cin.ignore();
-    } else {
+    if(ifMade == true) {
         do {
             cin.clear();
             cin.ignore();
