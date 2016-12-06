@@ -38,6 +38,7 @@ void UserInterface::run() {
         // Selection
         if (command == "add") {
             string nextcommand;
+            cout << "<--- Which of the following would you like to add? --->" << endl;
             cout << "sci" << '\t' << "(to add a scientist)" << endl;
             cout << "comp" << '\t' << "(to add a computer)" << endl;
             cout << "=> Command: ";
