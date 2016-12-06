@@ -6,12 +6,32 @@
 #include <string>
 
 
-using namespace std;
 
+using namespace std;
 DataLayer::DataLayer()
 {
+
+}
+
+DataLayer::DataLayer(const QString& path)
+{
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(path);
+
+    if (!db.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+    else
+    {
+       qDebug() << "Database: connection ok";
+    }
     
 }
+
+
+
+
 
 //Reads the database file
 vector<Scientist> DataLayer::readSci() {
