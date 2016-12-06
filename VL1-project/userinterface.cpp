@@ -12,10 +12,12 @@ UserInterface::UserInterface()
     
 }
 
-void UserInterface::run() {
+void UserInterface::run()
+{
     string command;
     
-    do {
+    do
+    {
         cout << "<--- Enter one of the following commands: --->" << endl;
         cout << "add" << '\t' << "(to add a scientist or computer)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists or computers)" << endl;
@@ -27,100 +29,131 @@ void UserInterface::run() {
 
         cin >> command;
 
-        if (command == "add") {
+        if (command == "add")
+        {
             string nextCommand;
-            do {
+            do
+            {
                 cout << endl << "<--- Which of the following would you like to add? --->" << endl;
                 cout << "sci" << '\t' << "(to add a scientist)" << endl;
                 cout << "comp" << '\t' << "(to add a computer)" << endl;
                 cout << "c" << '\t' << "(to cancell)" << endl;
                 cout << "=> Command: ";
                 cin >> nextCommand;
-                if(nextCommand == "sci") {
+                if(nextCommand == "sci")
+                {
                     addSci();
-                } else if(nextCommand == "comp") {
+                }
+                else if(nextCommand == "comp")
+                {
                     addComp();
-                } else if(nextCommand != "c") {
+                }
+                else if(nextCommand != "c")
+                {
                     cout << "!--- Not a valid command ---!" << endl;
-                } else if(nextCommand == "c") {
+                }
+                else if(nextCommand == "c")
+                {
                     cout << endl;
                 }
             } while(nextCommand != "sci" && nextCommand != "comp" && nextCommand != "c");
-        } else if (command == "list") {
+        }
+        else if (command == "list")
+        {
             list();
-        } else if (command == "search") {
+        }
+        else if (command == "search")
+        {
             search();
-        } else if (command == "connect") {
+        }
+        else if (command == "connect")
+        {
             //connect(); TODO
-        } else if (command == "clear") {
+        }
+        else if (command == "clear")
+        {
             //clear(); TODO
-        } else if (command != "q") {
+        }
+        else if (command != "q")
+        {
             cout << "!--- Please enter a valid command ---!" << endl << endl;
         }
     } while (command != "q");
 
 }
 
-void UserInterface::addSci() {
+void UserInterface::addSci()
+{
     string name;
     char gender, stillAlive;
     int born, death;
     cout << endl << "<--- Add a scientist --->" << endl;
     
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         cout << "Name: ";
         cin >> name;
-        if(name.length() == 0) {
+        if(name.length() == 0)
+        {
             cout << "!--- Must enter a name ---!" << endl;
         }
     } while(name.length() <= 1);
     
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         cout << "Gender (M/F): ";
         cin >> gender;
-        if(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f') {
+        if(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f')
+        {
             cout << "!--- You can only enter 'M' or 'F' ---!" << endl;
         }
     } while(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f');
     
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         cout << "Year of birth: ";
         cin >> born;
-        if(born <= 0 || born > 2016 || cin.fail()) {
+        if(born <= 0 || born > 2016 || cin.fail())
+        {
             cout << "!--- Please enter a valid year ---!" << endl;
         }
     } while(born <= 0 || born > 2016);
     
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         cout << "Is he/her still alive? (y/n) ";
         cin >> stillAlive;
-        if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n' && !cin.fail()) {
+        if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n' && !cin.fail())
+        {
             cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
         }
     } while (stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n');
     
-    if(stillAlive == 'Y' || stillAlive == 'y') {
+    if(stillAlive == 'Y' || stillAlive == 'y')
+    {
         death = 0;
-    } else {
-        do {
+    }
+    else
+    {
+        do
+        {
             cin.clear();
             cin.ignore();
             cout << "Year of death: ";
             cin >> death;
-            if(death > 2016 || death < born || cin.fail()) {
+            if(death > 2016 || death < born || cin.fail())
+            {
                 cout << "!--- Please enter a valid year ---!" << endl;
             }
         } while(death > 2016 || death < born);
-        
-        
     }
     
     cout << "<--- Trying to add scientist... --->" << endl << endl;
@@ -128,43 +161,53 @@ void UserInterface::addSci() {
     _service.addScientitst(aScientist);
 }
 
-void UserInterface::addComp() {
+void UserInterface::addComp()
+{
     string name, type;
     char check;
     bool ifMade = false;
     int yearMade;
     cout << "<--- Add a computer --->" << endl;
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         cout << "Name: ";
         cin >> name;
-        if(name.length() < 1) {
+        if(name.length() < 1)
+        {
             cout << "!--- Please enter a valid name ---!" << endl;
         }
     } while(name.length() < 1);
     
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         cout << "Type: ";
         cin >> type;
-        if(type.length() < 1 || cin.fail()) {
+        if(type.length() < 1 || cin.fail())
+        {
             cout << "!--- Please enter a valid type ---!" << endl;
         }
     } while(type.length() < 1);
     
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         cout << "Was it ever made? (y/n) ";
         cin >> check;
-        if(check != 'Y' && check != 'y' && check != 'N' && check != 'n') {
+        if(check != 'Y' && check != 'y' && check != 'N' && check != 'n')
+        {
             cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
         }
-        if(check == 'Y' || check == 'y') {
+        if(check == 'Y' || check == 'y')
+        {
             ifMade = true;
-        } else if(check == 'N' || check == 'n') {
+        }
+        else if(check == 'N' || check == 'n')
+        {
             ifMade = false;
             yearMade = 0;
             cin.clear();
@@ -172,13 +215,16 @@ void UserInterface::addComp() {
         }
     } while (check != 'Y' && check != 'y' && check != 'N' && check != 'n');
     
-    if(ifMade == true) {
-        do {
+    if(ifMade == true)
+    {
+        do
+        {
             cin.clear();
             cin.ignore();
             cout << "Year made: ";
             cin >> yearMade;
-            if(yearMade <= 0 || yearMade > 2016) {
+            if(yearMade <= 0 || yearMade > 2016)
+            {
                 cout << "!--- Please enter a valid year ---!" << endl;
             }
         } while(yearMade <= 0 || yearMade > 2016);
@@ -189,9 +235,11 @@ void UserInterface::addComp() {
     _service.addComputer(aComputer);
 }
 
-void UserInterface::list() {
+void UserInterface::list()
+{
     string listCommand, innerCommand;
-    do {
+    do
+    {
         cin.clear();
         cin.ignore();
         
@@ -203,8 +251,10 @@ void UserInterface::list() {
         cout << "=> Command: ";
         cin >> listCommand;
         
-        if(listCommand == "all") {
-            do {
+        if(listCommand == "all")
+        {
+            do
+            {
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- All - in which order? --->" << endl;
@@ -216,22 +266,36 @@ void UserInterface::list() {
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
-                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "b") {
+                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "b")
+                {
                     cout << "!--- Please enter a valid command ---!" << endl;
-                } else if(innerCommand == "b") {
+                }
+                else if(innerCommand == "b")
+                {
                     cout << endl;
-                } else if(innerCommand == "alpha") {
+                }
+                else if(innerCommand == "alpha")
+                {
                     
-                } else if(innerCommand == "ralpha") {
+                }
+                else if(innerCommand == "ralpha")
+                {
                     
-                } else if(innerCommand == "ageasc") {
+                }
+                else if(innerCommand == "ageasc")
+                {
                     
-                } else if(innerCommand == "agedesc") {
+                }
+                else if(innerCommand == "agedesc")
+                {
                     
                 }
             } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "b");
-        } else if(listCommand == "sci") {
-            do {
+        }
+        else if(listCommand == "sci")
+        {
+            do
+            {
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Scientists - in which order? --->" << endl;
@@ -245,26 +309,44 @@ void UserInterface::list() {
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
-                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "male" && innerCommand != "female" && innerCommand != "b") {
+                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "male" && innerCommand != "female" && innerCommand != "b")
+                {
                     cout << "!--- Please enter a valid command ---!" << endl;
-                } else if(innerCommand == "b") {
+                }
+                else if(innerCommand == "b")
+                {
                     cout << endl;
-                } else if(innerCommand == "alpha") {
+                }
+                else if(innerCommand == "alpha")
+                {
                     
-                } else if(innerCommand == "ralpha") {
+                }
+                else if(innerCommand == "ralpha")
+                {
                     
-                } else if(innerCommand == "ageasc") {
+                }
+                else if(innerCommand == "ageasc")
+                {
                     
-                } else if(innerCommand == "agedesc") {
+                }
+                else if(innerCommand == "agedesc")
+                {
                     
-                } else if(innerCommand == "male") {
+                }
+                else if(innerCommand == "male")
+                {
                     
-                } else if(innerCommand == "female") {
+                }
+                else if(innerCommand == "female")
+                {
                     
                 }
             } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "male" && innerCommand != "female" && innerCommand != "b");
-        } else if(listCommand == "comp") {
-            do {
+        }
+        else if(listCommand == "comp")
+        {
+            do
+            {
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Computers - in which order? --->" << endl;
@@ -278,33 +360,53 @@ void UserInterface::list() {
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
-                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b") {
+                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b")
+                {
                     cout << "!--- Please enter a valid command ---!" << endl;
-                } else if(innerCommand == "b") {
+                }
+                else if(innerCommand == "b")
+                {
                     cout << endl;
-                } else if(innerCommand == "alpha") {
+                }
+                else if(innerCommand == "alpha")
+                {
                     
-                } else if(innerCommand == "ralpha") {
+                }
+                else if(innerCommand == "ralpha")
+                {
                     
-                } else if(innerCommand == "ageasc") {
+                }
+                else if(innerCommand == "ageasc")
+                {
                     
-                } else if(innerCommand == "agedesc") {
+                }
+                else if(innerCommand == "agedesc")
+                {
                     
-                } else if(innerCommand == "made") {
+                }
+                else if(innerCommand == "made")
+                {
                     
-                } else if(innerCommand == "notmade") {
+                }
+                else if(innerCommand == "notmade")
+                {
                     
                 }
             } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b");
-        } else if (listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "b"  && listCommand != "c") {
+        }
+        else if (listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "b"  && listCommand != "c")
+        {
             cout << "!--- Please enter a valid command ---!" << endl;
-        } else if (listCommand == "c") {
+        }
+        else if (listCommand == "c")
+        {
             cout << endl;
         }
     } while(listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "b"  && listCommand != "c");
 }
 
-void UserInterface::search() {
+void UserInterface::search()
+{
 
 }
 

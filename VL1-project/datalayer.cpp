@@ -53,18 +53,21 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
 }
 
 
-vector<Scientist> DataLayer::readSci() {
+vector<Scientist> DataLayer::readSci()
+{
     vector<Scientist> tempV;
     return tempV;
 }
 
-vector<Computer> DataLayer::readComp() {
+vector<Computer> DataLayer::readComp()
+{
     vector<Computer> tempV;
     
     return tempV;
 }
 
-void DataLayer::clearFile() {
+void DataLayer::clearFile()
+{
     
 }
 

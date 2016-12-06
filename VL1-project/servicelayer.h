@@ -5,7 +5,8 @@
 #include "datalayer.h"
 #include <algorithm>
 
-class ServiceLayer {
+class ServiceLayer
+{
 public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
