@@ -15,10 +15,10 @@ DataLayer::DataLayer()
 
 DataLayer::DataLayer(const QString& path)
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(path);
-    db.open();
-    if (!db.open())
+    _db = QSqlDatabase::addDatabase("QSQLITE");
+    _db.setDatabaseName(path);
+    _db.open();
+    if (!_db.open())
     {
        qDebug() << "Error: connection with database fail";
     }
@@ -33,7 +33,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
 {
     bool success = false;
     QSqlQuery query;
-    query = QSqlQuery(db);
+    query = QSqlQuery(_db);
     QString qName = QString::fromStdString(sName);
     query.prepare("INSERT INTO Scientists (name, yearOfBirth, yearOfDeath, gender) VALUES(:name, :yearOfBirth, :yearOfDeath, :gender);");
     query.bindValue(":name", qName);
@@ -62,12 +62,6 @@ vector<Scientist> DataLayer::readSci()
 vector<Computer> DataLayer::readComp()
 {
     vector<Computer> tempV;
-    
     return tempV;
-}
-
-void DataLayer::clearFile()
-{
-    
 }
 

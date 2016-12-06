@@ -11,6 +11,8 @@ public:
     void addSci();
     void addComp();
     void list();
+    
+    friend ostream& operator << (ostream& out, vector<Scientist> vScientist);
 private:
     ServiceLayer _service;
 };

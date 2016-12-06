@@ -11,6 +11,13 @@ public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
     void addComputer(Computer aComputer);
+    
+    vector<Scientist> sciAlpha();
+    vector<Scientist> sciRalpha();
+    vector<Scientist> sciAgeAsc();
+    vector<Scientist> sciAgeDesc();
+    vector<Scientist> sciMale();
+    vector<Scientist> sciFemale();
 private:
     vector<Scientist> _vScientists;
     vector<Computer> _vComputer;

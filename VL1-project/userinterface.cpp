@@ -7,6 +7,35 @@
 
 using namespace std;
 
+ostream& operator << (ostream& out, vector<Scientist> vScientist)
+{
+    char death;
+    if(vScientist.size() != 0)
+    {
+        cout << "Name" << '\t' << "Gender" << '\t' << "Born" << '\t'  << "Died" << endl;
+        cout << "------------------------------------------------------" << endl;
+        for(size_t i = 0; i < vScientist.size(); i++)
+        {
+            if(vScientist[i].getDeath() == 0)
+            {
+                death = '?';
+            }
+            else
+            {
+                death = vScientist[i].getDeath();
+            }
+            out << vScientist[i].getName() << '\t' << vScientist[i].getGender() << '\t' << vScientist[i].getBirth() << death<< endl;
+        }
+    }
+    else
+    {
+        cout << "!--- There are no scientists in the database ---!" << endl;
+    }
+    cout << endl;
+    
+    return out;
+}
+
 UserInterface::UserInterface()
 {
     
@@ -244,55 +273,13 @@ void UserInterface::list()
         cin.ignore();
         
         cout << endl << "<--- What would you like to see a list of? --->" << endl;
-        cout << "all" << '\t' << "(list everything)" << endl;
         cout << "sci" << '\t' << "(list just the scientists)" << endl;
         cout << "comp" << '\t' << "(list just the computers)" << endl;
         cout << "c" << '\t' << "(cancell)" << endl;
         cout << "=> Command: ";
         cin >> listCommand;
         
-        if(listCommand == "all")
-        {
-            do
-            {
-                cin.clear();
-                cin.ignore();
-                cout << endl << "<--- All - in which order? --->" << endl;
-                cout << "alpha" << '\t' << "(alphabetical order)" << endl;
-                cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
-                cout << "ageasc" << '\t' << "(ascending age order)" << endl;
-                cout << "agedesc" << '\t' << "(descending age order)" << endl;
-                cout << "b" << '\t' << "(go back)" << endl;
-                cout << "=> Command: ";
-                cin >> innerCommand;
-                
-                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "b")
-                {
-                    cout << "!--- Please enter a valid command ---!" << endl;
-                }
-                else if(innerCommand == "b")
-                {
-                    cout << endl;
-                }
-                else if(innerCommand == "alpha")
-                {
-                    
-                }
-                else if(innerCommand == "ralpha")
-                {
-                    
-                }
-                else if(innerCommand == "ageasc")
-                {
-                    
-                }
-                else if(innerCommand == "agedesc")
-                {
-                    
-                }
-            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "b");
-        }
-        else if(listCommand == "sci")
+        if(listCommand == "sci")
         {
             do
             {
@@ -319,27 +306,33 @@ void UserInterface::list()
                 }
                 else if(innerCommand == "alpha")
                 {
-                    
+                    //vector<Scientist> vUse = _service.sciAlpha();
+                    //cout << vUse;
                 }
                 else if(innerCommand == "ralpha")
                 {
-                    
+                    //vector<Scientist> vUse = _service.sciRalpha();
+                    //cout << vUse;
                 }
                 else if(innerCommand == "ageasc")
                 {
-                    
+                    //vector<Scientist> vUse = _service.sciAgeAsc();
+                    //cout << vUse;
                 }
                 else if(innerCommand == "agedesc")
                 {
-                    
+                    //vector<Scientist> vUse = _service.sciAgeDesc();
+                    //cout << vUse;
                 }
                 else if(innerCommand == "male")
                 {
-                    
+                    //vector<Scientist> vUse = _service.sciMale();
+                    //cout << vUse;
                 }
                 else if(innerCommand == "female")
                 {
-                    
+                    //vector<Scientist> vUse = _service.sciFemale();
+                    //cout << vUse;
                 }
             } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "male" && innerCommand != "female" && innerCommand != "b");
         }

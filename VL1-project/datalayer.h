@@ -17,16 +17,14 @@ class DataLayer
 public:
     DataLayer();
     DataLayer(const QString& path);
-    void addScientist(Scientist newScientist);
+    
     vector<Scientist> readSci();
     vector<Computer> readComp();
-    void clearFile();
     void writeFile(vector<Scientist> vScientist);
 
     bool addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
 private:
-    vector<Scientist> dataVector;
-    QSqlDatabase db;
+    QSqlDatabase _db;
 };
 
 
