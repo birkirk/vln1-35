@@ -10,19 +10,18 @@ class Scientist
 public:
     Scientist();
 
-    Scientist(string fName, string lName, char gender,int born,int death);
+    Scientist(string name, char gender,int born,int death);
     friend istream& operator >> (istream& in, Scientist& s);
     friend vector<Scientist> sortByFemaleMale();
     int getBirth();
     int getDeath();
     char getGender();
-    string getFirstName();
-    string getLastName();
+    string getName();
 
 
 private:
     char _gender;
-    string _firstName, _lastName;
+    string _name;
     int _born, _death;
 };
 
