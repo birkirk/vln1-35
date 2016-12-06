@@ -19,6 +19,8 @@ public:
     vector<Computer> readComp();
     void clearFile();
     void writeFile(vector<Scientist> vScientist);
+
+    bool addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
 private:
     vector<Scientist> dataVector;
     QSqlDatabase db;

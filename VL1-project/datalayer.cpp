@@ -17,7 +17,7 @@ DataLayer::DataLayer(const QString& path)
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(path);
-
+    db.open();
     if (!db.open())
     {
        qDebug() << "Error: connection with database fail";
@@ -29,7 +29,29 @@ DataLayer::DataLayer(const QString& path)
     
 }
 
+bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender)
+{
+    bool success = false;
+    QSqlQuery query;
+    QString qName = QString::fromStdString(sName);
+    query.prepare("INSERT INTO Scientists (name, yearOfBirth, yearOfDeath, gender) VALUES(:name :yearOfBirth, :yearOfDeath, :gender);");
+    query.bindValue(":name", qName);
+    query.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
+    query.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
+    query.bindValue(":gender", QString(QChar(sGender)));
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "Scientist not successfully added: ";
+        //qDebug() << query.lastError();
+    }
 
+    return success;
+
+}
 
 
 
