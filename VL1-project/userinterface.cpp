@@ -23,10 +23,12 @@ void UserInterface::run() {
     do {
         //Menu
         cout << "<--- Enter one of the following commands: --->" << endl;
-        cout << "add" << '\t' << "(to add a scientist)" << endl;
-        cout << "list" << '\t' << "(to see the list of scientists)" << endl;
-        cout << "search" << '\t' << "(to search in the list of scientists)" << endl;
-        cout << "clear" << '\t' << "(to clear the list of scientists)" << endl;
+        cout << "addSci" << '\t' << "(to add a scientist)" << endl;
+        cout << "addComp" << '\t' << "(to add a computer)" << endl;
+        cout << "list" << '\t' << "(to see the list of scientists or computers)" << endl;
+        cout << "search" << '\t' << "(to search in the list)" << endl;
+        cout << "connect" << '\t' << "(to connect scientists and computers)" << endl;
+        cout << "clear" << '\t' << "(to clear the list of scientists or computers)" << endl;
         cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
 
@@ -35,7 +37,7 @@ void UserInterface::run() {
 
 
         // Selection
-        if (command == "add") {
+        if (command == "addSci" || command == "addsci") {
             addSci();
         } else if (command == "list") {
             listSci(listCommand);
