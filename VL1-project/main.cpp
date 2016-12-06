@@ -13,13 +13,13 @@ int main()
     ui.run();
 
 
-    DataLayer data("../ScientistData.sqlite");
+    DataLayer data("../ScienceData.sqlite");
     data.addScientist("Helgi", 1995, 2005, 'm');
-
 /*
+
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../ScienceData.sqlite");
+    db.setDatabaseName("../ScientistData.sqlite");
     db.open();
 
 

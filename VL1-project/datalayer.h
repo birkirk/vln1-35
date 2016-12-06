@@ -6,6 +6,9 @@
 #include "scientist.h"
 #include <QSqlQuery>
 #include <QDebug>
+#include <QChar>
+#include <QString>
+#include <QtSql>
 
 using namespace std;
 
