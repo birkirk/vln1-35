@@ -11,6 +11,8 @@ public:
     void run();
     friend ostream& operator << (ostream& out, vector<Scientist> sVector);
     void addSci();
+    void addComp();
+    
     void listSci(string listCommand);
     void searchSci();
     void clearSci();

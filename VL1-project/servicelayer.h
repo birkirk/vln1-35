@@ -1,6 +1,7 @@
 #ifndef SERVICELAYER_H
 #define SERVICELAYER_H
 #include "scientist.h"
+#include "computer.h"
 #include "datalayer.h"
 #include <algorithm>
 
@@ -9,7 +10,9 @@ class ServiceLayer
 public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
+    void addComputer(Computer aComputer);
     void clearAll();
+    
     vector<Scientist> sortAlphabetical();
     vector<Scientist> sortReverseAlphabetical();
     vector<Scientist> sortByBirthAscending();

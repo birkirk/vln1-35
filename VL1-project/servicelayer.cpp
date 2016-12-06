@@ -45,6 +45,12 @@ void ServiceLayer::addScientitst(Scientist aScientist) {
     dataL.writeFile(vUse);
 }
 
+void ServiceLayer::addComputer(Computer aComputer) {
+    vector<Computer> vUse = ;//TODO
+    vUse.push_back(aComputer);
+    dataL.writeFile(vUse);//TODO
+}
+
 vector<Scientist> ServiceLayer::sortAlphabetical()
 {
     vector<Scientist> vAlpha = dataL.readFile();

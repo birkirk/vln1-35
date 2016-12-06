@@ -39,6 +39,8 @@ void UserInterface::run() {
         // Selection
         if (command == "addSci" || command == "addsci") {
             addSci();
+        } else if (command == "addComp" || command == "addcomp") {
+            addComp();
         } else if (command == "list") {
             listSci(listCommand);
         } else if (command == "search") {
@@ -67,7 +69,7 @@ void UserInterface::addSci() {
     do {
         cout << "Last name: ";
         cin >> lName;
-    } while(fName.length() <= 1);
+    } while(lName.length() <= 1);
     
     do {
         cout << "Gender (M/F): ";
@@ -87,7 +89,7 @@ void UserInterface::addSci() {
         cout << "Is he/her still alive? (y/n) ";
         cin >> stillAlive;
         if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n') {
-            cout << "You can only enter 'y' or 'n' " << endl;
+            cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
         }
     } while (stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n');
     
@@ -259,7 +261,46 @@ void enterToContinue()
     cin.ignore();
 }
 
-
+void UserInterface::addComp() {
+    string name, type;
+    char ifMade;
+    int yearMade;
+    cout << "<--- Add a computer --->" << endl;
+    do {
+        cout << "Name: ";
+        cin >> name;
+    } while(name.length() < 1);
+    
+    do {
+        cout << "Type: ";
+        cin >> type;
+    } while(type.length() < 1);
+    
+    do {
+        cout << "Was it ever made? (y/n) ";
+        cin >> ifMade;
+        if(ifMade != 'Y' && ifMade != 'y' && ifMade != 'N' && ifMade != 'n') {
+            cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
+        }
+    } while (ifMade != 'Y' && ifMade != 'y' && ifMade != 'N' && ifMade != 'n');
+    
+    if(ifMade == 'N' || ifMade == 'n') {
+        yearMade = 0;
+        cin.ignore();
+    } else {
+        do {
+            cin.clear();
+            cin.ignore();
+            cout << "Year made: ";
+            cin >> yearMade;
+            if(cin.fail()) cout << "!--- Please enter a valid year ---!" << endl;
+        } while(yearMade <= 0 || yearMade > 2016);
+    }
+    
+    cout << "<--- Successfully added a computer --->" << endl << endl;
+    Computer aComputer(ifMade, name, type, yearMade);
+    service.addComputer(aComputer);
+}
 
 
 
