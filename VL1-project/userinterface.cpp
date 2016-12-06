@@ -192,60 +192,116 @@ void UserInterface::addComp() {
 void UserInterface::list() {
     string listCommand, innerCommand;
     do {
-        cout << endl << "<--- How would you like to list? --->" << endl;
+        cin.clear();
+        cin.ignore();
+        
+        cout << endl << "<--- What would you like to see a list of? --->" << endl;
         cout << "all" << '\t' << "(list everything)" << endl;
         cout << "sci" << '\t' << "(list just the scientists)" << endl;
         cout << "comp" << '\t' << "(list just the computers)" << endl;
-        cout << "b" << '\t' << "(<< go back)" << endl;
-        cout << "Command => ";
+        cout << "c" << '\t' << "(cancell)" << endl;
+        cout << "=> Command: ";
         cin >> listCommand;
         
-        if(listCommand == "all" || listCommand == "a") {
-            cout << endl << "<--- All - in which order? --->" << endl;
-            cout << "alpha" << '\t' << "(alphabetical order)" << endl;
-            cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
-            cout << "ascage" << '\t' << "(ascending age order)" << endl;
-            cout << "descage" << '\t' << "(descending age order)" << endl;
-            cout << "b" << '\t' << "(<< go back)" << endl;
-            cout << "Command => ";
-            cin >> innerCommand;
-            if(innerCommand == "b") {
-                listCommand = "back";
-            }
-        } else if(listCommand == "sci" || listCommand == "scientist" || listCommand == "s") {
-            cout << endl << "<--- Scientists - in which order? --->" << endl;
-            cout << "alpha" << '\t' << "(alphabetical order)" << endl;
-            cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
-            cout << "ascage" << '\t' << "(ascending age order)" << endl;
-            cout << "descage" << '\t' << "(descending age order)" << endl;
-            cout << "male" << '\t' << "(only males)" << endl;
-            cout << "female" << '\t' << "(only females)" << endl;
-            cout << "b" << '\t' << "(<< go back)" << endl;
-            cout << "Command => ";
-            cin >> innerCommand;
-            if(innerCommand == "b") {
-                listCommand = "back";
-            }
-        } else if(listCommand == "comp" || listCommand == "computer" || listCommand == "c") {
-            cout << endl << "<--- Computers - in which order? --->" << endl;
-            cout << "alpha" << '\t' << "(alphabetical order)" << endl;
-            cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
-            cout << "ascage" << '\t' << "(ascending age order)" << endl;
-            cout << "descage" << '\t' << "(descending age order)" << endl;
-            cout << "made" << '\t' << "(only the ones that were made)" << endl;
-            cout << "notmade" << '\t' << "(only the ones that were not made)" << endl;
-            cout << "b" << '\t' << "(<< go back)" << endl;
-            cout << "Command => ";
-            cin >> innerCommand;
-            if(innerCommand == "b") {
-                listCommand = "back";
-            }
-        } else if (listCommand != "back" && listCommand != "b") {
-            cout << "!--- Not a valid command ---!" << endl;
-        } else if (listCommand != "b") {
+        if(listCommand == "all") {
+            do {
+                cin.clear();
+                cin.ignore();
+                cout << endl << "<--- All - in which order? --->" << endl;
+                cout << "alpha" << '\t' << "(alphabetical order)" << endl;
+                cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
+                cout << "ageasc" << '\t' << "(ascending age order)" << endl;
+                cout << "agedesc" << '\t' << "(descending age order)" << endl;
+                cout << "b" << '\t' << "(go back)" << endl;
+                cout << "=> Command: ";
+                cin >> innerCommand;
+                
+                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "b") {
+                    cout << "!--- Please enter a valid command ---!" << endl;
+                } else if(innerCommand == "b") {
+                    cout << endl;
+                } else if(innerCommand == "alpha") {
+                    
+                } else if(innerCommand == "ralpha") {
+                    
+                } else if(innerCommand == "ageasc") {
+                    
+                } else if(innerCommand == "agedesc") {
+                    
+                }
+            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "b");
+        } else if(listCommand == "sci") {
+            do {
+                cin.clear();
+                cin.ignore();
+                cout << endl << "<--- Scientists - in which order? --->" << endl;
+                cout << "alpha" << '\t' << "(alphabetical order)" << endl;
+                cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
+                cout << "ageasc" << '\t' << "(ascending age order)" << endl;
+                cout << "agedesc" << '\t' << "(descending age order)" << endl;
+                cout << "male" << '\t' << "(only males)" << endl;
+                cout << "female" << '\t' << "(only females)" << endl;
+                cout << "b" << '\t' << "(go back)" << endl;
+                cout << "=> Command: ";
+                cin >> innerCommand;
+                
+                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "male" && innerCommand != "female" && innerCommand != "b") {
+                    cout << "!--- Please enter a valid command ---!" << endl;
+                } else if(innerCommand == "b") {
+                    cout << endl;
+                } else if(innerCommand == "alpha") {
+                    
+                } else if(innerCommand == "ralpha") {
+                    
+                } else if(innerCommand == "ageasc") {
+                    
+                } else if(innerCommand == "agedesc") {
+                    
+                } else if(innerCommand == "male") {
+                    
+                } else if(innerCommand == "female") {
+                    
+                }
+            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "male" && innerCommand != "female" && innerCommand != "b");
+        } else if(listCommand == "comp") {
+            do {
+                cin.clear();
+                cin.ignore();
+                cout << endl << "<--- Computers - in which order? --->" << endl;
+                cout << "alpha" << '\t' << "(alphabetical order)" << endl;
+                cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
+                cout << "ageasc" << '\t' << "(ascending age order)" << endl;
+                cout << "agedesc" << '\t' << "(descending age order)" << endl;
+                cout << "made" << '\t' << "(only the ones that were made)" << endl;
+                cout << "notmade" << '\t' << "(only the ones that were not made)" << endl;
+                cout << "b" << '\t' << "(go back)" << endl;
+                cout << "=> Command: ";
+                cin >> innerCommand;
+                
+                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b") {
+                    cout << "!--- Please enter a valid command ---!" << endl;
+                } else if(innerCommand == "b") {
+                    cout << endl;
+                } else if(innerCommand == "alpha") {
+                    
+                } else if(innerCommand == "ralpha") {
+                    
+                } else if(innerCommand == "ageasc") {
+                    
+                } else if(innerCommand == "agedesc") {
+                    
+                } else if(innerCommand == "made") {
+                    
+                } else if(innerCommand == "notmade") {
+                    
+                }
+            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b");
+        } else if (listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "b"  && listCommand != "c") {
+            cout << "!--- Please enter a valid command ---!" << endl;
+        } else if (listCommand == "c") {
             cout << endl;
         }
-    } while(listCommand != "all" && listCommand != "a" && listCommand != "s" && listCommand != "sci" && listCommand != "scientist" && listCommand != "c" && listCommand != "comp" && listCommand != "computer" && listCommand != "b");
+    } while(listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "b"  && listCommand != "c");
 }
 
 void UserInterface::search() {

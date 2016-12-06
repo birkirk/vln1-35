@@ -11,11 +11,10 @@ public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
     void addComputer(Computer aComputer);
-    void clearAll();
 private:
-    vector<Scientist> vScientists;
-    vector<Computer> vComputer;
-    DataLayer dataL;
+    vector<Scientist> _vScientists;
+    vector<Computer> _vComputer;
+    DataLayer _dataL;
 };
 
 #endif // SERVICELAYER_H
