@@ -12,8 +12,7 @@
 
 using namespace std;
 
-class DataLayer
-{
+class DataLayer {
 public:
     DataLayer();
     DataLayer(const QString& path);

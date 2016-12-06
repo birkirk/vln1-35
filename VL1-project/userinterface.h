@@ -3,8 +3,7 @@
 #include "servicelayer.h"
 
 
-class UserInterface
-{
+class UserInterface {
 public:
     UserInterface();
     void run();

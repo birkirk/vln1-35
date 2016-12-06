@@ -2,8 +2,7 @@
 #include <algorithm>
 
 
-ServiceLayer::ServiceLayer()
-{
+ServiceLayer::ServiceLayer() {
 
 }
 
