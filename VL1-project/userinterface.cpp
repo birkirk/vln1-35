@@ -18,7 +18,7 @@ void UserInterface::run()
     
     do
     {
-        cout << "<--- Enter one of the following commands: --->" << endl;
+        cout << "<--- Enter one of the following commands --->" << endl;
         cout << "add" << '\t' << "(to add a scientist or computer)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists or computers)" << endl;
         cout << "search" << '\t' << "(to search in the list)" << endl;
@@ -64,7 +64,7 @@ void UserInterface::run()
         }
         else if (command == "search")
         {
-            search();
+            //search(); TODO
         }
         else if (command == "connect")
         {
@@ -403,11 +403,6 @@ void UserInterface::list()
             cout << endl;
         }
     } while(listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "b"  && listCommand != "c");
-}
-
-void UserInterface::search()
-{
-
 }
 
 

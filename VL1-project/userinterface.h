@@ -10,9 +10,7 @@ public:
     void run();
     void addSci();
     void addComp();
-    
     void list();
-    void search();
 private:
     ServiceLayer _service;
 };
