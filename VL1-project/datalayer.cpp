@@ -54,8 +54,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
 }
 
 
-
-//Reads the database file
 vector<Scientist> DataLayer::readSci() {
     vector<Scientist> tempV;
     return tempV;
@@ -67,8 +65,6 @@ vector<Computer> DataLayer::readComp() {
     return tempV;
 }
 
-
-//Clears the whole database
 void DataLayer::clearFile() {
     
 }
