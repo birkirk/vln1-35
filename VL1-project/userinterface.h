@@ -14,7 +14,7 @@ public:
     void addComp();
     
     void listSci(string listCommand);
-    void searchSci();
+    void search();
     void clearSci();
 private:
     ServiceLayer service;

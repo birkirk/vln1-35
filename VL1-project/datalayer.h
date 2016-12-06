@@ -2,6 +2,7 @@
 #define DATALAYER_H
 #include <vector>
 #include <fstream>
+#include "computer.h"
 #include "scientist.h"
 
 using namespace std;
@@ -10,10 +11,9 @@ class DataLayer
 {
 public:
     DataLayer();
-    friend istream& operator >> (istream& in, Scientist& s);
-    friend ostream& operator << (ostream& out, Scientist aScientist);
     void addScientist(Scientist newScientist);
-    vector<Scientist> readFile();
+    vector<Scientist> readSci();
+    vector<Computer> readComp();
     void clearFile();
     void writeFile(vector<Scientist> vScientist);
 private:
