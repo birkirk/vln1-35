@@ -17,7 +17,7 @@ UserInterface::UserInterface()
 }
 
 void UserInterface::run() {
-    string command, listCommand;
+    string command;
     
     //Program loop
     do {
@@ -51,7 +51,7 @@ void UserInterface::run() {
                 cout << "!--- Not a valid command ---!" << endl << endl;
             }
         } else if (command == "list") {
-            listSci(listCommand);
+            list();
         } else if (command == "search") {
             search();
         } else if (command == "clear") {
@@ -117,16 +117,61 @@ void UserInterface::addSci() {
     service.addScientitst(aScientist);
 }
 
-//Function that lists every scientist in the database
-void UserInterface::listSci(string listCommand) {
-    do{
+void UserInterface::list() {
+    string listCommand, innerCommand;
+    do {
+        cout << endl << "<--- How would you like to list? --->" << endl;
+        cout << "all" << '\t' << "(list everything)" << endl;
+        cout << "sci" << '\t' << "(list just the scientists)" << endl;
+        cout << "comp" << '\t' << "(list just the computers)" << endl;
+        cout << "Command => ";
+        cin >> listCommand;
         
-    } while(listCommand != "q");
-    enterToContinue();
+        if(listCommand == "all" || listCommand == "a") {
+            cout << endl << "<--- All - in which order? --->" << endl;
+            cout << "alpha" << '\t' << "(alphabetical order)" << endl;
+            cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
+            cout << "ascage" << '\t' << "(ascending age order)" << endl;
+            cout << "descage" << '\t' << "(descending age order)" << endl;
+            cout << "b" << '\t' << "(<< go back)" << endl;
+            cout << "Command => ";
+            cin >> innerCommand;
+            if(innerCommand == "b") {
+                listCommand = "back";
+            }
+        } else if(listCommand == "sci" || listCommand == "scientist" || listCommand == "s") {
+            cout << endl << "<--- Scientists - in which order? --->" << endl;
+            cout << "alpha" << '\t' << "(alphabetical order)" << endl;
+            cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
+            cout << "ascage" << '\t' << "(ascending age order)" << endl;
+            cout << "descage" << '\t' << "(descending age order)" << endl;
+            cout << "male" << '\t' << "(only males)" << endl;
+            cout << "female" << '\t' << "(only females)" << endl;
+            cout << "b" << '\t' << "(<< go back)" << endl;
+            cout << "Command => ";
+            cin >> innerCommand;
+            if(innerCommand == "b") {
+                listCommand = "back";
+            }
+        } else if(listCommand == "comp" || listCommand == "computer" || listCommand == "c") {
+            cout << endl << "<--- Computers - in which order? --->" << endl;
+            cout << "alpha" << '\t' << "(alphabetical order)" << endl;
+            cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
+            cout << "ascage" << '\t' << "(ascending age order)" << endl;
+            cout << "descage" << '\t' << "(descending age order)" << endl;
+            cout << "made" << '\t' << "(only the ones that were made)" << endl;
+            cout << "notmade" << '\t' << "(only the ones that were not made)" << endl;
+            cout << "b" << '\t' << "(<< go back)" << endl;
+            cout << "Command => ";
+            cin >> innerCommand;
+            if(innerCommand == "b") {
+                listCommand = "back";
+            }
+        } else if (listCommand != "back") {
+            cout << "!--- Not a valid command ---!" << endl;
+        }
+    } while(listCommand != "all" && listCommand != "a" && listCommand != "s" && listCommand != "sci" && listCommand != "scientist" && listCommand != "c" && listCommand != "comp" && listCommand != "computer");
 }
-
-
-//Function that searches in the scientist database
 
 void UserInterface::search() {
 
@@ -148,8 +193,7 @@ void UserInterface::clearSci() {
     }
 }
 
-ostream& operator << (ostream& out, vector<Scientist> vScientist)
-{
+ostream& operator << (ostream& out, vector<Scientist> vScientist) {
     if(vScientist.size() != 0) {
         for(size_t i = 0; i < vScientist.size(); i++) {
             cout << endl << "Name: " << vScientist[i].getName() << endl;
@@ -173,8 +217,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
     return out;
 }
 
-void printResault(vector<Scientist> resaultVector)
-{
+void printResault(vector<Scientist> resaultVector) {
     if(resaultVector.size() > 0)
     {
         cout << resaultVector;
@@ -182,8 +225,7 @@ void printResault(vector<Scientist> resaultVector)
     else cout << "Not found" << endl << endl;
 }
 
-void enterToContinue()
-{
+void enterToContinue() {
     cout << "Press enter/return to continue." << endl;
     cin.ignore();
 }

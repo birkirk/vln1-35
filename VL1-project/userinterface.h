@@ -13,7 +13,7 @@ public:
     void addSci();
     void addComp();
     
-    void listSci(string listCommand);
+    void list();
     void search();
     void clearSci();
 private:
