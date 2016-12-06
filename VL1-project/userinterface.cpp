@@ -23,8 +23,7 @@ void UserInterface::run() {
     do {
         //Menu
         cout << "<--- Enter one of the following commands: --->" << endl;
-        cout << "addSci" << '\t' << "(to add a scientist)" << endl;
-        cout << "addComp" << '\t' << "(to add a computer)" << endl;
+        cout << "add" << '\t' << "(to add a scientist or computer)" << endl;
         cout << "list" << '\t' << "(to see the list of scientists or computers)" << endl;
         cout << "search" << '\t' << "(to search in the list)" << endl;
         cout << "connect" << '\t' << "(to connect scientists and computers)" << endl;
@@ -37,10 +36,19 @@ void UserInterface::run() {
 
 
         // Selection
-        if (command == "addSci" || command == "addsci") {
-            addSci();
-        } else if (command == "addComp" || command == "addcomp") {
-            addComp();
+        if (command == "add") {
+            string nextcommand;
+            cout << "sci" << '\t' << "(to add a scientist)" << endl;
+            cout << "comp" << '\t' << "(to add a computer)" << endl;
+            cout << "=> Command: ";
+            cin >> nextcommand;
+            if(nextcommand == "sci" || nextcommand == "scientist" || nextcommand == "s") {
+                addSci();
+            } else if(nextcommand == "comp" || nextcommand == "computer" || nextcommand == "c") {
+                addComp();
+            } else {
+                cout << "!--- Not a valid command ---!" << endl << endl;
+            }
         } else if (command == "list") {
             listSci(listCommand);
         } else if (command == "search") {
