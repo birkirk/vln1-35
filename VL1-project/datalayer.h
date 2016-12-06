@@ -12,6 +12,7 @@ using namespace std;
 class DataLayer
 {
 public:
+    DataLayer();
     DataLayer(const QString& path);
     void addScientist(Scientist newScientist);
     vector<Scientist> readSci();

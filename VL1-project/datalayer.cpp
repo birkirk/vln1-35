@@ -8,6 +8,10 @@
 
 
 using namespace std;
+DataLayer::DataLayer()
+{
+
+}
 
 DataLayer::DataLayer(const QString& path)
 {
