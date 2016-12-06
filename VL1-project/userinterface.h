@@ -7,17 +7,14 @@ class UserInterface
 {
 public:
     UserInterface();
-    // main mennu
     void run();
-    friend ostream& operator << (ostream& out, vector<Scientist> sVector);
     void addSci();
     void addComp();
-    
     void list();
-    void search();
-    void clearSci();
+    
+    friend ostream& operator << (ostream& out, vector<Scientist> vScientist);
 private:
-    ServiceLayer service;
+    ServiceLayer _service;
 };
 
 #endif // USERINTERFACE_H

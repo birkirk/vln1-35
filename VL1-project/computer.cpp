@@ -19,14 +19,17 @@ bool Computer::getIfMade()
 {
     return _ifMade;
 }
+
 string Computer::getName()
 {
     return _name;
 }
+
 string Computer::getType()
 {
     return _type;
 }
+
 int Computer::getYearMade()
 {
     return _yearMade;

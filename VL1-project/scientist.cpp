@@ -19,14 +19,17 @@ int Scientist::getBirth()
 {
     return _born;
 }
+
 int Scientist::getDeath()
 {
     return _death;
 }
+
 char Scientist::getGender()
 {
     return _gender;
 }
+
 string Scientist::getName()
 {
     return _name;
