@@ -1,6 +1,6 @@
 #include "servicelayer.h"
 #include <algorithm>
-
+#include <iostream>
 
 ServiceLayer::ServiceLayer()
 {
@@ -9,7 +9,9 @@ ServiceLayer::ServiceLayer()
 
 void ServiceLayer::addScientitst(Scientist aScientist)
 {
-    
+    bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());
+    if(success) cout << "Scientist successfully added";
+    else cout << "FAILED";
 }
 
 void ServiceLayer::addComputer(Computer aComputer)

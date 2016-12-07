@@ -23,6 +23,7 @@ public:
     void writeFile(vector<Scientist> vScientist);
 
     bool addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
+    bool addScientist(string sName, int sYearOfBirth, char sGender);
 private:
     QSqlDatabase _db;
 };
