@@ -20,37 +20,43 @@ void ServiceLayer::addComputer(Computer aComputer)
 
 vector<Scientist> ServiceLayer::sciAlpha()
 {
-    vector<Scientist> vOrder = _dataL.readSci();
+    string com = "alpha";
+    vector<Scientist> vOrder = _dataL.readSci(com);
     return vOrder;
 }
 
 vector<Scientist> ServiceLayer::sciRalpha()
 {
-    vector<Scientist> vOrder;
+    string com = "ralpha";
+    vector<Scientist> vOrder = _dataL.readSci(com);
     return vOrder;
 }
 
 vector<Scientist> ServiceLayer::sciAgeAsc()
 {
-    vector<Scientist> vOrder;
+    string com = "ageasc";
+    vector<Scientist> vOrder = _dataL.readSci(com);
     return vOrder;
 }
 
 vector<Scientist> ServiceLayer::sciAgeDesc()
 {
-    vector<Scientist> vOrder;
+    string com = "agedesc";
+    vector<Scientist> vOrder = _dataL.readSci(com);
     return vOrder;
 }
 
 vector<Scientist> ServiceLayer::sciDeathAsc()
 {
-    vector<Scientist> vOrder;
+    string com = "deathasc";
+    vector<Scientist> vOrder = _dataL.readSci(com);
     return vOrder;
 }
 
 vector<Scientist> ServiceLayer::sciDeathDesc()
 {
-    vector<Scientist> vOrder;
+    string com = "deathdesc";
+    vector<Scientist> vOrder = _dataL.readSci(com);
     return vOrder;
 }
 
