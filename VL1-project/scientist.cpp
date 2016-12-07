@@ -7,7 +7,7 @@ Scientist::Scientist()
 {
 }
 
-Scientist::Scientist(string name, char gender,int born,int death)
+Scientist::Scientist(string name, char gender, int born, int death)
 {
     _name = name;
     _gender = gender;

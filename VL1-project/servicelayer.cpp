@@ -23,7 +23,7 @@ void ServiceLayer::addComputer(Computer aComputer)
 
 vector<Scientist> ServiceLayer::searchSci(string name, int born, int death, char gender)
 {
-    vector<Scientist> vSearched = _dataL.searchSci(name, born, death, gender);
+    vector<Scientist> vSearched = _dataL.searchSci(name, gender, born, death);
     return vSearched;
 }
 
