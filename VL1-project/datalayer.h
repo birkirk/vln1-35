@@ -18,8 +18,8 @@ public:
     DataLayer();
     DataLayer(const QString& path);
     
-    vector<Scientist> readSci();
-    vector<Computer> readComp();
+    vector<Scientist> readSci(string com);
+    vector<Computer> readComp(string com);
     void writeFile(vector<Scientist> vScientist);
 
     bool addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);

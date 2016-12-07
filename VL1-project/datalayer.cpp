@@ -11,7 +11,7 @@ using namespace std;
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("../ScienceData.sqlite");
+    _db.setDatabaseName("/Users/Birkir/Desktop/vln1-35/ScienceData.sqlite");
     _db.open();
 }
 
@@ -64,21 +64,65 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     }
 
     return success;
+}
 
-//readSci() and readComp() read the database file
-vector<Scientist> DataLayer::readSci() {
+//readSci() and readComp() read the database file in different orders, depending on "string com"
+vector<Scientist> DataLayer::readSci(string com)
+{
     vector<Scientist> tempV;
-    vector<string> gg;
-    
     QSqlQuery query;
-    query.exec("SELECT name FROM Scientists");
-    while (query.next()) {
-        QString name = query.value(0).toString();
-        string bla = name.toStdString();
-        gg.push_back(bla);
-    }
-    for(size_t i = 0; i < gg.size(); i++) {cout << gg[i];}
     
+    if(com == "alpha")
+    {
+        query.exec("SELECT * FROM Scientists ORDER BY name");
+    }
+    else if(com == "ralpha")
+    {
+        query.exec("SELECT * FROM Scientists ORDER BY name DESC");
+    }
+    else if(com == "ageasc")
+    {
+        query.exec("SELECT * FROM Scientists ORDER BY yearOfBirth DESC");
+    }
+    else if(com == "agedesc")
+    {
+        query.exec("SELECT * FROM Scientists ORDER BY yearOfBirth");
+    }
+    else if(com == "deathasc")
+    {
+        query.exec("SELECT * FROM Scientists ORDER BY yearOfDeath");
+    }
+    else if(com == "deathdesc")
+    {
+        query.exec("SELECT * FROM Scientists ORDER BY yearOfDeath DESC");
+    }
+    
+    while (query.next())
+    {
+        int valid = query.value(5).toInt();
+        if(valid == 1)
+        {
+            QString name = query.value(1).toString();
+            string theName = name.toStdString();
+            
+            int yearBorn = query.value(2).toInt();
+            
+            int yearDied = query.value(3).toInt();
+            
+            QString gender = query.value(4).toString();
+            char theGender = gender.at(0).toLatin1();
+            
+            Scientist newSci(theName, theGender, yearBorn, yearDied);
+            tempV.push_back(newSci);
+        }
+    }
+    
+    return tempV;
+}
+    
+vector<Computer> DataLayer::readComp(string com)
+{
+    vector<Computer> tempV;
     return tempV;
 }
 
@@ -106,10 +150,3 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
 
     return success;
 }
-
-vector<Computer> DataLayer::readComp()
-{
-    vector<Computer> tempV;
-    return tempV;
-}
-
