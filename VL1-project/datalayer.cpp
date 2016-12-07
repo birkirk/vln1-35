@@ -10,7 +10,9 @@
 using namespace std;
 DataLayer::DataLayer()
 {
-
+    _db = QSqlDatabase::addDatabase("QSQLITE");
+    _db.setDatabaseName("../ScienceData.sqlite");
+    _db.open();
 }
 
 DataLayer::DataLayer(const QString& path)
@@ -64,9 +66,20 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     return success;
 }
 
-//Reads the database file
+//readSci() and readComp() read the database file
 vector<Scientist> DataLayer::readSci() {
     vector<Scientist> tempV;
+    vector<string> gg;
+    
+    QSqlQuery query;
+    query.exec("SELECT name FROM Scientists");
+    while (query.next()) {
+        QString name = query.value(0).toString();
+        string bla = name.toStdString();
+        gg.push_back(bla);
+    }
+    for(size_t i = 0; i < gg.size(); i++) {cout << gg[i];}
+    
     return tempV;
 }
 

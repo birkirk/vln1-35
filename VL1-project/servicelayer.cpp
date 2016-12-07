@@ -9,48 +9,46 @@ ServiceLayer::ServiceLayer()
 
 void ServiceLayer::addScientitst(Scientist aScientist)
 {
-    vector<Scientist> vUse = _dataL.readSci();
-    vUse.push_back(aScientist);
+    
 }
 
 void ServiceLayer::addComputer(Computer aComputer)
 {
-    vector<Computer> vUse = _dataL.readComp();
-    vUse.push_back(aComputer);
+    
 }
 
 
-vector<Scientist> sciAlpha()
+vector<Scientist> ServiceLayer::sciAlpha()
+{
+    vector<Scientist> vOrder = _dataL.readSci();
+    return vOrder;
+}
+
+vector<Scientist> ServiceLayer::sciRalpha()
 {
     vector<Scientist> vOrder;
     return vOrder;
 }
 
-vector<Scientist> sciRalpha()
+vector<Scientist> ServiceLayer::sciAgeAsc()
 {
     vector<Scientist> vOrder;
     return vOrder;
 }
 
-vector<Scientist> sciAgeAsc()
+vector<Scientist> ServiceLayer::sciAgeDesc()
 {
     vector<Scientist> vOrder;
     return vOrder;
 }
 
-vector<Scientist> sciAgeDesc()
+vector<Scientist> ServiceLayer::sciDeathAsc()
 {
     vector<Scientist> vOrder;
     return vOrder;
 }
 
-vector<Scientist> sciMale()
-{
-    vector<Scientist> vOrder;
-    return vOrder;
-}
-
-vector<Scientist> sciFemale()
+vector<Scientist> ServiceLayer::sciDeathDesc()
 {
     vector<Scientist> vOrder;
     return vOrder;

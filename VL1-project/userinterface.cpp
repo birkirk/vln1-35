@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+// Overloading the opperator << to be able to print out scientists in a table
 ostream& operator << (ostream& out, vector<Scientist> vScientist)
 {
     char death;
@@ -290,8 +292,8 @@ void UserInterface::list()
                 cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
                 cout << "ageasc" << '\t' << "(ascending age order)" << endl;
                 cout << "agedesc" << '\t' << "(descending age order)" << endl;
-                cout << "male" << '\t' << "(only males)" << endl;
-                cout << "female" << '\t' << "(only females)" << endl;
+                cout << "deathasc" << '\t' << "(ascending death year order)" << endl;
+                cout << "deathdesc" << '\t' << "(descending death year order)" << endl;
                 cout << "b" << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
@@ -306,8 +308,8 @@ void UserInterface::list()
                 }
                 else if(innerCommand == "alpha")
                 {
-                    //vector<Scientist> vUse = _service.sciAlpha();
-                    //cout << vUse;
+                    vector<Scientist> vUse = _service.sciAlpha();
+                    cout << vUse;
                 }
                 else if(innerCommand == "ralpha")
                 {
@@ -324,17 +326,17 @@ void UserInterface::list()
                     //vector<Scientist> vUse = _service.sciAgeDesc();
                     //cout << vUse;
                 }
-                else if(innerCommand == "male")
+                else if(innerCommand == "deathAsc")
                 {
-                    //vector<Scientist> vUse = _service.sciMale();
+                    //vector<Scientist> vUse = _service.sciDeathAsc();
                     //cout << vUse;
                 }
-                else if(innerCommand == "female")
+                else if(innerCommand == "deathDesc")
                 {
-                    //vector<Scientist> vUse = _service.sciFemale();
+                    //vector<Scientist> vUse = _service.sciDeathDesc();
                     //cout << vUse;
                 }
-            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "male" && innerCommand != "female" && innerCommand != "b");
+            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "deathasc" && innerCommand != "deathdesc" && innerCommand != "b");
         }
         else if(listCommand == "comp")
         {

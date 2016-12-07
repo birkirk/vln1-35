@@ -16,8 +16,8 @@ public:
     vector<Scientist> sciRalpha();
     vector<Scientist> sciAgeAsc();
     vector<Scientist> sciAgeDesc();
-    vector<Scientist> sciMale();
-    vector<Scientist> sciFemale();
+    vector<Scientist> sciDeathAsc();
+    vector<Scientist> sciDeathDesc();
 private:
     vector<Scientist> _vScientists;
     vector<Computer> _vComputer;
