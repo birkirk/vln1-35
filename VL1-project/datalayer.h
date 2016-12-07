@@ -30,7 +30,7 @@ public:
 
 
     bool addComputer(string cName, string cType, bool cIfMade, char cYearMade);
-    vector<Scientist> searchSci(string sName, char sGender, int sYearOfBirth, int sYearOfDeath);
+    vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
 
 private:
     QSqlDatabase _db;

@@ -582,9 +582,8 @@ void UserInterface::search()
         cin >> command;
         if(command == "sci")
         {
-            string name, sGender, sStillAlive;
+            string name, sGender, sStillAlive, born, death;
             char gender, stillAlive;
-            int born, death;
             cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
             
             //Get name
@@ -620,10 +619,10 @@ void UserInterface::search()
             //Get birth year
             cin.clear();
             cout << "Year of birth (type a number < 0 if you want to skip this): ";
-            cin >> born;
-            if(born < 0)
+            getline(cin, born);
+            if(born.length() == 0)
             {
-                born = NULL;
+                born = "";
             }
             
             do
@@ -654,10 +653,10 @@ void UserInterface::search()
             {
                 cin.clear();
                 cout << "Year of death (type a number < 0 if you want to skip this): ";
-                cin >> death;
-                if(death < 0)
+                getline(cin, death);
+                if(death.length() == 0)
                 {
-                    death = NULL;
+                    death = "";
                 }
             }
             
@@ -688,18 +687,14 @@ void UserInterface::search()
 void UserInterface::generateJoke()
 {
     int random = rand() % 10;
-    for(int i = 0; i < 10; i++)
+    for(int i = 1; i <= 10; i++)
     {
-        if(i == 0)
+        if(i == 1)
         {
-            cout << "Generating..." << '\t';
+            cout << "Generating..." << '\t' << " " << i*10 << "%";
         }
         cout << "///";
         usleep(200000);
-        if(i == 9)
-        {
-            cout << '\t' << "100 %";
-        }
     }
     cout << endl;
     

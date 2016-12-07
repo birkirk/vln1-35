@@ -27,7 +27,7 @@ public:
     vector<Computer> compNotMade();
     vector<Computer> compType();
     
-    vector<Scientist> searchSci(string name, char gender, int born, int death);
+    vector<Scientist> searchSci(string name, char gender, string born, string death);
 private:
     vector<Scientist> _vScientists;
     vector<Computer> _vComputer;
