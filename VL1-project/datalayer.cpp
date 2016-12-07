@@ -179,7 +179,7 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
     QSqlQuery query;
 
     query = QSqlQuery(_db);
-    query.prepare("INSERT INTO Scientists (name, type, ifMade, yearMade) VALUES(:name, :type, :ifMade, :yearMade);");
+    query.prepare("INSERT INTO Computers (name, type, ifMade, yearMade) VALUES(:name, :type, :ifMade, :yearMade);");
     query.bindValue(":name", qName);
     query.bindValue(":type", QString::fromStdString(cType));
     query.bindValue(":ifMade", QString::number(cIfMade));

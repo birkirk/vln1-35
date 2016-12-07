@@ -28,7 +28,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             {
                 out << name << '\t' << '\t' << '\t';
             }
-            else if(name.length() > 8 && name.length() < 16)
+            else if(name.length() >= 8 && name.length() < 16)
             {
                 out << name << '\t' << '\t';
             }
@@ -343,13 +343,13 @@ void UserInterface::list()
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Scientists - in which order? --->" << endl;
-                cout << "alpha" << '\t' << "(alphabetical order)" << endl;
-                cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
-                cout << "ageasc" << '\t' << "(ascending age order)" << endl;
-                cout << "agedesc" << '\t' << "(descending age order)" << endl;
+                cout << "alpha" << '\t' << '\t' << "(alphabetical order)" << endl;
+                cout << "ralpha" << '\t' << '\t' << "(reversed alphabetical order)" << endl;
+                cout << "ageasc" << '\t' << '\t' << "(ascending age order)" << endl;
+                cout << "agedesc" << '\t' << '\t' << "(descending age order)" << endl;
                 cout << "deathasc" << '\t' << "(ascending death year order)" << endl;
                 cout << "deathdesc" << '\t' << "(descending death year order)" << endl;
-                cout << "b" << '\t' << "(go back)" << endl;
+                cout << "b" << '\t' << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
