@@ -633,7 +633,7 @@ void UserInterface::search()
             }
             
             cout << "<--- Searching for scientist... --->" << endl << endl;
-            vector<Scientist> vSci = _dataL.searchSci(name, gender, born, death);
+            vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
             cout << vSci;
         }
         else if(command == "comp")
