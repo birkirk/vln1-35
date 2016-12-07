@@ -656,6 +656,8 @@ void UserInterface::search()
             }
             
             cout << "<--- Searching for scientist... --->" << endl << endl;
+            
+            //If something is skipped than sends: "", 'O', NULL, NULL;
             vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
             cout << vSci;
         }
