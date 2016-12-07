@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <unistd.h>
 
 using namespace std;
 
@@ -687,6 +688,21 @@ void UserInterface::search()
 void UserInterface::generateJoke()
 {
     int random = rand() % 10;
+    for(int i = 0; i < 10; i++)
+    {
+        if(i == 0)
+        {
+            cout << "Generating..." << '\t';
+        }
+        cout << "///";
+        usleep(200000);
+        if(i == 9)
+        {
+            cout << '\t' << "100 %";
+        }
+    }
+    cout << endl;
+    
     if(random == 0)
     {
         cout << endl << "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all." << endl << endl;
