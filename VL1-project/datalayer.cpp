@@ -64,7 +64,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     }
 
     return success;
-}
 
 //readSci() and readComp() read the database file
 vector<Scientist> DataLayer::readSci() {
@@ -81,6 +80,31 @@ vector<Scientist> DataLayer::readSci() {
     for(size_t i = 0; i < gg.size(); i++) {cout << gg[i];}
     
     return tempV;
+}
+
+bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYearMade)
+{
+    bool success = false;
+    QString qName = QString::fromStdString(cName);
+    QSqlQuery query;
+
+    query = QSqlQuery(_db);
+    query.prepare("INSERT INTO Scientists (name, type, ifMade, yearMade) VALUES(:name, :type, :ifMade, :yearMade);");
+    query.bindValue(":name", qName);
+    query.bindValue(":type", QString::number(cType));
+    query.bindValue(":ifMade", QString::number(cIfMade));
+    query.bindValue(":yearMade", QString:: number(cYearMade));
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "Computer not successfully added: " << endl;
+        //qDebug() << query.lastError();
+    }
+
+    return success;
 }
 
 vector<Computer> DataLayer::readComp()
