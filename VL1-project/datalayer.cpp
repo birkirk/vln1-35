@@ -296,8 +296,8 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
                         " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
                         " ORDER BY name");
     searchQuery.bindValue(":name", qName);
-    //searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
-    //searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
+    searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
+    searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
     searchQuery.bindValue(":gender", QString(QChar(sGender)));
     searchQuery.exec();
 
