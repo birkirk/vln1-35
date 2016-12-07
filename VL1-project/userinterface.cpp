@@ -619,6 +619,7 @@ void UserInterface::search()
             //Get birth year
             cin.clear();
             cout << "Year of birth (type a number < 0 if you want to skip this): ";
+
             getline(cin, born);
             if(born.length() == 0)
             {
@@ -653,6 +654,8 @@ void UserInterface::search()
             {
                 cin.clear();
                 cout << "Year of death (type a number < 0 if you want to skip this): ";
+
+
                 getline(cin, death);
                 if(death.length() == 0)
                 {

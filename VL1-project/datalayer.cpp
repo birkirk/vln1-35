@@ -28,7 +28,7 @@ QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char 
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("../ScienceData.sqlite"); //for mac /Users/Birkir/Desktop/vln1-35/ScienceData.sqlite
+    _db.setDatabaseName("../ScienceData.sqlite");
     _db.open();
 }
 
@@ -288,16 +288,14 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
 vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath)
 {
     QString qName = QString::fromStdString(sName);
-
-
     //QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
     QSqlQuery searchQuery;
     searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists"
                         " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
                         " ORDER BY name");
     searchQuery.bindValue(":name", qName);
-    searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
-    searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
+    searchQuery.bindValue(":yearOfBirth", QString::fromStdString(sYearOfBirth));
+    searchQuery.bindValue(":yearOfDeath", QString::fromStdString(sYearOfDeath));
     searchQuery.bindValue(":gender", QString(QChar(sGender)));
     searchQuery.exec();
 
