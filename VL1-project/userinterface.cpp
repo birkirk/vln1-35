@@ -65,8 +65,8 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
 {
     if(vComputers.size() != 0)
     {
-        cout << "Name" << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
-        cout << "--------------------------------------------" << endl;
+        cout << "Name" << '\t' << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
+        cout << "------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vComputers.size(); i++)
         {
             string name = vComputers[i].getName();
@@ -76,13 +76,17 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             string space;
             
             //check how many tabs is best to use after name:
-            if(name.length() < 5)
+            if(name.length() < 8)
             {
                 out << name << '\t' << '\t' << '\t';
             }
-            else
+            else if(name.length() >= 8 && name.length() < 16)
             {
                 out << name << '\t' << '\t';
+            }
+            else
+            {
+                out << name << '\t';
             }
             
             //print type:
