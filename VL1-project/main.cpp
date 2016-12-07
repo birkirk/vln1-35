@@ -7,10 +7,9 @@ using namespace std;
 
 int main()
 {
-    DataLayer data("../ScienceData.sqlite");
-    data.addScientist("Antonius", 1995, 0, 'm');
-    //UserInterface ui;
-    //ui.run();
+
+    UserInterface ui;
+    ui.run();
 
 
     return 0;
