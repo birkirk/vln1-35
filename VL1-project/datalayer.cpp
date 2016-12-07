@@ -28,8 +28,42 @@ QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char 
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("../ScienceData.sqlite");
-    _db.open();
+    if(QFile::exists(QString::fromStdString("../ScienceDataTEST.sqlite")))
+    {
+        _db.setDatabaseName("../ScienceDataTEST.sqlite");
+        _db.open();
+        cout << "Database found..." << endl;
+    }
+    else
+    {
+        _db.setDatabaseName("../ScienceDataTEST.sqlite");
+        _db.open();
+        QSqlQuery createQuery;
+
+        createQuery.prepare("CREATE TABLE 'Computers' "
+                            "('ID' INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE ,"
+                            " 'name' VARCHAR NOT NULL ,"
+                            " 'type' VARCHAR NOT NULL ,"
+                            " 'ifMade' BOOL NOT NULL ,"
+                            " 'yearMade' INTEGER, 'valid' BOOL NOT NULL  DEFAULT 1)");
+        createQuery.exec();
+
+        createQuery.prepare("CREATE TABLE 'Scientists' "
+                            "('ID' INTEGER PRIMARY KEY  NOT NULL ,"
+                            "'name' VARCHAR NOT NULL ,"
+                            "'yearOfBirth' VARCHAR,"
+                            "'yearOfDeath' VARCHAR,"
+                            " 'gender' CHAR NOT NULL  DEFAULT N,"
+                            " 'valid' DOUBLE NOT NULL  DEFAULT 1)");
+        createQuery.exec();
+
+        createQuery.prepare("CREATE TABLE scicomp(scientistID INTEGER ,"
+                            "computerID INTEGER, "
+                            "'valid' BOOL NOT NULL  DEFAULT 1,"
+                            " FOREIGN KEY(scientistID) REFERENCES Scientists(ID) ON DELETE CASCADE,"
+                            " FOREIGN KEY(computerID) REFERENCES Computers(ID) ON DELETE CASCADE)");
+        cout << "Database not found... Creating database... " << endl;
+    }
 }
 
 DataLayer::DataLayer(const QString& path)
@@ -294,12 +328,14 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
     {
         searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists"
                             " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%'"
+                            " AND yearOfDeath LIKE '%'||:yearOfDeath||'%'"
                             " ORDER BY name");
     }
     else
     {
         searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists"
-                            " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
+                            " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND yearOfDeath LIKE '%'||:yearOfDeath||'%'"
+                            " AND gender LIKE '%'||:gender||'%'"
                             " ORDER BY name");
         searchQuery.bindValue(":gender", QString(QChar(sGender)));
         cout << "Got to gender" << endl;
