@@ -64,6 +64,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     }
 
     return success;
+}
 
 //readSci() and readComp() read the database file in different orders, depending on "string com"
 vector<Scientist> DataLayer::readSci(string com)
@@ -118,10 +119,13 @@ vector<Scientist> DataLayer::readSci(string com)
     
     return tempV;
 }
-
-<<<<<<< HEAD
+    
 vector<Computer> DataLayer::readComp(string com)
-=======
+{
+    vector<Computer> tempV;
+    return tempV;
+}
+
 bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYearMade)
 {
     bool success = false;
@@ -146,11 +150,3 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
 
     return success;
 }
-
-vector<Computer> DataLayer::readComp()
->>>>>>> 9c53861cc263b03c7ad220b905a811fd169e1ca5
-{
-    vector<Computer> tempV;
-    return tempV;
-}
-
