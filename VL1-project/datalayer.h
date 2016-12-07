@@ -28,7 +28,9 @@ public:
 
     bool deleteScientist(Scientist newSci);
 
+
     bool addComputer(string cName, string cType, bool cIfMade, char cYearMade);
+    vector<Scientist> searchSci(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
 
 private:
     QSqlDatabase _db;

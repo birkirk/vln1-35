@@ -17,8 +17,14 @@ void ServiceLayer::addScientitst(Scientist aScientist)
 void ServiceLayer::addComputer(Computer aComputer)
 {
     bool success = _dataL.addComputer(aComputer.getName(), aComputer.getType(), aComputer.getIfMade(), aComputer.getYearMade());
-    if(success) cout << "Scientist successfully added";
+    if(success) cout << "Computer successfully added";
     else cout << "FAILED";
+}
+
+vector<Scientist> ServiceLayer::searchSci(string name, int born, int death, char gender)
+{
+    vector<Scientist> vSearched = _dataL.searchSci(name, born, death, gender);
+    return vSearched;
 }
 
 
@@ -65,6 +71,54 @@ vector<Scientist> ServiceLayer::sciDeathDesc()
 }
 
 
+vector<Computer> ServiceLayer::compAlpha()
+{
+    string com = "alpha";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compRalpha()
+{
+    string com = "ralpha";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compAgeAsc()
+{
+    string com = "ageasc";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compAgeDesc()
+{
+    string com = "agedesc";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compMade()
+{
+    string com = "made";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compNotMade()
+{
+    string com = "notmade";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compType()
+{
+    string com = "type";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
 
 
 
