@@ -15,6 +15,8 @@ public:
     
     friend ostream& operator << (ostream& out, vector<Scientist> vScientist);
     friend ostream& operator << (ostream& out, vector<Computer> vComputers);
+    
+    void generateJoke();
 private:
     ServiceLayer _service;
 };
