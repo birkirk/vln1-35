@@ -28,7 +28,7 @@ QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char 
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("../ScienceData.sqlite"); //for mac /Users/Birkir/Desktop/vln1-35/ScienceData.sqlite
+    _db.setDatabaseName("/Users/Birkir/Desktop/vln1-35/ScienceData.sqlite"); //for mac /Users/Birkir/Desktop/vln1-35/ScienceData.sqlite
     _db.open();
 }
 

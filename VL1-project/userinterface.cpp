@@ -587,6 +587,10 @@ void UserInterface::search()
             cout << "Name: ";
             getline(cin, name);
             name[0] = toupper(name[0]);
+            if(name.size() == 0)
+            {
+                name = "";
+            }
             
             do
             {
@@ -604,18 +608,21 @@ void UserInterface::search()
             }
             else
             {
-                gender = ' ';
+                gender = 'O';
             }
             
             //Get birth year
             cin.clear();
-            cout << "Year of birth: ";
+            cout << "Year of birth (type a number < 0 if you want to skip this): ";
             cin >> born;
+            if(born < 0)
+            {
+                born = NULL;
+            }
             
             do
             {
                 cin.clear();
-                cin.ignore();
                 cout << "Is he/her still alive? (y/n) ";
                 getline(cin, sStillAlive);
                 if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
@@ -629,7 +636,7 @@ void UserInterface::search()
             }
             else
             {
-                stillAlive = ' ';
+                stillAlive = 'O';
             }
             
             if(stillAlive == 'Y' || stillAlive == 'y')
@@ -640,8 +647,12 @@ void UserInterface::search()
             else
             {
                 cin.clear();
-                cout << "Year of death: ";
+                cout << "Year of death (type a number < 0 if you want to skip this): ";
                 cin >> death;
+                if(death < 0)
+                {
+                    death = NULL;
+                }
             }
             
             cout << "<--- Searching for scientist... --->" << endl << endl;
