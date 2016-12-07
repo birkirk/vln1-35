@@ -690,13 +690,18 @@ void UserInterface::search()
 void UserInterface::generateJoke()
 {
     int random = rand() % 10;
+    cout << endl;
     for(int i = 1; i <= 10; i++)
     {
         if(i == 1)
         {
-            cout << "Generating..." << '\t' << " " << i*10 << "%";
+            cout << "Generating..." << '\t';
         }
         cout << "///";
+        if(i == 10)
+        {
+            cout << "100%";
+        }
         usleep(200000);
     }
     cout << endl;
