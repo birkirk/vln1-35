@@ -12,7 +12,7 @@ using namespace std;
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("/Users/Birkir/Desktop/vln1-35/ScienceData.sqlite");
+    _db.setDatabaseName("../ScienceData.sqlite");
     _db.open();
 }
 
