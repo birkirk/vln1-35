@@ -21,7 +21,7 @@ void ServiceLayer::addComputer(Computer aComputer)
     else cout << "FAILED";
 }
 
-vector<Scientist> ServiceLayer::searchSci(string name, int born, int death, char gender)
+vector<Scientist> ServiceLayer::searchSci(string name, char gender, int born, int death)
 {
     vector<Scientist> vSearched = _dataL.searchSci(name, gender, born, death);
     return vSearched;

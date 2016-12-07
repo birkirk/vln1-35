@@ -285,7 +285,7 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
     return success;
 }
 
-vector<Scientist> searchSci(string sName, int sYearOfBirth, int sYearOfDeath, char sGender)
+vector<Scientist> DataLayer::searchSci(string sName, char sGender, int sYearOfBirth, int sYearOfDeath)
 {
     QString qName = QString::fromStdString(sName);
 
