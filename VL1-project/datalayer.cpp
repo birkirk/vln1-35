@@ -6,9 +6,25 @@
 #include <string>
 #include <algorithm>
 
-
-
 using namespace std;
+
+QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char sGender)
+{
+
+    QString qName = QString::fromStdString(sName);
+    QSqlQuery searchQuery;
+    searchQuery.prepare("SELECT ID FROM Scientist"
+                        " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
+                        " ORDER BY name");
+    searchQuery.bindValue(":name", qName);
+    searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
+    searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
+    searchQuery.bindValue(":gender", QString(QChar(sGender)));
+    searchQuery.exec();
+    return searchQuery;
+
+}
+
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
@@ -34,7 +50,9 @@ DataLayer::DataLayer(const QString& path)
 
 bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender)
 {
+
     bool success = false;
+    /*
     QString qName = QString::fromStdString(sName);
     QSqlQuery countQuery;
     countQuery.prepare("SELECT name, yearOfBirth FROM Scientists WHERE name = :name  AND yearOfBirth = :yearOfBirth;");
@@ -44,6 +62,9 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     qDebug() << countQuery.lastError();
 
     bool alreadyInDB = countQuery.next();
+    */
+    QSqlQuery countQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
+    bool alreadyInDB = countQuery.next();
 
     QSqlQuery query;
     if(!alreadyInDB)
@@ -51,7 +72,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
         cout << "success";
         query = QSqlQuery(_db);
         query.prepare("INSERT INTO Scientists (name, yearOfBirth, yearOfDeath, gender) VALUES(:name, :yearOfBirth, :yearOfDeath, :gender);");
-        query.bindValue(":name", qName);
+        query.bindValue(":name", QString::fromStdString((sName)));
         query.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
         query.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
         query.bindValue(":gender", QString(QChar(sGender)));
@@ -108,14 +129,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
 
 bool DataLayer::deleteScientist(Scientist newSci)
 {
-    QSqlQuery query;
-    query.prepare("SELECT ID FROM Scientists WHERE name = (:name) AND yearOfBirth = (:yearOfBirth) AND yearOfDeath = (:yearOfDeath)");
-    QString qName = QString::fromStdString(newSci.getName());
-    query.bindValue(":name", qName);
-    query.bindValue(":yearOfBirth", QString::number(newSci.getBirth()));
-    query.bindValue(":yearOfDeath", QString::number(newSci.getDeath()));
-    query.exec();
-
+    QSqlQuery query = findScientists(newSci.getName(), newSci.getBirth(), newSci.getDeath(), newSci.getGender());
 
     query.first();
     QSqlQuery deleteQuery;
@@ -211,3 +225,43 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
 
     return success;
 }
+
+vector<Scientist> searchSci(string sName, int sYearOfBirth, int sYearOfDeath, char sGender)
+{
+    QString qName = QString::fromStdString(sName);
+
+
+    QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
+    /*
+    searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientist"
+                        " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
+                        " ORDER BY name");
+    searchQuery.bindValue(":name", qName);
+    searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
+    searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
+    searchQuery.bindValue(":gender", QString(QChar(sGender)));
+    searchQuery.exec();*/
+
+    vector<Scientist> returnVector;
+
+    while(searchQuery.next())
+    {
+        QString gender = searchQuery.value(1).toString();
+        char gChar = gender.at(0).toLatin1();
+
+        QString qName = searchQuery.value(0).toString();
+        string name = qName.toStdString();
+
+        Scientist newSci(name, gChar, searchQuery.value(2).toInt(), searchQuery.value(3).toInt());
+        returnVector.push_back(newSci);
+    }
+    return returnVector;
+}
+/*
+void connect(Scientist newSci, Computer newCmp)
+{
+    QSqlQuery query = findScientsist();
+    query.prepare()
+}*/
+
+

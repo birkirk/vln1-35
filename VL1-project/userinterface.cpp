@@ -13,8 +13,8 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
 {
     if(vScientist.size() != 0)
     {
-        cout << "Name" << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
-        cout << "--------------------------------------------" << endl;
+        cout << "Name" << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
+        cout << "------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vScientist.size(); i++)
         {
             string name = vScientist[i].getName();
@@ -24,13 +24,17 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             string space;
             
             //check how many tabs is best to use after name:
-            if(name.length() < 5)
+            if(name.length() < 8)
             {
                 out << name << '\t' << '\t' << '\t';
             }
-            else
+            else if(name.length() > 8 && name.length() < 16)
             {
                 out << name << '\t' << '\t';
+            }
+            else
+            {
+                out << name << '\t';
             }
             
             //print gender and birth year:
@@ -170,10 +174,11 @@ void UserInterface::addSci()
     
     do
     {
-        cin.clear();
         cin.ignore();
+        cin.clear();
         cout << "Name: ";
-        cin >> name;
+        getline(cin, name);
+        name[0] = toupper(name[0]);
         if(name.length() == 0)
         {
             cout << "!--- Must enter a name ---!" << endl;
