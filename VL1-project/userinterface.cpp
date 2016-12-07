@@ -128,7 +128,8 @@ void UserInterface::run()
         cout << "list" << '\t' << "(to see the list of scientists or computers)" << endl;
         cout << "search" << '\t' << "(to search in the list)" << endl;
         cout << "connect" << '\t' << "(to connect scientists and computers)" << endl;
-        cout << "clear" << '\t' << "(to clear the list of scientists or computers)" << endl;
+        cout << "clear" << '\t' << "(to empty the database of scientists or computers)" << endl;
+        cout << "joke" << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
         cout << "q" << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
         
@@ -207,6 +208,10 @@ void UserInterface::run()
         else if (command == "clear")
         {
             //clear(); TODO
+        }
+        else if (command == "joke")
+        {
+            generateJoke();
         }
         else if (command != "q")
         {
@@ -675,3 +680,56 @@ void UserInterface::search()
         }
     } while(command != "sci" && command != "comp" && command != "c");
 }
+
+
+
+
+void UserInterface::generateJoke()
+{
+    int random = rand() % 10;
+    if(random == 0)
+    {
+        cout << endl << "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all." << endl << endl;
+    }
+    else if(random == 1)
+    {
+        cout << endl << "I used to think the brain was the most important organ. Then I thought, look what’s telling me that" << endl << endl;
+    }
+    else if(random == 2)
+    {
+        cout << endl << "What is Bruce Lee’s favorite drink? Wataaaaah!" << endl << endl;
+    }
+    else if(random == 3)
+    {
+        cout << endl << "If you want to catch a squirrel just climb a tree and act like a nut." << endl << endl;
+    }
+    else if(random == 4)
+    {
+        cout << endl << "A magician was walking down the street and turned into a grocery store." << endl << endl;
+    }
+    else if(random == 5)
+    {
+        cout << endl << "Did you hear about the Mexican train killer? He had locomotives." << endl << endl;
+    }
+    else if(random == 6)
+    {
+        cout << endl << "What time is it when you have to go to the dentist? Tooth-hurtie." << endl << endl;
+    }
+    else if(random == 7)
+    {
+        cout << endl << "What did Jay-Z call his girlfriend before they got married? Feyoncé." << endl << endl;
+    }
+    else if(random == 8)
+    {
+        cout << endl << "What’s the best part about living in Switzerland? Not sure, but the flag is a big plus." << endl << endl;
+    }
+    else if(random == 9)
+    {
+        cout << endl << "Why can’t a bike stand on its own? It’s two tired." << endl << endl;
+    }
+}
+
+
+
+
+
