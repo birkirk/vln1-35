@@ -592,17 +592,23 @@ void UserInterface::search()
             {
                 cin.clear();
                 cout << "Gender (M/F): ";
-                cin >> sGender;
+                getline(cin, sGender);
                 if(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "")
                 {
                     cout << "!--- You can only enter 'M' or 'F' ---!" << endl;
                 }
             } while(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "");
-            gender = sGender.at(0);
+            if(sGender != "")
+            {
+                gender = sGender.at(0);
+            }
+            else
+            {
+                gender = ' ';
+            }
             
             //Get birth year
             cin.clear();
-            cin.ignore();
             cout << "Year of birth: ";
             cin >> born;
             
@@ -611,13 +617,20 @@ void UserInterface::search()
                 cin.clear();
                 cin.ignore();
                 cout << "Is he/her still alive? (y/n) ";
-                cin >> sStillAlive;
+                getline(cin, sStillAlive);
                 if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
                 {
                     cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
                 }
             } while (sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && sStillAlive != "");
-            stillAlive = sStillAlive.at(0);
+            if(sStillAlive != "")
+            {
+                stillAlive = sStillAlive.at(0);
+            }
+            else
+            {
+                stillAlive = ' ';
+            }
             
             if(stillAlive == 'Y' || stillAlive == 'y')
             {
@@ -627,7 +640,6 @@ void UserInterface::search()
             else
             {
                 cin.clear();
-                cin.ignore();
                 cout << "Year of death: ";
                 cin >> death;
             }
