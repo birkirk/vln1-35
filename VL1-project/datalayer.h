@@ -26,6 +26,8 @@ public:
 
     bool addScientist(string sName, int sYearOfBirth, char sGender);
 
+    bool deleteScientist(Scientist newSci);
+
     bool addComputer(string cName, string cType, bool cIfMade, char cYearMade);
 
 private:

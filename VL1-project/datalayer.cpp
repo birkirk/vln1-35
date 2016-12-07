@@ -106,11 +106,26 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
 }
 
 
-/*bool DataLayer::deleteScientist(Scientist)
+bool DataLayer::deleteScientist(Scientist newSci)
 {
+    QSqlQuery query;
+    query.prepare("SELECT ID FROM Scientists WHERE name = (:name) AND yearOfBirth = (:yearOfBirth) AND yearOfDeath = (:yearOfDeath)");
+    QString qName = QString::fromStdString(newSci.getName());
+    query.bindValue(":name", qName);
+    query.bindValue(":yearOfBirth", QString::number(newSci.getBirth()));
+    query.bindValue(":yearOfDeath", QString::number(newSci.getDeath()));
+    query.exec();
 
+
+    query.first();
+    QSqlQuery deleteQuery;
+    deleteQuery.prepare("UPDATE Scientists SET valid = 0 WHERE ID = (:ID)");
+    int a = query.value(0).toInt();
+    deleteQuery.bindValue(":ID", a);
+    bool returnValue = deleteQuery.exec();
+    return returnValue;
 }
-*/
+
 //readSci() and readComp() read the database file in different orders, depending on "string com"
 vector<Scientist> DataLayer::readSci(string com)
 {
