@@ -299,13 +299,13 @@ void UserInterface::addComp()
     char check;
     bool ifMade = false;
     int yearMade;
-    cout << "<--- Add a computer --->" << endl;
+    cout << endl << "<--- Add a computer --->" << endl;
     do
     {
         cin.clear();
         cin.ignore();
         cout << "Name: ";
-        cin >> name;
+        getline(cin, name);
         name[0] = toupper(name[0]);
         if(name.length() < 1)
         {
