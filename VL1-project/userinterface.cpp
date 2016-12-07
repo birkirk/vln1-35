@@ -587,37 +587,57 @@ void UserInterface::search()
             cout << "Name: ";
             getline(cin, name);
             name[0] = toupper(name[0]);
+            if(name.size() == 0)
+            {
+                name = "";
+            }
             
             do
             {
                 cin.clear();
                 cout << "Gender (M/F): ";
-                cin >> sGender;
+                getline(cin, sGender);
                 if(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "")
                 {
                     cout << "!--- You can only enter 'M' or 'F' ---!" << endl;
                 }
             } while(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "");
-            gender = sGender.at(0);
+            if(sGender != "")
+            {
+                gender = sGender.at(0);
+            }
+            else
+            {
+                gender = 'O';
+            }
             
             //Get birth year
             cin.clear();
-            cin.ignore();
-            cout << "Year of birth: ";
+            cout << "Year of birth (type a number < 0 if you want to skip this): ";
             cin >> born;
+            if(born < 0)
+            {
+                born = NULL;
+            }
             
             do
             {
                 cin.clear();
-                cin.ignore();
                 cout << "Is he/her still alive? (y/n) ";
-                cin >> sStillAlive;
+                getline(cin, sStillAlive);
                 if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
                 {
                     cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
                 }
             } while (sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && sStillAlive != "");
-            stillAlive = sStillAlive.at(0);
+            if(sStillAlive != "")
+            {
+                stillAlive = sStillAlive.at(0);
+            }
+            else
+            {
+                stillAlive = 'O';
+            }
             
             if(stillAlive == 'Y' || stillAlive == 'y')
             {
@@ -627,9 +647,12 @@ void UserInterface::search()
             else
             {
                 cin.clear();
-                cin.ignore();
-                cout << "Year of death: ";
+                cout << "Year of death (type a number < 0 if you want to skip this): ";
                 cin >> death;
+                if(death < 0)
+                {
+                    death = NULL;
+                }
             }
             
             cout << "<--- Searching for scientist... --->" << endl << endl;
