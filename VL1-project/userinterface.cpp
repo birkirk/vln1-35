@@ -198,7 +198,7 @@ void UserInterface::run()
         }
         else if (command == "search")
         {
-            //search(); TODO
+            search();
         }
         else if (command == "connect")
         {
@@ -218,7 +218,7 @@ void UserInterface::run()
 
 void UserInterface::addSci()
 {
-    string name;
+    string name, sGender, sStillAlive;
     char gender, stillAlive;
     int born, death;
     cout << endl << "<--- Add a scientist --->" << endl;
@@ -239,14 +239,14 @@ void UserInterface::addSci()
     do
     {
         cin.clear();
-        cin.ignore();
         cout << "Gender (M/F): ";
-        cin >> gender;
-        if(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f')
+        cin >> sGender;
+        if(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f")
         {
             cout << "!--- You can only enter 'M' or 'F' ---!" << endl;
         }
-    } while(gender != 'M' && gender != 'm' && gender != 'F' && gender != 'f');
+    } while(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f");
+    gender = sGender.at(0);
     
     do
     {
@@ -265,12 +265,13 @@ void UserInterface::addSci()
         cin.clear();
         cin.ignore();
         cout << "Is he/her still alive? (y/n) ";
-        cin >> stillAlive;
-        if(stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n' && !cin.fail())
+        cin >> sStillAlive;
+        if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && !cin.fail())
         {
             cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
         }
-    } while (stillAlive != 'Y' && stillAlive != 'y' && stillAlive != 'N' && stillAlive != 'n');
+    } while (sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n");
+    stillAlive = sStillAlive.at(0);
     
     if(stillAlive == 'Y' || stillAlive == 'y')
     {
@@ -320,9 +321,9 @@ void UserInterface::addComp()
     do
     {
         cin.clear();
-        cin.ignore();
         cout << "Type: ";
-        cin >> type;
+        getline(cin, type);
+        type[0] = toupper(type[0]);
         if(type.length() < 1 || cin.fail())
         {
             cout << "!--- Please enter a valid type ---!" << endl;
@@ -332,7 +333,6 @@ void UserInterface::addComp()
     do
     {
         cin.clear();
-        cin.ignore();
         cout << "Was it ever made? (y/n) ";
         cin >> check;
         if(check != 'Y' && check != 'y' && check != 'N' && check != 'n')
@@ -563,7 +563,93 @@ void UserInterface::list()
     } while(listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "con" && listCommand != "b"  && listCommand != "c");
 }
 
-
+void UserInterface::search()
+{
+    string command;
+    do
+    {
+        cout << endl << "<--- What would you like to search for? --->" << endl;
+        cout << "sci" << '\t' << "(to search in Scientists database)" << endl;
+        cout << "comp" << '\t' << "(to search in Computers database)" << endl;
+        cout << "c" << '\t' << "(to cancell)" << endl;
+        cout << "=> Command: ";
+        cin >> command;
+        if(command == "sci")
+        {
+            string name, sGender, sStillAlive;
+            char gender, stillAlive;
+            int born, death;
+            cout << endl << "<--- Add a scientist --->" << endl;
+            
+            //Get name
+            cin.ignore();
+            cin.clear();
+            cout << "Name: ";
+            getline(cin, name);
+            name[0] = toupper(name[0]);
+            
+            do
+            {
+                cin.clear();
+                cout << "Gender (M/F): ";
+                cin >> sGender;
+                if(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "")
+                {
+                    cout << "!--- You can only enter 'M' or 'F' ---!" << endl;
+                }
+            } while(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "");
+            gender = sGender.at(0);
+            
+            //Get birth year
+            cin.clear();
+            cin.ignore();
+            cout << "Year of birth: ";
+            cin >> born;
+            
+            do
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "Is he/her still alive? (y/n) ";
+                cin >> sStillAlive;
+                if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
+                {
+                    cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
+                }
+            } while (sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && sStillAlive != "");
+            stillAlive = sStillAlive.at(0);
+            
+            if(stillAlive == 'Y' || stillAlive == 'y')
+            {
+                //has to be high so that list be death is correct
+                death = 3000;
+            }
+            else
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "Year of death: ";
+                cin >> death;
+            }
+            
+            cout << "<--- Searching for scientist... --->" << endl << endl;
+            vector<Scientist> vSci = _dataL.searchSci(name, gender, born, death);
+            cout << vSci;
+        }
+        else if(command == "comp")
+        {
+            
+        }
+        else if(command != "c")
+        {
+            cout << "!--- Not a valid command ---!" << endl;
+        }
+        else if(command == "c")
+        {
+            
+        }
+    } while(command != "sci" && command != "comp" && command != "c");
+}
 
 
 
