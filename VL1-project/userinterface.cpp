@@ -34,7 +34,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             }
             
             //print gender and birth year:
-            out << gender << '\t' << '\t' << born << '\t' << '\t';;
+            out << gender << '\t' << '\t' << born << '\t' << '\t';
             
             //check if scientist has not died yet:
             if(died == 3000)
@@ -49,7 +49,54 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
     }
     else
     {
-        cout << "!--- There are no scientists in the database ---!" << endl;
+        cout << "!--- There are no such scientists in the database ---!" << endl;
+    }
+    cout << endl;
+    
+    return out;
+}
+
+// Overloading the opperator << to be able to print out computers in a table
+ostream& operator << (ostream& out, vector<Computer> vComputers)
+{
+    if(vComputers.size() != 0)
+    {
+        cout << "Name" << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
+        cout << "--------------------------------------------" << endl;
+        for(size_t i = 0; i < vComputers.size(); i++)
+        {
+            string name = vComputers[i].getName();
+            bool made = vComputers[i].getIfMade();
+            int yearMade = vComputers[i].getYearMade();
+            string type = vComputers[i].getType();
+            string space;
+            
+            //check how many tabs is best to use after name:
+            if(name.length() < 5)
+            {
+                out << name << '\t' << '\t' << '\t';
+            }
+            else
+            {
+                out << name << '\t' << '\t';
+            }
+            
+            //print type:
+            out << type << '\t' << '\t';
+            
+            if(made)
+            {
+                out << "Yes" << '\t' << '\t' << yearMade << endl;
+            }
+            else
+            {
+                out << "No" << '\t' << '\t' << "----" << endl;
+            }
+        }
+    }
+    else
+    {
+        cout << "!--- There are no such computers in the database ---!" << endl;
     }
     cout << endl;
     
@@ -255,6 +302,7 @@ void UserInterface::addComp()
         cin.ignore();
         cout << "Name: ";
         cin >> name;
+        name[0] = toupper(name[0]);
         if(name.length() < 1)
         {
             cout << "!--- Please enter a valid name ---!" << endl;
@@ -326,7 +374,7 @@ void UserInterface::list()
         
         cout << endl << "<--- What would you like to see a list of? --->" << endl;
         cout << "sci" << '\t' << "(list of just the scientists)" << endl;
-        cout << "somp" << '\t' << "(list of just the computers)" << endl;
+        cout << "comp" << '\t' << "(list of just the computers)" << endl;
         cout << "con" << '\t' << "(list of the connections between scientists and computers)" << endl;
         cout << "c" << '\t' << "(cancell)" << endl;
         cout << "=> Command: ";
@@ -408,11 +456,12 @@ void UserInterface::list()
                 cout << "agedesc" << '\t' << "(descending age order)" << endl;
                 cout << "made" << '\t' << "(only the ones that were made)" << endl;
                 cout << "notmade" << '\t' << "(only the ones that were not made)" << endl;
+                cout << "type" << '\t' << "(by type)" << endl;
                 cout << "b" << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
-                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b")
+                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "type" && innerCommand != "b")
                 {
                     cout << "!--- Please enter a valid command ---!" << endl;
                 }
@@ -422,29 +471,47 @@ void UserInterface::list()
                 }
                 else if(innerCommand == "alpha")
                 {
-                    
+                    vector<Computer> vUse = _service.compAlpha();
+                    cout << "<--- Computers in alphabetical order --->" << endl << endl;
+                    cout << vUse;
                 }
                 else if(innerCommand == "ralpha")
                 {
-                    
+                    vector<Computer> vUse = _service.compRalpha();
+                    cout << "<--- Computers in reversed alphabetical order --->" << endl << endl;
+                    cout << vUse;
                 }
                 else if(innerCommand == "ageasc")
                 {
-                    
+                    vector<Computer> vUse = _service.compAgeAsc();
+                    cout << "<--- Computers in age ascending order --->" << endl << endl;
+                    cout << vUse;
                 }
                 else if(innerCommand == "agedesc")
                 {
-                    
+                    vector<Computer> vUse = _service.compAgeDesc();
+                    cout << "<--- Computers in age descending order --->" << endl << endl;
+                    cout << vUse;
                 }
                 else if(innerCommand == "made")
                 {
-                    
+                    vector<Computer> vUse = _service.compMade();
+                    cout << "<--- Computers that were made --->" << endl << endl;
+                    cout << vUse;
                 }
                 else if(innerCommand == "notmade")
                 {
-                    
+                    vector<Computer> vUse = _service.compNotMade();
+                    cout << "<--- Computers that were not made --->" << endl << endl;
+                    cout << vUse;
                 }
-            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b");
+                else if(innerCommand == "type")
+                {
+                    vector<Computer> vUse = _service.compType();
+                    cout << "<--- Computers in type order --->" << endl << endl;
+                    cout << vUse;
+                }
+            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "type" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b");
         }
         else if(listCommand == "con")
         {

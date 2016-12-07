@@ -13,6 +13,7 @@ public:
     void list();
     
     friend ostream& operator << (ostream& out, vector<Scientist> vScientist);
+    friend ostream& operator << (ostream& out, vector<Computer> vComputers);
 private:
     ServiceLayer _service;
 };
