@@ -143,7 +143,7 @@ vector<Scientist> DataLayer::readSci(string com)
     while (query.next())
     {
         int valid = query.value(5).toInt();
-        if(valid == 1)
+        if(valid == 1)m
         {
             QString name = query.value(1).toString();
             string theName = name.toStdString();
