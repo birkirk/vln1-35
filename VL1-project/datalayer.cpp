@@ -290,16 +290,16 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, int sYearOfBi
     QString qName = QString::fromStdString(sName);
 
 
-    QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
-    /*
-    searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientist"
+    //QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
+    QSqlQuery searchQuery;
+    searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists"
                         " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
                         " ORDER BY name");
     searchQuery.bindValue(":name", qName);
     searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
     searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
     searchQuery.bindValue(":gender", QString(QChar(sGender)));
-    searchQuery.exec();*/
+    searchQuery.exec();
 
     vector<Scientist> returnVector;
 
@@ -310,7 +310,6 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, int sYearOfBi
 
         QString qName = searchQuery.value(0).toString();
         string name = qName.toStdString();
-
         Scientist newSci(name, gChar, searchQuery.value(2).toInt(), searchQuery.value(3).toInt());
         returnVector.push_back(newSci);
     }
