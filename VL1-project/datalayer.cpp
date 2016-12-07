@@ -12,7 +12,7 @@ using namespace std;
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("/Users/Birkir/Desktop/vln1-35/ScienceData.sqlite");
+    _db.setDatabaseName("../ScienceData.sqlite");
     _db.open();
 }
 
@@ -106,8 +106,11 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
 }
 
 
-//bool deleteScientist()
+/*bool DataLayer::deleteScientist(Scientist)
+{
 
+}
+*/
 //readSci() and readComp() read the database file in different orders, depending on "string com"
 vector<Scientist> DataLayer::readSci(string com)
 {
@@ -143,7 +146,7 @@ vector<Scientist> DataLayer::readSci(string com)
     while (query.next())
     {
         int valid = query.value(5).toInt();
-        if(valid == 1)m
+        if(valid == 1)
         {
             QString name = query.value(1).toString();
             string theName = name.toStdString();
