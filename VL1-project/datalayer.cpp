@@ -289,7 +289,6 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
 {
     QString qName = QString::fromStdString(sName);
     //QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
-    cout << sName << sGender << sYearOfBirth << sYearOfDeath << endl << endl;
     QSqlQuery searchQuery;
     if(sGender == 'O')
     {
@@ -327,7 +326,7 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
         searchQuery.bindValue(":yearOfDeath", QString::fromStdString(death));
     }
     searchQuery.bindValue(":name", qName);
-    qDebug() << searchQuery.exec();
+    searchQuery.exec();
 
 
 
