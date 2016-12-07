@@ -64,7 +64,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     }
 
     return success;
-}
 
 //readSci() and readComp() read the database file in different orders, depending on "string com"
 vector<Scientist> DataLayer::readSci(string com)
@@ -120,7 +119,36 @@ vector<Scientist> DataLayer::readSci(string com)
     return tempV;
 }
 
+<<<<<<< HEAD
 vector<Computer> DataLayer::readComp(string com)
+=======
+bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYearMade)
+{
+    bool success = false;
+    QString qName = QString::fromStdString(cName);
+    QSqlQuery query;
+
+    query = QSqlQuery(_db);
+    query.prepare("INSERT INTO Scientists (name, type, ifMade, yearMade) VALUES(:name, :type, :ifMade, :yearMade);");
+    query.bindValue(":name", qName);
+    query.bindValue(":type", QString::number(cType));
+    query.bindValue(":ifMade", QString::number(cIfMade));
+    query.bindValue(":yearMade", QString:: number(cYearMade));
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "Computer not successfully added: " << endl;
+        //qDebug() << query.lastError();
+    }
+
+    return success;
+}
+
+vector<Computer> DataLayer::readComp()
+>>>>>>> 9c53861cc263b03c7ad220b905a811fd169e1ca5
 {
     vector<Computer> tempV;
     return tempV;
