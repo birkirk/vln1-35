@@ -114,7 +114,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
 //readSci() and readComp() read the database file in different orders, depending on "string com"
 vector<Scientist> DataLayer::readSci(string com)
 {
-
     vector<Scientist> tempV;
     QSqlQuery query;
     
@@ -169,6 +168,66 @@ vector<Scientist> DataLayer::readSci(string com)
 vector<Computer> DataLayer::readComp(string com)
 {
     vector<Computer> tempV;
+    QSqlQuery query;
+    
+    if(com == "alpha")
+    {
+        query.exec("SELECT * FROM Computers ORDER BY name");
+    }
+    else if(com == "ralpha")
+    {
+        query.exec("SELECT * FROM Computers ORDER BY name DESC");
+    }
+    else if(com == "ageasc")
+    {
+        query.exec("SELECT * FROM Computers ORDER BY yearMade DESC");
+    }
+    else if(com == "agedesc")
+    {
+        query.exec("SELECT * FROM Computers ORDER BY yearMade");
+    }
+    else if(com == "made")
+    {
+        query.exec("SELECT FROM Computers WHERE ifMade = 1");
+    }
+    else if(com == "notmade")
+    {
+        query.exec("SELECT FROM Computers WHERE ifMade = 0");
+    }
+    else if(com == "type")
+    {
+        query.exec("SELECT FROM Computers ORDER BY type");
+    }
+    
+    while (query.next())
+    {
+        int valid = query.value(5).toInt();
+        if(valid == 1)
+        {
+            QString name = query.value(1).toString();
+            string theName = name.toStdString();
+            
+            QString type = query.value(2).toString();
+            string theType = type.toStdString();
+            
+            int made = query.value(3).toInt();
+            bool ifMade;
+            if(made == 1)
+            {
+                ifMade = true;
+            }
+            else
+            {
+                ifMade = false;
+            }
+            
+            int yearMade = query.value(4).toInt();
+            
+            Computer newComp(ifMade, theName, theType, yearMade);
+            tempV.push_back(newComp);
+        }
+    }
+    
     return tempV;
 }
 

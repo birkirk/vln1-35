@@ -65,6 +65,54 @@ vector<Scientist> ServiceLayer::sciDeathDesc()
 }
 
 
+vector<Computer> ServiceLayer::compAlpha()
+{
+    string com = "alpha";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compRalpha()
+{
+    string com = "ralpha";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compAgeAsc()
+{
+    string com = "ageasc";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compAgeDesc()
+{
+    string com = "agedesc";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compMade()
+{
+    string com = "made";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compNotMade()
+{
+    string com = "notmade";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compType()
+{
+    string com = "type";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
 
 
 
