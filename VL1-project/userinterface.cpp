@@ -700,11 +700,11 @@ void UserInterface::generateJoke()
     
     if(random == 0)
     {
-        cout << endl << "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all." << endl << endl;
+        cout << endl << "Can a kangaroo jump higher than a house? Of course, a house doesn't jump at all." << endl << endl;
     }
     else if(random == 1)
     {
-        cout << endl << "I used to think the brain was the most important organ. Then I thought, look what’s telling me that" << endl << endl;
+        cout << endl << "I used to think the brain was the most important organ. Then I thought, look what's telling me that" << endl << endl;
     }
     else if(random == 2)
     {
