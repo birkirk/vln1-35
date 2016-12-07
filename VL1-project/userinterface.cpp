@@ -174,10 +174,11 @@ void UserInterface::addSci()
     
     do
     {
-        cin.clear();
         cin.ignore();
+        cin.clear();
         cout << "Name: ";
-        cin >> name;
+        getline(cin, name);
+        name[0] = toupper(name[0]);
         if(name.length() == 0)
         {
             cout << "!--- Must enter a name ---!" << endl;
