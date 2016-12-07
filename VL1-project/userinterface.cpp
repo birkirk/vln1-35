@@ -690,24 +690,29 @@ void UserInterface::search()
 void UserInterface::generateJoke()
 {
     int random = rand() % 10;
+    cout << endl;
     for(int i = 1; i <= 10; i++)
     {
         if(i == 1)
         {
-            cout << "Generating..." << '\t' << " " << i*10 << "%";
+            cout << "Generating..." << '\t';
         }
         cout << "///";
+        if(i == 10)
+        {
+            cout << "100%";
+        }
         usleep(200000);
     }
     cout << endl;
     
     if(random == 0)
     {
-        cout << endl << "Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all." << endl << endl;
+        cout << endl << "Can a kangaroo jump higher than a house? Of course, a house doesn't jump at all." << endl << endl;
     }
     else if(random == 1)
     {
-        cout << endl << "I used to think the brain was the most important organ. Then I thought, look what’s telling me that" << endl << endl;
+        cout << endl << "I used to think the brain was the most important organ. Then I thought, look what's telling me that" << endl << endl;
     }
     else if(random == 2)
     {
