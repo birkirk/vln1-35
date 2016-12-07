@@ -285,7 +285,7 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
     return success;
 }
 
-vector<Scientist> DataLayer::searchSci(string sName, char sGender, int sYearOfBirth, int sYearOfDeath)
+vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath)
 {
     QString qName = QString::fromStdString(sName);
 
@@ -293,18 +293,12 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, int sYearOfBi
     //QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
     QSqlQuery searchQuery;
     searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists"
-                        " WHERE name LIKE :name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
+                        " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
                         " ORDER BY name");
     searchQuery.bindValue(":name", qName);
     searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
     searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
-    if(sGender == 'O')
-    {
-        cout << "Reached gender skip";
-        QString str = "";
-        searchQuery.bindValue(":gender", str);
-    }
-    else searchQuery.bindValue(":gender", QString(QChar(sGender)));
+    searchQuery.bindValue(":gender", QString(QChar(sGender)));
     searchQuery.exec();
 
     vector<Scientist> returnVector;
