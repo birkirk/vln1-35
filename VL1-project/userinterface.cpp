@@ -915,34 +915,63 @@ void UserInterface::connect()
         
         if(command == "sci")
         {
-            string whichSci, toWhichComp;
-            vector<string> vWhichComp;
+            int whichSci, toWhichComp;
+            vector<int> vWhichComp;
             
             vector<Scientist> vListSci = _service.sciAlpha();
             cout << "<--- List of scientists --->" << endl;
             cout << vListSci;
-            cout << "Which scientist would you like to connect a computer to? (number) : ";
+            cout << "Which scientist would you like to connect a computer to? (ID number) : ";
             cin >> whichSci;
             
             vector<Computer> vListComp = _service.compAlpha();
             cout << "<--- List of Computers --->" << endl;
             cout << vListComp;
-            cout << "To which computer/s? (number - type D when done) : ";
+            cout << "To which computer/s? (ID number - TYPE A 0 WHEN DONE) : ";
             do
             {
                 cin >> toWhichComp;
-                vWhichComp.push_back(toWhichComp);
-            } while(toWhichComp != "d" && toWhichComp != "D");
+                if(toWhichComp != 0)
+                {
+                    vWhichComp.push_back(toWhichComp);
+                }
+            } while(toWhichComp != 0);
             
-            //vector<string> whatHappened = _service.connectSci(whichSci, toWhichComp);
-            //for(size_t i = 0; i < whatHappened.size(); i++)
-            //{
-            //    cout << whatHappened[i] << endl;
-            //}
+            vector<string> whatHappened = _service.connectSci(whichSci, vWhichComp);
+            for(size_t i = 0; i < whatHappened.size(); i++)
+            {
+                cout << whatHappened[i] << endl;
+            }
         }
         else if(command == "comp")
         {
+            int whichComp, toWhichSci;
+            vector<int> vWhichSci;
             
+            vector<Computer> vListComp = _service.compAlpha();
+            cout << endl << "<--- List of Computers --->" << endl;
+            cout << vListComp;
+            cout << "Which computer would you like to connect a scientist to? (ID number) : ";
+            cin >> whichComp;
+            
+            vector<Scientist> vListSci = _service.sciAlpha();
+            cout << endl << "<--- List of scientists --->" << endl;
+            cout << vListSci;
+            cout << "To which scientist/s? (ID number - TYPE A 0 WHEN DONE) : ";
+            do
+            {
+                cin >> toWhichSci;
+                if(toWhichSci != 0)
+                {
+                    vWhichSci.push_back(toWhichSci);
+                }
+            } while(toWhichSci != 0);
+            
+            vector<string> whatHappened = _service.connectComp(whichComp, vWhichSci);
+            for(size_t i = 0; i < whatHappened.size(); i++)
+            {
+                cout << whatHappened[i] << endl;
+            }
         }
         else if (command != "sci" && command != "comp" && command != "c")
         {

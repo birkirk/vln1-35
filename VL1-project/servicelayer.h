@@ -15,6 +15,9 @@ public:
     bool deleteSci(Scientist newSci);
 
     void clearData(string com);
+    
+    vector<string> connectSci(int whichSci, vector<int> vWhichComp);
+    vector<string> connectComp(int whichComp, vector<int> vWhichSci);
 
     
     vector<Scientist> sciAlpha();

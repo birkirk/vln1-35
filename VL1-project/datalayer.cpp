@@ -423,12 +423,19 @@ void DataLayer::clearComp()
     query.exec("DELETE FROM Computers");
 }
 
-
-/*
-void connect(Scientist newSci, Computer newCmp)
+vector<string> DataLayer::connectSci(int whichSci, vector<int> vWhichComp)
 {
-    QSqlQuery query = findScientsist();
-    query.prepare()
-}*/
+    vector<string> errorCheck;
+    errorCheck.push_back("bla");
+    //VANTAR. Nota þetta: insert into scicomp (dalkur,dalkur,valid) VALUES (:,:) og bindvalue
+    return errorCheck;
+}
+
+vector<string> DataLayer::connectComp(int whichComp, vector<int> vWhichSci)
+{
+    vector<string> errorCheck;
+    errorCheck.push_back("bla bla");
+    return errorCheck;
+}
 
 

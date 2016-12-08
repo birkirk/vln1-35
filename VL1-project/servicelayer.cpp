@@ -146,6 +146,17 @@ void ServiceLayer::clearData(string com)
     }
 }
 
+vector<string> ServiceLayer::connectSci(int whichSci, vector<int> vWhichComp)
+{
+    vector<string> wHappened = _dataL.connectSci(whichSci, vWhichComp);
+    return wHappened;
+}
+
+vector<string> ServiceLayer::connectComp(int whichComp, vector<int> vWhichSci)
+{
+    vector<string> wHappened = _dataL.connectComp(whichComp, vWhichSci);
+    return wHappened;
+}
 
 
 
