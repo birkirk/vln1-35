@@ -596,15 +596,15 @@ void UserInterface::list()
                 }
                 else if(innerCommand == "1" || innerCommand == "sciToComp")
                 {
-                    vector<Computer> vComp = _service.compAlpha();
-                    vector<Scientist> vSci = _service.sciAlpha();
+                    vector<Computer> vComp = _service.compGet();
+                    vector<Scientist> vSci = _service.sciGet();
                     vector<int> vCon = _service.getConnections();
                     printSciToComp(vSci, vComp, vCon);
                 }
                 else if(innerCommand == "2" || innerCommand == "compToSci")
                 {
-                    vector<Computer> vComp = _service.compAlpha();
-                    vector<Scientist> vSci = _service.sciAlpha();
+                    vector<Computer> vComp = _service.compGet();
+                    vector<Scientist> vSci = _service.sciGet();
                     vector<int> vCon = _service.getConnections();
                     printCompToSci(vSci, vComp, vCon);
                 }
@@ -942,13 +942,13 @@ void UserInterface::connect()
             int whichSci, toWhichComp;
             vector<int> vWhichComp;
             
-            vector<Scientist> vListSci = _service.sciAlpha();
+            vector<Scientist> vListSci = _service.sciGet();
             cout << endl << "<--- List of scientists --->" << endl;
             cout << vListSci;
             cout << "Which scientist would you like to connect a computer to? (ID number) : ";
             cin >> whichSci;
             
-            vector<Computer> vListComp = _service.compAlpha();
+            vector<Computer> vListComp = _service.compGet();
             cout << "<--- List of Computers --->" << endl;
             cout << vListComp;
             cout << "To which computer/s? (ID number - TYPE A 0 WHEN DONE) : ";
@@ -974,13 +974,13 @@ void UserInterface::connect()
             int whichComp, toWhichSci;
             vector<int> vWhichSci;
             
-            vector<Computer> vListComp = _service.compAlpha();
+            vector<Computer> vListComp = _service.compGet();
             cout << endl << endl << "<--- List of Computers --->" << endl;
             cout << vListComp;
             cout << "Which computer would you like to connect a scientist to? (ID number) : ";
             cin >> whichComp;
             
-            vector<Scientist> vListSci = _service.sciAlpha();
+            vector<Scientist> vListSci = _service.sciGet();
             cout << endl << "<--- List of scientists --->" << endl;
             cout << vListSci;
             cout << "To which scientist/s? (ID number - TYPE A 0 WHEN DONE) : ";
@@ -1160,7 +1160,54 @@ void UserInterface::info()
 
 void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
 {
+    vector<int> usedComp;
+    bool hit = false;
+    vector<int> vTemp;
+    // Puts those ComputerIDs that are in 'scicomp' table in usedComp.
+    for(size_t i = 0; i < vCon.size(); i++)
+    {
+        i++;
+        for(size_t j = 0; j < usedComp.size(); j++)
+        {
+            if(usedComp[j] == vCon[i])
+            {
+                hit = true;
+            }
+        }
+        if(!hit)
+        {
+            usedComp.push_back(vCon[i]);
+        }
+    }
     
+    cout << endl << "Computer" << '\t' << "==>" << '\t' << '\t' << "Scientist/s connected to computer" << endl;
+    cout << "--------------------------------------------------------------------------" << endl;
+
+    for(size_t i = 0; i < usedComp.size(); i++)
+    {
+        for(size_t j = 0; j < vCon.size(); j++)
+        {
+            j++;
+            if(usedComp[i] == vCon[j])
+            {
+                vTemp.push_back(vCon[j-1]);
+            }
+        }
+        cout << vComp[usedComp[i]].getName() << '\t' << "==>" << '\t' << '\t';
+        for(size_t s = 0; s < vTemp.size(); s++)
+        {
+            if(s == 0)
+            {
+                cout << vSci[vTemp[s]].getName();
+            }
+            else
+            {
+                cout << ", " << vSci[vTemp[s]].getName();
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 
 void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)

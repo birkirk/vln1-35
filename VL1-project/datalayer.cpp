@@ -231,6 +231,10 @@ vector<Scientist> DataLayer::readSci(string com)
     {
         query.exec("SELECT * FROM Scientists ORDER BY yearOfDeath DESC");
     }
+    else if(com == "non")
+    {
+        query.exec("SELECT * FROM Scientists");
+    }
     
     while (query.next())
     {
@@ -287,6 +291,10 @@ vector<Computer> DataLayer::readComp(string com)
     else if(com == "type")
     {
         query.exec("SELECT FROM Computers ORDER BY type");
+    }
+    else if(com == "non")
+    {
+        query.exec("SELECT * FROM Computers");
     }
     
     while (query.next())
