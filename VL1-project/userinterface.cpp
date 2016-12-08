@@ -907,8 +907,8 @@ void UserInterface::connect()
         cin.ignore();
         
         cout << endl << "<--- What would you connect? --->" << endl;
-        cout << '\t' << "sci" << '\t' << "(connect a scientist to a computer)" << endl;
-        cout << '\t' << "comp" << '\t' << "(connect a computer to a scientist)" << endl;
+        cout << '\t' << "sci" << '\t' << "(connect computer/s to a scientist)" << endl;
+        cout << '\t' << "comp" << '\t' << "(connect scientist/s to a computer)" << endl;
         cout << '\t' << "c" << '\t' << "(cancell)" << endl;
         cout << "=> Command: ";
         cin >> command;
