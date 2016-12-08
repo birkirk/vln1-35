@@ -918,38 +918,75 @@ void UserInterface::connect()
         cout << '\t' << "c" << '\t' << "(cancel)" << endl;
         cout << "=> Command: ";
         cin >> command;
+
         
         if(command == "sci")
         {
-            int whichSci, toWhichComp;
+            string whichSci, toWhichComp;
             vector<int> vWhichComp;
             
             vector<Scientist> vListSci = _service.sciAlpha();
-            cout << endl << "<--- List of scientists --->" << endl;
-            cout << vListSci;
-            cout << "Which scientist would you like to connect a computer to? (ID number) : ";
-            cin >> whichSci;
-            
             vector<Computer> vListComp = _service.compAlpha();
-            cout << "<--- List of Computers --->" << endl;
-            cout << vListComp;
-            cout << "To which computer/s? (ID number - TYPE A 0 WHEN DONE) : ";
-            do
+            if(vListSci.size() == 0 || vListComp.size() == 0)
             {
-                cin >> toWhichComp;
-                if(toWhichComp != 0)
-                {
-                    vWhichComp.push_back(toWhichComp);
-                }
-            } while(toWhichComp != 0);
-            
-            cout << endl << "<--- Trying to connect... --->" << endl;
-            vector<string> whatHappened = _service.connectSci(whichSci, vWhichComp);
-            for(size_t i = 0; i < whatHappened.size(); i++)
-            {
-                cout << whatHappened[i] << endl;
+                cout << endl <<"There ar no scientists and/or computers in the database!" << endl << "Aborting..." << endl;
             }
-            cout << endl;
+            else
+            {
+                cout << endl << "<--- List of scientists --->" << endl;
+                cout << vListSci;
+                cout << "Which scientist would you like to connect a computer to? (ID number) : ";
+                cin.ignore();
+                getline(cin, whichSci);
+                while(whichSci.length() == 0)
+                {
+                    getline(cin, whichSci);
+                }
+                int sWhichSci = atoi(whichSci.c_str());
+                while(sWhichSci < 0 || sWhichSci > vListSci.size()+1 || sWhichSci == 0)
+                {
+                    cout << "Invalid input, try again!: ";
+                    getline(cin, whichSci);
+                    sWhichSci = atoi(whichSci.c_str());
+                }
+
+                cout << "<--- List of Computers --->" << endl;
+                cout << vListComp;
+                cout << "To which computer/s? (ID number - TYPE q-TO QUIT) : ";
+                int sToWhichComp;
+                do
+                {
+                    getline(cin, toWhichComp);
+
+                    if(toWhichComp != "c" && toWhichComp != "q")
+                    {
+                        while(toWhichComp.size() == 0)
+                        {
+                            getline(cin, toWhichComp);
+                        }
+                        sToWhichComp = atoi(toWhichComp.c_str());
+                        while(sToWhichComp < 0 || sToWhichComp > vListComp.size()+1 || sToWhichComp == 0)
+                        {
+                            cout << "Invalid input, try again!: ";
+                            getline(cin, toWhichComp);
+                            sToWhichComp = atoi(toWhichComp.c_str());
+                        }
+                        if(sToWhichComp != 0)
+                        {
+                            vWhichComp.push_back(sToWhichComp);
+                        }
+                    }
+                } while(toWhichComp != "c" && toWhichComp != "q");
+
+                cout << endl << "<--- Trying to connect... --->" << endl;
+                vector<string> whatHappened = _service.connectSci(sWhichSci, vWhichComp);
+                for(size_t i = 0; i < whatHappened.size(); i++)
+                {
+                    cout << whatHappened[i] << endl;
+                }
+                cout << endl;
+
+            }
         }
         else if(command == "comp")
         {
