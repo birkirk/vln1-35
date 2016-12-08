@@ -654,7 +654,7 @@ void UserInterface::search()
                 cin.clear();
                 cout << "Year of death: ";
 
-                cin >> death;
+                getline(cin, death);
                 if(death.length() == 0)
                 {
                     death = "";
@@ -711,16 +711,14 @@ void UserInterface::search()
                     ifMade = "0";
                     yearMade = "";
                     cin.clear();
-                    cin.ignore();
                 }
             } while (check != "Y" && check != "y" && check != "N" && check != "n" && check != "");
             
             if(ifMade == "1")
             {
                 cin.clear();
-                cin.ignore();
                 cout << "Year made: ";
-                cin >> yearMade;
+                getline(cin, yearMade);
                 if(yearMade.length() == 0)
                 {
                     yearMade = "";
