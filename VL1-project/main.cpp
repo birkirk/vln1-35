@@ -11,7 +11,7 @@ int main()
 
     UserInterface ui;
     
-    //Runs Group 35
+    //Runs Group 35 Display
     ui.info();
     
     //Runs main program

@@ -19,6 +19,9 @@ public:
 
 
     void clear();
+    
+    void printSciToComp(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon);
+    void printCompToSci(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon);
 
     
     friend ostream& operator << (ostream& out, vector<Scientist> vScientist);

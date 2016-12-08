@@ -236,6 +236,18 @@ void UserInterface::run()
         {
             cout << "!--- Please enter a valid command ---!" << endl << endl;
         }
+        else if (command == "q")
+        {
+            bool ifClosed = _service.closeData();
+            if(ifClosed)
+            {
+                cout << endl << "Successfully closed the database!" << endl;
+            }
+            else
+            {
+                cout << endl << "Error, can't close something that isn't open!" << endl;
+            }
+        }
     } while (command != "q");
     
 }
@@ -249,7 +261,6 @@ void UserInterface::addSci()
     
     do
     {
-        cin.ignore();
         cin.clear();
         cout << "Name: ";
         getline(cin, name);
@@ -568,8 +579,8 @@ void UserInterface::list()
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Connections - in which order? --->" << endl;
-                cout << '\t' << "1." << '\t' << "(scientists to computers)" << endl;
-                cout << '\t' << "2." << '\t' << "(computers to scientits)" << endl;
+                cout << '\t' << "1." << '\t' << "(scientists connected to computers)" << endl;
+                cout << '\t' << "2." << '\t' << "(computers connected to scientits)" << endl;
                 cout << '\t' << "b" << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
@@ -584,11 +595,17 @@ void UserInterface::list()
                 }
                 else if(innerCommand == "1" || innerCommand == "sciToComp")
                 {
-                    //TODO
+                    vector<Computer> vComp = _service.compAlpha();
+                    vector<Scientist> vSci = _service.sciAlpha();
+                    vector<int> vCon = _service.getConnections();
+                    printSciToComp(vSci, vComp, vCon);
                 }
                 else if(innerCommand == "2" || innerCommand == "compToSci")
                 {
-                    //TODO
+                    vector<Computer> vComp = _service.compAlpha();
+                    vector<Scientist> vSci = _service.sciAlpha();
+                    vector<int> vCon = _service.getConnections();
+                    printCompToSci(vSci, vComp, vCon);
                 }
             } while(innerCommand != "1" && innerCommand != "2" && innerCommand != "b");
         }
@@ -1175,6 +1192,16 @@ void UserInterface::info()
     cout << "|_______||___|  |_||_______||_______||___|         |_______||_______|" << endl;
     cout << "=====================================================================" << endl;
     cout << endl << endl;
+}
+
+void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
+{
+    
+}
+
+void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
+{
+    
 }
 
 
