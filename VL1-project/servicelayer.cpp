@@ -13,18 +13,16 @@ bool ServiceLayer::deleteSci(Scientist newSci)
     return returnBool;
 }
 
-void ServiceLayer::addScientitst(Scientist aScientist)
+bool ServiceLayer::addScientitst(Scientist aScientist)
 {
     bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());
-    if(success) cout << "Scientist successfully added";
-    else cout << "FAILED";
+    return success;
 }
 
-void ServiceLayer::addComputer(Computer aComputer)
+bool ServiceLayer::addComputer(Computer aComputer)
 {
     bool success = _dataL.addComputer(aComputer.getName(), aComputer.getType(), aComputer.getIfMade(), aComputer.getYearMade());
-    if(success) cout << "Computer successfully added";
-    else cout << "FAILED";
+    return success;
 }
 
 vector<Scientist> ServiceLayer::searchSci(string name, char gender, string born, string death)
@@ -148,6 +146,17 @@ void ServiceLayer::clearData(string com)
     }
 }
 
+vector<string> ServiceLayer::connectSci(int whichSci, vector<int> vWhichComp)
+{
+    vector<string> wHappened = _dataL.connectSci(whichSci, vWhichComp);
+    return wHappened;
+}
+
+vector<string> ServiceLayer::connectComp(int whichComp, vector<int> vWhichSci)
+{
+    vector<string> wHappened = _dataL.connectComp(whichComp, vWhichSci);
+    return wHappened;
+}
 
 
 

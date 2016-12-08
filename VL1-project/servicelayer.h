@@ -9,12 +9,15 @@ class ServiceLayer
 {
 public:
     ServiceLayer();
-    void addScientitst(Scientist aScientist);
-    void addComputer(Computer aComputer);
+    bool addScientitst(Scientist aScientist);
+    bool addComputer(Computer aComputer);
 
     bool deleteSci(Scientist newSci);
 
     void clearData(string com);
+    
+    vector<string> connectSci(int whichSci, vector<int> vWhichComp);
+    vector<string> connectComp(int whichComp, vector<int> vWhichSci);
 
     
     vector<Scientist> sciAlpha();

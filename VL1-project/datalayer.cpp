@@ -33,7 +33,6 @@ DataLayer::DataLayer()
     {
         _db.setDatabaseName("../ScienceData.sqlite");
         _db.open();
-        cout << "Database found..." << endl;
     }
     else
     {
@@ -58,12 +57,12 @@ DataLayer::DataLayer()
                             " 'valid' DOUBLE NOT NULL  DEFAULT 1)");
         createQuery.exec();
 
-        createQuery.prepare("CREATE TABLE scicomp(scientistID INTEGER ,"
-                            "computerID INTEGER, "
+        createQuery.prepare("CREATE TABLE scicomp('scientistID' INTEGER ,"
+                            "'computerID' INTEGER, "
                             "'valid' BOOL NOT NULL  DEFAULT 1,"
                             " FOREIGN KEY(scientistID) REFERENCES Scientists(ID) ON DELETE CASCADE,"
                             " FOREIGN KEY(computerID) REFERENCES Computers(ID) ON DELETE CASCADE)");
-        cout << "Database not found... Creating database... " << endl;
+        createQuery.exec();
     }
 }
 
@@ -104,7 +103,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     QSqlQuery query;
     if(!alreadyInDB)
     {
-        cout << "success";
         query = QSqlQuery(_db);
         query.prepare("INSERT INTO Scientists (name, yearOfBirth, yearOfDeath, gender) VALUES(:name, :yearOfBirth, :yearOfDeath, :gender);");
         query.bindValue(":name", QString::fromStdString((sName)));
@@ -114,12 +112,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
         if(query.exec())
         {
             success = true;
-        }
-        else
-        {
-            cout << "FAILED";
-            qDebug() << "Scientist not successfully added: ";
-            //qDebug() << query.lastError();
         }
     }
     return success;
@@ -142,7 +134,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
     QSqlQuery query;
     if(!alreadyInDB)
     {
-        cout << "success";
         query = QSqlQuery(_db);
         query.prepare("INSERT INTO Scientists (name, yearOfBirth, gender) VALUES(:name, :yearOfBirth, :gender);");
         query.bindValue(":name", qName);
@@ -296,7 +287,7 @@ vector<Computer> DataLayer::readComp(string com)
     return tempV;
 }
 
-bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYearMade)
+bool DataLayer::addComputer(string cName, string cType, bool cIfMade, int cYearMade)
 {
     bool success = false;
     QString qName = QString::fromStdString(cName);
@@ -312,12 +303,6 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
     {
         success = true;
     }
-    else
-    {
-        qDebug() << "Computer not successfully added: " << endl;
-        //qDebug() << query.lastError();
-    }
-
     return success;
 }
 
@@ -339,7 +324,6 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
                             " AND gender LIKE '%'||:gender||'%'"
                             " ORDER BY name");
         searchQuery.bindValue(":gender", QString(QChar(sGender)));
-        cout << "Got to gender" << endl;
     }
 
     if(sYearOfBirth.size() != 0)
@@ -438,12 +422,41 @@ void DataLayer::clearComp()
     query.exec("DELETE FROM Computers");
 }
 
-
-/*
-void connect(Scientist newSci, Computer newCmp)
+vector<string> DataLayer::connectSci(int whichSci, vector<int> vWhichComp)
 {
-    QSqlQuery query = findScientsist();
-    query.prepare()
-}*/
+    int valid = 1;
+    int whichComp;
+    string sWhichSci = to_string(whichSci);
+    vector<string> errorCheck;
+    //VANTAR. Nota þetta: insert into scicomp (dalkur,dalkur,valid) VALUES (:,:) og bindvalue
+    QSqlQuery query;
+    for(size_t i = 0; i < vWhichComp.size(); i++)
+    {
+        whichComp = vWhichComp[i];
+        string sWhichComp = to_string(whichComp);
+        query = QSqlQuery(_db);
+        query.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid);");
+        query.bindValue(":scientistID", QString::number(whichSci));
+        query.bindValue(":computerID", QString::number(whichComp));
+        query.bindValue(":valid", QString::number(valid));
+        if(query.exec())
+        {
+            errorCheck.push_back("'" + sWhichSci + "' was successfully connected to to '" + sWhichComp + "'");
+        }
+        else
+        {
+            errorCheck.push_back("Could not connect '" + sWhichSci + "' to '" + sWhichComp + "'");
+        }
+
+    }
+
+    return errorCheck;
+}
+
+vector<string> DataLayer::connectComp(int whichComp, vector<int> vWhichSci)
+{
+    vector<string> errorCheck;
+    return errorCheck;
+}
 
 

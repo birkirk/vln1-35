@@ -32,9 +32,11 @@ public:
     bool addScientist(string sName, int sYearOfBirth, char sGender);
 
     bool deleteScientist(Scientist newSci);
+    
+    vector<string> connectSci(int whichSci, vector<int> vWhichComp);
+    vector<string> connectComp(int whichComp, vector<int> vWhichSci);
 
-
-    bool addComputer(string cName, string cType, bool cIfMade, char cYearMade);
+    bool addComputer(string cName, string cType, bool cIfMade, int cYearMade);
     vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
     vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
 
