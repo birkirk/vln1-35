@@ -919,7 +919,7 @@ void UserInterface::connect()
             vector<int> vWhichComp;
             
             vector<Scientist> vListSci = _service.sciAlpha();
-            cout << "<--- List of scientists --->" << endl;
+            cout << endl << "<--- List of scientists --->" << endl;
             cout << vListSci;
             cout << "Which scientist would you like to connect a computer to? (ID number) : ";
             cin >> whichSci;
@@ -951,7 +951,7 @@ void UserInterface::connect()
             vector<int> vWhichSci;
             
             vector<Computer> vListComp = _service.compAlpha();
-            cout << endl << "<--- List of Computers --->" << endl;
+            cout << endl << endl << "<--- List of Computers --->" << endl;
             cout << vListComp;
             cout << "Which computer would you like to connect a scientist to? (ID number) : ";
             cin >> whichComp;
@@ -1072,15 +1072,15 @@ void UserInterface::deleteSom()
 void UserInterface::info()
 {
     cout << endl;
-    cout << "==================================================================" << endl;
-    cout << " _______  ______    _______  __   __  _______    _______  _______ " << endl;
-    cout << "|       ||    _ |  |       ||  | |  ||       |  |       ||       |" << endl;
-    cout << "|    ___||   | ||  |   _   ||  | |  ||    _  |  |___    ||   ____|" << endl;
-    cout << "|   | __ |   |_||_ |  | |  ||  |_|  ||   |_| |   ___|   ||  |____ " << endl;
-    cout << "|   ||  ||    __  ||  |_|  ||       ||    ___|  |___    ||_____  |" << endl;
-    cout << "|   |_| ||   |  | ||       ||       ||   |       ___|   | _____| |" << endl;
-    cout << "|_______||___|  |_||_______||_______||___|      |_______||_______|" << endl;
-    cout << "==================================================================" << endl;
+    cout << "=====================================================================" << endl;
+    cout << " _______  ______    _______  __   __  _______       _______  _______ " << endl;
+    cout << "|       ||    _ |  |       ||  | |  ||       |     |       ||       |" << endl;
+    cout << "|    ___||   | ||  |   _   ||  | |  ||    _  |     |___    ||   ____|" << endl;
+    cout << "|   | __ |   |_||_ |  | |  ||  |_|  ||   |_| |      ___|   ||  |____ " << endl;
+    cout << "|   ||  ||    __  ||  |_|  ||       ||    ___|     |___    ||_____  |" << endl;
+    cout << "|   |_| ||   |  | ||       ||       ||   |          ___|   | _____| |" << endl;
+    cout << "|_______||___|  |_||_______||_______||___|         |_______||_______|" << endl;
+    cout << "=====================================================================" << endl;
     cout << endl << endl;
 }
 

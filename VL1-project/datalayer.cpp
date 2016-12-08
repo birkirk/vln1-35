@@ -443,11 +443,11 @@ vector<string> DataLayer::connectSci(int whichSci, vector<int> vWhichComp)
         query.bindValue(":valid", QString::number(valid));
         if(query.exec())
         {
-            errorCheck.push_back("'" + sWhichSci + "' was successfully added to '" + sWhichComp + "'");
+            errorCheck.push_back("'" + sWhichSci + "' was successfully connected to to '" + sWhichComp + "'");
         }
         else
         {
-            errorCheck.push_back("Could not add '" + sWhichSci + "' to '" + sWhichComp + "'");
+            errorCheck.push_back("Could not connect '" + sWhichSci + "' to '" + sWhichComp + "'");
         }
 
     }
