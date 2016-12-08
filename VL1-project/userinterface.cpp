@@ -187,8 +187,32 @@ void UserInterface::run()
         }
         else if (command == "search")
         {
-            vector<Scientist> printVector = search();
-            cout << printVector;
+            cout << endl << "<--- What would you like to search for? --->" << endl;
+            cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
+            cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
+            cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
+            cout << "=> Command: ";
+            cin >> command;
+            if(command == "sci")
+            {
+                vector<Scientist> printVector = searchScientist();
+                cout << printVector;
+            }
+            else if(command == "comp")
+            {
+                vector<Computer> printVector = searchComputer();
+                cout << printVector;
+            }
+            else if(command != "c")
+            {
+                cout << "!--- Not a valid command ---!" << endl;
+            }
+            else if(command == "c")
+            {
+                cout << endl;
+            }
+         while(command != "sci" && command != "comp" && command != "c");
+
         }
         else if (command == "connect")
         {
@@ -579,179 +603,161 @@ void UserInterface::list()
     } while(listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "con" && listCommand != "b"  && listCommand != "c");
 }
 
-vector<Scientist> UserInterface::search()
+vector<Scientist> UserInterface::searchScientist()
 {
-    string command;
-    do
-    {
-        cout << endl << "<--- What would you like to search for? --->" << endl;
-        cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
-        cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
-        cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
-        cout << "=> Command: ";
-        cin >> command;
-        if(command == "sci")
-        {
-            string name, sGender, sStillAlive, born, death = "";
-            char gender, stillAlive;
-            cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
-            
-            //Get name
-            cin.ignore();
-            cin.clear();
-            cout << "Name: ";
-            getline(cin, name);
-            name[0] = toupper(name[0]);
-            if(name.size() == 0)
-            {
-                name = "";
-            }
-            
-            do
-            {
-                cin.clear();
-                cout << "Gender (M/F): ";
-                getline(cin, sGender);
-                if(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "")
-                {
-                    cout << "!--- You can only enter 'M' or 'F' ---!" << endl;
-                }
-            } while(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "");
-            if(sGender != "")
-            {
-                gender = sGender.at(0);
-            }
-            else
-            {
-                gender = 'O';
-            }
-            
-            //Get birth year
-            cin.clear();
-            cout << "Year of birth: ";
 
-            getline(cin, born);
-            if(born.length() == 0)
-            {
-                born = "";
-            }
-            
-            do
-            {
-                cin.clear();
-                cout << "Is he/her still alive? (y/n) ";
-                getline(cin, sStillAlive);
-                if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
-                {
-                    cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
-                }
-            } while (sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && sStillAlive != "");
-            if(sStillAlive != "")
-            {
-                stillAlive = sStillAlive.at(0);
-            }
-            else
-            {
-                stillAlive = 'O';
-            }
-            
-            if(stillAlive == 'Y' || stillAlive == 'y')
-            {
-                //has to be high so that list be death is correct
-                death = 3000;
-            }
-            else
-            {
-                cin.clear();
-                cout << "Year of death: ";
+        string name, sGender, sStillAlive, born, death = "";
+        char gender, stillAlive;
+        cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
 
-                getline(cin, death);
-                if(death.length() == 0)
-                {
-                    death = "";
-                }
-            }
-            
-            cout << "<--- Searching... --->" << endl << endl;
-            
-            //If something is skipped than sends: "", 'O', NULL, NULL;
-            vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
-            return vSci;
-        }
-        else if(command == "comp")
+        //Get name
+        cin.ignore();
+        cin.clear();
+        cout << "Name: ";
+        getline(cin, name);
+        name[0] = toupper(name[0]);
+        if(name.size() == 0)
         {
-            string name, type, yearMade, ifMade, check;
-            cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
-            
-            //Get name
+            name = "";
+        }
+
+        do
+        {
             cin.clear();
-            cin.ignore();
-            cout << "Name: ";
-            getline(cin, name);
-            name[0] = toupper(name[0]);
-            if(name.length() == 0)
+            cout << "Gender (M/F): ";
+            getline(cin, sGender);
+            if(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "")
             {
-                name = "";
+                cout << "!--- You can only enter 'M' or 'F' ---!" << endl;
             }
-            
-            //Get type
+        } while(sGender != "M" && sGender != "m" && sGender != "F" && sGender != "f" && sGender != "");
+        if(sGender != "")
+        {
+            gender = sGender.at(0);
+        }
+        else
+        {
+            gender = 'O';
+        }
+
+        //Get birth year
+        cin.clear();
+        cout << "Year of birth: ";
+
+        getline(cin, born);
+        if(born.length() == 0)
+        {
+            born = "";
+        }
+
+        do
+        {
             cin.clear();
-            cout << "Type: ";
-            getline(cin, type);
-            type[0] = toupper(type[0]);
-            if(type.length() == 0)
+            cout << "Is he/her still alive? (y/n) ";
+            getline(cin, sStillAlive);
+            if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
             {
-                type = "";
+                cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
             }
-            
-            do
+        } while (sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && sStillAlive != "");
+        if(sStillAlive != "")
+        {
+            stillAlive = sStillAlive.at(0);
+        }
+        else
+        {
+            stillAlive = 'O';
+        }
+
+        if(stillAlive == 'Y' || stillAlive == 'y')
+        {
+            //has to be high so that list by death is correct
+            death = 3000;
+        }
+        else
+        {
+            cin.clear();
+            cout << "Year of death: ";
+
+            getline(cin, death);
+            if(death.length() == 0)
             {
-                cin.clear();
-                cout << "Was it ever made? (y/n) ";
-                cin >> check;
-                if(check != "Y" && check != "y" && check != "N" && check != "n" && check != "")
-                {
-                    cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
-                }
-                if(check == "Y" || check == "y")
-                {
-                    ifMade = "1";
-                }
-                else if(check == "N" || check == "n")
-                {
-                    ifMade = "0";
-                    yearMade = "";
-                    cin.clear();
-                }
-            } while (check != "Y" && check != "y" && check != "N" && check != "n" && check != "");
-            
-            if(ifMade == "1")
-            {
-                cin.clear();
-                cout << "Year made: ";
-                getline(cin, yearMade);
-                if(yearMade.length() == 0)
-                {
-                    yearMade = "";
-                }
+                death = "";
             }
-            
-            cout << "<--- Searching... --->" << endl << endl;
-            vector<Computer> aComputer = _service.searchComp(ifMade, name, type, yearMade);
-            cout << aComputer;
         }
-        else if(command != "c")
-        {
-            cout << "!--- Not a valid command ---!" << endl;
-        }
-        else if(command == "c")
-        {
-            cout << endl;
-        }
-    } while(command != "sci" && command != "comp" && command != "c");
+
+        cout << "<--- Searching... --->" << endl << endl;
+
+        //If something is skipped than sends: "", 'O', NULL, NULL;
+        vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
+        return vSci;
+
+
 }
 
+vector<Computer> UserInterface::searchComputer()
+{
+        string name, type, yearMade, ifMade, check;
+        cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
 
+        //Get name
+        cin.clear();
+        cin.ignore();
+        cout << "Name: ";
+        getline(cin, name);
+        name[0] = toupper(name[0]);
+        if(name.length() == 0)
+        {
+            name = "";
+        }
+
+        //Get type
+        cin.clear();
+        cout << "Type: ";
+        getline(cin, type);
+        type[0] = toupper(type[0]);
+        if(type.length() == 0)
+        {
+            type = "";
+        }
+
+        do
+        {
+            cin.clear();
+            cout << "Was it ever made? (y/n) ";
+            cin >> check;
+            if(check != "Y" && check != "y" && check != "N" && check != "n" && check != "")
+            {
+                cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
+            }
+            if(check == "Y" || check == "y")
+            {
+                ifMade = "1";
+            }
+            else if(check == "N" || check == "n")
+            {
+                ifMade = "0";
+                yearMade = "";
+                cin.clear();
+            }
+        } while (check != "Y" && check != "y" && check != "N" && check != "n" && check != "");
+
+        if(ifMade == "1")
+        {
+            cin.clear();
+            cin.ignore();
+            cout << "Year made: ";
+            getline(cin, yearMade);
+            if(yearMade.length() == 0)
+            {
+                yearMade = "";
+            }
+        }
+
+        cout << "<--- Searching... --->" << endl << endl;
+        vector<Computer> aComputer = _service.searchComp(ifMade, name, type, yearMade);
+        return aComputer;
+}
 
 
 void UserInterface::generateJoke()
@@ -1001,7 +1007,7 @@ void UserInterface::deleteSom()
         cin >> nextCommand;
         if(nextCommand == "sci")
         {
-            vector<Scientist> returnVector = search();
+            vector<Scientist> returnVector = searchScientist();
             if(returnVector.size() == 1)
             {
                 cout << returnVector;
@@ -1056,7 +1062,57 @@ void UserInterface::deleteSom()
         }
         else if(nextCommand == "comp")
         {
-            //  deleteComp();
+            vector<Computer> returnVector = searchComputer();
+            if(returnVector.size() == 1)
+            {
+                cout << returnVector;
+                cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n)";
+                string inputString;
+                getline(cin, inputString);
+                while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                {
+                    cout << "Please enter eather 'y' or 'n'!: ";
+                    getline(cin, inputString);
+                }
+                if(inputString == "y" || inputString == "Y")
+                {
+                    _service.deleteComp(returnVector[0]);
+                }
+                else if(inputString == "n" || inputString == "N")
+                {
+                    cout << "Cancelling..." << endl;
+                }
+
+            }
+            else if(returnVector.size() > 1)
+            {
+                cout << "multiple matching scientists!" << endl << "Please choose scientist to delete!" << endl;
+                cout << returnVector;
+                int choice;
+                cin >> choice;
+                while(choice < 1 && choice > (returnVector.size()+1))
+                {
+                    cout << "Invalid entry. Pleasy try again: ";
+                    cin >> choice;
+
+                }
+                cout << "Do you want to delete entry Nr. " << choice << " :" << returnVector[choice-1].getName() << endl;
+                string inputString;
+                getline(cin, inputString);
+                while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                {
+                    cout << "Please enter eather 'y' or 'n'!: ";
+                    getline(cin, inputString);
+                }
+                if(inputString == "y" || inputString == "Y")
+                {
+                    _service.deleteComp(returnVector[choice-1]);
+                }
+                else if(inputString == "n" || inputString == "N")
+                {
+                    cout << "Cancelling..." << endl;
+                }
+            }
         }
         else if(nextCommand != "c")
         {

@@ -13,6 +13,12 @@ bool ServiceLayer::deleteSci(Scientist newSci)
     return returnBool;
 }
 
+bool ServiceLayer::deleteComp(Computer newComp)
+{
+    bool returnBool = _dataL.deleteComputer(newComp);
+    return returnBool;
+}
+
 bool ServiceLayer::addScientitst(Scientist aScientist)
 {
     bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());

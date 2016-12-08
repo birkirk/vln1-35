@@ -1,5 +1,6 @@
 #include "datalayer.h"
 #include "scientist.h"
+#include "computer.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -150,6 +151,26 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
         }
     }
     return success;
+}
+
+bool DataLayer::deleteComputer(Computer newComp)
+{
+    QSqlQuery query;
+    query.prepare("SELECT ID FROM Computers WHERE name = (:name) AND type = (:type) AND ifMade = (:ifMade) AND yearMade = (:yearMade)");
+    query.bindValue(":name", QString::fromStdString(newComp.getName()));
+    query.bindValue(":type", QString::fromStdString(newComp.getType()));
+    query.bindValue("ifMade", newComp.getIfMade());
+    query.bindValue(":yearMade", newComp.getYearMade());
+    query.exec();
+
+    query.first();
+    QSqlQuery deleteQuery;
+    deleteQuery.prepare("UPDATE Computers SET valid = 0 WHERE ID = (:ID)");
+    int a = query.value(0).toInt();
+    deleteQuery.bindValue(":ID", a);
+    qDebug() << deleteQuery.exec();
+    bool returnValue = deleteQuery.exec();
+    return returnValue;
 }
 
 
@@ -370,33 +391,65 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
 //bool string string int
 vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, string yearMade)
 {
+
+
     QSqlQuery searchQuery;
-    
-    string ifWasMade = ifMade;    
-    QString qName = QString::fromStdString(name);
-    
-    QString qType = QString::fromStdString(type);
+
     
     if(yearMade.size() != 0)
     {
+        searchQuery.prepare("SELECT ifMade, name, type, yearMade"
+                            " FROM Computers WHERE name LIKE '%'||:name||'%'"
+                            " AND ifMade LIKE '%'||:ifMade||'%'"
+                            " AND type LIKE '%'||:type||'%')"
+                            " AND yearMade LIKE '%'||:yearMade||'%'");
+
         int qYear = atoi(yearMade.c_str());
         searchQuery.bindValue(":yearMade", QString::number(qYear));
     }
     else
     {
-        string qYear = yearMade;
-        searchQuery.bindValue(":yearMade", QString::fromStdString(qYear));
+        searchQuery.prepare("SELECT ifMade, name, type, yearMade"
+                            " FROM Computers WHERE name LIKE '%'||:name||'%'"
+                            " AND ifMade LIKE '%'||:ifMade||'%'"
+                            " AND type LIKE '%'||:type||'%'");
     }
-    searchQuery.bindValue(":name", qName);
+    if(ifMade.size() != 0)
+    {
+        int tIfMade = atoi(ifMade.c_str());
+        searchQuery.bindValue(":ifMade", QString::number(tIfMade));
+    }
+    else
+    {
+        searchQuery.bindValue(":ifMade", QString::fromStdString(ifMade));
+    }
+
+    searchQuery.bindValue(":name", QString::fromStdString(name));
+    searchQuery.bindValue(":type", QString::fromStdString(type));
     searchQuery.exec();
     
     
     vector<Computer> returnVector;
-    
+    qDebug() << searchQuery.next();
     while(searchQuery.next())
     {
-        
-        //Scientist newComp();
+
+        QString qName = searchQuery.value(1).toString();
+        string nName = qName.toStdString();
+
+        QString qIfMade = searchQuery.value(0).toString();
+        bool nIfMade;
+        if(qIfMade == "1") nIfMade = true;
+        else nIfMade = false;
+
+        QString qType = searchQuery.value(2).toString();
+        string nType = qType.toStdString();
+
+        int nYearMade = searchQuery.value(3).toInt();
+
+        Computer newComp(nIfMade, nName, nType, nYearMade);
+        returnVector.push_back(newComp);
+
         //returnVector.push_back(newPomc);
     }
     

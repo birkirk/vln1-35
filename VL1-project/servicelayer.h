@@ -13,6 +13,7 @@ public:
     bool addComputer(Computer aComputer);
 
     bool deleteSci(Scientist newSci);
+    bool deleteComp(Computer newComp);
 
     void clearData(string com);
     

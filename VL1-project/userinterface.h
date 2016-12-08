@@ -14,7 +14,8 @@ public:
     void connect();
     void deleteSom();
 
-    vector<Scientist> search();
+    vector<Scientist> searchScientist();
+    vector<Computer> searchComputer();
 
 
     void clear();
