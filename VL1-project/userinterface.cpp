@@ -125,14 +125,14 @@ void UserInterface::run()
     do
     {
         cout << "<--- Enter one of the following commands --->" << endl;
-        cout << "add" << '\t' << '\t' << "(to add a scientist or computer)" << endl;
-        cout << "delete" << '\t' << '\t' << "(to delete a scientist or computer)" << endl;
-        cout << "list" << '\t' << '\t' << "(to see the list of scientists or computers)" << endl;
-        cout << "search" << '\t' << '\t' << "(to search in the list)" << endl;
-        cout << "connect" << '\t' << '\t' << "(to connect scientists and computers)" << endl;
-        cout << "clear" << '\t' << '\t' << "(to empty the entire database)" << endl;
-        cout << "joke" << '\t' << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
-        cout << "q" << '\t' << '\t' << "(quit)" << endl;
+        cout << '\t' << "add" << '\t' << '\t' << "(to add a scientist or computer)" << endl;
+        cout << '\t' << "delete" << '\t' << '\t' << "(to delete a scientist or computer)" << endl;
+        cout << '\t' << "list" << '\t' << '\t' << "(to see the list of scientists or computers)" << endl;
+        cout << '\t' << "search" << '\t' << '\t' << "(to search in the list)" << endl;
+        cout << '\t' << "connect" << '\t' << '\t' << "(to connect scientists and computers)" << endl;
+        cout << '\t' << "clear" << '\t' << '\t' << "(to empty the entire database)" << endl;
+        cout << '\t' << "joke" << '\t' << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
+        cout << '\t' << "q" << '\t' << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
         cin >> command;
         
@@ -142,9 +142,9 @@ void UserInterface::run()
             do
             {
                 cout << endl << "<--- Which of the following would you like to add? --->" << endl;
-                cout << "sci" << '\t' << "(to add a scientist)" << endl;
-                cout << "comp" << '\t' << "(to add a computer)" << endl;
-                cout << "c" << '\t' << "(to cancell)" << endl;
+                cout << '\t' << "sci" << '\t' << "(to add a scientist)" << endl;
+                cout << '\t' << "comp" << '\t' << "(to add a computer)" << endl;
+                cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
                 cout << "=> Command: ";
                 cin >> nextCommand;
                 if(nextCommand == "sci")
@@ -171,9 +171,9 @@ void UserInterface::run()
             do
             {
                 cout << endl << "<--- Which of the following would you like to delete? --->" << endl;
-                cout << "sci" << '\t' << "(to delete a scientist)" << endl;
-                cout << "comp" << '\t' << "(to delete a computer)" << endl;
-                cout << "c" << '\t' << "(to cancell)" << endl;
+                cout << '\t' << "sci" << '\t' << "(to delete a scientist)" << endl;
+                cout << '\t' << "comp" << '\t' << "(to delete a computer)" << endl;
+                cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
                 cout << "=> Command: ";
                 cin >> nextCommand;
                 if(nextCommand == "sci")
@@ -439,10 +439,10 @@ void UserInterface::list()
         cin.ignore();
         
         cout << endl << "<--- What would you like to see a list of? --->" << endl;
-        cout << "sci" << '\t' << "(list of just the scientists)" << endl;
-        cout << "comp" << '\t' << "(list of just the computers)" << endl;
-        cout << "con" << '\t' << "(list of the connections between scientists and computers)" << endl;
-        cout << "c" << '\t' << "(cancell)" << endl;
+        cout << '\t' << "sci" << '\t' << "(list of just the scientists)" << endl;
+        cout << '\t' << "comp" << '\t' << "(list of just the computers)" << endl;
+        cout << '\t' << "con" << '\t' << "(list of the connections between scientists and computers)" << endl;
+        cout << '\t' << "c" << '\t' << "(cancell)" << endl;
         cout << "=> Command: ";
         cin >> listCommand;
         
@@ -453,17 +453,17 @@ void UserInterface::list()
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Scientists - in which order? --->" << endl;
-                cout << "alpha" << '\t' << '\t' << "(alphabetical order)" << endl;
-                cout << "ralpha" << '\t' << '\t' << "(reversed alphabetical order)" << endl;
-                cout << "ageasc" << '\t' << '\t' << "(ascending age order)" << endl;
-                cout << "agedesc" << '\t' << '\t' << "(descending age order)" << endl;
-                cout << "deathasc" << '\t' << "(ascending death year order)" << endl;
-                cout << "deathdesc" << '\t' << "(descending death year order)" << endl;
-                cout << "b" << '\t' << '\t' << "(go back)" << endl;
+                cout << '\t' << "1." << '\t' << '\t' << "(alphabetical order)" << endl;
+                cout << '\t' << "2." << '\t' << '\t' << "(reversed alphabetical order)" << endl;
+                cout << '\t' << "3." << '\t' << '\t' << "(ascending age order)" << endl;
+                cout << '\t' << "4." << '\t' << '\t' << "(descending age order)" << endl;
+                cout << '\t' << "5." << '\t' << "(ascending death year order)" << endl;
+                cout << '\t' << "6." << '\t' << "(descending death year order)" << endl;
+                cout << '\t' << "b" << '\t' << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
-                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "deathasc" && innerCommand != "deathdesc" && innerCommand != "b")
+                if(innerCommand != "1" && innerCommand != "2" && innerCommand != "3" && innerCommand != "4" && innerCommand != "5" && innerCommand != "6" && innerCommand != "b")
                 {
                     cout << "!--- Please enter a valid command ---!" << endl;
                 }
@@ -471,43 +471,43 @@ void UserInterface::list()
                 {
                     cout << endl;
                 }
-                else if(innerCommand == "alpha")
+                else if(innerCommand == "1")
                 {
                     vector<Scientist> vUse = _service.sciAlpha();
                     cout << "<--- Scientists in alphabetical order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "ralpha")
+                else if(innerCommand == "2")
                 {
                     vector<Scientist> vUse = _service.sciRalpha();
                     cout << "<--- Scientists in reversed alphabetical order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "ageasc")
+                else if(innerCommand == "3")
                 {
                     vector<Scientist> vUse = _service.sciAgeAsc();
                     cout << "<--- Scientists in age ascending order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "agedesc")
+                else if(innerCommand == "4")
                 {
                     vector<Scientist> vUse = _service.sciAgeDesc();
                     cout << "<--- Scientists in age descending order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "deathasc")
+                else if(innerCommand == "5")
                 {
                     vector<Scientist> vUse = _service.sciDeathAsc();
                     cout << "<--- Scientists in death ascending order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "deathdesc")
+                else if(innerCommand == "6")
                 {
                     vector<Scientist> vUse = _service.sciDeathDesc();
                     cout << "<--- Scientists in death descending order --->" << endl << endl;
                     cout << vUse;
                 }
-            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "deathasc" && innerCommand != "deathdesc" && innerCommand != "b");
+            } while(innerCommand != "1" && innerCommand != "2" && innerCommand != "3" && innerCommand != "4" && innerCommand != "5" && innerCommand != "6" && innerCommand != "b");
         }
         else if(listCommand == "comp")
         {
@@ -516,18 +516,18 @@ void UserInterface::list()
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Computers - in which order? --->" << endl;
-                cout << "alpha" << '\t' << "(alphabetical order)" << endl;
-                cout << "ralpha" << '\t' << "(reversed alphabetical order)" << endl;
-                cout << "ageasc" << '\t' << "(ascending age order)" << endl;
-                cout << "agedesc" << '\t' << "(descending age order)" << endl;
-                cout << "made" << '\t' << "(only the ones that were made)" << endl;
-                cout << "notmade" << '\t' << "(only the ones that were not made)" << endl;
-                cout << "type" << '\t' << "(by type)" << endl;
-                cout << "b" << '\t' << "(go back)" << endl;
+                cout << '\t' << "1." << '\t' << "(alphabetical order)" << endl;
+                cout << '\t' << "2." << '\t' << "(reversed alphabetical order)" << endl;
+                cout << '\t' << "3." << '\t' << "(ascending age order)" << endl;
+                cout << '\t' << "4." << '\t' << "(descending age order)" << endl;
+                cout << '\t' << "5." << '\t' << "(only the ones that were made)" << endl;
+                cout << '\t' << "6." << '\t' << "(only the ones that were not made)" << endl;
+                cout << '\t' << "7." << '\t' << "(by type)" << endl;
+                cout << '\t' << "b" << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
-                if(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "type" && innerCommand != "b")
+                if(innerCommand != "1" && innerCommand != "2" && innerCommand != "3" && innerCommand != "4" && innerCommand != "5" && innerCommand != "6" && innerCommand != "7" && innerCommand != "b")
                 {
                     cout << "!--- Please enter a valid command ---!" << endl;
                 }
@@ -535,49 +535,49 @@ void UserInterface::list()
                 {
                     cout << endl;
                 }
-                else if(innerCommand == "alpha")
+                else if(innerCommand == "1")
                 {
                     vector<Computer> vUse = _service.compAlpha();
                     cout << "<--- Computers in alphabetical order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "ralpha")
+                else if(innerCommand == "2")
                 {
                     vector<Computer> vUse = _service.compRalpha();
                     cout << "<--- Computers in reversed alphabetical order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "ageasc")
+                else if(innerCommand == "3")
                 {
                     vector<Computer> vUse = _service.compAgeAsc();
                     cout << "<--- Computers in age ascending order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "agedesc")
+                else if(innerCommand == "4")
                 {
                     vector<Computer> vUse = _service.compAgeDesc();
                     cout << "<--- Computers in age descending order --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "made")
+                else if(innerCommand == "5")
                 {
                     vector<Computer> vUse = _service.compMade();
                     cout << "<--- Computers that were made --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "notmade")
+                else if(innerCommand == "6")
                 {
                     vector<Computer> vUse = _service.compNotMade();
                     cout << "<--- Computers that were not made --->" << endl << endl;
                     cout << vUse;
                 }
-                else if(innerCommand == "type")
+                else if(innerCommand == "7")
                 {
                     vector<Computer> vUse = _service.compType();
                     cout << "<--- Computers in type order --->" << endl << endl;
                     cout << vUse;
                 }
-            } while(innerCommand != "alpha" && innerCommand != "ralpha" && innerCommand != "type" && innerCommand != "ageasc" && innerCommand != "agedesc" && innerCommand != "made" && innerCommand != "notmade" && innerCommand != "b");
+            } while(innerCommand != "1" && innerCommand != "2" && innerCommand != "3" && innerCommand != "4" && innerCommand != "5" && innerCommand != "6" && innerCommand != "7" && innerCommand != "b");
         }
         else if(listCommand == "con")
         {
@@ -586,13 +586,13 @@ void UserInterface::list()
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Connections - in which order? --->" << endl;
-                cout << "sciToComp" << '\t' << "(scientists to computers)" << endl;
-                cout << "compToSci" << '\t' << "(computers to scientits)" << endl;
-                cout << "b" << '\t' << "(go back)" << endl;
+                cout << '\t' << "1" << '\t' << "(scientists to computers)" << endl;
+                cout << '\t' << "2" << '\t' << "(computers to scientits)" << endl;
+                cout << '\t' << "b" << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
-                if(innerCommand != "scitocomp" && innerCommand != "sciToComp" && innerCommand != "comptosci" && innerCommand != "compToSci" && innerCommand != "b")
+                if(innerCommand != "1" && innerCommand != "2" && innerCommand != "b")
                 {
                     cout << "!--- Please enter a valid command ---!" << endl;
                 }
@@ -600,15 +600,15 @@ void UserInterface::list()
                 {
                     cout << endl;
                 }
-                else if(innerCommand == "scitocomp" || innerCommand == "sciToComp")
+                else if(innerCommand == "1" || innerCommand == "sciToComp")
                 {
                     //TODO
                 }
-                else if(innerCommand == "comptosci" || innerCommand == "compToSci")
+                else if(innerCommand == "2" || innerCommand == "compToSci")
                 {
                     //TODO
                 }
-            } while(innerCommand != "scitocomp" && innerCommand != "sciToComp" && innerCommand != "comptosci" && innerCommand != "compToSci" && innerCommand != "b");
+            } while(innerCommand != "1" && innerCommand != "2" && innerCommand != "b");
         }
         else if (listCommand != "all" && listCommand != "sci" && listCommand != "con" && listCommand != "comp" && listCommand != "b"  && listCommand != "c")
         {
@@ -627,9 +627,9 @@ vector<Scientist> UserInterface::search()
     do
     {
         cout << endl << "<--- What would you like to search for? --->" << endl;
-        cout << "sci" << '\t' << "(to search in Scientists database)" << endl;
-        cout << "comp" << '\t' << "(to search in Computers database)" << endl;
-        cout << "c" << '\t' << "(to cancell)" << endl;
+        cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
+        cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
+        cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
         cout << "=> Command: ";
         cin >> command;
         if(command == "sci")
@@ -865,10 +865,10 @@ void UserInterface::clear()
         cin.clear();
         cin.ignore();
         cout << endl << "<--- Which database whould you like to clear? --->" << endl;
-        cout << "sci" << '\t' << "(to clear Scientists database)" << endl;
-        cout << "comp" << '\t' << "(to clear Computers database)" << endl;
-        cout << "all" << '\t' << "(to clear the whole database)" << endl;
-        cout << "c" << '\t' << "(to cancell)" << endl;
+        cout << '\t' << "sci" << '\t' << "(to clear Scientists database)" << endl;
+        cout << '\t' << "comp" << '\t' << "(to clear Computers database)" << endl;
+        cout << '\t' << "all" << '\t' << "(to clear the whole database)" << endl;
+        cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
         cout << "=> Command: ";
         cin >> command;
         if(command == "sci")
