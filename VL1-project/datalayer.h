@@ -34,7 +34,7 @@ public:
     bool deleteScientist(Scientist newSci);
 
 
-    bool addComputer(string cName, string cType, bool cIfMade, char cYearMade);
+    bool addComputer(string cName, string cType, bool cIfMade, int cYearMade);
     vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
     vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
 

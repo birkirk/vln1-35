@@ -33,7 +33,6 @@ DataLayer::DataLayer()
     {
         _db.setDatabaseName("../ScienceData.sqlite");
         _db.open();
-        cout << "Database found..." << endl;
     }
     else
     {
@@ -63,7 +62,6 @@ DataLayer::DataLayer()
                             "'valid' BOOL NOT NULL  DEFAULT 1,"
                             " FOREIGN KEY(scientistID) REFERENCES Scientists(ID) ON DELETE CASCADE,"
                             " FOREIGN KEY(computerID) REFERENCES Computers(ID) ON DELETE CASCADE)");
-        cout << "Database not found... Creating database... " << endl;
     }
 }
 
@@ -104,7 +102,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     QSqlQuery query;
     if(!alreadyInDB)
     {
-        cout << "success";
         query = QSqlQuery(_db);
         query.prepare("INSERT INTO Scientists (name, yearOfBirth, yearOfDeath, gender) VALUES(:name, :yearOfBirth, :yearOfDeath, :gender);");
         query.bindValue(":name", QString::fromStdString((sName)));
@@ -117,7 +114,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
         }
         else
         {
-            cout << "FAILED";
             qDebug() << "Scientist not successfully added: ";
             //qDebug() << query.lastError();
         }
@@ -142,7 +138,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
     QSqlQuery query;
     if(!alreadyInDB)
     {
-        cout << "success";
         query = QSqlQuery(_db);
         query.prepare("INSERT INTO Scientists (name, yearOfBirth, gender) VALUES(:name, :yearOfBirth, :gender);");
         query.bindValue(":name", qName);
@@ -296,7 +291,7 @@ vector<Computer> DataLayer::readComp(string com)
     return tempV;
 }
 
-bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYearMade)
+bool DataLayer::addComputer(string cName, string cType, bool cIfMade, int cYearMade)
 {
     bool success = false;
     QString qName = QString::fromStdString(cName);
@@ -339,7 +334,6 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
                             " AND gender LIKE '%'||:gender||'%'"
                             " ORDER BY name");
         searchQuery.bindValue(":gender", QString(QChar(sGender)));
-        cout << "Got to gender" << endl;
     }
 
     if(sYearOfBirth.size() != 0)

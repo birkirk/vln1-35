@@ -22,7 +22,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             char gender = vScientist[i].getGender();
             int born = vScientist[i].getBirth();
             int died = vScientist[i].getDeath();
-            string space;
+            string space, sGender;
             
             //check how many tabs is best to use after name:
             out << " " << i+1 << '\t';
@@ -40,7 +40,15 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             }
             
             //print gender and birth year:
-            out << gender << '\t' << '\t' << born << '\t' << '\t';
+            if(gender == 'm' || gender == 'M')
+            {
+                sGender = "Male";
+            }
+            else if(gender == 'f' || gender == 'F')
+            {
+                sGender = "Female";
+            }
+            out << sGender << '\t' << '\t' << born << '\t' << '\t';
             
             //check if scientist has not died yet:
             if(died == 3000)
@@ -67,8 +75,8 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
 {
     if(vComputers.size() != 0)
     {
-        cout << "Name" << '\t' << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
-        cout << "------------------------------------------------------------------" << endl;
+        cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
+        cout << "--------------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vComputers.size(); i++)
         {
             string name = vComputers[i].getName();
@@ -76,6 +84,8 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             int yearMade = vComputers[i].getYearMade();
             string type = vComputers[i].getType();
             string space;
+            
+            out << " " << i+1 << '\t';
             
             //check how many tabs is best to use after name:
             if(name.length() < 8)
@@ -258,12 +268,13 @@ void UserInterface::run()
         }
         else if (command == "connect")
         {
-            //connect(); TODO
+            connect();
         }
         else if (command == "clear")
         {
             clear();
         }
+        //Easter Egg command
         else if (command == "joke")
         {
             generateJoke();
@@ -273,7 +284,7 @@ void UserInterface::run()
         {
             info();
         }
-        else if (command != "q")
+        else if (command != "q" && command != "add" && command != "list" && command != "delete" && command != "connect" && command != "search" && command != "clear" && command != "joke")
         {
             cout << "!--- Please enter a valid command ---!" << endl << endl;
         }
@@ -358,7 +369,7 @@ void UserInterface::addSci()
         } while(death > 2016 || death < born);
     }
     
-    cout << "<--- Trying to add scientist... --->" << endl << endl;
+    cout << "<--- Adding scientist --->" << endl << endl;
     Scientist aScientist(name, gender, born, death);
     _service.addScientitst(aScientist);
 }
@@ -432,7 +443,7 @@ void UserInterface::addComp()
         } while(yearMade <= 0 || yearMade > 2016);
     }
     
-    cout << "<--- Trying to add computer... --->" << endl << endl;
+    cout << "<--- Adding computer --->" << endl << endl;
     Computer aComputer(ifMade, name, type, yearMade);
     _service.addComputer(aComputer);
 }
@@ -945,6 +956,42 @@ void UserInterface::clear()
         }
         
     } while(command != "c" && command != "C" && command != "y" && command != "Y" && command != "n" && command != "N");
+}
+
+void UserInterface::connect()
+{
+    string command;
+    do
+    {
+        cin.clear();
+        cin.ignore();
+        
+        cout << endl << "<--- What would you connect? --->" << endl;
+        cout << '\t' << "sci" << '\t' << "(connect a scientist to a computer)" << endl;
+        cout << '\t' << "comp" << '\t' << "(connect a computer to a scientist)" << endl;
+        cout << '\t' << "c" << '\t' << "(cancell)" << endl;
+        cout << "=> Command: ";
+        cin >> command;
+        
+        if(command == "sci")
+        {
+            vector<Scientist> vUse = _service.sciAlpha();
+            cout << "<--- List of scientists --->" << endl << endl;
+            cout << vUse;
+        }
+        else if(command == "comp")
+        {
+            
+        }
+        else if (command != "sci" && command != "comp" && command != "c")
+        {
+            cout << "!--- Please enter a valid command ---!" << endl;
+        }
+        else if (command == "c")
+        {
+            cout << endl;
+        }
+    } while(command != "sci" && command != "comp" && command != "c");
 }
 
 void UserInterface::info()

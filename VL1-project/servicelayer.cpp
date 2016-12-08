@@ -16,15 +16,11 @@ bool ServiceLayer::deleteSci(Scientist newSci)
 void ServiceLayer::addScientitst(Scientist aScientist)
 {
     bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());
-    if(success) cout << "Scientist successfully added";
-    else cout << "FAILED";
 }
 
 void ServiceLayer::addComputer(Computer aComputer)
 {
     bool success = _dataL.addComputer(aComputer.getName(), aComputer.getType(), aComputer.getIfMade(), aComputer.getYearMade());
-    if(success) cout << "Computer successfully added";
-    else cout << "FAILED";
 }
 
 vector<Scientist> ServiceLayer::searchSci(string name, char gender, string born, string death)

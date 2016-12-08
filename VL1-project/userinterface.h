@@ -11,6 +11,7 @@ public:
     void addSci();
     void addComp();
     void list();
+    void connect();
 
     vector<Scientist> search();
 

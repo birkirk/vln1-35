@@ -10,7 +10,11 @@ int main()
 
 
     UserInterface ui;
+    
+    //Runs Group 35
     ui.info();
+    
+    //Runs main program
     ui.run();
 
     return 0;
