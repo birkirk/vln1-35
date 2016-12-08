@@ -113,6 +113,8 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
     return out;
 }
 
+//ostream& operator << ()
+
 UserInterface::UserInterface()
 {
     
