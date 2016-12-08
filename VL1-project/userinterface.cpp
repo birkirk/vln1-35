@@ -14,8 +14,8 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
 {
     if(vScientist.size() != 0)
     {
-        cout << "Name" << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
-        cout << "------------------------------------------------------------------" << endl;
+        cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
+        cout << "------------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vScientist.size(); i++)
         {
             string name = vScientist[i].getName();
@@ -25,6 +25,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             string space;
             
             //check how many tabs is best to use after name:
+            out << " " << i+1 << '\t';
             if(name.length() < 8)
             {
                 out << name << '\t' << '\t' << '\t';
@@ -179,7 +180,58 @@ void UserInterface::run()
                 cin >> nextCommand;
                 if(nextCommand == "sci")
                 {
-                    // deleteSci();
+                    vector<Scientist> returnVector = search();
+                    if(returnVector.size() == 1)
+                    {
+                        cout << returnVector;
+                        cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n)";
+                        string inputString;
+                        getline(cin, inputString);
+                        while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                        {
+                            cout << "Please enter eather 'y' or 'n'!: ";
+                            getline(cin, inputString);
+                        }
+                        if(inputString == "y" || inputString == "Y")
+                        {
+                            _service.deleteSci(returnVector[0]);
+                        }
+                        else if(inputString == "n" || inputString == "N")
+                        {
+                            cout << "Cancelling..." << endl;
+                        }
+
+                    }
+                    else if(returnVector.size() > 1)
+                    {
+                        cout << "multiple matching scientists!" << endl << "Please choose scientist to delete!" << endl;
+                        cout << returnVector;
+                        int choice;
+                        cin >> choice;
+                        while(choice < 1 && choice > (returnVector.size()+1))
+                        {
+                            cout << "Invalid entry. Pleasy try again: ";
+                            cin >> choice;
+
+                        }
+                        cout << "Do you want to delete entry Nr. " << choice << " :" << returnVector[choice-1].getName() << endl;
+                        string inputString;
+                        getline(cin, inputString);
+                        while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                        {
+                            cout << "Please enter eather 'y' or 'n'!: ";
+                            getline(cin, inputString);
+                        }
+                        if(inputString == "y" || inputString == "Y")
+                        {
+                            _service.deleteSci(returnVector[choice-1]);
+                        }
+                        else if(inputString == "n" || inputString == "N")
+                        {
+                            cout << "Cancelling..." << endl;
+                        }
+                    }
+
                 }
                 else if(nextCommand == "comp")
                 {
@@ -201,7 +253,8 @@ void UserInterface::run()
         }
         else if (command == "search")
         {
-            search();
+            vector<Scientist> printVector = search();
+            cout << printVector;
         }
         else if (command == "connect")
         {
@@ -570,7 +623,7 @@ void UserInterface::list()
     } while(listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "con" && listCommand != "b"  && listCommand != "c");
 }
 
-void UserInterface::search()
+vector<Scientist> UserInterface::search()
 {
     string command;
     do
@@ -663,15 +716,73 @@ void UserInterface::search()
                 }
             }
             
-            cout << "<--- Searching for scientist... --->" << endl << endl;
+            cout << "<--- Searching... --->" << endl << endl;
             
             //If something is skipped than sends: "", 'O', NULL, NULL;
             vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
-            cout << vSci;
+            return vSci;
         }
         else if(command == "comp")
         {
+            string name, type, yearMade, ifMade, check;
+            cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
             
+            //Get name
+            cin.clear();
+            cin.ignore();
+            cout << "Name: ";
+            getline(cin, name);
+            name[0] = toupper(name[0]);
+            if(name.length() == 0)
+            {
+                name = "";
+            }
+            
+            //Get type
+            cin.clear();
+            cout << "Type: ";
+            getline(cin, type);
+            type[0] = toupper(type[0]);
+            if(type.length() == 0)
+            {
+                type = "";
+            }
+            
+            do
+            {
+                cin.clear();
+                cout << "Was it ever made? (y/n) ";
+                cin >> check;
+                if(check != "Y" && check != "y" && check != "N" && check != "n" && check != "")
+                {
+                    cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
+                }
+                if(check == "Y" || check == "y")
+                {
+                    ifMade = "1";
+                }
+                else if(check == "N" || check == "n")
+                {
+                    ifMade = "0";
+                    yearMade = "";
+                    cin.clear();
+                }
+            } while (check != "Y" && check != "y" && check != "N" && check != "n" && check != "");
+            
+            if(ifMade == "1")
+            {
+                cin.clear();
+                cout << "Year made: ";
+                getline(cin, yearMade);
+                if(yearMade.length() == 0)
+                {
+                    yearMade = "";
+                }
+            }
+            
+            cout << "<--- Searching... --->" << endl << endl;
+            vector<Computer> aComputer = _service.searchComp(ifMade, name, type, yearMade);
+            cout << aComputer;
         }
         else if(command != "c")
         {
@@ -716,7 +827,7 @@ void UserInterface::generateJoke()
     }
     else if(random == 2)
     {
-        cout << endl << "What is Bruce Lee’s favorite drink? Wataaaaah!" << endl << endl;
+        cout << endl << "What is Bruce Lee's favorite drink? Wataaaaah!" << endl << endl;
     }
     else if(random == 3)
     {
@@ -736,15 +847,15 @@ void UserInterface::generateJoke()
     }
     else if(random == 7)
     {
-        cout << endl << "What did Jay-Z call his girlfriend before they got married? Feyoncé." << endl << endl;
+        cout << endl << "What did Jay-Z call his girlfriend before they got married? Feyonce." << endl << endl;
     }
     else if(random == 8)
     {
-        cout << endl << "What’s the best part about living in Switzerland? Not sure, but the flag is a big plus." << endl << endl;
+        cout << endl << "What's the best part about living in Switzerland? Not sure, but the flag is a big plus." << endl << endl;
     }
     else if(random == 9)
     {
-        cout << endl << "Why can’t a bike stand on its own? It’s two tired." << endl << endl;
+        cout << endl << "Why can't a bike stand on its own? It's two tired." << endl << endl;
     }
 }
 

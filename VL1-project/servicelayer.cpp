@@ -7,6 +7,12 @@ ServiceLayer::ServiceLayer()
 
 }
 
+bool ServiceLayer::deleteSci(Scientist newSci)
+{
+    bool returnBool = _dataL.deleteScientist(newSci);
+    return returnBool;
+}
+
 void ServiceLayer::addScientitst(Scientist aScientist)
 {
     bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());
@@ -24,6 +30,12 @@ void ServiceLayer::addComputer(Computer aComputer)
 vector<Scientist> ServiceLayer::searchSci(string name, char gender, string born, string death)
 {
     vector<Scientist> vSearched = _dataL.searchSci(name, gender, born, death);
+    return vSearched;
+}
+
+vector<Computer> ServiceLayer::searchComp(string ifMade, string name, string type, string yearMade)
+{
+    vector<Computer> vSearched = _dataL.searchComp(ifMade, name, type, yearMade);
     return vSearched;
 }
 

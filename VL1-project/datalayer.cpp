@@ -8,19 +8,20 @@
 
 using namespace std;
 
-QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char sGender)
+QSqlQuery DataLayer::findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char sGender)
 {
 
     QString qName = QString::fromStdString(sName);
     QSqlQuery searchQuery;
-    searchQuery.prepare("SELECT ID FROM Scientist"
-                        " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'"
-                        " ORDER BY name");
+    searchQuery.prepare("SELECT ID FROM Scientists"
+                        " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'");
     searchQuery.bindValue(":name", qName);
     searchQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
     searchQuery.bindValue(":yearOfDeath", QString::number(sYearOfDeath));
     searchQuery.bindValue(":gender", QString(QChar(sGender)));
     searchQuery.exec();
+    searchQuery.first();
+
     return searchQuery;
 
 }
@@ -28,15 +29,15 @@ QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char 
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    if(QFile::exists(QString::fromStdString("../ScienceDataTEST.sqlite")))
+    if(QFile::exists(QString::fromStdString("../ScienceData.sqlite")))
     {
-        _db.setDatabaseName("../ScienceDataTEST.sqlite");
+        _db.setDatabaseName("../ScienceData.sqlite");
         _db.open();
         cout << "Database found..." << endl;
     }
     else
     {
-        _db.setDatabaseName("../ScienceDataTEST.sqlite");
+        _db.setDatabaseName("../ScienceData.sqlite");
         _db.open();
         QSqlQuery createQuery;
 
@@ -170,6 +171,7 @@ bool DataLayer::deleteScientist(Scientist newSci)
     deleteQuery.prepare("UPDATE Scientists SET valid = 0 WHERE ID = (:ID)");
     int a = query.value(0).toInt();
     deleteQuery.bindValue(":ID", a);
+    qDebug() << deleteQuery.exec();
     bool returnValue = deleteQuery.exec();
     return returnValue;
 }
@@ -322,7 +324,6 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
 vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath)
 {
     QString qName = QString::fromStdString(sName);
-    //QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
     QSqlQuery searchQuery;
     if(sGender == 'O')
     {
@@ -379,6 +380,44 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
         returnVector.push_back(newSci);
     }
 
+    return returnVector;
+}
+
+//bool string string int
+vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, string yearMade)
+{
+    QSqlQuery searchQuery;
+    
+    string ifWasMade = ifMade;
+    searchQuery.bindValue(":ifMade", QString::fromStdString(ifWasMade));
+    
+    QString qName = QString::fromStdString(name);
+    
+    QString qType = QString::fromStdString(type);
+    
+    if(yearMade.size() != 0)
+    {
+        int qYear = atoi(yearMade.c_str());
+        searchQuery.bindValue(":yearMade", QString::number(qYear));
+    }
+    else
+    {
+        string qYear = yearMade;
+        searchQuery.bindValue(":yearMade", QString::fromStdString(qYear));
+    }
+    searchQuery.bindValue(":name", qName);
+    searchQuery.exec();
+    
+    
+    vector<Computer> returnVector;
+    
+    while(searchQuery.next())
+    {
+        
+        //Scientist newComp();
+        //returnVector.push_back(newPomc);
+    }
+    
     return returnVector;
 }
 
