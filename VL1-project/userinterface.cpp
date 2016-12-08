@@ -156,7 +156,7 @@ void UserInterface::run()
                 cout << endl << "<--- Which of the following would you like to add? --->" << endl;
                 cout << '\t' << "sci" << '\t' << "(to add a scientist)" << endl;
                 cout << '\t' << "comp" << '\t' << "(to add a computer)" << endl;
-                cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
+                cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
                 cout << "=> Command: ";
                 cin >> nextCommand;
                 if(nextCommand == "sci")
@@ -400,7 +400,7 @@ void UserInterface::list()
         cout << '\t' << "sci" << '\t' << "(list of just the scientists)" << endl;
         cout << '\t' << "comp" << '\t' << "(list of just the computers)" << endl;
         cout << '\t' << "con" << '\t' << "(list of the connections between scientists and computers)" << endl;
-        cout << '\t' << "c" << '\t' << "(cancell)" << endl;
+        cout << '\t' << "c" << '\t' << "(cancel)" << endl;
         cout << "=> Command: ";
         cin >> listCommand;
         
@@ -587,7 +587,7 @@ vector<Scientist> UserInterface::search()
         cout << endl << "<--- What would you like to search for? --->" << endl;
         cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
         cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
-        cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
+        cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
         cout << "=> Command: ";
         cin >> command;
         if(command == "sci")
@@ -826,7 +826,7 @@ void UserInterface::clear()
         cout << '\t' << "sci" << '\t' << "(to clear Scientists database)" << endl;
         cout << '\t' << "comp" << '\t' << "(to clear Computers database)" << endl;
         cout << '\t' << "all" << '\t' << "(to clear the whole database)" << endl;
-        cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
+        cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
         cout << "=> Command: ";
         cin >> command;
         if(command == "sci")
@@ -909,7 +909,7 @@ void UserInterface::connect()
         cout << endl << "<--- What would you connect? --->" << endl;
         cout << '\t' << "sci" << '\t' << "(connect computer/s to a scientist)" << endl;
         cout << '\t' << "comp" << '\t' << "(connect scientist/s to a computer)" << endl;
-        cout << '\t' << "c" << '\t' << "(cancell)" << endl;
+        cout << '\t' << "c" << '\t' << "(cancel)" << endl;
         cout << "=> Command: ";
         cin >> command;
         
@@ -996,7 +996,7 @@ void UserInterface::deleteSom()
         cout << endl << "<--- Which of the following would you like to delete? --->" << endl;
         cout << '\t' << "sci" << '\t' << "(to delete a scientist)" << endl;
         cout << '\t' << "comp" << '\t' << "(to delete a computer)" << endl;
-        cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
+        cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
         cout << "=> Command: ";
         cin >> nextCommand;
         if(nextCommand == "sci")
