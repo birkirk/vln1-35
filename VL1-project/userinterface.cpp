@@ -774,7 +774,7 @@ void UserInterface::generateJoke()
     }
     else if(random == 2)
     {
-        cout << endl << "What is Bruce Lee’s favorite drink? Wataaaaah!" << endl << endl;
+        cout << endl << "What is Bruce Lee's favorite drink? Wataaaaah!" << endl << endl;
     }
     else if(random == 3)
     {
@@ -794,15 +794,15 @@ void UserInterface::generateJoke()
     }
     else if(random == 7)
     {
-        cout << endl << "What did Jay-Z call his girlfriend before they got married? Feyoncé." << endl << endl;
+        cout << endl << "What did Jay-Z call his girlfriend before they got married? Feyonce." << endl << endl;
     }
     else if(random == 8)
     {
-        cout << endl << "What’s the best part about living in Switzerland? Not sure, but the flag is a big plus." << endl << endl;
+        cout << endl << "What's the best part about living in Switzerland? Not sure, but the flag is a big plus." << endl << endl;
     }
     else if(random == 9)
     {
-        cout << endl << "Why can’t a bike stand on its own? It’s two tired." << endl << endl;
+        cout << endl << "Why can't a bike stand on its own? It's two tired." << endl << endl;
     }
 }
 
