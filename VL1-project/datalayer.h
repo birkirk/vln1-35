@@ -9,6 +9,8 @@
 #include <QChar>
 #include <QString>
 #include <QtSql>
+#include <QFile>
+
 
 using namespace std;
 
