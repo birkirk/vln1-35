@@ -124,14 +124,14 @@ void UserInterface::run()
     do
     {
         cout << "<--- Enter one of the following commands --->" << endl;
-        cout << "add" << '\t' << "(to add a scientist or computer)" << endl;
-        cout << "delete" << '\t' << "(to delete a scientist or computer)" << endl;
-        cout << "list" << '\t' << "(to see the list of scientists or computers)" << endl;
-        cout << "search" << '\t' << "(to search in the list)" << endl;
-        cout << "connect" << '\t' << "(to connect scientists and computers)" << endl;
-        cout << "clear" << '\t' << "(to empty the database of scientists or computers)" << endl;
-        cout << "joke" << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
-        cout << "q" << '\t' << "(quit)" << endl;
+        cout << "add" << '\t' << '\t' << "(to add a scientist or computer)" << endl;
+        cout << "delete" << '\t' << '\t' << "(to delete a scientist or computer)" << endl;
+        cout << "list" << '\t' << '\t' << "(to see the list of scientists or computers)" << endl;
+        cout << "search" << '\t' << '\t' << "(to search in the list)" << endl;
+        cout << "connect" << '\t' << '\t' << "(to connect scientists and computers)" << endl;
+        cout << "clear" << '\t' << '\t' << "(to empty the database of scientists or computers)" << endl;
+        cout << "joke" << '\t' << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
+        cout << "q" << '\t' << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
         
         cin >> command;
@@ -618,7 +618,7 @@ void UserInterface::search()
             
             //Get birth year
             cin.clear();
-            cout << "Year of birth (type a number < 0 if you want to skip this): ";
+            cout << "Year of birth: ";
 
             getline(cin, born);
             if(born.length() == 0)
@@ -653,8 +653,7 @@ void UserInterface::search()
             else
             {
                 cin.clear();
-                cout << "Year of death (type a number < 0 if you want to skip this): ";
-
+                cout << "Year of death: ";
 
                 getline(cin, death);
                 if(death.length() == 0)
