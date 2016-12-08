@@ -10,6 +10,7 @@ int main()
 
 
     UserInterface ui;
+    ui.info();
     ui.run();
 
     return 0;

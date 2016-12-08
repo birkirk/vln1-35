@@ -22,6 +22,7 @@ public:
     friend ostream& operator << (ostream& out, vector<Computer> vComputers);
     
     void generateJoke();
+    void info();
 private:
     ServiceLayer _service;
 };

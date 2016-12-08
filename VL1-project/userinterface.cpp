@@ -268,6 +268,11 @@ void UserInterface::run()
         {
             generateJoke();
         }
+        //Hidden command
+        else if (command == "info")
+        {
+            info();
+        }
         else if (command != "q")
         {
             cout << "!--- Please enter a valid command ---!" << endl << endl;
@@ -942,6 +947,19 @@ void UserInterface::clear()
     } while(command != "c" && command != "C" && command != "y" && command != "Y" && command != "n" && command != "N");
 }
 
+void UserInterface::info()
+{
+    cout << endl;
+    cout << "===============================================================" << endl;
+    cout << " ██████╗ ██████╗  ██████╗ ██╗   ██╗██████╗     ██████╗ ███████╗" << endl;
+    cout << "██╔════╝ ██╔══██╗██╔═══██╗██║   ██║██╔══██╗    ╚════██╗██╔════╝" << endl;
+    cout << "██║  ███╗██████╔╝██║   ██║██║   ██║██████╔╝     █████╔╝███████╗" << endl;
+    cout << "██║   ██║██╔══██╗██║   ██║██║   ██║██╔═══╝      ╚═══██╗╚════██║" << endl;
+    cout << "╚██████╔╝██║  ██║╚██████╔╝╚██████╔╝██║         ██████╔╝███████║" << endl;
+    cout << " ╚═════╝ ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝         ╚═════╝ ╚══════╝" << endl;
+    cout << "===============================================================" << endl;
+    cout << endl << endl;
+}
 
 
 
