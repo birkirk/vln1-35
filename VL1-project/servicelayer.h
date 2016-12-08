@@ -11,7 +11,11 @@ public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
     void addComputer(Computer aComputer);
+
     bool deleteSci(Scientist newSci);
+
+    void clearData(string com);
+
     
     vector<Scientist> sciAlpha();
     vector<Scientist> sciRalpha();
@@ -29,6 +33,7 @@ public:
     vector<Computer> compType();
     
     vector<Scientist> searchSci(string name, char gender, string born, string death);
+    vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
 private:
     vector<Scientist> _vScientists;
     vector<Computer> _vComputer;

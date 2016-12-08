@@ -324,7 +324,6 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, char cYear
 vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath)
 {
     QString qName = QString::fromStdString(sName);
-    //QSqlQuery searchQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
     QSqlQuery searchQuery;
     if(sGender == 'O')
     {
@@ -383,6 +382,65 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
 
     return returnVector;
 }
+
+//bool string string int
+vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, string yearMade)
+{
+    QSqlQuery searchQuery;
+    
+    string ifWasMade = ifMade;
+    searchQuery.bindValue(":ifMade", QString::fromStdString(ifWasMade));
+    
+    QString qName = QString::fromStdString(name);
+    
+    QString qType = QString::fromStdString(type);
+    
+    if(yearMade.size() != 0)
+    {
+        int qYear = atoi(yearMade.c_str());
+        searchQuery.bindValue(":yearMade", QString::number(qYear));
+    }
+    else
+    {
+        string qYear = yearMade;
+        searchQuery.bindValue(":yearMade", QString::fromStdString(qYear));
+    }
+    searchQuery.bindValue(":name", qName);
+    searchQuery.exec();
+    
+    
+    vector<Computer> returnVector;
+    
+    while(searchQuery.next())
+    {
+        
+        //Scientist newComp();
+        //returnVector.push_back(newPomc);
+    }
+    
+    return returnVector;
+}
+
+void DataLayer::clearDataFile()
+{
+    QSqlQuery query;
+    query.exec("DELETE FROM Scientists");
+    query.exec("DELETE FROM Computers");
+}
+
+void DataLayer::clearSci()
+{
+    QSqlQuery query;
+    query.exec("DELETE FROM Scientists");
+}
+
+void DataLayer::clearComp()
+{
+    QSqlQuery query;
+    query.exec("DELETE FROM Computers");
+}
+
+
 /*
 void connect(Scientist newSci, Computer newCmp)
 {

@@ -125,16 +125,15 @@ void UserInterface::run()
     do
     {
         cout << "<--- Enter one of the following commands --->" << endl;
-        cout << "add" << '\t' << "(to add a scientist or computer)" << endl;
-        cout << "delete" << '\t' << "(to delete a scientist or computer)" << endl;
-        cout << "list" << '\t' << "(to see the list of scientists or computers)" << endl;
-        cout << "search" << '\t' << "(to search in the list)" << endl;
-        cout << "connect" << '\t' << "(to connect scientists and computers)" << endl;
-        cout << "clear" << '\t' << "(to empty the database of scientists or computers)" << endl;
-        cout << "joke" << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
-        cout << "q" << '\t' << "(quit)" << endl;
+        cout << "add" << '\t' << '\t' << "(to add a scientist or computer)" << endl;
+        cout << "delete" << '\t' << '\t' << "(to delete a scientist or computer)" << endl;
+        cout << "list" << '\t' << '\t' << "(to see the list of scientists or computers)" << endl;
+        cout << "search" << '\t' << '\t' << "(to search in the list)" << endl;
+        cout << "connect" << '\t' << '\t' << "(to connect scientists and computers)" << endl;
+        cout << "clear" << '\t' << '\t' << "(to empty the entire database)" << endl;
+        cout << "joke" << '\t' << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
+        cout << "q" << '\t' << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
-        
         cin >> command;
         
         if (command == "add")
@@ -261,7 +260,7 @@ void UserInterface::run()
         }
         else if (command == "clear")
         {
-            //clear(); TODO
+            clear();
         }
         else if (command == "joke")
         {
@@ -635,7 +634,7 @@ vector<Scientist> UserInterface::search()
         cin >> command;
         if(command == "sci")
         {
-            string name, sGender, sStillAlive, born, death;
+            string name, sGender, sStillAlive, born, death = "";
             char gender, stillAlive;
             cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
             
@@ -671,7 +670,7 @@ vector<Scientist> UserInterface::search()
             
             //Get birth year
             cin.clear();
-            cout << "Year of birth (type a number < 0 if you want to skip this): ";
+            cout << "Year of birth: ";
 
             getline(cin, born);
             if(born.length() == 0)
@@ -706,17 +705,16 @@ vector<Scientist> UserInterface::search()
             else
             {
                 cin.clear();
-                cout << "Year of death (type a number < 0 if you want to skip this): ";
+                cout << "Year of death: ";
 
-
-                getline(cin, death);
+                cin >> death;
                 if(death.length() == 0)
                 {
                     death = "";
                 }
             }
             
-            cout << "<--- Searching for scientist... --->" << endl << endl;
+            cout << "<--- Searching... --->" << endl << endl;
             
             //If something is skipped than sends: "", 'O', NULL, NULL;
             vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
@@ -724,7 +722,67 @@ vector<Scientist> UserInterface::search()
         }
         else if(command == "comp")
         {
+            string name, type, yearMade, ifMade, check;
+            cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
             
+            //Get name
+            cin.clear();
+            cin.ignore();
+            cout << "Name: ";
+            getline(cin, name);
+            name[0] = toupper(name[0]);
+            if(name.length() == 0)
+            {
+                name = "";
+            }
+            
+            //Get type
+            cin.clear();
+            cout << "Type: ";
+            getline(cin, type);
+            type[0] = toupper(type[0]);
+            if(type.length() == 0)
+            {
+                type = "";
+            }
+            
+            do
+            {
+                cin.clear();
+                cout << "Was it ever made? (y/n) ";
+                cin >> check;
+                if(check != "Y" && check != "y" && check != "N" && check != "n" && check != "")
+                {
+                    cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
+                }
+                if(check == "Y" || check == "y")
+                {
+                    ifMade = "1";
+                }
+                else if(check == "N" || check == "n")
+                {
+                    ifMade = "0";
+                    yearMade = "";
+                    cin.clear();
+                    cin.ignore();
+                }
+            } while (check != "Y" && check != "y" && check != "N" && check != "n" && check != "");
+            
+            if(ifMade == "1")
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "Year made: ";
+                cin >> yearMade;
+                if(yearMade.length() == 0)
+                {
+                    yearMade = "";
+                }
+            }
+            
+            cout << "<--- Searching... --->" << endl << endl;
+            vector<Computer> aComputer = _service.searchComp(ifMade, name, type, yearMade);
+            cout << aComputer;
         }
         else if(command != "c")
         {
@@ -732,7 +790,7 @@ vector<Scientist> UserInterface::search()
         }
         else if(command == "c")
         {
-            
+            cout << endl;
         }
     } while(command != "sci" && command != "comp" && command != "c");
 }
@@ -769,7 +827,7 @@ void UserInterface::generateJoke()
     }
     else if(random == 2)
     {
-        cout << endl << "What is Bruce Lee’s favorite drink? Wataaaaah!" << endl << endl;
+        cout << endl << "What is Bruce Lee's favorite drink? Wataaaaah!" << endl << endl;
     }
     else if(random == 3)
     {
@@ -789,16 +847,99 @@ void UserInterface::generateJoke()
     }
     else if(random == 7)
     {
-        cout << endl << "What did Jay-Z call his girlfriend before they got married? Feyoncé." << endl << endl;
+        cout << endl << "What did Jay-Z call his girlfriend before they got married? Feyonce." << endl << endl;
     }
     else if(random == 8)
     {
-        cout << endl << "What’s the best part about living in Switzerland? Not sure, but the flag is a big plus." << endl << endl;
+        cout << endl << "What's the best part about living in Switzerland? Not sure, but the flag is a big plus." << endl << endl;
     }
     else if(random == 9)
     {
-        cout << endl << "Why can’t a bike stand on its own? It’s two tired." << endl << endl;
+        cout << endl << "Why can't a bike stand on its own? It's two tired." << endl << endl;
     }
+}
+
+void UserInterface::clear()
+{
+    string command, innerCommand;
+    do
+    {
+        cin.clear();
+        cin.ignore();
+        cout << endl << "<--- Which database whould you like to clear? --->" << endl;
+        cout << "sci" << '\t' << "(to clear Scientists database)" << endl;
+        cout << "comp" << '\t' << "(to clear Computers database)" << endl;
+        cout << "all" << '\t' << "(to clear the whole database)" << endl;
+        cout << "c" << '\t' << "(to cancell)" << endl;
+        cout << "=> Command: ";
+        cin >> command;
+        if(command == "sci")
+        {
+            cout << "!--- Are you sure you want to clear Scientist database? This action can not be undone ---!" << endl;
+            cout << "=> (y/n): ";
+            cin >> innerCommand;
+            if(innerCommand == "y" || innerCommand == "Y")
+            {
+                cout << "!--- YES selsected - Scientist database will be cleared ---!" << endl;
+                _service.clearData("sci");
+            }
+            else if(innerCommand == "n" || innerCommand == "N")
+            {
+                cout << "!--- NO selected - Data will not be cleared ---!" << endl;
+            }
+            else
+            {
+                cout << "!--- not a correct input, aborting clear Scientists ---!" << endl;
+            }
+        }
+        else if(command == "comp")
+        {
+            cout << "!--- Are you sure you want to clear Computer database? This action can not be undone ---!" << endl;
+            cout << "=> (y/n): ";
+            cin >> innerCommand;
+            if(innerCommand == "y" || innerCommand == "Y")
+            {
+                cout << "!--- YES selected - Scientist database will be cleared ---!" << endl;
+                _service.clearData("comp");
+            }
+            else if(innerCommand == "n" || innerCommand == "N")
+            {
+                cout << "!--- NO selected - Data will not be cleared ---!" << endl;
+            }
+            else
+            {
+                cout << "!--- not a correct input, aborting clear Computers ---!" << endl;
+            }
+        }
+        else if(command == "all")
+        {
+            cout << "!--- Are you sure you want to clear Computer database? This action can not be undone ---!" << endl;
+            cout << "=> (y/n): ";
+            cin >> innerCommand;
+            if(innerCommand == "y" || innerCommand == "Y")
+            {
+                cout << "!--- YES selected - Database will be cleared ---!" << endl;
+                _service.clearData("all");
+            }
+            else if(innerCommand == "n" || innerCommand == "N")
+            {
+                cout << "!--- NO selected - Database will not be cleared ---!" << endl;
+            }
+            else
+            {
+                cout << "!--- not a correct input, aborting clear database ---!" << endl;
+            }
+        }
+        else if(command != "c" && command != "C")
+        {
+            cout << "!--- Please enter a valid command ---!" << endl << endl;
+        }
+        else if(command == "c" || command == "C")
+        {
+            cout << endl;
+        }
+        
+    } while(command != "c" && command != "C" && command != "y" && command != "Y" && command != "n" && command != "N");
 }
 
 

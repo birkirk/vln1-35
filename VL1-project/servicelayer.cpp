@@ -33,6 +33,12 @@ vector<Scientist> ServiceLayer::searchSci(string name, char gender, string born,
     return vSearched;
 }
 
+vector<Computer> ServiceLayer::searchComp(string ifMade, string name, string type, string yearMade)
+{
+    vector<Computer> vSearched = _dataL.searchComp(ifMade, name, type, yearMade);
+    return vSearched;
+}
+
 
 vector<Scientist> ServiceLayer::sciAlpha()
 {
@@ -125,6 +131,26 @@ vector<Computer> ServiceLayer::compType()
     vector<Computer> vOrder = _dataL.readComp(com);
     return vOrder;
 }
+
+void ServiceLayer::clearData(string com)
+{
+    if(com == "all")
+    {
+        _dataL.clearDataFile();
+    }
+    else if(com == "sci")
+    {
+        _dataL.clearSci();
+    }
+    else if(com == "comp")
+    {
+        _dataL.clearComp();
+    }
+}
+
+
+
+
 
 
 
