@@ -129,11 +129,10 @@ void UserInterface::run()
         cout << "list" << '\t' << '\t' << "(to see the list of scientists or computers)" << endl;
         cout << "search" << '\t' << '\t' << "(to search in the list)" << endl;
         cout << "connect" << '\t' << '\t' << "(to connect scientists and computers)" << endl;
-        cout << "clear" << '\t' << '\t' << "(to empty the database of scientists or computers)" << endl;
+        cout << "clear" << '\t' << '\t' << "(to empty the entire database)" << endl;
         cout << "joke" << '\t' << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
         cout << "q" << '\t' << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
-        
         cin >> command;
         
         if (command == "add")
@@ -208,7 +207,7 @@ void UserInterface::run()
         }
         else if (command == "clear")
         {
-            //clear(); TODO
+            clear();
         }
         else if (command == "joke")
         {
@@ -582,7 +581,7 @@ void UserInterface::search()
         cin >> command;
         if(command == "sci")
         {
-            string name, sGender, sStillAlive, born, death;
+            string name, sGender, sStillAlive, born, death = "";
             char gender, stillAlive;
             cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
             
@@ -678,7 +677,7 @@ void UserInterface::search()
         }
         else if(command == "c")
         {
-            
+            cout << endl;
         }
     } while(command != "sci" && command != "comp" && command != "c");
 }
@@ -745,6 +744,89 @@ void UserInterface::generateJoke()
     {
         cout << endl << "Why can’t a bike stand on its own? It’s two tired." << endl << endl;
     }
+}
+
+void UserInterface::clear()
+{
+    string command, innerCommand;
+    do
+    {
+        cin.clear();
+        cin.ignore();
+        cout << endl << "<--- Which database whould you like to clear? --->" << endl;
+        cout << "sci" << '\t' << "(to clear Scientists database)" << endl;
+        cout << "comp" << '\t' << "(to clear Computers database)" << endl;
+        cout << "all" << '\t' << "(to clear the whole database)" << endl;
+        cout << "c" << '\t' << "(to cancell)" << endl;
+        cout << "=> Command: ";
+        cin >> command;
+        if(command == "sci")
+        {
+            cout << "!--- Are you sure you want to clear Scientist database? This action can not be undone ---!" << endl;
+            cout << "=> (y/n): ";
+            cin >> innerCommand;
+            if(innerCommand == "y" || innerCommand == "Y")
+            {
+                cout << "!--- YES selsected - Scientist database will be cleared ---!" << endl;
+                _service.clearData("sci");
+            }
+            else if(innerCommand == "n" || innerCommand == "N")
+            {
+                cout << "!--- NO selected - Data will not be cleared ---!" << endl;
+            }
+            else
+            {
+                cout << "!--- not a correct input, aborting clear Scientists ---!" << endl;
+            }
+        }
+        else if(command == "comp")
+        {
+            cout << "!--- Are you sure you want to clear Computer database? This action can not be undone ---!" << endl;
+            cout << "=> (y/n): ";
+            cin >> innerCommand;
+            if(innerCommand == "y" || innerCommand == "Y")
+            {
+                cout << "!--- YES selected - Scientist database will be cleared ---!" << endl;
+                _service.clearData("comp");
+            }
+            else if(innerCommand == "n" || innerCommand == "N")
+            {
+                cout << "!--- NO selected - Data will not be cleared ---!" << endl;
+            }
+            else
+            {
+                cout << "!--- not a correct input, aborting clear Computers ---!" << endl;
+            }
+        }
+        else if(command == "all")
+        {
+            cout << "!--- Are you sure you want to clear Computer database? This action can not be undone ---!" << endl;
+            cout << "=> (y/n): ";
+            cin >> innerCommand;
+            if(innerCommand == "y" || innerCommand == "Y")
+            {
+                cout << "!--- YES selected - Database will be cleared ---!" << endl;
+                _service.clearData("all");
+            }
+            else if(innerCommand == "n" || innerCommand == "N")
+            {
+                cout << "!--- NO selected - Database will not be cleared ---!" << endl;
+            }
+            else
+            {
+                cout << "!--- not a correct input, aborting clear database ---!" << endl;
+            }
+        }
+        else if(command != "c" && command != "C")
+        {
+            cout << "!--- Please enter a valid command ---!" << endl << endl;
+        }
+        else if(command == "c" || command == "C")
+        {
+            cout << endl;
+        }
+        
+    } while(command != "c" && command != "C" && command != "y" && command != "Y" && command != "n" && command != "N");
 }
 
 

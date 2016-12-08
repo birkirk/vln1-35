@@ -11,6 +11,7 @@ public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
     void addComputer(Computer aComputer);
+    void clearData(string com);
     
     vector<Scientist> sciAlpha();
     vector<Scientist> sciRalpha();

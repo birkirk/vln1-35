@@ -12,6 +12,7 @@ public:
     void addComp();
     void list();
     void search();
+    void clear();
     
     friend ostream& operator << (ostream& out, vector<Scientist> vScientist);
     friend ostream& operator << (ostream& out, vector<Computer> vComputers);

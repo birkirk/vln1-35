@@ -120,6 +120,26 @@ vector<Computer> ServiceLayer::compType()
     return vOrder;
 }
 
+void ServiceLayer::clearData(string com)
+{
+    if(com == "all")
+    {
+        _dataL.clearDataFile();
+    }
+    else if(com == "sci")
+    {
+        _dataL.clearSci();
+    }
+    else if(com == "comp")
+    {
+        _dataL.clearComp();
+    }
+}
+
+
+
+
+
 
 
 

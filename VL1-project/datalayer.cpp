@@ -28,10 +28,6 @@ QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char 
 DataLayer::DataLayer()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-<<<<<<< HEAD
-    _db.setDatabaseName("/Users/Birkir/Desktop/vln1-35/ScienceData.sqlite");
-    _db.open();
-=======
     if(QFile::exists(QString::fromStdString("../ScienceDataTEST.sqlite")))
     {
         _db.setDatabaseName("../ScienceDataTEST.sqlite");
@@ -68,7 +64,6 @@ DataLayer::DataLayer()
                             " FOREIGN KEY(computerID) REFERENCES Computers(ID) ON DELETE CASCADE)");
         cout << "Database not found... Creating database... " << endl;
     }
->>>>>>> 42821b00c472321159793d450f25106737601d61
 }
 
 DataLayer::DataLayer(const QString& path)
@@ -386,6 +381,27 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
 
     return returnVector;
 }
+
+void DataLayer::clearDataFile()
+{
+    QSqlQuery query;
+    query.exec("DELETE FROM Scientists");
+    query.exec("DELETE FROM Computers");
+}
+
+void DataLayer::clearSci()
+{
+    QSqlQuery query;
+    query.exec("DELETE FROM Scientists");
+}
+
+void DataLayer::clearComp()
+{
+    QSqlQuery query;
+    query.exec("DELETE FROM Computers");
+}
+
+
 /*
 void connect(Scientist newSci, Computer newCmp)
 {

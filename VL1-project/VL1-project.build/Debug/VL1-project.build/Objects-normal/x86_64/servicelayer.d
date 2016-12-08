@@ -211,4 +211,5 @@ dependencies: /Users/Birkir/Desktop/vln1-35/VL1-project/servicelayer.cpp \
   ../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
   ../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
   /Users/Birkir/Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
-  ../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h
+  ../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+  ../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QFile

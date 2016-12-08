@@ -34,6 +34,9 @@ public:
     bool addComputer(string cName, string cType, bool cIfMade, char cYearMade);
     vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
 
+    void clearDataFile();
+    void clearSci();
+    void clearComp();
 private:
     QSqlDatabase _db;
 };
