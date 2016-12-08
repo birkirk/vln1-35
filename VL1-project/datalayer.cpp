@@ -388,9 +388,7 @@ vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, 
 {
     QSqlQuery searchQuery;
     
-    string ifWasMade = ifMade;
-    searchQuery.bindValue(":ifMade", QString::fromStdString(ifWasMade));
-    
+    string ifWasMade = ifMade;    
     QString qName = QString::fromStdString(name);
     
     QString qType = QString::fromStdString(type);
