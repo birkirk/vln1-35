@@ -112,11 +112,6 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
         {
             success = true;
         }
-        else
-        {
-            qDebug() << "Scientist not successfully added: ";
-            //qDebug() << query.lastError();
-        }
     }
     return success;
 }
@@ -307,12 +302,6 @@ bool DataLayer::addComputer(string cName, string cType, bool cIfMade, int cYearM
     {
         success = true;
     }
-    else
-    {
-        qDebug() << "Computer not successfully added: " << endl;
-        //qDebug() << query.lastError();
-    }
-
     return success;
 }
 

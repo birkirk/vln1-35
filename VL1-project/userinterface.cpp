@@ -179,83 +179,7 @@ void UserInterface::run()
         }
         if (command == "delete")
         {
-            string nextCommand;
-            do
-            {
-                cout << endl << "<--- Which of the following would you like to delete? --->" << endl;
-                cout << '\t' << "sci" << '\t' << "(to delete a scientist)" << endl;
-                cout << '\t' << "comp" << '\t' << "(to delete a computer)" << endl;
-                cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
-                cout << "=> Command: ";
-                cin >> nextCommand;
-                if(nextCommand == "sci")
-                {
-                    vector<Scientist> returnVector = search();
-                    if(returnVector.size() == 1)
-                    {
-                        cout << returnVector;
-                        cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n)";
-                        string inputString;
-                        getline(cin, inputString);
-                        while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
-                        {
-                            cout << "Please enter eather 'y' or 'n'!: ";
-                            getline(cin, inputString);
-                        }
-                        if(inputString == "y" || inputString == "Y")
-                        {
-                            _service.deleteSci(returnVector[0]);
-                        }
-                        else if(inputString == "n" || inputString == "N")
-                        {
-                            cout << "Cancelling..." << endl;
-                        }
-
-                    }
-                    else if(returnVector.size() > 1)
-                    {
-                        cout << "multiple matching scientists!" << endl << "Please choose scientist to delete!" << endl;
-                        cout << returnVector;
-                        int choice;
-                        cin >> choice;
-                        while(choice < 1 && choice > (returnVector.size()+1))
-                        {
-                            cout << "Invalid entry. Pleasy try again: ";
-                            cin >> choice;
-
-                        }
-                        cout << "Do you want to delete entry Nr. " << choice << " :" << returnVector[choice-1].getName() << endl;
-                        string inputString;
-                        getline(cin, inputString);
-                        while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
-                        {
-                            cout << "Please enter eather 'y' or 'n'!: ";
-                            getline(cin, inputString);
-                        }
-                        if(inputString == "y" || inputString == "Y")
-                        {
-                            _service.deleteSci(returnVector[choice-1]);
-                        }
-                        else if(inputString == "n" || inputString == "N")
-                        {
-                            cout << "Cancelling..." << endl;
-                        }
-                    }
-
-                }
-                else if(nextCommand == "comp")
-                {
-                    //  deleteComp();
-                }
-                else if(nextCommand != "c")
-                {
-                    cout << "!--- Not a valid command ---!" << endl;
-                }
-                else if(nextCommand == "c")
-                {
-                    cout << endl;
-                }
-            } while(nextCommand != "sci" && nextCommand != "comp" && nextCommand != "c");
+            deleteSom();
         }
         else if (command == "list")
         {
@@ -369,9 +293,17 @@ void UserInterface::addSci()
         } while(death > 2016 || death < born);
     }
     
-    cout << "<--- Adding scientist --->" << endl << endl;
+    cout << endl << "<--- Trying to add scientist... --->" << endl;
     Scientist aScientist(name, gender, born, death);
-    _service.addScientitst(aScientist);
+    bool ifSuccess = _service.addScientitst(aScientist);
+    if(ifSuccess)
+    {
+        cout << "<--- Scientist successfully added! --->" << endl << endl;
+    }
+    else
+    {
+        cout << "!--- Scientist could not be added ---!" << endl << endl;
+    }
 }
 
 void UserInterface::addComp()
@@ -443,9 +375,17 @@ void UserInterface::addComp()
         } while(yearMade <= 0 || yearMade > 2016);
     }
     
-    cout << "<--- Adding computer --->" << endl << endl;
+    cout << endl << "<--- Trying to add computer... --->" << endl;
     Computer aComputer(ifMade, name, type, yearMade);
-    _service.addComputer(aComputer);
+    bool ifSuccess = _service.addComputer(aComputer);
+    if(ifSuccess)
+    {
+        cout << "<--- Computer successfully added! --->" << endl << endl;
+    }
+    else
+    {
+        cout << "!--- Computer could not be added ---!" << endl << endl;
+    }
 }
 
 void UserInterface::list()
@@ -975,9 +915,30 @@ void UserInterface::connect()
         
         if(command == "sci")
         {
-            vector<Scientist> vUse = _service.sciAlpha();
-            cout << "<--- List of scientists --->" << endl << endl;
-            cout << vUse;
+            string whichSci, toWhichComp;
+            vector<string> vWhichComp;
+            
+            vector<Scientist> vListSci = _service.sciAlpha();
+            cout << "<--- List of scientists --->" << endl;
+            cout << vListSci;
+            cout << "Which scientist would you like to connect a computer to? (number) : ";
+            cin >> whichSci;
+            
+            vector<Computer> vListComp = _service.compAlpha();
+            cout << "<--- List of Computers --->" << endl;
+            cout << vListComp;
+            cout << "To which computer/s? (number - type D when done) : ";
+            do
+            {
+                cin >> toWhichComp;
+                vWhichComp.push_back(toWhichComp);
+            } while(toWhichComp != "d" && toWhichComp != "D");
+            
+            //vector<string> whatHappened = _service.connectSci(whichSci, toWhichComp);
+            //for(size_t i = 0; i < whatHappened.size(); i++)
+            //{
+            //    cout << whatHappened[i] << endl;
+            //}
         }
         else if(command == "comp")
         {
@@ -994,6 +955,87 @@ void UserInterface::connect()
     } while(command != "sci" && command != "comp" && command != "c");
 }
 
+void UserInterface::deleteSom()
+{
+    string nextCommand;
+    do
+    {
+        cout << endl << "<--- Which of the following would you like to delete? --->" << endl;
+        cout << '\t' << "sci" << '\t' << "(to delete a scientist)" << endl;
+        cout << '\t' << "comp" << '\t' << "(to delete a computer)" << endl;
+        cout << '\t' << "c" << '\t' << "(to cancell)" << endl;
+        cout << "=> Command: ";
+        cin >> nextCommand;
+        if(nextCommand == "sci")
+        {
+            vector<Scientist> returnVector = search();
+            if(returnVector.size() == 1)
+            {
+                cout << returnVector;
+                cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n)";
+                string inputString;
+                getline(cin, inputString);
+                while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                {
+                    cout << "Please enter eather 'y' or 'n'!: ";
+                    getline(cin, inputString);
+                }
+                if(inputString == "y" || inputString == "Y")
+                {
+                    _service.deleteSci(returnVector[0]);
+                }
+                else if(inputString == "n" || inputString == "N")
+                {
+                    cout << "Cancelling..." << endl;
+                }
+                
+            }
+            else if(returnVector.size() > 1)
+            {
+                cout << "multiple matching scientists!" << endl << "Please choose scientist to delete!" << endl;
+                cout << returnVector;
+                int choice;
+                cin >> choice;
+                while(choice < 1 && choice > (returnVector.size()+1))
+                {
+                    cout << "Invalid entry. Pleasy try again: ";
+                    cin >> choice;
+                    
+                }
+                cout << "Do you want to delete entry Nr. " << choice << " :" << returnVector[choice-1].getName() << endl;
+                string inputString;
+                getline(cin, inputString);
+                while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                {
+                    cout << "Please enter eather 'y' or 'n'!: ";
+                    getline(cin, inputString);
+                }
+                if(inputString == "y" || inputString == "Y")
+                {
+                    _service.deleteSci(returnVector[choice-1]);
+                }
+                else if(inputString == "n" || inputString == "N")
+                {
+                    cout << "Cancelling..." << endl;
+                }
+            }
+            
+        }
+        else if(nextCommand == "comp")
+        {
+            //  deleteComp();
+        }
+        else if(nextCommand != "c")
+        {
+            cout << "!--- Not a valid command ---!" << endl;
+        }
+        else if(nextCommand == "c")
+        {
+            cout << endl;
+        }
+    } while(nextCommand != "sci" && nextCommand != "comp" && nextCommand != "c");
+}
+
 void UserInterface::info()
 {
     cout << endl;
@@ -1008,7 +1050,6 @@ void UserInterface::info()
     cout << "==================================================================" << endl;
     cout << endl << endl;
 }
-
 
 
 

@@ -13,14 +13,16 @@ bool ServiceLayer::deleteSci(Scientist newSci)
     return returnBool;
 }
 
-void ServiceLayer::addScientitst(Scientist aScientist)
+bool ServiceLayer::addScientitst(Scientist aScientist)
 {
     bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());
+    return success;
 }
 
-void ServiceLayer::addComputer(Computer aComputer)
+bool ServiceLayer::addComputer(Computer aComputer)
 {
     bool success = _dataL.addComputer(aComputer.getName(), aComputer.getType(), aComputer.getIfMade(), aComputer.getYearMade());
+    return success;
 }
 
 vector<Scientist> ServiceLayer::searchSci(string name, char gender, string born, string death)

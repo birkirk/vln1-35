@@ -9,8 +9,8 @@ class ServiceLayer
 {
 public:
     ServiceLayer();
-    void addScientitst(Scientist aScientist);
-    void addComputer(Computer aComputer);
+    bool addScientitst(Scientist aScientist);
+    bool addComputer(Computer aComputer);
 
     bool deleteSci(Scientist newSci);
 

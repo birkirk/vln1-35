@@ -12,6 +12,7 @@ public:
     void addComp();
     void list();
     void connect();
+    void deleteSom();
 
     vector<Scientist> search();
 
