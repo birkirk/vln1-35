@@ -11,10 +11,13 @@ public:
     ServiceLayer();
     bool addScientitst(Scientist aScientist);
     bool addComputer(Computer aComputer);
+    bool closeData();
 
     bool deleteSci(Scientist newSci);
+    bool deleteComp(Computer newComp);
 
     void clearData(string com);
+    vector<int> getConnections();
     
     vector<string> connectSci(int whichSci, vector<int> vWhichComp);
     vector<string> connectComp(int whichComp, vector<int> vWhichSci);

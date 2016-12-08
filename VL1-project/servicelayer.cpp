@@ -7,9 +7,21 @@ ServiceLayer::ServiceLayer()
 
 }
 
+bool ServiceLayer::closeData()
+{
+    bool reportClose = _dataL.closeDatabase();
+    return reportClose;
+}
+
 bool ServiceLayer::deleteSci(Scientist newSci)
 {
     bool returnBool = _dataL.deleteScientist(newSci);
+    return returnBool;
+}
+
+bool ServiceLayer::deleteComp(Computer newComp)
+{
+    bool returnBool = _dataL.deleteComputer(newComp);
     return returnBool;
 }
 
@@ -144,6 +156,11 @@ void ServiceLayer::clearData(string com)
     {
         _dataL.clearComp();
     }
+}
+
+vector<int> ServiceLayer::getConnections() {
+    vector<int> vConnections = _dataL.getCon();
+    return vConnections;
 }
 
 vector<string> ServiceLayer::connectSci(int whichSci, vector<int> vWhichComp)

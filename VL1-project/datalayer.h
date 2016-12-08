@@ -23,8 +23,11 @@ public:
     DataLayer();
     DataLayer(const QString& path);
     
+    bool closeDatabase();
+    
     vector<Scientist> readSci(string com);
     vector<Computer> readComp(string com);
+    vector<int> getCon();
     void writeFile(vector<Scientist> vScientist);
 
     bool addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
@@ -32,6 +35,7 @@ public:
     bool addScientist(string sName, int sYearOfBirth, char sGender);
 
     bool deleteScientist(Scientist newSci);
+    bool deleteComputer(Computer newComp);
     
     vector<string> connectSci(int whichSci, vector<int> vWhichComp);
     vector<string> connectComp(int whichComp, vector<int> vWhichSci);
@@ -43,6 +47,7 @@ public:
     void clearDataFile();
     void clearSci();
     void clearComp();
+    void clearCon();
 private:
     QSqlDatabase _db;
 };
