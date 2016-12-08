@@ -14,8 +14,8 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
 {
     if(vScientist.size() != 0)
     {
-        cout << "Name" << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
-        cout << "------------------------------------------------------------------" << endl;
+        cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
+        cout << "------------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vScientist.size(); i++)
         {
             string name = vScientist[i].getName();
@@ -25,6 +25,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             string space;
             
             //check how many tabs is best to use after name:
+            out << " " << i+1 << '\t';
             if(name.length() < 8)
             {
                 out << name << '\t' << '\t' << '\t';
@@ -178,7 +179,58 @@ void UserInterface::run()
                 cin >> nextCommand;
                 if(nextCommand == "sci")
                 {
-                    // deleteSci();
+                    vector<Scientist> returnVector = search();
+                    if(returnVector.size() == 1)
+                    {
+                        cout << returnVector;
+                        cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n)";
+                        string inputString;
+                        getline(cin, inputString);
+                        while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                        {
+                            cout << "Please enter eather 'y' or 'n'!: ";
+                            getline(cin, inputString);
+                        }
+                        if(inputString == "y" || inputString == "Y")
+                        {
+                            _service.deleteSci(returnVector[0]);
+                        }
+                        else if(inputString == "n" || inputString == "N")
+                        {
+                            cout << "Cancelling..." << endl;
+                        }
+
+                    }
+                    else if(returnVector.size() > 1)
+                    {
+                        cout << "multiple matching scientists!" << endl << "Please choose scientist to delete!" << endl;
+                        cout << returnVector;
+                        int choice;
+                        cin >> choice;
+                        while(choice < 1 && choice > (returnVector.size()+1))
+                        {
+                            cout << "Invalid entry. Pleasy try again: ";
+                            cin >> choice;
+
+                        }
+                        cout << "Do you want to delete entry Nr. " << choice << " :" << returnVector[choice-1].getName() << endl;
+                        string inputString;
+                        getline(cin, inputString);
+                        while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
+                        {
+                            cout << "Please enter eather 'y' or 'n'!: ";
+                            getline(cin, inputString);
+                        }
+                        if(inputString == "y" || inputString == "Y")
+                        {
+                            _service.deleteSci(returnVector[choice-1]);
+                        }
+                        else if(inputString == "n" || inputString == "N")
+                        {
+                            cout << "Cancelling..." << endl;
+                        }
+                    }
+
                 }
                 else if(nextCommand == "comp")
                 {
@@ -200,7 +252,8 @@ void UserInterface::run()
         }
         else if (command == "search")
         {
-            search();
+            vector<Scientist> printVector = search();
+            cout << printVector;
         }
         else if (command == "connect")
         {
@@ -569,7 +622,7 @@ void UserInterface::list()
     } while(listCommand != "all" && listCommand != "sci" && listCommand != "comp" && listCommand != "con" && listCommand != "b"  && listCommand != "c");
 }
 
-void UserInterface::search()
+vector<Scientist> UserInterface::search()
 {
     string command;
     do
@@ -667,7 +720,7 @@ void UserInterface::search()
             
             //If something is skipped than sends: "", 'O', NULL, NULL;
             vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
-            cout << vSci;
+            return vSci;
         }
         else if(command == "comp")
         {
