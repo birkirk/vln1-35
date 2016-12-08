@@ -455,13 +455,13 @@ void UserInterface::list()
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Scientists - in which order? --->" << endl;
-                cout << '\t' << "1." << '\t' << '\t' << "(alphabetical order)" << endl;
-                cout << '\t' << "2." << '\t' << '\t' << "(reversed alphabetical order)" << endl;
-                cout << '\t' << "3." << '\t' << '\t' << "(ascending age order)" << endl;
-                cout << '\t' << "4." << '\t' << '\t' << "(descending age order)" << endl;
+                cout << '\t' << "1." << '\t' << "(alphabetical order)" << endl;
+                cout << '\t' << "2." << '\t' << "(reversed alphabetical order)" << endl;
+                cout << '\t' << "3." << '\t' << "(ascending age order)" << endl;
+                cout << '\t' << "4." << '\t' << "(descending age order)" << endl;
                 cout << '\t' << "5." << '\t' << "(ascending death year order)" << endl;
                 cout << '\t' << "6." << '\t' << "(descending death year order)" << endl;
-                cout << '\t' << "b" << '\t' << '\t' << "(go back)" << endl;
+                cout << '\t' << "b"  << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
                 
@@ -588,8 +588,8 @@ void UserInterface::list()
                 cin.clear();
                 cin.ignore();
                 cout << endl << "<--- Connections - in which order? --->" << endl;
-                cout << '\t' << "1" << '\t' << "(scientists to computers)" << endl;
-                cout << '\t' << "2" << '\t' << "(computers to scientits)" << endl;
+                cout << '\t' << "1." << '\t' << "(scientists to computers)" << endl;
+                cout << '\t' << "2." << '\t' << "(computers to scientits)" << endl;
                 cout << '\t' << "b" << '\t' << "(go back)" << endl;
                 cout << "=> Command: ";
                 cin >> innerCommand;
