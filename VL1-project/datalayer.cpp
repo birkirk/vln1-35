@@ -437,7 +437,7 @@ vector<string> DataLayer::connectSci(int whichSci, vector<int> vWhichComp)
         whichComp = vWhichComp[i];
         string sWhichComp = to_string(whichComp);
         query = QSqlQuery(_db);
-        query.prepare("INSERT INTO scicomp (whichSci, whichComp, valid) VALUES(:scientistID, :computerID, :valid);");
+        query.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid);");
         query.bindValue(":scientistID", QString::number(whichSci));
         query.bindValue(":computerID", QString::number(whichComp));
         query.bindValue(":valid", QString::number(valid));
