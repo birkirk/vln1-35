@@ -382,6 +382,12 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
     return returnVector;
 }
 
+vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, string yearMade)
+{
+    vector<Computer> returnVector;
+    return returnVector;
+}
+
 void DataLayer::clearDataFile()
 {
     QSqlQuery query;

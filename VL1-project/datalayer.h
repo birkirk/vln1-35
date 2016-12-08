@@ -33,6 +33,7 @@ public:
 
     bool addComputer(string cName, string cType, bool cIfMade, char cYearMade);
     vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
+    vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
 
     void clearDataFile();
     void clearSci();

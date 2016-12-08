@@ -654,14 +654,14 @@ void UserInterface::search()
                 cin.clear();
                 cout << "Year of death: ";
 
-                getline(cin, death);
+                cin >> death;
                 if(death.length() == 0)
                 {
                     death = "";
                 }
             }
             
-            cout << "<--- Searching for scientist... --->" << endl << endl;
+            cout << "<--- Searching... --->" << endl << endl;
             
             //If something is skipped than sends: "", 'O', NULL, NULL;
             vector<Scientist> vSci = _service.searchSci(name, gender, born, death);
@@ -669,7 +669,67 @@ void UserInterface::search()
         }
         else if(command == "comp")
         {
+            string name, type, yearMade, ifMade, check;
+            cout << endl << "<--- Please enter information (it is OK to leave empty) --->" << endl;
             
+            //Get name
+            cin.clear();
+            cin.ignore();
+            cout << "Name: ";
+            getline(cin, name);
+            name[0] = toupper(name[0]);
+            if(name.length() == 0)
+            {
+                name = "";
+            }
+            
+            //Get type
+            cin.clear();
+            cout << "Type: ";
+            getline(cin, type);
+            type[0] = toupper(type[0]);
+            if(type.length() == 0)
+            {
+                type = "";
+            }
+            
+            do
+            {
+                cin.clear();
+                cout << "Was it ever made? (y/n) ";
+                cin >> check;
+                if(check != "Y" && check != "y" && check != "N" && check != "n" && check != "")
+                {
+                    cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
+                }
+                if(check == "Y" || check == "y")
+                {
+                    ifMade = "1";
+                }
+                else if(check == "N" || check == "n")
+                {
+                    ifMade = "0";
+                    yearMade = "";
+                    cin.clear();
+                    cin.ignore();
+                }
+            } while (check != "Y" && check != "y" && check != "N" && check != "n" && check != "");
+            
+            if(ifMade == "1")
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "Year made: ";
+                cin >> yearMade;
+                if(yearMade.length() == 0)
+                {
+                    yearMade = "";
+                }
+            }
+            
+            cout << "<--- Searching... --->" << endl << endl;
+            vector<Computer> aComputer = _service.searchComp(ifMade, name, type, yearMade);
+            cout << aComputer;
         }
         else if(command != "c")
         {

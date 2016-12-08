@@ -27,6 +27,12 @@ vector<Scientist> ServiceLayer::searchSci(string name, char gender, string born,
     return vSearched;
 }
 
+vector<Computer> ServiceLayer::searchComp(string ifMade, string name, string type, string yearMade)
+{
+    vector<Computer> vSearched = _dataL.searchComp(ifMade, name, type, yearMade);
+    return vSearched;
+}
+
 
 vector<Scientist> ServiceLayer::sciAlpha()
 {
