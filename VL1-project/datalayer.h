@@ -17,6 +17,9 @@ using namespace std;
 class DataLayer
 {
 public:
+    //Remove this later!!!
+    QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
+
     DataLayer();
     DataLayer(const QString& path);
     

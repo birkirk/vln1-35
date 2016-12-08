@@ -11,7 +11,11 @@ public:
     ServiceLayer();
     void addScientitst(Scientist aScientist);
     void addComputer(Computer aComputer);
+
+    bool deleteSci(Scientist newSci);
+
     void clearData(string com);
+
     
     vector<Scientist> sciAlpha();
     vector<Scientist> sciRalpha();

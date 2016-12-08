@@ -7,6 +7,12 @@ ServiceLayer::ServiceLayer()
 
 }
 
+bool ServiceLayer::deleteSci(Scientist newSci)
+{
+    bool returnBool = _dataL.deleteScientist(newSci);
+    return returnBool;
+}
+
 void ServiceLayer::addScientitst(Scientist aScientist)
 {
     bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());
