@@ -221,7 +221,7 @@ void UserInterface::addSci()
     string name, sGender, sStillAlive;
     char gender, stillAlive;
     int born, death;
-    cout << endl << "<--- Add a scientist --->" << endl;
+    cout << endl << endl << "<--- Add a scientist --->" << endl;
     
     do
     {
@@ -312,7 +312,7 @@ void UserInterface::addComp()
     char check;
     bool ifMade = false;
     int yearMade;
-    cout << endl << "<--- Add a computer --->" << endl;
+    cout << endl << endl << "<--- Add a computer --->" << endl;
     do
     {
         cin.clear();
@@ -836,12 +836,12 @@ void UserInterface::clear()
             cin >> innerCommand;
             if(innerCommand == "y" || innerCommand == "Y")
             {
-                cout << "!--- YES selsected - Scientist database will be cleared ---!" << endl;
+                cout << "!--- YES selsected - Scientist database will be cleared ---!" << endl << endl;
                 _service.clearData("sci");
             }
             else if(innerCommand == "n" || innerCommand == "N")
             {
-                cout << "!--- NO selected - Data will not be cleared ---!" << endl;
+                cout << "!--- NO selected - Data will not be cleared ---!" << endl << endl;
             }
             else
             {
@@ -855,12 +855,12 @@ void UserInterface::clear()
             cin >> innerCommand;
             if(innerCommand == "y" || innerCommand == "Y")
             {
-                cout << "!--- YES selected - Scientist database will be cleared ---!" << endl;
+                cout << "!--- YES selected - Scientist database will be cleared ---!" << endl << endl;
                 _service.clearData("comp");
             }
             else if(innerCommand == "n" || innerCommand == "N")
             {
-                cout << "!--- NO selected - Data will not be cleared ---!" << endl;
+                cout << "!--- NO selected - Data will not be cleared ---!" << endl << endl;
             }
             else
             {
@@ -874,12 +874,12 @@ void UserInterface::clear()
             cin >> innerCommand;
             if(innerCommand == "y" || innerCommand == "Y")
             {
-                cout << "!--- YES selected - Database will be cleared ---!" << endl;
+                cout << "!--- YES selected - Database will be cleared ---!" << endl << endl;
                 _service.clearData("all");
             }
             else if(innerCommand == "n" || innerCommand == "N")
             {
-                cout << "!--- NO selected - Database will not be cleared ---!" << endl;
+                cout << "!--- NO selected - Database will not be cleared ---!" << endl << endl;
             }
             else
             {
@@ -895,7 +895,7 @@ void UserInterface::clear()
             cout << endl;
         }
         
-    } while(command != "c" && command != "C" && command != "y" && command != "Y" && command != "n" && command != "N");
+    } while(command != "c" && command != "C" && innerCommand != "y" && innerCommand != "Y" && innerCommand != "n" && innerCommand != "N");
 }
 
 void UserInterface::connect()
@@ -937,11 +937,13 @@ void UserInterface::connect()
                 }
             } while(toWhichComp != 0);
             
+            cout << endl << "<--- Trying to connect... --->" << endl;
             vector<string> whatHappened = _service.connectSci(whichSci, vWhichComp);
             for(size_t i = 0; i < whatHappened.size(); i++)
             {
                 cout << whatHappened[i] << endl;
             }
+            cout << endl;
         }
         else if(command == "comp")
         {
@@ -967,11 +969,13 @@ void UserInterface::connect()
                 }
             } while(toWhichSci != 0);
             
+            cout << endl << "<--- Trying to connect... --->" << endl;
             vector<string> whatHappened = _service.connectComp(whichComp, vWhichSci);
             for(size_t i = 0; i < whatHappened.size(); i++)
             {
                 cout << whatHappened[i] << endl;
             }
+            cout << endl;
         }
         else if (command != "sci" && command != "comp" && command != "c")
         {

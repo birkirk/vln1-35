@@ -57,11 +57,12 @@ DataLayer::DataLayer()
                             " 'valid' DOUBLE NOT NULL  DEFAULT 1)");
         createQuery.exec();
 
-        createQuery.prepare("CREATE TABLE scicomp(scientistID INTEGER ,"
-                            "computerID INTEGER, "
+        createQuery.prepare("CREATE TABLE scicomp('scientistID' INTEGER ,"
+                            "'computerID' INTEGER, "
                             "'valid' BOOL NOT NULL  DEFAULT 1,"
                             " FOREIGN KEY(scientistID) REFERENCES Scientists(ID) ON DELETE CASCADE,"
                             " FOREIGN KEY(computerID) REFERENCES Computers(ID) ON DELETE CASCADE)");
+        createQuery.exec();
     }
 }
 
@@ -425,16 +426,38 @@ void DataLayer::clearComp()
 
 vector<string> DataLayer::connectSci(int whichSci, vector<int> vWhichComp)
 {
+    int valid = 1;
+    int whichComp;
+    string sWhichSci = to_string(whichSci);
     vector<string> errorCheck;
-    errorCheck.push_back("bla");
     //VANTAR. Nota þetta: insert into scicomp (dalkur,dalkur,valid) VALUES (:,:) og bindvalue
+    QSqlQuery query;
+    for(size_t i = 0; i < vWhichComp.size(); i++)
+    {
+        whichComp = vWhichComp[i];
+        string sWhichComp = to_string(whichComp);
+        query = QSqlQuery(_db);
+        query.prepare("INSERT INTO scicomp (whichSci, whichComp, valid) VALUES(:scientistID, :computerID, :valid);");
+        query.bindValue(":scientistID", QString::number(whichSci));
+        query.bindValue(":computerID", QString::number(whichComp));
+        query.bindValue(":valid", QString::number(valid));
+        if(query.exec())
+        {
+            errorCheck.push_back("'" + sWhichSci + "' was successfully added to '" + sWhichComp + "'");
+        }
+        else
+        {
+            errorCheck.push_back("Could not add '" + sWhichSci + "' to '" + sWhichComp + "'");
+        }
+
+    }
+
     return errorCheck;
 }
 
 vector<string> DataLayer::connectComp(int whichComp, vector<int> vWhichSci)
 {
     vector<string> errorCheck;
-    errorCheck.push_back("bla bla");
     return errorCheck;
 }
 
