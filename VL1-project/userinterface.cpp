@@ -225,7 +225,6 @@ void UserInterface::addSci()
     
     do
     {
-        cin.ignore();
         cin.clear();
         cout << "Name: ";
         getline(cin, name);
