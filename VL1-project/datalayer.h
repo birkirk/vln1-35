@@ -35,6 +35,7 @@ public:
     bool addScientist(string sName, int sYearOfBirth, char sGender);
 
     bool deleteScientist(Scientist newSci);
+    bool deleteComputer(Computer newComp);
     
     vector<string> connectSci(int whichSci, vector<int> vWhichComp);
     vector<string> connectComp(int whichComp, vector<int> vWhichSci);

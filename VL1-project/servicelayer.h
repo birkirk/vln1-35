@@ -14,6 +14,7 @@ public:
     bool closeData();
 
     bool deleteSci(Scientist newSci);
+    bool deleteComp(Computer newComp);
 
     void clearData(string com);
     vector<int> getConnections();
