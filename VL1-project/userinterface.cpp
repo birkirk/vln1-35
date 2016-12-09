@@ -13,7 +13,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
     if(vScientist.size() != 0)
     {
         cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
-        cout << "------------------------------------------------------------------------" << endl;
+        cout << "-------------------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vScientist.size(); i++)
         {
             string name = vScientist[i].getName();
@@ -71,7 +71,7 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
     if(vComputers.size() != 0)
     {
         cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
-        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "----------------------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vComputers.size(); i++)
         {
             string name = vComputers[i].getName();
@@ -80,19 +80,40 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             string type = vComputers[i].getType();
 
             out << " " << i+1 << '\t';
+            int max = 0;
+            out << name;
 
+
+            int tabNum = 4 - (name.length()/8);
+            for(int i = 0; i < tabNum; i++)
+            {
+                out << '\t';
+            }
+            out << type;
+
+            tabNum = 2 - (type.length()/8);
+            for(int i = 0; i < tabNum; i++)
+            {
+                out << '\t';
+            }
+            if(made) out << "YES";
+            else out << "NO";
+
+            out << '\t' << '\t' << yearMade;
+            out << endl;
+            /*
             //check how many tabs is best to use after name:
             if(name.length() < firstTabLimit)
             {
-                out << name << '\t' << '\t' << '\t' << '\t' << '\t';
+                out << "Lengd 1" << name << '\t' << '\t' << '\t' << '\t' << '\t';
             }
             else if(name.length() >= firstTabLimit && name.length() < secondTabLimit)
             {
-                out << name << '\t' << '\t' << '\t' << '\t';
+                out << name<< "LENGD 2" << '\t' << '\t' << '\t' << '\t';
             }
             else
             {
-                out << name << '\t' << '\t' << '\t';
+                out << name << "Lengd3"<< '\t' << '\t' << '\t';
             }
 
             if(type.length() < firstTabLimit)
@@ -105,12 +126,13 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             }
             if(made)
             {
-                out << "Yes" << '\t' << '\t' << yearMade << endl;
+                out << '\t' <<"Yes" << '\t' << '\t' << yearMade << endl;
             }
             else
             {
-                out << "No" << '\t' << '\t' << "----" << endl;
+                out << '\t' <<"No" << '\t' << '\t' << "----" << endl;
             }
+            */
         }
     }
     else
