@@ -169,6 +169,10 @@ void ServiceLayer::clearData(string com)
     {
         _dataL.clearComp();
     }
+    else if(com == "con")
+    {
+        _dataL.clearCon();
+    }
 }
 
 vector<int> ServiceLayer::getConnections() {
