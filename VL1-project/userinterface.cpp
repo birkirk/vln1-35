@@ -1296,7 +1296,7 @@ void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vCom
             usedComp.push_back(vCon[(2 * i)+1]);
         }
     }
-    cout << "Computer" << '\t' << '\t' << "||" << '\t' << '\t' << "Scientists connected to the computer" << endl;
+    cout << endl << "Computer" << '\t' << '\t' << "||" << '\t' << '\t' << "Scientists connected to the computer" << endl;
     cout << "-----------------------------------------------------------" << endl;
     for(size_t i = 0; i < usedComp.size(); i++)
     {
@@ -1340,7 +1340,8 @@ void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vCom
             usedSci.push_back(vCon[i*2]);
         }
     }
-    cout << "Scientist" << '\t' << '\t' << "||" << '\t' << '\t' << "Computers connected to the scientist" << endl;
+    for(size_t i = 0; i < usedSci.size(); i++) {cout << vSci[usedSci[i]].getName() << endl;}
+    cout << endl << "Scientist" << '\t' << '\t' << "||" << '\t' << '\t' << "Computers connected to the scientist" << endl;
     cout << "-----------------------------------------------------------" << endl;
     for(size_t i = 0; i < usedSci.size(); i++)
     {
