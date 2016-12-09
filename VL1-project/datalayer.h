@@ -18,7 +18,7 @@ class DataLayer
 {
 public:
     //Remove this later!!!
-    QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
+    //QSqlQuery findScientists(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
 
     DataLayer();
     DataLayer(const QString& path);
@@ -30,17 +30,16 @@ public:
     vector<int> getCon();
     void writeFile(vector<Scientist> vScientist);
 
-    bool addScientist(string sName, int sYearOfBirth, int sYearOfDeath, char sGender);
+    bool addScientist(Scientist sci);
 
-    bool addScientist(string sName, int sYearOfBirth, char sGender);
+    //bool addScientist(string sName, int sYearOfBirth, char sGender);
 
     bool deleteScientist(Scientist newSci);
     bool deleteComputer(Computer newComp);
     
-    vector<string> connectSci(int whichSci, vector<int> vWhichComp);
-    vector<string> connectComp(int whichComp, vector<int> vWhichSci);
+    void connect(Scientist newSci, Computer newComp);
 
-    bool addComputer(string cName, string cType, bool cIfMade, int cYearMade);
+    bool addComputer(Computer comp);
     vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
     vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
 
@@ -48,6 +47,9 @@ public:
     void clearSci();
     void clearComp();
     void clearCon();
+
+    vector<int> findConnectedComp(int i);
+    vector<int> findConnectedSci(int i);
 private:
     QSqlDatabase _db;
 };

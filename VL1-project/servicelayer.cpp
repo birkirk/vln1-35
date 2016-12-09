@@ -27,13 +27,13 @@ bool ServiceLayer::deleteComp(Computer newComp)
 
 bool ServiceLayer::addScientitst(Scientist aScientist)
 {
-    bool success = _dataL.addScientist(aScientist.getName(), aScientist.getBirth(), aScientist.getDeath(), aScientist.getGender());
+    bool success = _dataL.addScientist(aScientist);
     return success;
 }
 
 bool ServiceLayer::addComputer(Computer aComputer)
 {
-    bool success = _dataL.addComputer(aComputer.getName(), aComputer.getType(), aComputer.getIfMade(), aComputer.getYearMade());
+    bool success = _dataL.addComputer(aComputer);
     return success;
 }
 
@@ -169,6 +169,10 @@ void ServiceLayer::clearData(string com)
     {
         _dataL.clearComp();
     }
+    else if(com == "con")
+    {
+        _dataL.clearCon();
+    }
 }
 
 vector<int> ServiceLayer::getConnections() {
@@ -178,17 +182,29 @@ vector<int> ServiceLayer::getConnections() {
 
 vector<string> ServiceLayer::connectSci(int whichSci, vector<int> vWhichComp)
 {
-    vector<string> wHappened = _dataL.connectSci(whichSci, vWhichComp);
+    vector<string> wHappened;// = _dataL.connectSci(whichSci, vWhichComp);
     return wHappened;
 }
 
 vector<string> ServiceLayer::connectComp(int whichComp, vector<int> vWhichSci)
 {
-    vector<string> wHappened = _dataL.connectComp(whichComp, vWhichSci);
+    vector<string> wHappened;// = _dataL.connectComp(whichComp, vWhichSci);
     return wHappened;
 }
 
-
+vector<int> ServiceLayer::receiveCon(int usedid, string which)
+{
+    vector<int>allCon;
+    if(which == "computer")
+    {
+        allCon = _dataL.findConnectedSci(usedid);
+    }
+    else if(which == "scientist")
+    {
+        allCon = _dataL.findConnectedComp(usedid);
+    }
+    return allCon;
+}
 
 
 
