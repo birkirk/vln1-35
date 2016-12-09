@@ -23,7 +23,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             char gender = vScientist[i].getGender();
             int born = vScientist[i].getBirth();
             int died = vScientist[i].getDeath();
-            string space, sGender;
+            string sGender;
 
             //check how many tabs is best to use after name:
             out << " " << i+1 << '\t';
@@ -84,7 +84,6 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             bool made = vComputers[i].getIfMade();
             int yearMade = vComputers[i].getYearMade();
             string type = vComputers[i].getType();
-            string space;
 
             out << " " << i+1 << '\t';
 
@@ -1319,7 +1318,7 @@ void UserInterface::printSciToComp()
                 }
                 else
                 {
-                    cout << "& " << connectedSci[j].getName();
+                    cout << " & " << connectedSci[j].getName();
                 }
 
             }
@@ -1357,7 +1356,7 @@ void UserInterface::printCompToSci()
                     }
                     else
                     {
-                        cout << "& " << connectedComp[j].getName();
+                        cout << " & " << connectedComp[j].getName();
                     }
                     cout << endl;
                 }
@@ -1366,54 +1365,6 @@ void UserInterface::printCompToSci()
             }
         }
         cout<< endl;
-
-    /*
-    cin.clear();
-    cin.ignore();
-    
-    const string which = "scientist";
-    bool hit;
-    vector<int> usedSci;
-    for(size_t i = 0; i < (vCon.size() / 2); i++)
-    {
-        hit = false;
-        for(size_t j = 0; j < usedSci.size(); j++)
-        {
-            if(usedSci[j] == vCon[(2 * i)])
-            {
-                hit = true;
-            }
-        }
-        if(!hit)
-        {
-            usedSci.push_back(vCon[(2 * i)]);
-        }
-    }
-    cout << endl << "Scientist" << '\t' << '\t' << "||" << '\t' << '\t' << "Computers connected to the scientist" << endl;
-    cout << "-----------------------------------------------------------" << endl;
-    for(size_t i = 0; i < usedSci.size(); i++)
-    {
-        cout << vSci[usedSci[i] - 1].getName() << '\t' << '\t' << "||" << '\t' << '\t';
-        
-        //vector<int> allConnected = _service.receiveCon(usedSci[i], which);
-
-        for(size_t j = 0; j < allConnected.size(); j++)
-        {
-
-            if(j == 0)
-            {
-                cout << allConnected[j]-1 << endl;
-               //cout << vComp[allConnected[j] - 1].getName();
-            }
-            else
-            {
-                cout << allConnected[j]-1 << endl;
-               //cout << " & " << vComp[allConnected[j] - 1].getName();
-            }
-        }
-        cout << endl;
-    }
-    cout<< endl;*/
 }
 
 

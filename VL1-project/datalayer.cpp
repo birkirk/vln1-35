@@ -582,7 +582,7 @@ vector<string> DataLayer::readManual()
     }
     else
     {
-        manual.push_back("Ahh.. Could not find and open readMe.txt, I guess you'll have to figure everything out on your own. Sorry...");
+        manual.push_back("Ahh.. Could not find and open readMe.txt, I guess you'll have manage without it. Sorry...");
     }
     return manual;
 }
