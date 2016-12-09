@@ -19,7 +19,9 @@ public:
     bool deleteComp(Computer newComp);
 
     void clearData(string com);
-    vector<int> getConnections();
+
+    vector<Computer> getConnectedComp(Scientist sci);
+    vector<Scientist> getConnectedSci(Computer comp);
     
     bool connect(Scientist Sci, Computer Comp);
 

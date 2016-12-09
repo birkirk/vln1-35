@@ -526,8 +526,7 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
 
     QSqlQuery updateQuery;
     updateQuery.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid)");
-    qDebug() << sciQuery.value(0);
-    qDebug() << compQuery.value(0);
+
 
     updateQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
     updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
@@ -537,34 +536,64 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
 
 }
 
-vector<int> DataLayer::findConnectedComp(int i)
+vector<Computer> DataLayer::findConnectedComp(Scientist sci)
 {
-    QSqlQuery searchQuery;
-    searchQuery.prepare("SELECT computerID FROM scicomp WHERE scientistID = (:ID) AND valid = (:valid)");
-    searchQuery.bindValue(":ID", QString::number(i));
-    searchQuery.bindValue(":valid", QString::number(1));
-    searchQuery.exec();
-    vector<int> returnVector;
-    while(searchQuery.next())
+    QSqlQuery sciQuery = findScientists(sci);
+
+    QSqlQuery sciCompQuery;
+    sciCompQuery.prepare("SELECT computerID FROM scicomp WHERE scientistID = (:ID) AND valid = 1");
+    sciCompQuery.bindValue(":ID", sciQuery.value(0).toInt());
+    sciCompQuery.exec();
+
+    vector<Computer> returnVector;
+    while(sciCompQuery.next())
     {
-        int use = searchQuery.value(0).toInt();
-        returnVector.push_back(use);
+        QSqlQuery compQuery;
+        compQuery.prepare("SELECT name, ifMade, yearMade, type FROM Computers WHERE ID = (:ID)");
+        compQuery.bindValue(":ID", sciCompQuery.value(0).toInt());
+        compQuery.exec();
+        compQuery.first();
+        QString qName = compQuery.value(0).toString();
+        string name = qName.toStdString();
+        QString qType = compQuery.value(3).toString();
+        string type = qType.toStdString();
+
+
+
+        Computer newComp(compQuery.value(1).toInt(), name, type, compQuery.value(3).toInt());
+        returnVector.push_back(newComp);
     }
     return returnVector;
 }
 
-vector<int> DataLayer::findConnectedSci(int i)
+vector<Scientist> DataLayer::findConnectedSci(Computer comp)
 {
-    QSqlQuery searchQuery;
-    searchQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:scientistID) AND valid = (:valid)");
-    searchQuery.bindValue(":scientistID", QString::number(i));
-    searchQuery.bindValue(":valid", QString::number(1));
-    searchQuery.exec();
-    vector<int> returnVector;
-    while(searchQuery.next())
+    QSqlQuery compQuery = findComputers(comp);
+
+    QSqlQuery sciCompQuery;
+    sciCompQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:ID)");
+    sciCompQuery.bindValue(":ID", compQuery.value(0).toInt());
+    sciCompQuery.exec();
+
+    vector<Scientist> returnVector;
+    while(sciCompQuery.next())
     {
-        int use = searchQuery.value(0).toInt();
-        returnVector.push_back(use);
+
+        QSqlQuery sciQuery;
+        sciQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists WHERE ID = (:ID)");
+        sciQuery.bindValue(":ID", sciCompQuery.value(0).toInt());
+
+        sciQuery.exec();
+        sciQuery.first();
+        QString qName = sciQuery.value(0).toString();
+        string name = qName.toStdString();
+        QString qGender = sciQuery.value(1).toString();
+        string sGender = qGender.toStdString();
+        char gender = sGender.at(0);
+
+
+        Scientist newSci(name, gender, sciQuery.value(2).toInt(), sciQuery.value(3).toInt());
+        returnVector.push_back(newSci);
     }
     return returnVector;
 }

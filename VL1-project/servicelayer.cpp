@@ -175,10 +175,7 @@ void ServiceLayer::clearData(string com)
     }
 }
 
-vector<int> ServiceLayer::getConnections() {
-    vector<int> vConnections = _dataL.getCon();
-    return vConnections;
-}
+
 
 bool ServiceLayer::connect(Scientist sci, Computer comp)
 {
@@ -188,18 +185,16 @@ bool ServiceLayer::connect(Scientist sci, Computer comp)
 
 
 
-vector<int> ServiceLayer::receiveCon(int usedid, string which)
+vector<Scientist> ServiceLayer::getConnectedSci(Computer comp)
 {
-    vector<int> allCon;
-    if(which == "computer")
-    {
-        allCon = _dataL.findConnectedSci(usedid);
-    }
-    else if(which == "scientist")
-    {
-        allCon = _dataL.findConnectedComp(usedid);
-    }
-    return allCon;
+    vector<Scientist> returnVector = _dataL.findConnectedSci(comp);
+    return returnVector;
+}
+
+vector<Computer> ServiceLayer::getConnectedComp(Scientist sci)
+{
+    vector<Computer> returnVector = _dataL.findConnectedComp(sci);
+    return returnVector;
 }
 
 
