@@ -198,13 +198,31 @@ void UserInterface::run()
                     while(iChoice < 0 || iChoice > deletedSci.size() || iChoice == 0)
                     {
                         cout << "Invalid input, try again!: ";
-                        getline(cin, command);
-                        iChoice = atoi(command.c_str());
+                        getline(cin, innerCommand);
+                        iChoice = atoi(innerCommand.c_str());
                     }
                     cout << "<--- Retrieving scientist! --->";
                     _service.recycleSci(deletedSci[iChoice-1]);
 
 
+                }
+                else if(command == "comp")
+                {
+                    vector<Computer> deletedComp = _service.getDeletedComp();
+                    cout << deletedComp << endl;
+
+                    cout << "<--- Select Scientist --->" << endl;
+                    string innerCommand;
+                    getline(cin, innerCommand);
+                    int iChoice = atoi(innerCommand.c_str());
+                    while(iChoice < 0 || iChoice > deletedComp.size() || iChoice == 0)
+                    {
+                        cout << "Invalid input, try again!: ";
+                        getline(cin, innerCommand);
+                        iChoice = atoi(innerCommand.c_str());
+                    }
+                    cout << "<--- Retrieving computer! --->";
+                    _service.recycleComp(deletedComp[iChoice-1]);
                 }
             } while(command != "sci" && command != "comp" && command != "c");
         }
