@@ -14,7 +14,6 @@ int main()
     //Runs Group 35 Display
     ui.info();
     
-    //Runs main program
     ui.run();
 
     return 0;

@@ -1277,11 +1277,13 @@ void UserInterface::deleteSom()
 //Prints out the user manual 'readme.txt' in the console
 void UserInterface::readMe()
 {
+    cout << endl;
     vector<string> read = _service.getManual();
     for(size_t i = 0; i < read.size(); i++)
     {
         cout << read[i] << endl;
     }
+    cout << endl;
 }
 
 void UserInterface::info()
