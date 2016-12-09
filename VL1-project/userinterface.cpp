@@ -101,38 +101,7 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
 
             out << '\t' << '\t' << yearMade;
             out << endl;
-            /*
-            //check how many tabs is best to use after name:
-            if(name.length() < firstTabLimit)
-            {
-                out << "Lengd 1" << name << '\t' << '\t' << '\t' << '\t' << '\t';
-            }
-            else if(name.length() >= firstTabLimit && name.length() < secondTabLimit)
-            {
-                out << name<< "LENGD 2" << '\t' << '\t' << '\t' << '\t';
-            }
-            else
-            {
-                out << name << "Lengd3"<< '\t' << '\t' << '\t';
-            }
 
-            if(type.length() < firstTabLimit)
-            {
-                out << type << '\t' << '\t' << '\t';
-            }
-            else
-            {
-                out << type << 't';
-            }
-            if(made)
-            {
-                out << '\t' <<"Yes" << '\t' << '\t' << yearMade << endl;
-            }
-            else
-            {
-                out << '\t' <<"No" << '\t' << '\t' << "----" << endl;
-            }
-            */
         }
     }
     else
