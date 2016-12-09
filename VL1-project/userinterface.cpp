@@ -140,6 +140,7 @@ void UserInterface::run()
         cout << '\t' << "search" << '\t' << '\t' << "(to search in the list)" << endl;
         cout << '\t' << "connect" << '\t' << '\t' << "(to connect scientists and computers)" << endl;
         cout << '\t' << "clear" << '\t' << '\t' << "(to empty the entire database)" << endl;
+        cout << '\t' << "recycle" << '\t' << '\t' << "(to access deleted data)" << endl;
         cout << '\t' << "joke" << '\t' << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
         cout << '\t' << "manual" << '\t' << '\t' << "(to display 'readme.txt')" << endl;
         cout << '\t' << "q" << '\t' << '\t' << "(quit)" << endl;
@@ -175,7 +176,57 @@ void UserInterface::run()
                 }
             } while(nextCommand != "sci" && nextCommand != "comp" && nextCommand != "c");
         }
-        if (command == "delete")
+        else if (command == "recycle" || command == "rec")
+        {
+            do
+            {
+                cout << "<--- What would you like to retrieve? --->" << endl;
+                cout << '\t' << "sci" << '\t' << "(to retrieve a scientist from the recycle bin.)" << endl;
+                cout << '\t' << "comp" << '\t' << "(to retrieve a computer from the recycle bin.)" << endl;
+                cout << "=> Command: ";
+                cin.ignore();
+                getline(cin, command);
+                if(command == "sci")
+                {
+                    vector<Scientist> deletedSci = _service.getDeletedSci();
+                    cout << deletedSci << endl;
+                    cout << deletedSci.size();
+                    cout << "<--- Select Scientist --->" << endl;
+                    string innerCommand;
+                    getline(cin, innerCommand);
+                    int iChoice = atoi(innerCommand.c_str());
+                    while(iChoice < 0 || iChoice > deletedSci.size() || iChoice == 0)
+                    {
+                        cout << "Invalid input, try again!: ";
+                        getline(cin, innerCommand);
+                        iChoice = atoi(innerCommand.c_str());
+                    }
+                    cout << "<--- Retrieving scientist! --->";
+                    _service.recycleSci(deletedSci[iChoice-1]);
+
+
+                }
+                else if(command == "comp")
+                {
+                    vector<Computer> deletedComp = _service.getDeletedComp();
+                    cout << deletedComp << endl;
+
+                    cout << "<--- Select Scientist --->" << endl;
+                    string innerCommand;
+                    getline(cin, innerCommand);
+                    int iChoice = atoi(innerCommand.c_str());
+                    while(iChoice < 0 || iChoice > deletedComp.size() || iChoice == 0)
+                    {
+                        cout << "Invalid input, try again!: ";
+                        getline(cin, innerCommand);
+                        iChoice = atoi(innerCommand.c_str());
+                    }
+                    cout << "<--- Retrieving computer! --->";
+                    _service.recycleComp(deletedComp[iChoice-1]);
+                }
+            } while(command != "sci" && command != "comp" && command != "c");
+        }
+        else if (command == "delete" || command == "del")
         {
             deleteSom();
         }

@@ -122,11 +122,75 @@ bool DataLayer::closeDatabase()
     }
     return gotClosed;
 }
-/*
+
 vector<Scientist> DataLayer::getDeletedSci()
 {
+    QSqlQuery query;
+    query.prepare("SELECT name, yearOfBirth, yearOfDeath, gender FROM Scientists WHERE valid = 0");
+    query.exec();
 
-}*/
+    vector<Scientist> returnVector;
+    while(query.next())
+    {
+        QString qName = query.value(0).toString();
+        string name = qName.toStdString();
+
+        QString qGender = query.value(3).toString();
+        string sGender = qGender.toStdString();
+        char gender = sGender.at(0);
+        Scientist newSci(name, gender, query.value(1).toInt(), query.value(2).toInt());
+
+        returnVector.push_back(newSci);
+
+    }
+    return returnVector;
+}
+
+vector<Computer> DataLayer::getDeletedComp()
+{
+    QSqlQuery query;
+    query.prepare("SELECT name, ifMade, yearMade, type FROM Computers WHERE valid = 0");
+
+    vector<Computer> returnVector;
+    while(query.next())
+    {
+        QString qName = query.value(0).toString();
+        string name = qName.toStdString();
+
+        QString qType = query.value(3).toString();
+        string type = qType.toStdString();
+
+        Computer newComp(query.value(1).toInt(), name, type, query.value(2).toInt());
+
+        returnVector.push_back(newComp);
+
+    }
+    return returnVector;
+}
+
+bool DataLayer::recycleSci(Scientist sci)
+{
+    QSqlQuery sciQuery = findScientists(sci);
+
+    QSqlQuery query;
+    query.prepare("UPDATE Scientists SET valid = 1 WHERE id = (:ID)");
+    query.bindValue(":ID", sciQuery.value(0).toInt());
+    bool returnValue = query.exec();
+
+    return returnValue;
+}
+
+bool DataLayer::recycleComp(Computer comp)
+{
+    QSqlQuery compQuery = findComputers(comp);
+
+    QSqlQuery query;
+    query.prepare("UPDATE Computers SET valid = 1 WHERE id = (:ID)");
+    query.bindValue(":ID", compQuery.value(0).toInt());
+    bool returnValue = query.exec();
+
+    return returnValue;
+}
 
 void DataLayer::addType(string type)
 {

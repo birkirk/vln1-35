@@ -24,6 +24,12 @@ public:
     DataLayer(const QString& path);
     vector<string> getTypes();
 
+    bool recycleComp(Computer comp);
+    bool recycleSci(Scientist sci);
+
+    vector<Computer> getDeletedComp();
+    vector<Scientist> getDeletedSci();
+
     void addType(string type);
     vector<Scientist> readSci(string com);
     vector<Computer> readComp(string com);

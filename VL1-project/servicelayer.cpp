@@ -13,6 +13,29 @@ vector<string> ServiceLayer::getTypes()
     return returnVector;
 }
 
+vector<Computer> ServiceLayer::getDeletedComp()
+{
+    vector<Computer> returnVector = _dataL.getDeletedComp();
+    return returnVector;
+}
+
+bool ServiceLayer::recycleSci(Scientist sci)
+{
+    bool returnValue = _dataL.recycleSci(sci);
+    return returnValue;
+}
+bool ServiceLayer::recycleComp(Computer comp)
+{
+    bool returnValue = _dataL.recycleComp(comp);
+    return returnValue;
+}
+
+vector<Scientist> ServiceLayer::getDeletedSci()
+{
+    vector<Scientist> returnVector = _dataL.getDeletedSci();
+    return returnVector;
+}
+
 void ServiceLayer::addType(string type)
 {
     _dataL.addType(type);
