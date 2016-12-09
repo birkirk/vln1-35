@@ -145,6 +145,7 @@ void UserInterface::run()
         cout << '\t' << "connect" << '\t' << '\t' << "(to connect scientists and computers)" << endl;
         cout << '\t' << "clear" << '\t' << '\t' << "(to empty the entire database)" << endl;
         cout << '\t' << "joke" << '\t' << '\t' << "(Homo sapiens need to laugh for at least 17 minutes per day)" << endl;
+        cout << '\t' << "manual" << '\t' << '\t' << "(to display 'readme.txt')" << endl;
         cout << '\t' << "q" << '\t' << '\t' << "(quit)" << endl;
         cout << "=> Command: ";
         cin >> command;
@@ -237,7 +238,11 @@ void UserInterface::run()
         {
             info();
         }
-        else if (command != "q" && command != "add" && command != "list" && command != "delete" && command != "connect" && command != "search" && command != "clear" && command != "joke")
+        else if (command == "manual")
+        {
+            readMe();
+        }
+        else if (command != "manual" && command != "q" && command != "add" && command != "list" && command != "delete" && command != "connect" && command != "search" && command != "clear" && command != "joke")
         {
             cout << "!--- Please enter a valid command ---!" << endl << endl;
         }
@@ -1262,6 +1267,16 @@ void UserInterface::deleteSom()
             cout << endl;
         }
     } while(nextCommand != "sci" && nextCommand != "comp" && nextCommand != "c");
+}
+
+//Prints out the user manual 'readme.txt' in the console
+void UserInterface::readMe()
+{
+    vector<string> read = _service.getManual();
+    for(size_t i = 0; i < read.size(); i++)
+    {
+        cout << read[i] << endl;
+    }
 }
 
 void UserInterface::info()

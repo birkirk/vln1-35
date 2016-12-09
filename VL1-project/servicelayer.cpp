@@ -203,6 +203,12 @@ vector<int> ServiceLayer::receiveCon(int usedid, string which)
     return allCon;
 }
 
+vector<string> ServiceLayer::getManual()
+{
+    vector<string> manual = _dataL.readManual();
+    return manual;
+}
+
 
 
 

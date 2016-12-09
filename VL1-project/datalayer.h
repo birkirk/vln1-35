@@ -50,6 +50,7 @@ public:
 
     vector<int> findConnectedComp(int i);
     vector<int> findConnectedSci(int i);
+    vector<string> readManual();
 private:
     QSqlDatabase _db;
 };

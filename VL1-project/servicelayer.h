@@ -43,6 +43,8 @@ public:
     
     vector<Scientist> searchSci(string name, char gender, string born, string death);
     vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
+
+    vector<string> getManual();
 private:
     vector<Scientist> _vScientists;
     vector<Computer> _vComputer;

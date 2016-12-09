@@ -29,6 +29,7 @@ public:
     
     void generateJoke();
     void info();
+    void readMe();
 private:
     ServiceLayer _service;
 };

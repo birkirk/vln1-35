@@ -537,5 +537,20 @@ vector<int> DataLayer::findConnectedSci(int i)
     return returnVector;
 }
 
-
+vector<string> DataLayer::readManual()
+{
+    string line;
+    vector<string> manual;
+    ifstream myFile;
+    myFile.open("../readme.txt");
+    if(myFile)
+    {
+        while(getline(myFile,line))
+        {
+            manual.push_back(line);
+        }
+        myFile.close();
+    }
+    return manual;
+}
 
