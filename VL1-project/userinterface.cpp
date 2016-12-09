@@ -26,15 +26,15 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             out << " " << i+1 << '\t';
             if(name.length() < firstTabLimit)
             {
-                out << name << '\t' << '\t' << '\t';
+                out << name << '\t' << '\t' << '\t' << '\t';
             }
             else if(name.length() >= firstTabLimit && name.length() < secondTabLimit)
             {
-                out << name << '\t' << '\t';
+                out << name << '\t' << '\t' << '\t';
             }
             else
             {
-                out << name << '\t';
+                out << name << '\t' << '/t';
             }
 
             if(gender == 'm' || gender == 'M')
@@ -84,11 +84,11 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             //check how many tabs is best to use after name:
             if(name.length() < firstTabLimit)
             {
-                out << name << '\t' << '\t' << '\t';
+                out << name << '\t' << '\t' << '\t' << '\t';
             }
             else if(name.length() >= firstTabLimit && name.length() < firstTabLimit)
             {
-                out << name << '\t' << '\t';
+                out << name << '\t' << '\t' << '\t';
             }
             else
             {
@@ -97,7 +97,7 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
 
             if(type.length() < firstTabLimit)
             {
-                out << type << '\t' << '\t';
+                out << type << '\t' << '\t' << '\t';
             }
             else
             {
