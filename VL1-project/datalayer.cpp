@@ -72,14 +72,6 @@ DataLayer::DataLayer(const QString& path)
     _db = QSqlDatabase::addDatabase("QSQLITE");
     _db.setDatabaseName(path);
     _db.open();
-    if (!_db.open())
-    {
-       qDebug() << "Error: connection with database fail";
-    }
-    else
-    {
-       qDebug() << "Database: connection ok";
-    }
     
 }
 
@@ -100,17 +92,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
 {
 
     bool success = false;
-    /*
-    QString qName = QString::fromStdString(sName);
-    QSqlQuery countQuery;
-    countQuery.prepare("SELECT name, yearOfBirth FROM Scientists WHERE name = :name  AND yearOfBirth = :yearOfBirth;");
-    countQuery.bindValue(":name", qName);
-    countQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
-    countQuery.exec();
-    qDebug() << countQuery.lastError();
-
-    bool alreadyInDB = countQuery.next();
-    */
+    
     QSqlQuery countQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
     bool alreadyInDB = countQuery.next();
 
@@ -159,8 +141,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
         }
         else
         {
-            qDebug() << "Scientist not successfully added: ";
-            //qDebug() << query.lastError();
+            
         }
     }
     return success;
@@ -181,7 +162,7 @@ bool DataLayer::deleteComputer(Computer newComp)
     deleteQuery.prepare("UPDATE Computers SET valid = 0 WHERE ID = (:ID)");
     int a = query.value(0).toInt();
     deleteQuery.bindValue(":ID", a);
-    qDebug() << deleteQuery.exec();
+    deleteQuery.exec();
     bool returnValue = deleteQuery.exec();
     return returnValue;
 }
@@ -196,7 +177,7 @@ bool DataLayer::deleteScientist(Scientist newSci)
     deleteQuery.prepare("UPDATE Scientists SET valid = 0 WHERE ID = (:ID)");
     int a = query.value(0).toInt();
     deleteQuery.bindValue(":ID", a);
-    qDebug() << deleteQuery.exec();
+    deleteQuery.exec();
     bool returnValue = deleteQuery.exec();
     return returnValue;
 }
@@ -239,7 +220,7 @@ vector<Scientist> DataLayer::readSci(string com)
     while (query.next())
     {
         int valid = query.value(5).toInt();
-        if(valid == 1)
+        if(valid == 1 || com == "non")
         {
             QString name = query.value(1).toString();
             string theName = name.toStdString();
@@ -300,7 +281,7 @@ vector<Computer> DataLayer::readComp(string com)
     while (query.next())
     {
         int valid = query.value(5).toInt();
-        if(valid == 1)
+        if(valid == 1 || com == "non")
         {
             QString name = query.value(1).toString();
             string theName = name.toStdString();
@@ -472,7 +453,7 @@ vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, 
     
     
     vector<Computer> returnVector;
-    qDebug() << searchQuery.next();
+    searchQuery.next();
     while(searchQuery.next())
     {
 

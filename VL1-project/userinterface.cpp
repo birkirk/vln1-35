@@ -1065,7 +1065,7 @@ void UserInterface::deleteSom()
             if(returnVector.size() == 1)
             {
                 cout << returnVector;
-                cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n)";
+                cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n): ";
                 string inputString;
                 getline(cin, inputString);
                 while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
@@ -1076,10 +1076,11 @@ void UserInterface::deleteSom()
                 if(inputString == "y" || inputString == "Y")
                 {
                     _service.deleteSci(returnVector[0]);
+                    cout << endl;
                 }
                 else if(inputString == "n" || inputString == "N")
                 {
-                    cout << "Cancelling..." << endl;
+                    cout << "Cancelling..." << endl << endl;
                 }
                 
             }
@@ -1196,54 +1197,23 @@ void UserInterface::info()
 
 void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
 {
+    bool hit;
     vector<int> usedComp;
-    bool hit = false;
-    vector<int> vTemp;
-    // Puts those ComputerIDs that are in 'scicomp' table in usedComp.
-    for(size_t i = 0; i < vCon.size(); i++)
-    {
-        i++;
+    for(size_t i = 0; i < (vCon.size() / 2); i++) {
+        hit = false;
         for(size_t j = 0; j < usedComp.size(); j++)
         {
-            if(usedComp[j] == vCon[i])
+            if(usedComp[j] == vCon[(2 * i)+1])
             {
                 hit = true;
             }
         }
         if(!hit)
         {
-            usedComp.push_back(vCon[i]);
+            usedComp.push_back(vCon[(2 * i)+1]);
         }
     }
-    
-    cout << endl << "Computer" << '\t' << "==>" << '\t' << '\t' << "Scientist/s connected to computer" << endl;
-    cout << "--------------------------------------------------------------------------" << endl;
-
-    for(size_t i = 0; i < usedComp.size(); i++)
-    {
-        for(size_t j = 0; j < vCon.size(); j++)
-        {
-            j++;
-            if(usedComp[i] == vCon[j])
-            {
-                vTemp.push_back(vCon[j-1]);
-            }
-        }
-        cout << vComp[usedComp[i]].getName() << '\t' << "==>" << '\t' << '\t';
-        for(size_t s = 0; s < vTemp.size(); s++)
-        {
-            if(s == 0)
-            {
-                cout << vSci[vTemp[s]].getName();
-            }
-            else
-            {
-                cout << ", " << vSci[vTemp[s]].getName();
-            }
-        }
-        cout << endl;
-    }
-    cout << endl;
+    for(size_t i = 0; i < usedComp.size(); i++) {cout << usedComp[i] << endl;}
 }
 
 void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
