@@ -190,14 +190,14 @@ void UserInterface::run()
         {
             do
             {
+                cin.ignore();
                 cin.clear();
                 cout << endl << "<--- What would you like to search for? --->" << endl;
                 cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
                 cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
                 cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
                 cout << "=> Command: ";
-                cin.ignore();
-                getline(cin, command);
+                cin >> command;
                 if(command == "sci")
                 {
                     vector<Scientist> printVector = searchScientist();
