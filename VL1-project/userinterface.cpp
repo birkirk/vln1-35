@@ -261,6 +261,7 @@ void UserInterface::addSci()
 
     do
     {
+        cin.ignore();
         cin.clear();
         cout << "Name: ";
         getline(cin, name);
@@ -595,15 +596,15 @@ void UserInterface::list()
                 }
                 else if(innerCommand == "1" || innerCommand == "sciToComp")
                 {
-                    vector<Computer> vComp = _service.compAlpha();
-                    vector<Scientist> vSci = _service.sciAlpha();
+                    vector<Computer> vComp = _service.compGet();
+                    vector<Scientist> vSci = _service.sciGet();
                     vector<int> vCon = _service.getConnections();
                     printSciToComp(vSci, vComp, vCon);
                 }
                 else if(innerCommand == "2" || innerCommand == "compToSci")
                 {
-                    vector<Computer> vComp = _service.compAlpha();
-                    vector<Scientist> vSci = _service.sciAlpha();
+                    vector<Computer> vComp = _service.compGet();
+                    vector<Scientist> vSci = _service.sciGet();
                     vector<int> vCon = _service.getConnections();
                     printCompToSci(vSci, vComp, vCon);
                 }
@@ -966,7 +967,7 @@ void UserInterface::connect()
                     getline(cin, whichSci);
                     sWhichSci = atoi(whichSci.c_str());
                 }
-
+                
                 cout << "<--- List of Computers --->" << endl;
                 cout << vListComp;
                 cout << "To which computer/s? (ID number - TYPE q-TO QUIT) : ";
@@ -974,7 +975,7 @@ void UserInterface::connect()
                 do
                 {
                     getline(cin, toWhichComp);
-
+                    
                     if(toWhichComp != "c" && toWhichComp != "q")
                     {
                         while(toWhichComp.size() == 0)
@@ -994,7 +995,7 @@ void UserInterface::connect()
                         }
                     }
                 } while(toWhichComp != "c" && toWhichComp != "q");
-
+                
                 cout << endl << "<--- Trying to connect... --->" << endl;
                 vector<string> whatHappened = _service.connectSci(sWhichSci, vWhichComp);
                 for(size_t i = 0; i < whatHappened.size(); i++)
@@ -1002,7 +1003,7 @@ void UserInterface::connect()
                     cout << whatHappened[i] << endl;
                 }
                 cout << endl;
-
+                
             }
         }
         else if(command == "comp")
@@ -1010,13 +1011,17 @@ void UserInterface::connect()
             int whichComp, toWhichSci;
             vector<int> vWhichSci;
 
-            vector<Computer> vListComp = _service.compAlpha();
+            
+            vector<Computer> vListComp = _service.compGet();
+
             cout << endl << endl << "<--- List of Computers --->" << endl;
             cout << vListComp;
             cout << "Which computer would you like to connect a scientist to? (ID number) : ";
             cin >> whichComp;
 
-            vector<Scientist> vListSci = _service.sciAlpha();
+            
+            vector<Scientist> vListSci = _service.sciGet();
+
             cout << endl << "<--- List of scientists --->" << endl;
             cout << vListSci;
             cout << "To which scientist/s? (ID number - TYPE A 0 WHEN DONE) : ";
@@ -1065,7 +1070,7 @@ void UserInterface::deleteSom()
             if(returnVector.size() == 1)
             {
                 cout << returnVector;
-                cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n)";
+                cout << "Do you want to delete: " << returnVector[0].getName() << " (y/n): ";
                 string inputString;
                 getline(cin, inputString);
                 while(inputString != "y" && inputString != "Y" && inputString != "n" && inputString != "N")
@@ -1076,10 +1081,11 @@ void UserInterface::deleteSom()
                 if(inputString == "y" || inputString == "Y")
                 {
                     _service.deleteSci(returnVector[0]);
+                    cout << endl;
                 }
                 else if(inputString == "n" || inputString == "N")
                 {
-                    cout << "Cancelling..." << endl;
+                    cout << "Cancelling..." << endl << endl;
                 }
 
             }
@@ -1196,6 +1202,45 @@ void UserInterface::info()
 
 void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
 {
+
+    const string which = "computer";
+    bool hit = true;
+    vector<int> usedComp;
+    for(size_t i = 0; i < (vCon.size() / 2); i++) {
+        if(i != 0)
+        {
+            hit = false;
+        }
+        for(size_t j = 0; j < usedComp.size(); j++)
+        {
+            if(usedComp[j] == vCon[(2 * i)+1])
+            {
+                hit = true;
+            }
+        }
+        if(!hit)
+        {
+            usedComp.push_back(vCon[(2 * i)+1]);
+        }
+    }
+    cout << "Computer" << '\t' << '\t' << "||" << '\t' << '\t' << "Scientists connected to the computer" << endl;
+    cout << "-----------------------------------------------------------" << endl;
+    for(size_t i = 0; i < usedComp.size(); i++)
+    {
+        cout << vComp[usedComp[i]].getName() << '\t' << '\t' << "||" << '\t' << '\t';
+        vector<int> allConnected = _service.receiveCon(usedComp[i], which);
+        for(size_t j = 0; j < allConnected.size(); j++)
+        {
+            if(j == 0)
+            {
+                cout << vSci[allConnected[i]].getName();
+            }
+            else
+            {
+                cout << ",  " << vSci[allConnected[i]].getName();
+            }
+        }
+    }
 
 }
 

@@ -12,6 +12,8 @@ public:
     bool addScientitst(Scientist aScientist);
     bool addComputer(Computer aComputer);
     bool closeData();
+    
+    vector<int> receiveCon(int usedid, string which);
 
     bool deleteSci(Scientist newSci);
     bool deleteComp(Computer newComp);
@@ -22,6 +24,8 @@ public:
     vector<string> connectSci(int whichSci, vector<int> vWhichComp);
     vector<string> connectComp(int whichComp, vector<int> vWhichSci);
 
+    vector<Scientist> sciGet();
+    vector<Computer> compGet();
     
     vector<Scientist> sciAlpha();
     vector<Scientist> sciRalpha();
