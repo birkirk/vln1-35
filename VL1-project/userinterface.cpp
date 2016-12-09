@@ -247,11 +247,11 @@ void UserInterface::run()
             bool ifClosed = _service.closeData();
             if(ifClosed)
             {
-                cout << endl << "Successfully closed the database!" << endl;
+                cout << endl << "Successfully closed the database!" << endl << endl;
             }
             else
             {
-                cout << endl << "Error, can't close something that isn't open!" << endl;
+                cout << endl << "Error, can't close something that isn't open!" << endl << endl;
             }
         }
     } while (command != "q");

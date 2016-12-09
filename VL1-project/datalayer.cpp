@@ -114,9 +114,7 @@ DataLayer::DataLayer(const QString& path)
 bool DataLayer::closeDatabase()
 {
     bool gotClosed = false;
-    _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("../ScienceData.sqlite");
-    if(_db.open())
+    if(_db.isOpen())
     {
         _db.close();
         gotClosed = true;
