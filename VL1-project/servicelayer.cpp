@@ -188,7 +188,18 @@ vector<string> ServiceLayer::connectComp(int whichComp, vector<int> vWhichSci)
     return wHappened;
 }
 
-
+vector<int> ServiceLayer::receiveCon(int usedid, string which)
+{
+    if(which == "computer")
+    {
+        vector<int> allCon = _dataL.findConnectedSci(usedid);
+    }
+    else if(which == "scientist")
+    {
+        vector<int> allCon = _dataL.findConnectedComp(usedid);
+    }
+    return allCon;
+}
 
 
 

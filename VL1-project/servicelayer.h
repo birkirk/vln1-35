@@ -12,6 +12,8 @@ public:
     bool addScientitst(Scientist aScientist);
     bool addComputer(Computer aComputer);
     bool closeData();
+    
+    vector<int> receiveCon(int usedid, string which);
 
     bool deleteSci(Scientist newSci);
     bool deleteComp(Computer newComp);
