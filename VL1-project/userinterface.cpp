@@ -1,5 +1,6 @@
 #include <iostream>
 #include "userinterface.h"
+#include "const.h"
 #include "scientist.h"
 #include <string>
 #include <vector>
@@ -51,7 +52,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             out << sGender << '\t' << '\t' << born << '\t' << '\t';
 
             //check if scientist has not died yet:
-            if(died == 3000)
+            if(died == yearsIfAlive)
             {
                 out << '?' << endl;
             }
@@ -187,31 +188,35 @@ void UserInterface::run()
         }
         else if (command == "search")
         {
-            cout << endl << "<--- What would you like to search for? --->" << endl;
-            cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
-            cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
-            cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
-            cout << "=> Command: ";
-            cin >> command;
-            if(command == "sci")
+            do
             {
-                vector<Scientist> printVector = searchScientist();
-                cout << printVector;
-            }
-            else if(command == "comp")
-            {
-                vector<Computer> printVector = searchComputer();
-                cout << printVector;
-            }
-            else if(command != "c")
-            {
-                cout << "!--- Not a valid command ---!" << endl;
-            }
-            else if(command == "c")
-            {
-                cout << endl;
-            }
-         while(command != "sci" && command != "comp" && command != "c");
+                cin.ignore();
+                cin.clear();
+                cout << endl << "<--- What would you like to search for? --->" << endl;
+                cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
+                cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
+                cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
+                cout << "=> Command: ";
+                cin >> command;
+                if(command == "sci")
+                {
+                    vector<Scientist> printVector = searchScientist();
+                    cout << printVector;
+                }
+                else if(command == "comp")
+                {
+                    vector<Computer> printVector = searchComputer();
+                    cout << printVector;
+                }
+                else if(command != "c")
+                {
+                    cout << "!--- Not a valid command ---!" << endl;
+                }
+                else if(command == "c")
+                {
+                    cout << endl;
+                }
+            } while(command != "sci" && command != "comp" && command != "c");
 
         }
         else if (command == "connect")
@@ -300,7 +305,7 @@ void UserInterface::addSci()
     {
         cin.clear();
         cin.ignore();
-        cout << "Is he/her still alive? (y/n) ";
+        cout << "Is he/she still alive? (y/n) ";
         cin >> sStillAlive;
         if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && !cin.fail())
         {
@@ -311,8 +316,8 @@ void UserInterface::addSci()
 
     if(stillAlive == 'Y' || stillAlive == 'y')
     {
-        //has to be high so that list be death is correct
-        death = 3000;
+        //has to be high so that list be death is correct, const are in const.h
+        death = yearsIfAlive;
     }
     else
     {
@@ -338,7 +343,7 @@ void UserInterface::addSci()
     }
     else
     {
-        cout << "!--- Scientist could not be added ---!" << endl << endl;
+        cout << "!--- Scientist could not be added - Already exists in database ---!" << endl << endl;
     }
 }
 
@@ -420,7 +425,7 @@ void UserInterface::addComp()
     }
     else
     {
-        cout << "!--- Computer could not be added ---!" << endl << endl;
+        cout << "!--- Computer could not be added - Already exists in database ---!" << endl << endl;
     }
 }
 
@@ -671,7 +676,7 @@ vector<Scientist> UserInterface::searchScientist()
         do
         {
             cin.clear();
-            cout << "Is he/her still alive? (y/n) ";
+            cout << "Is he/she still alive? (y/n) ";
             getline(cin, sStillAlive);
             if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
             {
@@ -690,7 +695,7 @@ vector<Scientist> UserInterface::searchScientist()
         if(stillAlive == 'Y' || stillAlive == 'y')
         {
             //has to be high so that list by death is correct
-            death = 3000;
+            death = yearsIfAlive;
         }
         else
         {
@@ -743,7 +748,7 @@ vector<Computer> UserInterface::searchComputer()
         {
             cin.clear();
             cout << "Was it ever made? (y/n) ";
-            cin >> check;
+            getline(cin, check);
             if(check != "Y" && check != "y" && check != "N" && check != "n" && check != "")
             {
                 cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
@@ -763,7 +768,6 @@ vector<Computer> UserInterface::searchComputer()
         if(ifMade == "1")
         {
             cin.clear();
-            cin.ignore();
             cout << "Year made: ";
             getline(cin, yearMade);
             if(yearMade.length() == 0)
@@ -1353,7 +1357,8 @@ void UserInterface::printCompToSci()
     const string which = "scientist";
     bool hit;
     vector<int> usedSci;
-    for(size_t i = 0; i < (vCon.size() / 2); i++) {
+    for(size_t i = 0; i < (vCon.size() / 2); i++)
+    {
         hit = false;
         for(size_t j = 0; j < usedSci.size(); j++)
         {

@@ -108,10 +108,8 @@ bool DataLayer::addScientist(Scientist sci)
 
     bool success = false;
 
-
     QSqlQuery countQuery = findScientists(sci);
-
-    bool alreadyInDB = countQuery.next();
+    bool alreadyInDB = countQuery.isValid();
 
     QSqlQuery query;
     if(!alreadyInDB)
@@ -130,40 +128,29 @@ bool DataLayer::addScientist(Scientist sci)
     return success;
 }
 
-/*
-bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
+bool DataLayer::addComputer(Computer comp)
 {
     bool success = false;
-
-    QString qName = QString::fromStdString(sName);
-    QSqlQuery countQuery;
-    countQuery.prepare("SELECT name, yearOfBirth FROM Scientists WHERE name = :name and yearOfBirth = :yearOfBirth;");
-    countQuery.bindValue(":name", qName);
-    countQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
-    countQuery.exec();
-    countQuery.lastError();
-    bool alreadyInDB = countQuery.next();
-
+    
+    QSqlQuery countQuery = findComputers(comp);
+    bool alreadyInDB = countQuery.isValid();
+    
     QSqlQuery query;
     if(!alreadyInDB)
     {
         query = QSqlQuery(_db);
-        query.prepare("INSERT INTO Scientists (name, yearOfBirth, gender) VALUES(:name, :yearOfBirth, :gender);");
-        query.bindValue(":name", qName);
-        query.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
-        query.bindValue(":gender", QString(QChar(sGender)));
+        query.prepare("INSERT INTO Computers (name, type, ifMade, yearMade) VALUES(:name, :type, :ifMade, :yearMade);");
+        query.bindValue(":name", QString::fromStdString(comp.getName()));
+        query.bindValue(":type", QString::fromStdString(comp.getType()));
+        query.bindValue(":ifMade", QString::number(comp.getIfMade()));
+        query.bindValue(":yearMade", QString:: number(comp.getYearMade()));
         if(query.exec())
         {
             success = true;
         }
-        else
-        {
-
-        }
     }
     return success;
 }
-*/
 
 bool DataLayer::deleteComputer(Computer newComp)
 {
@@ -194,7 +181,6 @@ bool DataLayer::deleteScientist(Scientist newSci)
     return returnValue;
 }
 
-//readSci() and readComp() read the database file in different orders, depending on "string com"
 vector<Scientist> DataLayer::readSci(string com)
 {
     vector<Scientist> tempV;
@@ -275,15 +261,15 @@ vector<Computer> DataLayer::readComp(string com)
     }
     else if(com == "made")
     {
-        query.exec("SELECT FROM Computers WHERE ifMade = 1");
+        query.exec("SELECT * FROM Computers WHERE ifMade = 1");
     }
     else if(com == "notmade")
     {
-        query.exec("SELECT FROM Computers WHERE ifMade = 0");
+        query.exec("SELECT * FROM Computers WHERE ifMade = 0");
     }
     else if(com == "type")
     {
-        query.exec("SELECT FROM Computers ORDER BY type");
+        query.exec("SELECT * FROM Computers ORDER BY type");
     }
     else if(com == "non")
     {
@@ -342,24 +328,6 @@ vector<int> DataLayer::getCon()
         }
     }
     return connected;
-}
-
-bool DataLayer::addComputer(Computer comp)
-{
-    bool success = false;
-    QSqlQuery query;
-
-    query = QSqlQuery(_db);
-    query.prepare("INSERT INTO Computers (name, type, ifMade, yearMade) VALUES(:name, :type, :ifMade, :yearMade);");
-    query.bindValue(":name", QString::fromStdString(comp.getName()));
-    query.bindValue(":type", QString::fromStdString(comp.getType()));
-    query.bindValue(":ifMade", QString::number(comp.getIfMade()));
-    query.bindValue(":yearMade", QString:: number(comp.getYearMade()));
-    if(query.exec())
-    {
-        success = true;
-    }
-    return success;
 }
 
 vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath)

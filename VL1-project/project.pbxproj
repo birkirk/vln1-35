@@ -134,6 +134,13 @@
 			sourceTree = "<absolute>";
 			lastKnownFileType = "sourcecode.c.h";
 		};
+		64940B294F2E05A944EFE67F = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/const.h";
+			name = "const.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
 		FCD9B6E2C8BE124264C8BA37 = {
 			isa = PBXFileReference;
 			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/userinterface.h";
@@ -167,6 +174,7 @@
 				"46DF96AC62E55FF7B40F2CB6",
 				"BF847FF066DE8C8DE44B88D4",
 				"A7D15FA2F9EDFE6E38E72B84",
+				"64940B294F2E05A944EFE67F",
 				"FCD9B6E2C8BE124264C8BA37");
 			name = "Sources";
 			sourceTree = "<group>";
