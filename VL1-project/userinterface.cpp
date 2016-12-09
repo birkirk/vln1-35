@@ -411,6 +411,7 @@ void UserInterface::addComp()
             cout << i+1 << '\t' << vTypes[i] << endl;
         }
         cout << "Enter 'a' to add a new type." << endl;
+        cout << "Type: ";
         string choice;
         getline(cin, choice);
         if(choice != "a" && choice != "A")
@@ -426,7 +427,7 @@ void UserInterface::addComp()
         {
             overTest = true;
             cin.clear();
-            cout << "Type: ";
+            cout << "Enter new type: ";
             getline(cin, type);
             type[0] = toupper(type[0]);
             bool existTest = false;
@@ -1068,7 +1069,7 @@ void UserInterface::connect()
                 
                 cout << "<--- List of Computers --->" << endl;
                 cout << vListComp;
-                cout << "To which computer/s? (ID number - TYPE q-TO QUIT) : ";
+                cout << "To which computer/s? (ID number - TYPE 'q' TO QUIT) : ";
                 int sToWhichComp;
                 do
                 {
@@ -1105,7 +1106,7 @@ void UserInterface::connect()
                 for(size_t i = 0; i < whatHappened.size(); i++)
                 {
 
-                    // TODO cout << whatHappened[i] << endl;
+                    cout << whatHappened[i] << endl;
                 }
                 cout << endl;
                 
@@ -1180,7 +1181,7 @@ void UserInterface::connect()
                 for(size_t i = 0; i < whatHappened.size(); i++)
                 {
 
-                    // TODO cout << whatHappened[i] << endl;
+                    cout << whatHappened[i] << endl;
                 }
                 cout << endl;
 
@@ -1369,7 +1370,7 @@ void UserInterface::printSciToComp()
     cin.clear();
     cin.ignore();
 
-    cout << endl << "Computer" << '\t' << '\t' << "||" << '\t' << '\t' << "Scientists connected to the computer" << endl;
+    cout << endl << endl << "Computer" << '\t' << '\t' << "||" << '\t' << '\t' << "Scientists connected to the computer" << endl;
     cout << "-----------------------------------------------------------" << endl;
     vector<Computer> computers = _service.compAlpha();
 
@@ -1413,7 +1414,7 @@ void UserInterface::printCompToSci()
     cin.clear();
     cin.ignore();
 
-    cout << endl << "Computer" << '\t' << '\t' << "||  " << "Scientists connected to the computer" << endl;
+    cout << endl << endl << "Computer" << '\t' << '\t' << "||  " << "Scientists connected to the computer" << endl;
     cout << "-----------------------------------------------------------" << endl;
     vector<Scientist> scientists = _service.sciAlpha();
 
