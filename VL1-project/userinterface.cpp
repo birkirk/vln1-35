@@ -1202,7 +1202,6 @@ void UserInterface::info()
 
 void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
 {
-
     const string which = "computer";
     bool hit = true;
     vector<int> usedComp;
@@ -1240,13 +1239,53 @@ void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vCom
                 cout << ",  " << vSci[allConnected[i]].getName();
             }
         }
+        cout << endl;
     }
-
+    cout<< endl;
 }
 
 void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
 {
-
+    const string which = "scientist";
+    bool hit = true;
+    vector<int> usedSci;
+    for(size_t i = 0; i < (vCon.size() / 2); i++) {
+        if(i != 0)
+        {
+            hit = false;
+        }
+        for(size_t j = 0; j < usedSci.size(); j++)
+        {
+            if(usedSci[j] == vCon[i*2])
+            {
+                hit = true;
+            }
+        }
+        if(!hit)
+        {
+            usedSci.push_back(vCon[i*2]);
+        }
+    }
+    cout << "Scientist" << '\t' << '\t' << "||" << '\t' << '\t' << "Computers connected to the scientist" << endl;
+    cout << "-----------------------------------------------------------" << endl;
+    for(size_t i = 0; i < usedSci.size(); i++)
+    {
+        cout << vSci[usedSci[i]].getName() << '\t' << '\t' << "||" << '\t' << '\t';
+        vector<int> allConnected = _service.receiveCon(usedSci[i], which);
+        for(size_t j = 0; j < allConnected.size(); j++)
+        {
+            if(j == 0)
+            {
+                cout << vComp[allConnected[i]].getName();
+            }
+            else
+            {
+                cout << ",  " << vComp[allConnected[i]].getName();
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 
 
