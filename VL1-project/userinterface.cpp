@@ -942,23 +942,9 @@ void UserInterface::connect()
             string whichSci, toWhichComp;
             vector<int> vWhichComp;
             
-<<<<<<< HEAD
-            vector<Scientist> vListSci = _service.sciGet();
-            cout << endl << "<--- List of scientists --->" << endl;
-            cout << vListSci;
-            cout << "Which scientist would you like to connect a computer to? (ID number) : ";
-            cin >> whichSci;
-            
-            vector<Computer> vListComp = _service.compGet();
-            cout << "<--- List of Computers --->" << endl;
-            cout << vListComp;
-            cout << "To which computer/s? (ID number - TYPE A 0 WHEN DONE) : ";
-            do
-=======
             vector<Scientist> vListSci = _service.sciAlpha();
             vector<Computer> vListComp = _service.compAlpha();
             if(vListSci.size() == 0 || vListComp.size() == 0)
->>>>>>> c6a0e8c4b242ee93f50e2501c02360d3e3b5bd01
             {
                 cout << endl <<"There ar no scientists and/or computers in the database!" << endl << "Aborting..." << endl;
             }
@@ -980,7 +966,7 @@ void UserInterface::connect()
                     getline(cin, whichSci);
                     sWhichSci = atoi(whichSci.c_str());
                 }
-
+                
                 cout << "<--- List of Computers --->" << endl;
                 cout << vListComp;
                 cout << "To which computer/s? (ID number - TYPE q-TO QUIT) : ";
@@ -988,7 +974,7 @@ void UserInterface::connect()
                 do
                 {
                     getline(cin, toWhichComp);
-
+                    
                     if(toWhichComp != "c" && toWhichComp != "q")
                     {
                         while(toWhichComp.size() == 0)
@@ -1008,7 +994,7 @@ void UserInterface::connect()
                         }
                     }
                 } while(toWhichComp != "c" && toWhichComp != "q");
-
+                
                 cout << endl << "<--- Trying to connect... --->" << endl;
                 vector<string> whatHappened = _service.connectSci(sWhichSci, vWhichComp);
                 for(size_t i = 0; i < whatHappened.size(); i++)
@@ -1016,7 +1002,7 @@ void UserInterface::connect()
                     cout << whatHappened[i] << endl;
                 }
                 cout << endl;
-
+                
             }
         }
         else if(command == "comp")
