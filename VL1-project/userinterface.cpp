@@ -1349,16 +1349,15 @@ void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vCom
         cout << vSci[usedSci[i] - 1].getName() << '\t' << '\t' << "||" << '\t' << '\t';
         
         vector<int> allConnected = _service.receiveCon(usedSci[i], which);
-        
         for(size_t j = 0; j < allConnected.size(); j++)
         {
             if(j == 0)
             {
-                cout << vComp[allConnected[j] - 1].getName();
+               cout << vComp[allConnected[j] - 1].getName();
             }
             else
             {
-                cout << " & " << vComp[allConnected[j] - 1].getName();
+               cout << " & " << vComp[allConnected[j] - 1].getName();
             }
         }
         cout << endl;
