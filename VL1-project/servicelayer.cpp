@@ -175,7 +175,8 @@ void ServiceLayer::clearData(string com)
     }
 }
 
-vector<int> ServiceLayer::getConnections() {
+vector<int> ServiceLayer::getConnections()
+{
     vector<int> vConnections = _dataL.getCon();
     return vConnections;
 }

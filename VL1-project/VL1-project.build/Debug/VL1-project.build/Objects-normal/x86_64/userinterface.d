@@ -212,4 +212,4 @@ dependencies: /Users/Birkir/Desktop/vln1-35/VL1-project/userinterface.cpp \
   ../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
   /Users/Birkir/Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
   ../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
-  ../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QFile
+  ../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QFile const.h

@@ -21,4 +21,5 @@ HEADERS += \
     scientist.h \
     computer.h \
     servicelayer.h \
+    const.h \
     userinterface.h

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "userinterface.h"
+#include "const.h"
 #include "scientist.h"
 #include <string>
 #include <vector>
@@ -51,7 +52,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             out << sGender << '\t' << '\t' << born << '\t' << '\t';
 
             //check if scientist has not died yet:
-            if(died == 3000)
+            if(died == yearsIfAlive)
             {
                 out << '?' << endl;
             }
@@ -311,8 +312,8 @@ void UserInterface::addSci()
 
     if(stillAlive == 'Y' || stillAlive == 'y')
     {
-        //has to be high so that list be death is correct
-        death = 3000;
+        //has to be high so that list be death is correct, const are in const.h
+        death = yearsIfAlive;
     }
     else
     {
@@ -338,7 +339,7 @@ void UserInterface::addSci()
     }
     else
     {
-        cout << "!--- Scientist could not be added ---!" << endl << endl;
+        cout << "!--- Scientist could not be added - Already exists in database ---!" << endl << endl;
     }
 }
 
@@ -420,7 +421,7 @@ void UserInterface::addComp()
     }
     else
     {
-        cout << "!--- Computer could not be added ---!" << endl << endl;
+        cout << "!--- Computer could not be added - Already exists in database ---!" << endl << endl;
     }
 }
 
@@ -690,7 +691,7 @@ vector<Scientist> UserInterface::searchScientist()
         if(stillAlive == 'Y' || stillAlive == 'y')
         {
             //has to be high so that list by death is correct
-            death = 3000;
+            death = yearsIfAlive;
         }
         else
         {
@@ -1282,7 +1283,8 @@ void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vCom
     const string which = "computer";
     bool hit;
     vector<int> usedComp;
-    for(size_t i = 0; i < (vCon.size() / 2); i++) {
+    for(size_t i = 0; i < (vCon.size() / 2); i++)
+    {
         hit = false;
         for(size_t j = 0; j < usedComp.size(); j++)
         {
@@ -1328,7 +1330,8 @@ void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vCom
     const string which = "scientist";
     bool hit;
     vector<int> usedSci;
-    for(size_t i = 0; i < (vCon.size() / 2); i++) {
+    for(size_t i = 0; i < (vCon.size() / 2); i++)
+    {
         hit = false;
         for(size_t j = 0; j < usedSci.size(); j++)
         {
