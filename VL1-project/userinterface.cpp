@@ -386,6 +386,7 @@ void UserInterface::addComp()
             if(iChoice != 0 && iChoice > 0 && iChoice <= vTypes.size())
             {
                 type = vTypes[iChoice-1];
+                overTest = true;
             }
         }
         else if(choice == "a" || choice == "A")

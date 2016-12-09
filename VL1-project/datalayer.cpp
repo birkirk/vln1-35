@@ -77,6 +77,7 @@ DataLayer::DataLayer()
                             "'valid' BOOL NOT NULL  DEFAULT 1,"
                             " FOREIGN KEY(scientistID) REFERENCES Scientists(ID) ON DELETE CASCADE,"
                             " FOREIGN KEY(computerID) REFERENCES Computers(ID) ON DELETE CASCADE)");
+        createQuery.exec();
 
         createQuery.prepare("CREATE TABLE 'types' "
                             "('ID' INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE ,"
@@ -123,6 +124,11 @@ bool DataLayer::closeDatabase()
     }
     return gotClosed;
 }
+/*
+vector<Scientist> DataLayer::getDeletedSci()
+{
+
+}*/
 
 void DataLayer::addType(string type)
 {
