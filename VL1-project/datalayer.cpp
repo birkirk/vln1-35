@@ -547,6 +547,7 @@ vector<int> DataLayer::findConnectedComp(int i)
     while(searchQuery.next())
     {
         returnVector.push_back(searchQuery.value(0).toInt());
+
     }
     return returnVector;
 }
