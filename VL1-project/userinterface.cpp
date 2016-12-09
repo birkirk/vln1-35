@@ -997,10 +997,17 @@ void UserInterface::connect()
                 } while(toWhichComp != "c" && toWhichComp != "q");
                 
                 cout << endl << "<--- Trying to connect... --->" << endl;
-                vector<string> whatHappened = _service.connectSci(sWhichSci, vWhichComp);
+                Scientist newSci(vListSci[sWhichSci-1].getName(), vListSci[sWhichSci-1].getGender(), vListSci[sWhichSci-1].getBirth(), vListSci[sWhichSci-1].getDeath());
+                vector<bool> whatHappened;
+                for(unsigned int i = 0; i < vWhichComp.size(); i++)
+                {
+                    whatHappened.push_back(_service.connect(newSci, vListComp[vWhichComp[i]-1]));
+
+                }
                 for(size_t i = 0; i < whatHappened.size(); i++)
                 {
-                    cout << whatHappened[i] << endl;
+
+                    // TODO cout << whatHappened[i] << endl;
                 }
                 cout << endl;
                 
@@ -1008,39 +1015,78 @@ void UserInterface::connect()
         }
         else if(command == "comp")
         {
-            int whichComp, toWhichSci;
+            string whichComp, toWhichSci;
             vector<int> vWhichSci;
 
-            
-            vector<Computer> vListComp = _service.compGet();
-
-            cout << endl << endl << "<--- List of Computers --->" << endl;
-            cout << vListComp;
-            cout << "Which computer would you like to connect a scientist to? (ID number) : ";
-            cin >> whichComp;
-
-            
-            vector<Scientist> vListSci = _service.sciGet();
-
-            cout << endl << "<--- List of scientists --->" << endl;
-            cout << vListSci;
-            cout << "To which scientist/s? (ID number - TYPE A 0 WHEN DONE) : ";
-            do
+            vector<Scientist> vListSci = _service.sciAlpha();
+            vector<Computer> vListComp = _service.compAlpha();
+            if(vListSci.size() == 0 || vListComp.size() == 0)
             {
-                cin >> toWhichSci;
-                if(toWhichSci != 0)
-                {
-                    vWhichSci.push_back(toWhichSci);
-                }
-            } while(toWhichSci != 0);
-
-            cout << endl << "<--- Trying to connect... --->" << endl;
-            vector<string> whatHappened = _service.connectComp(whichComp, vWhichSci);
-            for(size_t i = 0; i < whatHappened.size(); i++)
-            {
-                cout << whatHappened[i] << endl;
+                cout << endl <<"There ar no scientists and/or computers in the database!" << endl << "Aborting..." << endl;
             }
-            cout << endl;
+            else
+            {
+                cout << endl << "<--- List of computers --->" << endl;
+                cout << vListComp;
+                cout << "Which computers would you like to connect a scientist to? (ID number) : ";
+                cin.ignore();
+                getline(cin, whichComp);
+                while(whichComp.length() == 0)
+                {
+                    getline(cin, whichComp);
+                }
+                int sWhichComp = atoi(whichComp.c_str());
+                while(sWhichComp < 0 || sWhichComp > vListComp.size()+1 || sWhichComp == 0)
+                {
+                    cout << "Invalid input, try again!: ";
+                    getline(cin, whichComp);
+                    sWhichComp = atoi(whichComp.c_str());
+                }
+
+                cout << "<--- List of Scientists --->" << endl;
+                cout << vListSci;
+                cout << "To which scientist/s? (ID number - TYPE 'q' TO QUIT) : ";
+                int sToWhichSci;
+                do
+                {
+                    getline(cin, toWhichSci);
+
+                    if(toWhichSci != "c" && toWhichSci != "q")
+                    {
+                        while(toWhichSci.size() == 0)
+                        {
+                            getline(cin, toWhichSci);
+                        }
+                        sToWhichSci = atoi(toWhichSci.c_str());
+                        while(sToWhichSci < 0 || sToWhichSci > vListSci.size()+1 || sToWhichSci == 0)
+                        {
+                            cout << "Invalid input, try again!: ";
+                            getline(cin, toWhichSci);
+                            sToWhichSci = atoi(toWhichSci.c_str());
+                        }
+                        if(sToWhichSci != 0)
+                        {
+                            vWhichSci.push_back(sToWhichSci);
+                        }
+                    }
+                } while(toWhichSci != "c" && toWhichSci != "q");
+
+                cout << endl << "<--- Trying to connect... --->" << endl;
+                Computer newComp(vListComp[sWhichComp-1].getIfMade(), vListComp[sWhichComp-1].getName(), vListComp[sWhichComp-1].getType(), vListComp[sWhichComp-1].getYearMade());
+                vector<bool> whatHappened;
+                for(unsigned int i = 0; i < vWhichSci.size(); i++)
+                {
+                    whatHappened.push_back(_service.connect(vListSci[vWhichSci[i]-1], newComp));
+
+                }
+                for(size_t i = 0; i < whatHappened.size(); i++)
+                {
+
+                    // TODO cout << whatHappened[i] << endl;
+                }
+                cout << endl;
+
+            }
         }
         else if (command != "sci" && command != "comp" && command != "c")
         {
@@ -1118,6 +1164,10 @@ void UserInterface::deleteSom()
                     cout << "Cancelling..." << endl;
                 }
             }
+            else if(returnVector.size() == 0)
+            {
+                cout << "No such Scientist found!";
+            }
 
         }
         else if(nextCommand == "comp")
@@ -1172,6 +1222,10 @@ void UserInterface::deleteSom()
                 {
                     cout << "Cancelling..." << endl;
                 }
+            }
+            else if(returnVector.size() == 0)
+            {
+                cout << "No such computer found in the database!";
             }
         }
         else if(nextCommand != "c")

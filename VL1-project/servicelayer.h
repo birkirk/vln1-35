@@ -21,8 +21,7 @@ public:
     void clearData(string com);
     vector<int> getConnections();
     
-    vector<string> connectSci(int whichSci, vector<int> vWhichComp);
-    vector<string> connectComp(int whichComp, vector<int> vWhichSci);
+    bool connect(Scientist Sci, Computer Comp);
 
     vector<Scientist> sciGet();
     vector<Computer> compGet();

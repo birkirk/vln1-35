@@ -176,17 +176,13 @@ vector<int> ServiceLayer::getConnections() {
     return vConnections;
 }
 
-vector<string> ServiceLayer::connectSci(int whichSci, vector<int> vWhichComp)
+bool ServiceLayer::connect(Scientist sci, Computer comp)
 {
-    vector<string> wHappened;// = _dataL.connectSci(whichSci, vWhichComp);
-    return wHappened;
+    bool success = _dataL.connect(sci, comp);
+    return success;
 }
 
-vector<string> ServiceLayer::connectComp(int whichComp, vector<int> vWhichSci)
-{
-    vector<string> wHappened;// = _dataL.connectComp(whichComp, vWhichSci);
-    return wHappened;
-}
+
 
 vector<int> ServiceLayer::receiveCon(int usedid, string which)
 {

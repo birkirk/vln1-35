@@ -14,7 +14,9 @@ QSqlQuery findScientists(Scientist sci)
 
     QSqlQuery searchQuery;
     searchQuery.prepare("SELECT ID FROM Scientists"
-                        " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND gender LIKE '%'||:gender||'%'");
+                        " WHERE name LIKE '%'||:name||'%' "
+                        "AND yearOfBirth LIKE '%'||:yearOfBirth||'%' "
+                        "AND gender LIKE '%'||:gender||'%'");
     searchQuery.bindValue(":name", QString::fromStdString(sci.getName()));
     searchQuery.bindValue(":yearOfBirth", QString::number(sci.getBirth()));
     searchQuery.bindValue(":yearOfDeath", QString::number(sci.getDeath()));
@@ -156,7 +158,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
         }
         else
         {
-            
+
         }
     }
     return success;
@@ -287,7 +289,7 @@ vector<Computer> DataLayer::readComp(string com)
     {
         query.exec("SELECT * FROM Computers");
     }
-    
+
 
     while (query.next())
     {
@@ -517,18 +519,22 @@ void DataLayer::clearCon()
     query.exec("DELETE FROM scicomp");
 }
 
-void DataLayer::connect(Scientist newSci, Computer newComp)
+bool DataLayer::connect(Scientist newSci, Computer newComp)
 {
     QSqlQuery sciQuery = findScientists(newSci);
     QSqlQuery compQuery = findComputers(newComp);
 
     QSqlQuery updateQuery;
-    updateQuery.prepare("INSERT INTO scicomp scientistID, computerID, valid"
-                        " VALUES(:scientistID, :computerID :valid)");
+    updateQuery.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid)");
+    qDebug() << sciQuery.value(0);
+    qDebug() << compQuery.value(0);
 
-    updateQuery.bindValue(":scientistID", sciQuery.value(0));
-    updateQuery.bindValue(":computerID", compQuery.value(0));
-    updateQuery.exec();
+    updateQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
+    updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
+    updateQuery.bindValue(":valid", QString::number(1));
+    bool returnValue = updateQuery.exec();
+    return returnValue;
+
 }
 
 vector<int> DataLayer::findConnectedComp(int i)

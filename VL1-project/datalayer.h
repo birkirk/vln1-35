@@ -37,7 +37,7 @@ public:
     bool deleteScientist(Scientist newSci);
     bool deleteComputer(Computer newComp);
     
-    void connect(Scientist newSci, Computer newComp);
+    bool connect(Scientist newSci, Computer newComp);
 
     bool addComputer(Computer comp);
     vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
