@@ -1034,7 +1034,7 @@ void UserInterface::connect()
                 
                 cout << "<--- List of Computers --->" << endl;
                 cout << vListComp;
-                cout << "To which computer/s? (ID number - TYPE q-TO QUIT) : ";
+                cout << "To which computer/s? (ID number - TYPE 'q' TO QUIT) : ";
                 int sToWhichComp;
                 do
                 {
