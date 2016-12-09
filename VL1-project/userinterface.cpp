@@ -1388,8 +1388,8 @@ void UserInterface::printSciToComp()
     cin.clear();
     cin.ignore();
 
-    cout << endl << endl << "Computer" << '\t' << '\t' << "||" << '\t' << '\t' << "Scientists connected to the computer" << endl;
-    cout << "-----------------------------------------------------------" << endl;
+    cout << endl << endl << "Computer" << '\t' << '\t' << "||" << '\t' <<  "Scientists connected to the computer" << endl;
+    cout << "----------------------------------------------------------------------" << endl;
     vector<Computer> computers = _service.compAlpha();
 
     for(unsigned int i = 0; i < computers.size(); i++)
