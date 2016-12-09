@@ -188,31 +188,35 @@ void UserInterface::run()
         }
         else if (command == "search")
         {
-            cout << endl << "<--- What would you like to search for? --->" << endl;
-            cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
-            cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
-            cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
-            cout << "=> Command: ";
-            cin >> command;
-            if(command == "sci")
+            do
             {
-                vector<Scientist> printVector = searchScientist();
-                cout << printVector;
-            }
-            else if(command == "comp")
-            {
-                vector<Computer> printVector = searchComputer();
-                cout << printVector;
-            }
-            else if(command != "c")
-            {
-                cout << "!--- Not a valid command ---!" << endl;
-            }
-            else if(command == "c")
-            {
-                cout << endl;
-            }
-         while(command != "sci" && command != "comp" && command != "c");
+                cin.clear();
+                cout << endl << "<--- What would you like to search for? --->" << endl;
+                cout << '\t' << "sci" << '\t' << "(to search in Scientists database)" << endl;
+                cout << '\t' << "comp" << '\t' << "(to search in Computers database)" << endl;
+                cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
+                cout << "=> Command: ";
+                cin.ignore();
+                getline(cin, command);
+                if(command == "sci")
+                {
+                    vector<Scientist> printVector = searchScientist();
+                    cout << printVector;
+                }
+                else if(command == "comp")
+                {
+                    vector<Computer> printVector = searchComputer();
+                    cout << printVector;
+                }
+                else if(command != "c")
+                {
+                    cout << "!--- Not a valid command ---!" << endl;
+                }
+                else if(command == "c")
+                {
+                    cout << endl;
+                }
+            } while(command != "sci" && command != "comp" && command != "c");
 
         }
         else if (command == "connect")
@@ -301,7 +305,7 @@ void UserInterface::addSci()
     {
         cin.clear();
         cin.ignore();
-        cout << "Is he/her still alive? (y/n) ";
+        cout << "Is he/she still alive? (y/n) ";
         cin >> sStillAlive;
         if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "n" && !cin.fail())
         {
@@ -672,7 +676,7 @@ vector<Scientist> UserInterface::searchScientist()
         do
         {
             cin.clear();
-            cout << "Is he/her still alive? (y/n) ";
+            cout << "Is he/she still alive? (y/n) ";
             getline(cin, sStillAlive);
             if(sStillAlive != "Y" && sStillAlive != "y" && sStillAlive != "N" && sStillAlive != "" && sStillAlive != "n" && !cin.fail())
             {
@@ -744,7 +748,7 @@ vector<Computer> UserInterface::searchComputer()
         {
             cin.clear();
             cout << "Was it ever made? (y/n) ";
-            cin >> check;
+            getline(cin, check);
             if(check != "Y" && check != "y" && check != "N" && check != "n" && check != "")
             {
                 cout << "!--- You can only enter 'y' or 'n' ---!" << endl;
