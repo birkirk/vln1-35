@@ -27,11 +27,11 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
 
             //check how many tabs is best to use after name:
             out << " " << i+1 << '\t';
-            if(name.length() < 8)
+            if(name.length() < firstTabLimit)
             {
                 out << name << '\t' << '\t' << '\t';
             }
-            else if(name.length() >= 8 && name.length() < 16)
+            else if(name.length() >= firstTabLimit && name.length() < secondTabLimit)
             {
                 out << name << '\t' << '\t';
             }
@@ -88,11 +88,11 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             out << " " << i+1 << '\t';
 
             //check how many tabs is best to use after name:
-            if(name.length() < 8)
+            if(name.length() < firstTabLimit)
             {
                 out << name << '\t' << '\t' << '\t';
             }
-            else if(name.length() >= 8 && name.length() < 16)
+            else if(name.length() >= firstTabLimit && name.length() < firstTabLimit)
             {
                 out << name << '\t' << '\t';
             }
@@ -102,7 +102,7 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             }
 
             //print type:
-            if(type.length() < 8)
+            if(type.length() < firstTabLimit)
             {
                 out << type << '\t' << '\t';
             }
@@ -305,11 +305,11 @@ void UserInterface::addSci()
         cin.ignore();
         cout << "Year of birth: ";
         cin >> born;
-        if(born <= 0 || born > 2016 || cin.fail())
+        if(born <= 0 || born > currentYear || cin.fail())
         {
             cout << "!--- Please enter a valid year ---!" << endl;
         }
-    } while(born <= 0 || born > 2016);
+    } while(born <= 0 || born > currentYear);
 
     do
     {
@@ -337,11 +337,11 @@ void UserInterface::addSci()
             cin.ignore();
             cout << "Year of death: ";
             cin >> death;
-            if(death > 2016 || death < born || cin.fail())
+            if(death > currentYear || death < born || cin.fail())
             {
                 cout << "!--- Please enter a valid year ---!" << endl;
             }
-        } while(death > 2016 || death < born);
+        } while(death > currentYear || death < born);
     }
 
     cout << endl << "<--- Trying to add scientist... --->" << endl;
@@ -419,11 +419,11 @@ void UserInterface::addComp()
             cin.ignore();
             cout << "Year made: ";
             cin >> yearMade;
-            if(yearMade <= 0 || yearMade > 2016)
+            if(yearMade <= 0 || yearMade > currentYear)
             {
                 cout << "!--- Please enter a valid year ---!" << endl;
             }
-        } while(yearMade <= 0 || yearMade > 2016);
+        } while(yearMade <= 0 || yearMade > currentYear);
     }
 
     cout << endl << "<--- Trying to add computer... --->" << endl;
@@ -615,11 +615,6 @@ void UserInterface::list()
                 }
                 else if(innerCommand == "2" || innerCommand == "compToSci")
                 {
-                    /*
-                    vector<Computer> vComp = _service.compGet();
-                    vector<Scientist> vSci = _service.sciGet();
-                    vector<int> vCon = _service.getConnections();
-                    */
                     printCompToSci();
 
                 }
@@ -1314,11 +1309,11 @@ void UserInterface::printSciToComp()
         vector<Scientist> connectedSci = _service.getConnectedSci(computers[i]);
         if(connectedSci.size() != 0)
         {
-            if(computers[i].getName().length() < 8)
+            if(computers[i].getName().length() < firstTabLimit)
             {
                 cout << computers[i].getName() << '\t' << '\t' << '\t' << "||  ";
             }
-            else if(computers[i].getName().length() >= 8 && computers[i].getName().length() < 16)
+            else if(computers[i].getName().length() >= firstTabLimit && computers[i].getName().length() < firstTabLimit)
             {
                 cout << computers[i].getName() << '\t' << '\t' << "||  ";
             }
@@ -1358,11 +1353,11 @@ void UserInterface::printCompToSci()
         vector<Computer> connectedComp = _service.getConnectedComp(scientists[i]);
         if(connectedComp.size() != 0)
         {
-            if(scientists[i].getName().length() < 8)
+            if(scientists[i].getName().length() < firstTabLimit)
             {
                 cout << scientists[i].getName() << '\t' << '\t' << '\t' << "||  ";
             }
-            else if(scientists[i].getName().length() >= 8 && scientists[i].getName().length() < 16)
+            else if(scientists[i].getName().length() >= firstTabLimit && scientists[i].getName().length() < firstTabLimit)
             {
                 cout << scientists[i].getName() << '\t' << '\t' << "||  ";
             }
