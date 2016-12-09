@@ -97,7 +97,7 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
 
             if(type.length() < firstTabLimit)
             {
-                out << type << '\t' << '\t';
+                out << type << '\t' << '\t' << '\t';
             }
             else
             {
