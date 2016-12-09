@@ -540,8 +540,9 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
 vector<int> DataLayer::findConnectedComp(int i)
 {
     QSqlQuery searchQuery;
-    searchQuery.prepare("SELECT ID FROM scicomp WHERE computerID = (:ID) AND valid = 1");
+    searchQuery.prepare("SELECT ID FROM scicomp WHERE computerID = (:ID) AND valid = (:valid)");
     searchQuery.bindValue(":ID", QString::number(i));
+    searchQuery.bindValue(":valid", QString::number(1));
     searchQuery.exec();
     vector<int> returnVector;
     while(searchQuery.next())
