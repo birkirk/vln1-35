@@ -12,7 +12,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
 {
     if(vScientist.size() != 0)
     {
-        cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
+        cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << '\t' << "Gender" << '\t' << '\t' << "Born" << '\t' << '\t'  << "Died" << endl;
         cout << "------------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vScientist.size(); i++)
         {
@@ -70,7 +70,7 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
 {
     if(vComputers.size() != 0)
     {
-        cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
+        cout << "Nr."<< '\t' << "Name" << '\t' << '\t' << '\t' << '\t' << "Type" << '\t' << '\t' << "If Made" << '\t' << '\t'  << "Year Made" << endl;
         cout << "--------------------------------------------------------------------------" << endl;
         for(size_t i = 0; i < vComputers.size(); i++)
         {
@@ -86,7 +86,7 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             {
                 out << name << '\t' << '\t' << '\t' << '\t';
             }
-            else if(name.length() >= firstTabLimit && name.length() < firstTabLimit)
+            else if(name.length() >= firstTabLimit && name.length() < secondTabLimit)
             {
                 out << name << '\t' << '\t' << '\t';
             }
