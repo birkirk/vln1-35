@@ -377,17 +377,60 @@ void UserInterface::addComp()
         }
     } while(name.length() < 1);
 
+    bool overTest = false;
     do
     {
-        cin.clear();
-        cout << "Type: ";
-        getline(cin, type);
-        type[0] = toupper(type[0]);
-        if(type.length() < 1 || cin.fail())
+        cout << "What kind of a computer is it?" << endl;
+        vector<string> vTypes = _service.getTypes();
+        for(unsigned int i = 0; i < vTypes.size(); i++)
         {
-            cout << "!--- Please enter a valid type ---!" << endl;
+            cout << i+1 << '\t' << vTypes[i] << endl;
         }
-    } while(type.length() < 1);
+        cout << "Enter 'a' to add a new type." << endl;
+        string choice;
+        getline(cin, choice);
+        if(choice != "a" && choice != "A")
+        {
+            int iChoice = atoi(choice.c_str());
+            if(iChoice != 0 && iChoice > 0 && iChoice <= vTypes.size())
+            {
+                type = vTypes[iChoice-1];
+            }
+        }
+        else if(choice == "a" || choice == "A")
+        {
+            overTest = true;
+            cin.clear();
+            cout << "Type: ";
+            getline(cin, type);
+            type[0] = toupper(type[0]);
+            bool existTest = false;
+            for(unsigned int i = 0; i < vTypes.size(); i++)
+            {
+                string compare1 = type;
+                transform(compare1.begin(), compare1.end(), compare1.begin(), ::tolower);
+                string compare2 = vTypes[i];
+                transform(compare2.begin(), compare2.end(), compare2.begin(), ::tolower);
+                if(compare1 == compare2) existTest = true;
+            }
+            if(existTest)
+            {
+                overTest = false;
+                cout << "Type already exists! << end";
+            }
+
+            if(type.length() < 1 || cin.fail())
+            {
+                overTest = false;
+                cout << "!--- Please enter a valid type ---!" << endl;
+            }
+            if(overTest == true)
+            {
+                _service.addType(type);
+                cout << "Adding computer type " << type << "..." << endl;
+            }
+        }
+    } while(overTest == true);
 
     do
     {

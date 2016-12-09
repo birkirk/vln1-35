@@ -78,7 +78,29 @@ DataLayer::DataLayer()
                             "'valid' BOOL NOT NULL  DEFAULT 1,"
                             " FOREIGN KEY(scientistID) REFERENCES Scientists(ID) ON DELETE CASCADE,"
                             " FOREIGN KEY(computerID) REFERENCES Computers(ID) ON DELETE CASCADE)");
+
+        createQuery.prepare("CREATE TABLE 'types' "
+                            "('ID' INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE ,"
+                            " 'type' VARCHAR NOT NULL)");
         createQuery.exec();
+        QSqlQuery insert;
+        insert.prepare("INSERT INTO types (type) VALUES(:type) ");
+        insert.bindValue(":type", QString::fromStdString("Mechanical"));
+        qDebug() << insert.exec();
+        insert.bindValue(":type", QString::fromStdString("Electronic"));
+        insert.exec();
+        insert.bindValue(":type", QString::fromStdString("Transistor Machine"));
+        insert.exec();
+        insert.bindValue(":type", QString::fromStdString("Mainframe Computer"));
+        insert.exec();
+        insert.bindValue(":type", QString::fromStdString("Personal computer 'PC'"));
+        insert.exec();
+        insert.bindValue(":type", QString::fromStdString("Laptop"));
+        insert.exec();
+        insert.bindValue(":type", QString::fromStdString("Calculator"));
+        insert.exec();
+
+
     }
 }
 
@@ -101,6 +123,28 @@ bool DataLayer::closeDatabase()
         gotClosed = true;
     }
     return gotClosed;
+}
+
+void DataLayer::addType(string type)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO types (type) VALUES(:type)");
+    query.bindValue(":type", QString::fromStdString(type));
+    query.exec();
+}
+
+vector<string> DataLayer::getTypes()
+{
+    QSqlQuery query;
+    query.exec("SELECT type FROM types");
+    vector<string> returnVector;
+    while(query.next())
+    {
+        QString qType = query.value(0).toString();
+        string type = qType.toStdString();
+        returnVector.push_back(type);
+    }
+    return returnVector;
 }
 
 bool DataLayer::addScientist(Scientist sci)

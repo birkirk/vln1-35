@@ -7,6 +7,17 @@ ServiceLayer::ServiceLayer()
 
 }
 
+vector<string> ServiceLayer::getTypes()
+{
+    vector<string> returnVector = _dataL.getTypes();
+    return returnVector;
+}
+
+void ServiceLayer::addType(string type)
+{
+    _dataL.addType(type);
+}
+
 bool ServiceLayer::closeData()
 {
     bool reportClose = _dataL.closeDatabase();

@@ -10,6 +10,9 @@ class ServiceLayer
 public:
     ServiceLayer();
     
+    vector<string> getTypes();
+    void addType(string type);
+
     bool addScientitst(Scientist aScientist);
     bool addComputer(Computer aComputer);
     bool closeData();

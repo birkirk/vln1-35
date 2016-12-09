@@ -22,7 +22,9 @@ public:
     //bool addScientist(string sName, int sYearOfBirth, char sGender);
     DataLayer();
     DataLayer(const QString& path);
-    
+    vector<string> getTypes();
+
+    void addType(string type);
     vector<Scientist> readSci(string com);
     vector<Computer> readComp(string com);
     vector<int> getCon();
