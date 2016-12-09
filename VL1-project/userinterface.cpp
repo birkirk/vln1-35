@@ -261,6 +261,7 @@ void UserInterface::addSci()
     
     do
     {
+        cin.ignore();
         cin.clear();
         cout << "Name: ";
         getline(cin, name);
@@ -325,7 +326,7 @@ void UserInterface::addSci()
             {
                 cout << "!--- Please enter a valid year ---!" << endl;
             }
-        } while(death > 2016 || death < born);
+        } while(death >= 2016 || death < born);
     }
     
     cout << endl << "<--- Trying to add scientist... --->" << endl;
