@@ -48,9 +48,14 @@ public:
     void clearComp();
     void clearCon();
 
+<<<<<<< HEAD
     vector<int> findConnectedComp(int i);
     vector<int> findConnectedSci(int i);
     vector<string> readManual();
+=======
+    vector<Computer> findConnectedComp(Scientist sci);
+    vector<Scientist> findConnectedSci(Computer comp);
+>>>>>>> ae077a933bb5b8393237094063eeb62a98577224
 private:
     QSqlDatabase _db;
 };
