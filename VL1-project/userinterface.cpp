@@ -102,8 +102,14 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             }
 
             //print type:
-            out << type << '\t' << '\t';
-
+            if(type.length() < 8)
+            {
+                out << type << '\t' << '\t';
+            }
+            else
+            {
+                out << type << 't';
+            }
             if(made)
             {
                 out << "Yes" << '\t' << '\t' << yearMade << endl;
@@ -1308,8 +1314,18 @@ void UserInterface::printSciToComp()
         vector<Scientist> connectedSci = _service.getConnectedSci(computers[i]);
         if(connectedSci.size() != 0)
         {
-
-            cout << computers[i].getName() << '\t' << '\t' << '\t' << "||" << '\t' << '\t';
+            if(computers[i].getName().length() < 8)
+            {
+                cout << computers[i].getName() << '\t' << '\t' << '\t' << "||  ";
+            }
+            else if(computers[i].getName().length() >= 8 && computers[i].getName().length() < 16)
+            {
+                cout << computers[i].getName() << '\t' << '\t' << "||  ";
+            }
+            else
+            {
+                cout << computers[i].getName() << '\t' << "||  ";
+            }
             for(unsigned int j = 0; j < connectedSci.size(); j++)
             {
                 if(j == 0)
@@ -1330,41 +1346,45 @@ void UserInterface::printSciToComp()
 
 void UserInterface::printCompToSci()
 {
+    cin.clear();
+    cin.ignore();
 
-        cin.clear();
-        cin.ignore();
+    cout << endl << "Computer" << '\t' << '\t' << "||  " << "Scientists connected to the computer" << endl;
+    cout << "-----------------------------------------------------------" << endl;
+    vector<Scientist> scientists = _service.sciAlpha();
 
-        cout << endl << "Computer" << '\t' << '\t' << "||" << '\t' << '\t' << "Scientists connected to the computer" << endl;
-        cout << "-----------------------------------------------------------" << endl;
-        vector<Scientist> scientists = _service.sciAlpha();
-
-        for(unsigned int i = 0; i < scientists.size(); i++)
+    for(unsigned int i = 0; i < scientists.size(); i++)
+    {
+        vector<Computer> connectedComp = _service.getConnectedComp(scientists[i]);
+        if(connectedComp.size() != 0)
         {
-
-
-            vector<Computer> connectedComp = _service.getConnectedComp(scientists[i]);
-
-            if(connectedComp.size() != 0)
+            if(scientists[i].getName().length() < 8)
             {
-                cout << scientists[i].getName() << '\t' << "||" << '\t';
-
-                for(unsigned int j = 0; j < connectedComp.size(); j++)
-                {
-                    if(j == 0)
-                    {
-                        cout << connectedComp[j].getName();
-                    }
-                    else
-                    {
-                        cout << " & " << connectedComp[j].getName();
-                    }
-                    cout << endl;
-                }
-                cout << endl;
-
+                cout << scientists[i].getName() << '\t' << '\t' << '\t' << "||  ";
             }
+            else if(scientists[i].getName().length() >= 8 && scientists[i].getName().length() < 16)
+            {
+                cout << scientists[i].getName() << '\t' << '\t' << "||  ";
+            }
+            else
+            {
+                cout << scientists[i].getName() << '\t' << "||  ";
+            }
+            for(unsigned int j = 0; j < connectedComp.size(); j++)
+            {
+                if(j == 0)
+                {
+                    cout << connectedComp[j].getName();
+                }
+                else
+                {
+                    cout << " & " << connectedComp[j].getName();
+                }
+            }
+            cout << endl;
         }
-        cout<< endl;
+    }
+    cout << endl;
 }
 
 

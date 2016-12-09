@@ -49,7 +49,7 @@ public:
     void clearCon();
 
     vector<string> readManual();
-    
+
     vector<Computer> findConnectedComp(Scientist sci);
     vector<Scientist> findConnectedSci(Computer comp);
 
