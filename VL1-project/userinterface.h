@@ -7,29 +7,25 @@ class UserInterface
 {
 public:
     UserInterface();
+    
     void run();
     void addSci();
     void addComp();
     void list();
     void connect();
     void deleteSom();
-
-    vector<Scientist> searchScientist();
-    vector<Computer> searchComputer();
-
-
-    void clear();
-    
     void printSciToComp();
     void printCompToSci();
-
-    
-    friend ostream& operator << (ostream& out, vector<Scientist> vScientist);
-    friend ostream& operator << (ostream& out, vector<Computer> vComputers);
-    
+    void clear();
     void generateJoke();
     void info();
     void readMe();
+    
+    vector<Scientist> searchScientist();
+    vector<Computer> searchComputer();
+    
+    friend ostream& operator << (ostream& out, vector<Scientist> vScientist);
+    friend ostream& operator << (ostream& out, vector<Computer> vComputers);
 private:
     ServiceLayer _service;
 };

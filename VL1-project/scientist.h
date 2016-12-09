@@ -9,14 +9,12 @@ class Scientist
 {
 public:
     Scientist();
-
     Scientist(string name, char gender,int born,int death);
+    
     int getBirth();
     int getDeath();
     char getGender();
     string getName();
-
-
 private:
     char _gender;
     string _name;
