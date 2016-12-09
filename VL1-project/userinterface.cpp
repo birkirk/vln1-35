@@ -768,7 +768,6 @@ vector<Computer> UserInterface::searchComputer()
         if(ifMade == "1")
         {
             cin.clear();
-            cin.ignore();
             cout << "Year made: ";
             getline(cin, yearMade);
             if(yearMade.length() == 0)
