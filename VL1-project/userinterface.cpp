@@ -6,9 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <unistd.h>
-
 using namespace std;
-
 
 // Overloading the opperator << to be able to print out scientists in a table
 ostream& operator << (ostream& out, vector<Scientist> vScientist)
@@ -128,8 +126,6 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
 
     return out;
 }
-
-//ostream& operator << ()
 
 UserInterface::UserInterface()
 {

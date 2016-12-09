@@ -6,7 +6,6 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-
 using namespace std;
 
 QSqlQuery findScientists(Scientist sci)
@@ -391,7 +390,6 @@ vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearO
     return returnVector;
 }
 
-//bool string string int
 vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, string yearMade)
 {
 
