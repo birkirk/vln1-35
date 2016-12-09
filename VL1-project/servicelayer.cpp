@@ -186,15 +186,11 @@ void ServiceLayer::clearData(string com)
     }
 }
 
-
-
 bool ServiceLayer::connect(Scientist sci, Computer comp)
 {
     bool success = _dataL.connect(sci, comp);
     return success;
 }
-
-
 
 vector<Scientist> ServiceLayer::getConnectedSci(Computer comp)
 {
