@@ -100,17 +100,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
 {
 
     bool success = false;
-    /*
-    QString qName = QString::fromStdString(sName);
-    QSqlQuery countQuery;
-    countQuery.prepare("SELECT name, yearOfBirth FROM Scientists WHERE name = :name  AND yearOfBirth = :yearOfBirth;");
-    countQuery.bindValue(":name", qName);
-    countQuery.bindValue(":yearOfBirth", QString::number(sYearOfBirth));
-    countQuery.exec();
-    qDebug() << countQuery.lastError();
 
-    bool alreadyInDB = countQuery.next();
-    */
     QSqlQuery countQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
     bool alreadyInDB = countQuery.next();
 
@@ -131,7 +121,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     return success;
 }
 
-
+/*
 bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
 {
     bool success = false;
@@ -165,6 +155,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
     }
     return success;
 }
+*/
 
 bool DataLayer::deleteComputer(Computer newComp)
 {
