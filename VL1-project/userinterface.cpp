@@ -8,7 +8,6 @@
 #include <unistd.h>
 using namespace std;
 
-// Overloading the opperator << to be able to print out scientists in a table
 ostream& operator << (ostream& out, vector<Scientist> vScientist)
 {
     if(vScientist.size() != 0)
@@ -38,7 +37,6 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
                 out << name << '\t';
             }
 
-            //print gender and birth year:
             if(gender == 'm' || gender == 'M')
             {
                 sGender = "Male";
@@ -49,7 +47,6 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             }
             out << sGender << '\t' << '\t' << born << '\t' << '\t';
 
-            //check if scientist has not died yet:
             if(died == yearsIfAlive)
             {
                 out << '?' << endl;
@@ -69,7 +66,6 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
     return out;
 }
 
-// Overloading the opperator << to be able to print out computers in a table
 ostream& operator << (ostream& out, vector<Computer> vComputers)
 {
     if(vComputers.size() != 0)
@@ -99,7 +95,6 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
                 out << name << '\t';
             }
 
-            //print type:
             if(type.length() < firstTabLimit)
             {
                 out << type << '\t' << '\t';
