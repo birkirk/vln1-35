@@ -13,6 +13,12 @@ public:
     vector<string> getTypes();
     void addType(string type);
 
+    vector<Computer> getDeletedComp();
+    vector<Scientist> getDeletedSci();
+
+    bool recycleComp(Computer comp);
+    bool recycleSci(Scientist sci);
+
     bool addScientitst(Scientist aScientist);
     bool addComputer(Computer aComputer);
     bool closeData();
