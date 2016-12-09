@@ -92,7 +92,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
 {
 
     bool success = false;
-    
+
     QSqlQuery countQuery = findScientists(sName, sYearOfBirth, sYearOfDeath, sGender);
     bool alreadyInDB = countQuery.next();
 
@@ -113,7 +113,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, int sYearOfDeath, c
     return success;
 }
 
-
+/*
 bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
 {
     bool success = false;
@@ -146,6 +146,7 @@ bool DataLayer::addScientist(string sName, int sYearOfBirth, char sGender)
     }
     return success;
 }
+*/
 
 bool DataLayer::deleteComputer(Computer newComp)
 {
