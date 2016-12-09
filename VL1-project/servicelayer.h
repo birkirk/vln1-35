@@ -22,6 +22,8 @@ public:
     vector<string> connectSci(int whichSci, vector<int> vWhichComp);
     vector<string> connectComp(int whichComp, vector<int> vWhichSci);
 
+    vector<Scientist> sciGet();
+    vector<Computer> compGet();
     
     vector<Scientist> sciAlpha();
     vector<Scientist> sciRalpha();

@@ -49,6 +49,19 @@ vector<Computer> ServiceLayer::searchComp(string ifMade, string name, string typ
     return vSearched;
 }
 
+vector<Scientist> ServiceLayer::sciGet()
+{
+    string com = "non";
+    vector<Scientist> vOrder = _dataL.readSci(com);
+    return vOrder;
+}
+
+vector<Computer> ServiceLayer::compGet()
+{
+    string com = "non";
+    vector<Computer> vOrder = _dataL.readComp(com);
+    return vOrder;
+}
 
 vector<Scientist> ServiceLayer::sciAlpha()
 {
