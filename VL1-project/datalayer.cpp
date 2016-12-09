@@ -539,7 +539,6 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
 
 vector<int> DataLayer::findConnectedComp(int i)
 {
-    cout << "Reaches datalayer!!!!";
     QSqlQuery searchQuery;
     searchQuery.prepare("SELECT computerID FROM scicomp WHERE scientistID = (:ID) AND valid = (:valid)");
     searchQuery.bindValue(":ID", QString::number(i));
@@ -548,27 +547,25 @@ vector<int> DataLayer::findConnectedComp(int i)
     vector<int> returnVector;
     while(searchQuery.next())
     {
-        returnVector.push_back(searchQuery.value(0).toInt());
-
+        int use = searchQuery.value(1).toInt();
+        returnVector.push_back(use);
     }
     return returnVector;
 }
 
 vector<int> DataLayer::findConnectedSci(int i)
 {
-    cout << "Reaches datalayer!!!!";
     QSqlQuery searchQuery;
-    searchQuery.prepare("SELECT computerID FROM scicomp WHERE scientistID = (:scientistID) AND valid = (:valid)");
+    searchQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:scientistID) AND valid = (:valid)");
     searchQuery.bindValue(":scientistID", QString::number(i));
     searchQuery.bindValue(":valid", QString::number(1));
     searchQuery.exec();
     vector<int> returnVector;
     while(searchQuery.next())
     {
-        returnVector.push_back(searchQuery.value(0).toInt());
+        int use = searchQuery.value(0).toInt();
+        returnVector.push_back(use);
     }
-    qDebug() << searchQuery.lastError();
-    cout << "Reaches end of datalayer!!!!";
     return returnVector;
 }
 

@@ -190,7 +190,7 @@ bool ServiceLayer::connect(Scientist sci, Computer comp)
 
 vector<int> ServiceLayer::receiveCon(int usedid, string which)
 {
-    vector<int>allCon;
+    vector<int> allCon;
     if(which == "computer")
     {
         allCon = _dataL.findConnectedSci(usedid);
