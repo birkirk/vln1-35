@@ -849,6 +849,7 @@ void UserInterface::clear()
         cout << endl << "<--- Which database whould you like to clear? --->" << endl;
         cout << '\t' << "sci" << '\t' << "(to clear Scientists database)" << endl;
         cout << '\t' << "comp" << '\t' << "(to clear Computers database)" << endl;
+        cout << '\t' << "con" << '\t' << "(to clear Connections database)" << endl;
         cout << '\t' << "all" << '\t' << "(to clear the whole database)" << endl;
         cout << '\t' << "c" << '\t' << "(to cancel)" << endl;
         cout << "=> Command: ";
@@ -893,13 +894,32 @@ void UserInterface::clear()
         }
         else if(command == "all")
         {
-            cout << "!--- Are you sure you want to clear Computer database? This action can not be undone ---!" << endl;
+            cout << "!--- Are you sure you want to clear the whole database? This action can not be undone ---!" << endl;
             cout << "=> (y/n): ";
             cin >> innerCommand;
             if(innerCommand == "y" || innerCommand == "Y")
             {
                 cout << "!--- YES selected - Database will be cleared ---!" << endl << endl;
                 _service.clearData("all");
+            }
+            else if(innerCommand == "n" || innerCommand == "N")
+            {
+                cout << "!--- NO selected - Database will not be cleared ---!" << endl << endl;
+            }
+            else
+            {
+                cout << "!--- not a correct input, aborting clear database ---!" << endl;
+            }
+        }
+        else if(command == "con")
+        {
+            cout << "!--- Are you sure you want to clear Connections database? This action can not be undone ---!" << endl;
+            cout << "=> (y/n): ";
+            cin >> innerCommand;
+            if(innerCommand == "y" || innerCommand == "Y")
+            {
+                cout << "!--- YES selected - Database will be cleared ---!" << endl << endl;
+                _service.clearData("con");
             }
             else if(innerCommand == "n" || innerCommand == "N")
             {
@@ -1256,7 +1276,6 @@ void UserInterface::info()
 
 void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
 {
-
     const string which = "computer";
     bool hit = true;
     vector<int> usedComp;
@@ -1294,13 +1313,53 @@ void UserInterface::printSciToComp(vector<Scientist> vSci, vector<Computer> vCom
                 cout << ",  " << vSci[allConnected[i]].getName();
             }
         }
+        cout << endl;
     }
-
+    cout<< endl;
 }
 
 void UserInterface::printCompToSci(vector<Scientist> vSci, vector<Computer> vComp, vector<int> vCon)
 {
-
+    const string which = "scientist";
+    bool hit = true;
+    vector<int> usedSci;
+    for(size_t i = 0; i < (vCon.size() / 2); i++) {
+        if(i != 0)
+        {
+            hit = false;
+        }
+        for(size_t j = 0; j < usedSci.size(); j++)
+        {
+            if(usedSci[j] == vCon[i*2])
+            {
+                hit = true;
+            }
+        }
+        if(!hit)
+        {
+            usedSci.push_back(vCon[i*2]);
+        }
+    }
+    cout << "Scientist" << '\t' << '\t' << "||" << '\t' << '\t' << "Computers connected to the scientist" << endl;
+    cout << "-----------------------------------------------------------" << endl;
+    for(size_t i = 0; i < usedSci.size(); i++)
+    {
+        cout << vSci[usedSci[i]].getName() << '\t' << '\t' << "||" << '\t' << '\t';
+        vector<int> allConnected = _service.receiveCon(usedSci[i], which);
+        for(size_t j = 0; j < allConnected.size(); j++)
+        {
+            if(j == 0)
+            {
+                cout << vComp[allConnected[i]].getName();
+            }
+            else
+            {
+                cout << ",  " << vComp[allConnected[i]].getName();
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 
 
