@@ -34,7 +34,7 @@ ostream& operator << (ostream& out, vector<Scientist> vScientist)
             }
             else
             {
-                out << name << '\t' << '/t';
+                out << name << '\t' << '\t';
             }
 
             if(gender == 'm' || gender == 'M')
@@ -92,12 +92,12 @@ ostream& operator << (ostream& out, vector<Computer> vComputers)
             }
             else
             {
-                out << name << '\t';
+                out << name << '\t' << '\t';
             }
 
             if(type.length() < firstTabLimit)
             {
-                out << type << '\t' << '\t' << '\t';
+                out << type << '\t' << '\t';
             }
             else
             {
