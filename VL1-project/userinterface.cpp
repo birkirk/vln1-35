@@ -460,27 +460,27 @@ void UserInterface::addComp()
             if(existTest)
             {
                 overTest = false;
-                cout << "Type already exists!" << endl;
+                cout << "!--- Type already exists ---!" << endl;
             }
 
 
             if(overTest == true)
             {
                 _service.addType(type);
-                cout << "Adding computer type " << type << "..." << endl;
+                cout << "<--- Adding computer type" << type << "... --->" << endl;
             }
             else
             {
-                cout << "Invalid input!" << endl << endl;
+                cout << "!--- Invalid input ---!" << endl << endl;
             }
         }
-        else cout << "Invalid input!" << endl << endl;
+        else cout << "!--- Invalid input ---!" << endl << endl;
     } while(!overTest);
 
     do
     {
         cin.clear();
-        cout << "Was it ever made? (y/n) ";
+        cout << "Was it ever made? (y/n) :";
         cin >> check;
         if(check != 'Y' && check != 'y' && check != 'N' && check != 'n')
         {
