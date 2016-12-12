@@ -1,16 +1,12 @@
-#include <iostream>
-#include "userinterface.h"
-#include <QSqlQuery>
-#include <QDebug>
 using namespace std;
+#include "mainwindow.h"
+#include <QApplication>
 
-int main()
+int main(int argc, char *argv[])
 {
-    UserInterface ui;
-    
-    //Runs Group 35 Display
-    ui.info();
-    
-    ui.run();
-    return 0;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+    return a.exec();
 }

@@ -1,5 +1,6 @@
-QT += core sql
-QT -= gui
+QT += core sql gui
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
@@ -14,7 +15,8 @@ SOURCES += main.cpp \
     scientist.cpp \
     computer.cpp \
     servicelayer.cpp \
-    userinterface.cpp
+    userinterface.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     datalayer.h \
@@ -22,4 +24,8 @@ HEADERS += \
     computer.h \
     servicelayer.h \
     const.h \
-    userinterface.h
+    userinterface.h \
+    mainwindow.h
+
+FORMS += \
+    mainwindow.ui
