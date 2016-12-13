@@ -159,6 +159,8 @@ project.pbxproj: VL1-project.pro ../../../Qt/5.7/clang_64/mkspecs/macx-clang/qma
 		../../../Qt/5.7/clang_64/mkspecs/features/qt.prf \
 		../../../Qt/5.7/clang_64/mkspecs/features/resources.prf \
 		../../../Qt/5.7/clang_64/mkspecs/features/moc.prf \
+		../../../Qt/5.7/clang_64/mkspecs/features/unix/opengl.prf \
+		../../../Qt/5.7/clang_64/mkspecs/features/uic.prf \
 		../../../Qt/5.7/clang_64/mkspecs/features/unix/thread.prf \
 		../../../Qt/5.7/clang_64/mkspecs/features/file_copies.prf \
 		../../../Qt/5.7/clang_64/mkspecs/features/mac/rez.prf \
@@ -167,6 +169,8 @@ project.pbxproj: VL1-project.pro ../../../Qt/5.7/clang_64/mkspecs/macx-clang/qma
 		../../../Qt/5.7/clang_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.7/clang_64/mkspecs/features/lex.prf \
 		VL1-project.pro \
+		../../../Qt/5.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
+		../../../Qt/5.7/clang_64/lib/QtGui.framework/QtGui.prl \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/QtSql.prl \
 		../../../Qt/5.7/clang_64/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -spec macx-xcode -o project.pbxproj VL1-project.pro
@@ -320,6 +324,8 @@ project.pbxproj: VL1-project.pro ../../../Qt/5.7/clang_64/mkspecs/macx-clang/qma
 ../../../Qt/5.7/clang_64/mkspecs/features/qt.prf:
 ../../../Qt/5.7/clang_64/mkspecs/features/resources.prf:
 ../../../Qt/5.7/clang_64/mkspecs/features/moc.prf:
+../../../Qt/5.7/clang_64/mkspecs/features/unix/opengl.prf:
+../../../Qt/5.7/clang_64/mkspecs/features/uic.prf:
 ../../../Qt/5.7/clang_64/mkspecs/features/unix/thread.prf:
 ../../../Qt/5.7/clang_64/mkspecs/features/file_copies.prf:
 ../../../Qt/5.7/clang_64/mkspecs/features/mac/rez.prf:
@@ -328,6 +334,8 @@ project.pbxproj: VL1-project.pro ../../../Qt/5.7/clang_64/mkspecs/macx-clang/qma
 ../../../Qt/5.7/clang_64/mkspecs/features/yacc.prf:
 ../../../Qt/5.7/clang_64/mkspecs/features/lex.prf:
 VL1-project.pro:
+../../../Qt/5.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
+../../../Qt/5.7/clang_64/lib/QtGui.framework/QtGui.prl:
 ../../../Qt/5.7/clang_64/lib/QtSql.framework/QtSql.prl:
 ../../../Qt/5.7/clang_64/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE

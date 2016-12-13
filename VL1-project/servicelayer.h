@@ -4,6 +4,7 @@
 #include "computer.h"
 #include "datalayer.h"
 #include <algorithm>
+#include <QDebug>
 
 class ServiceLayer
 {
@@ -46,8 +47,8 @@ public:
     vector<Computer> compMade();
     vector<Computer> compNotMade();
     vector<Computer> compType();
-    vector<Scientist> searchSci(string name, char gender, string born, string death);
-    vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
+    vector<Scientist> searchSci(string input);
+    vector<Computer> searchComp(string input);
     vector<string> getManual();
 private:
     vector<Scientist> _vScientists;

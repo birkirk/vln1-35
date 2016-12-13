@@ -6,6 +6,9 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+
+#include <cstdlib>
+#include <sstream>
 using namespace std;
 
 QSqlQuery findScientists(Scientist sci)
@@ -329,7 +332,7 @@ vector<Scientist> DataLayer::readSci(string com)
     while (query.next())
     {
         int valid = query.value(5).toInt();
-        if(valid == 1 || com == "non")
+        if(valid == 1)
         {
             QString name = query.value(1).toString();
             string theName = name.toStdString();
@@ -391,7 +394,7 @@ vector<Computer> DataLayer::readComp(string com)
     while (query.next())
     {
         int valid = query.value(5).toInt();
-        if(valid == 1 || com == "non")
+        if(valid == 1)
         {
             QString name = query.value(1).toString();
             string theName = name.toStdString();
@@ -441,132 +444,96 @@ vector<int> DataLayer::getCon()
     return connected;
 }
 
-vector<Scientist> DataLayer::searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath)
+vector<Scientist> DataLayer::searchSci(string input)
 {
-    QString qName = QString::fromStdString(sName);
-    QSqlQuery searchQuery;
-    if(sGender == 'O')
+    stringstream sqlQuery;
+        sqlQuery << "SELECT * FROM Scientists WHERE name LIKE '%" << input << "%"
+                 << "' UNION "
+                 << "SELECT * FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
+                 << "' UNION "
+                 << "SELECT * FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+
+    QString sqlQ = QString::fromStdString(sqlQuery.str());
+    vector<Scientist> scientists;
+
+    if (!_db.isOpen())
     {
-        searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists"
-                            " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%'"
-                            " AND yearOfDeath LIKE '%'||:yearOfDeath||'%' AND valid = 1"
-                            " ORDER BY name");
-    }
-    else
-    {
-        searchQuery.prepare("SELECT name, gender, yearOfBirth, yearOfDeath FROM Scientists"
-                            " WHERE name LIKE '%'||:name||'%' AND yearOfBirth LIKE '%'||:yearOfBirth||'%' AND yearOfDeath LIKE '%'||:yearOfDeath||'%'"
-                            " AND gender LIKE '%'||:gender||'%'"
-                            " ORDER BY name");
-        searchQuery.bindValue(":gender", QString(QChar(sGender)));
+        return scientists;
     }
 
-    if(sYearOfBirth.size() != 0)
-    {
-        int birth = atoi(sYearOfBirth.c_str());
-        searchQuery.bindValue(":yearOfBirth", QString::number(birth));
-    }
-    else
-    {
-        string birth = sYearOfBirth;
-        searchQuery.bindValue(":yearOfBirth", QString::fromStdString(birth));
-    }
-    if(sYearOfDeath.size() != 0)
-    {
-         int death = atoi(sYearOfDeath.c_str());
-         searchQuery.bindValue(":yearOfDeath", QString::number(death));
-    }
-    else
-    {
-        string death = sYearOfDeath;
-        searchQuery.bindValue(":yearOfDeath", QString::fromStdString(death));
-    }
-    searchQuery.bindValue(":name", qName);
-    searchQuery.exec();
+    QSqlQuery query(_db);
 
-
-
-    vector<Scientist> returnVector;
-
-    while(searchQuery.next())
+    if (!query.exec(sqlQ))
     {
-        QString gender = searchQuery.value(1).toString();
-        char gChar = gender.at(0).toLatin1();
-
-        QString qName = searchQuery.value(0).toString();
-        string name = qName.toStdString();
-        Scientist newSci(name, gChar, searchQuery.value(2).toInt(), searchQuery.value(3).toInt());
-        returnVector.push_back(newSci);
+        return scientists;
     }
 
-    return returnVector;
+    while (query.next())
+    {
+        int valid = query.value(5).toInt();
+        if(valid == 1)
+        {
+            QString gender = query.value(4).toString();
+            char gChar = gender.at(0).toLatin1();
+
+            QString qName = query.value(1).toString();
+            string name = qName.toStdString();
+            Scientist newSci(name, gChar, query.value(2).toInt(), query.value(3).toInt());
+            scientists.push_back(newSci);
+        }
+    }
+
+    return scientists;
 }
 
-vector<Computer> DataLayer::searchComp(string ifMade, string name, string type, string yearMade)
+vector<Computer> DataLayer::searchComp(string input)
 {
+    stringstream sqlQuery;
+        sqlQuery << "SELECT * FROM Computers WHERE name LIKE '%" << input << "%"
+                 << "' UNION "
+                 << "SELECT * FROM Computers WHERE type LIKE '%" << input << "%"
+                 << "' UNION "
+                 << "SELECT * FROM Computers WHERE yearMade LIKE '%" << input << "%'";
 
+    QString sqlQ = QString::fromStdString(sqlQuery.str());
+    vector<Computer> computers;
 
-    QSqlQuery searchQuery;
-
-
-    if(yearMade.size() != 0)
+    if (!_db.isOpen())
     {
-        searchQuery.prepare("SELECT ifMade, name, type, yearMade"
-                            " FROM Computers WHERE name LIKE '%'||:name||'%'"
-                            " AND ifMade LIKE '%'||:ifMade||'%'"
-                            " AND type LIKE '%'||:type||'%')"
-                            " AND yearMade LIKE '%'||:yearMade||'%'");
-
-        int qYear = atoi(yearMade.c_str());
-        searchQuery.bindValue(":yearMade", QString::number(qYear));
-    }
-    else
-    {
-        searchQuery.prepare("SELECT ifMade, name, type, yearMade"
-                            " FROM Computers WHERE name LIKE '%'||:name||'%'"
-                            " AND ifMade LIKE '%'||:ifMade||'%'"
-                            " AND type LIKE '%'||:type||'%' AND valid = 1");
-    }
-    if(ifMade.size() != 0)
-    {
-        int tIfMade = atoi(ifMade.c_str());
-        searchQuery.bindValue(":ifMade", QString::number(tIfMade));
-    }
-    else
-    {
-        searchQuery.bindValue(":ifMade", QString::fromStdString(ifMade));
+        return computers;
     }
 
-    searchQuery.bindValue(":name", QString::fromStdString(name));
-    searchQuery.bindValue(":type", QString::fromStdString(type));
-    searchQuery.exec();
+    QSqlQuery query(_db);
 
-
-    vector<Computer> returnVector;
-    searchQuery.next();
-    while(searchQuery.next())
+    if (!query.exec(sqlQ))
     {
-
-        QString qName = searchQuery.value(1).toString();
-        string nName = qName.toStdString();
-
-        QString qIfMade = searchQuery.value(0).toString();
-        bool nIfMade;
-        if(qIfMade == "1") nIfMade = true;
-        else nIfMade = false;
-
-        QString qType = searchQuery.value(2).toString();
-        string nType = qType.toStdString();
-
-        int nYearMade = searchQuery.value(3).toInt();
-
-        Computer newComp(nIfMade, nName, nType, nYearMade);
-        returnVector.push_back(newComp);
-
-        //returnVector.push_back(newPomc);
+        return computers;
     }
 
-    return returnVector;
+    while (query.next())
+    {
+        int valid = query.value(5).toInt();
+        if(valid == 1)
+        {
+            QString qName = query.value(1).toString();
+            string nName = qName.toStdString();
+
+            QString qIfMade = query.value(3).toString();
+            bool nIfMade;
+            if(qIfMade == "1") nIfMade = true;
+            else nIfMade = false;
+
+            QString qType = query.value(2).toString();
+            string nType = qType.toStdString();
+
+            int nYearMade = query.value(4).toInt();
+
+            Computer newComp(nIfMade, nName, nType, nYearMade);
+            computers.push_back(newComp);
+        }
+    }
+
+    return computers;
 }
 
 void DataLayer::clearDataFile()

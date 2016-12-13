@@ -136,7 +136,11 @@
       </layout>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_death_input"/>
+      <widget class="QLineEdit" name="lineEdit_death_input">
+       <property name="placeholderText">
+        <string>Leave empty to skip</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

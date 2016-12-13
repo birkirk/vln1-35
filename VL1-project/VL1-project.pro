@@ -19,6 +19,7 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     addscientistwindow.cpp
 
+
 HEADERS += \
     datalayer.h \
     scientist.h \
@@ -27,6 +28,7 @@ HEADERS += \
     const.h \
     mainwindow.h \
     addscientistwindow.h
+
 
 FORMS += \
     mainwindow.ui \
