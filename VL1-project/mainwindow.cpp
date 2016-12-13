@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "addscientistwindow.h"
+#include "addcomputerwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -360,4 +362,16 @@ void MainWindow::on_button_recover_all_computers_clicked()
     }
     displayAllRemovedComputers();
     displayAllComputers();
+}
+
+void MainWindow::on_button_addnew_scientists_clicked()
+{
+    addScientistWindow addSci;
+    addSci.exec();
+}
+
+void MainWindow::on_button_addnew_computers_clicked()
+{
+    addComputerWindow addComp;
+    addComp.exec();
 }

@@ -1,6 +1,7 @@
 using namespace std;
 #include "mainwindow.h"
 #include <QApplication>
+#include <addscientistwindow.h>
 
 int main(int argc, char *argv[])
 {
