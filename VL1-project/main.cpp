@@ -1,12 +1,12 @@
 using namespace std;
 #include "mainwindow.h"
-#include "addwindow.h"
 #include <QApplication>
+#include <addscientistwindow.h>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    addWindow w;
+    addScientistWindow w;
     w.show();
 
     return a.exec();
