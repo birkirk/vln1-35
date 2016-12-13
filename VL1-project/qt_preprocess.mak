@@ -9,13 +9,13 @@
 MAKEFILE      = project.pbxproj
 
 MOC       = /Users/Birkir/Qt/5.7/clang_64/bin/moc
-UIC       = 
+UIC       = /Users/Birkir/Qt/5.7/clang_64/bin/uic
 LEX       = flex
 LEXFLAGS  = 
 YACC      = yacc
 YACCFLAGS = -d
-DEFINES       = -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_CORE_LIB
-INCPATH       = -I. -I../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers -I. -I../../../Qt/5.7/clang_64/mkspecs/macx-clang -F/Users/Birkir/Qt/5.7/clang_64/lib
+DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
+INCPATH       = -I. -I../../../Qt/5.7/clang_64/lib/QtWidgets.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtGui.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../Qt/5.7/clang_64/mkspecs/macx-clang -F/Users/Birkir/Qt/5.7/clang_64/lib
 DEL_FILE  = rm -f
 MOVE      = mv -f
 
@@ -30,13 +30,36 @@ check: first
 
 benchmark: first
 
-compilers:
+compilers: moc_mainwindow.cpp ui_mainwindow.h
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_mainwindow.cpp
+moc_mainwindow.cpp: ../../../Qt/5.7/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		servicelayer.h \
+		scientist.h \
+		computer.h \
+		datalayer.h \
+		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QChar \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/QtSql \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QFile \
+		mainwindow.h \
+		../../../Qt/5.7/clang_64/bin/moc
+	/Users/Birkir/Qt/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Birkir/Qt/5.7/clang_64/mkspecs/macx-clang -I/Users/Birkir/Desktop/vln1-35/VL1-project -I/Users/Birkir/Qt/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/Birkir/Qt/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/Birkir/Qt/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/Birkir/Qt/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -I'/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks (framework directory)' -F/Users/Birkir/Qt/5.7/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
+compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_clean:
+	-$(DEL_FILE) ui_mainwindow.h
+ui_mainwindow.h: mainwindow.ui \
+		../../../Qt/5.7/clang_64/bin/uic
+	/Users/Birkir/Qt/5.7/clang_64/bin/uic mainwindow.ui -o ui_mainwindow.h
+
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
 compiler_yacc_decl_make_all:
@@ -45,5 +68,5 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: 
+compiler_clean: compiler_moc_header_clean compiler_uic_clean 
 

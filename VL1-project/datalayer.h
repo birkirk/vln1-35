@@ -34,8 +34,8 @@ public:
     vector<Scientist> readSci(string com);
     vector<Computer> readComp(string com);
     vector<int> getCon();
-    vector<Scientist> searchSci(string sName, char sGender, string sYearOfBirth, string sYearOfDeath);
-    vector<Computer> searchComp(string ifMade, string name, string type, string yearMade);
+    vector<Scientist> searchSci(string input);
+    vector<Computer> searchComp(string input);
     vector<Computer> findConnectedComp(Scientist sci);
     vector<Scientist> findConnectedSci(Computer comp);
     vector<string> readManual();

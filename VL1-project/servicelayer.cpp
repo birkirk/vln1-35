@@ -71,15 +71,15 @@ bool ServiceLayer::addComputer(Computer aComputer)
     return success;
 }
 
-vector<Scientist> ServiceLayer::searchSci(string name, char gender, string born, string death)
+vector<Scientist> ServiceLayer::searchSci(string input)
 {
-    vector<Scientist> vSearched = _dataL.searchSci(name, gender, born, death);
+    vector<Scientist> vSearched = _dataL.searchSci(input);
     return vSearched;
 }
 
-vector<Computer> ServiceLayer::searchComp(string ifMade, string name, string type, string yearMade)
+vector<Computer> ServiceLayer::searchComp(string input)
 {
-    vector<Computer> vSearched = _dataL.searchComp(ifMade, name, type, yearMade);
+    vector<Computer> vSearched = _dataL.searchComp(input);
     return vSearched;
 }
 
