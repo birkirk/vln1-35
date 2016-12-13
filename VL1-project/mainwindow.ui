@@ -355,10 +355,6 @@ font: 13pt &quot;Helvetica&quot;;</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_bin">
-       <attribute name="icon">
-        <iconset>
-         <normaloff>images/bin.png</normaloff>images/bin.png</iconset>
-       </attribute>
        <attribute name="title">
         <string/>
        </attribute>
