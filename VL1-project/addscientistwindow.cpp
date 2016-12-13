@@ -1,5 +1,6 @@
 #include "addscientistwindow.h"
 #include "ui_addscientistwindow.h"
+#include <string>
 
 #include <string>
 addScientistWindow::addScientistWindow(QWidget *parent) :
@@ -15,9 +16,12 @@ addScientistWindow::~addScientistWindow()
     delete ui;
 }
 
+
+
+
+
 void addScientistWindow::on_pushbutton_add_scientist_clicked()
 {
-
     string name = ui->lineEdit_name_input->text().toStdString();
     string sBirth = ui->lineEdit_birth_input->text().toStdString();
     string sGender = ui->comboBox_gender_input->currentText().toStdString();
@@ -55,4 +59,13 @@ void addScientistWindow::on_pushbutton_add_scientist_clicked()
         ui->lineEdit_birth_input->setText(QString::fromStdString(""));
         ui->comboBox_gender_input->setCurrentIndex(0);
     }
+}
+
+void addScientistWindow::on_pushbutton_done_clicked()
+{
+    for(unsigned int i = 0; i < scientistVector.size(); i++)
+    {
+        _service.addScientitst(scientistVector[i]);
+    }
+    this->done(1);
 }

@@ -1,7 +1,7 @@
 #ifndef ADDSCIENTISTWINDOW_H
 #define ADDSCIENTISTWINDOW_H
-#include "servicelayer.h"
 #include "scientist.h"
+#include "servicelayer.h"
 
 #include <QDialog>
 
@@ -20,8 +20,10 @@ public:
 private slots:
     void on_pushbutton_add_scientist_clicked();
 
+    void on_pushbutton_done_clicked();
+
 private:
-    ServiceLayer _service();
+    ServiceLayer _service;
     vector<Scientist> scientistVector;
     Ui::addScientistWindow *ui;
 };

@@ -6,21 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-<<<<<<< HEAD
     <width>709</width>
     <height>327</height>
-=======
-    <width>705</width>
-    <height>514</height>
->>>>>>> 303fcccc8f657608405be792d81296773543eefd
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-<<<<<<< HEAD
-  <widget class="QWidget" name="centralwidget"/>
-=======
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -42,7 +34,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="spacing">
-           <number>-1</number>
+           <number>6</number>
           </property>
           <item>
            <widget class="QLineEdit" name="input_search_scientists">
@@ -208,7 +200,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="spacing">
-           <number>-1</number>
+           <number>6</number>
           </property>
           <item>
            <widget class="QLineEdit" name="input_search_computers">
@@ -376,22 +368,13 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
->>>>>>> 303fcccc8f657608405be792d81296773543eefd
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-<<<<<<< HEAD
      <width>709</width>
      <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-=======
-     <width>705</width>
-     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -400,7 +383,6 @@ font: 13pt &quot;Helvetica&quot;;</string>
     <string>Close program</string>
    </property>
   </action>
->>>>>>> 303fcccc8f657608405be792d81296773543eefd
  </widget>
  <resources/>
  <connections/>
