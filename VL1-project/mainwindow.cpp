@@ -311,3 +311,53 @@ void MainWindow::on_button_recover_computers_clicked()
     }
     displayAllComputers();
 }
+
+void MainWindow::on_button_recover_all_scientists_clicked()
+{
+    bool allWentOk = true;
+    for(size_t i = 0; i < currentlyRemovedScientists.size(); i++)
+    {
+        Scientist selectedScientist = currentlyRemovedScientists[i];
+
+        bool scientistWasRecovered = _service.recycleSci(selectedScientist);
+        if(!scientistWasRecovered)
+        {
+            allWentOk = false;
+        }
+    }
+    if(allWentOk)
+    {
+        ui->label_status_bin->setText("<span style='color: #5EC748'>All scientists successfully recovered</span>");
+    }
+    else
+    {
+        ui->label_status_bin->setText("<span style='color: #E94949'>All scientists could not be recovered</span>");
+    }
+    displayAllRemovedScientists();
+    displayAllScientists();
+}
+
+void MainWindow::on_button_recover_all_computers_clicked()
+{
+    bool allWentOk = true;
+    for(size_t i = 0; i < currentlyRemovedComputers.size(); i++)
+    {
+        Computer selectedComputer = currentlyRemovedComputers[i];
+
+        bool computerWasRecovered = _service.recycleComp(selectedComputer);
+        if(!computerWasRecovered)
+        {
+            allWentOk = false;
+        }
+    }
+    if(allWentOk)
+    {
+        ui->label_status_bin->setText("<span style='color: #5EC748'>All computers successfully recovered</span>");
+    }
+    else
+    {
+        ui->label_status_bin->setText("<span style='color: #E94949'>All computers could not be recovered</span>");
+    }
+    displayAllRemovedComputers();
+    displayAllComputers();
+}

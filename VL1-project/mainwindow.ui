@@ -21,7 +21,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -423,21 +423,39 @@ font: 13pt &quot;Helvetica&quot;;</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="button_recover_scientists">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border: 0px solid #333;
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QPushButton" name="button_recover_scientists">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
 background-color: #5EC748;
 color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Recover Selected Scientist</string>
-            </property>
-           </widget>
+              </property>
+              <property name="text">
+               <string>Recover Selected Scientist</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_recover_all_scientists">
+              <property name="styleSheet">
+               <string notr="true">border: 0px solid #333;
+padding: 7px 0 5px 0;
+background-color: #555;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Recover All Computers</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <widget class="Line" name="line">
@@ -501,21 +519,39 @@ font: 13pt &quot;Helvetica&quot;;</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="button_recover_computers">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border: 0px solid #333;
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QPushButton" name="button_recover_computers">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
 background-color: #5EC748;
 color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Recover Selected Computer</string>
-            </property>
-           </widget>
+              </property>
+              <property name="text">
+               <string>Recover Selected Computer</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_recover_all_computers">
+              <property name="styleSheet">
+               <string notr="true">border: 0px solid #333;
+padding: 7px 0 5px 0;
+background-color: #555;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Recover All Computers</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
