@@ -470,13 +470,17 @@ vector<Scientist> DataLayer::searchSci(string input)
 
     while (query.next())
     {
-        QString gender = query.value(4).toString();
-        char gChar = gender.at(0).toLatin1();
+        int valid = query.value(5).toInt();
+        if(valid == 1)
+        {
+            QString gender = query.value(4).toString();
+            char gChar = gender.at(0).toLatin1();
 
-        QString qName = query.value(1).toString();
-        string name = qName.toStdString();
-        Scientist newSci(name, gChar, query.value(2).toInt(), query.value(3).toInt());
-        scientists.push_back(newSci);
+            QString qName = query.value(1).toString();
+            string name = qName.toStdString();
+            Scientist newSci(name, gChar, query.value(2).toInt(), query.value(3).toInt());
+            scientists.push_back(newSci);
+        }
     }
 
     return scientists;
@@ -508,21 +512,25 @@ vector<Computer> DataLayer::searchComp(string input)
 
     while (query.next())
     {
-        QString qName = query.value(1).toString();
-        string nName = qName.toStdString();
+        int valid = query.value(5).toInt();
+        if(valid == 1)
+        {
+            QString qName = query.value(1).toString();
+            string nName = qName.toStdString();
 
-        QString qIfMade = query.value(3).toString();
-        bool nIfMade;
-        if(qIfMade == "1") nIfMade = true;
-        else nIfMade = false;
+            QString qIfMade = query.value(3).toString();
+            bool nIfMade;
+            if(qIfMade == "1") nIfMade = true;
+            else nIfMade = false;
 
-        QString qType = query.value(2).toString();
-        string nType = qType.toStdString();
+            QString qType = query.value(2).toString();
+            string nType = qType.toStdString();
 
-        int nYearMade = query.value(4).toInt();
+            int nYearMade = query.value(4).toInt();
 
-        Computer newComp(nIfMade, nName, nType, nYearMade);
-        computers.push_back(newComp);
+            Computer newComp(nIfMade, nName, nType, nYearMade);
+            computers.push_back(newComp);
+        }
     }
 
     return computers;
