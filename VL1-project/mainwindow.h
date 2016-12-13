@@ -35,13 +35,27 @@ private slots:
 
     void on_button_remove_computers_clicked();
 
+    void on_table_removed_scientists_clicked(const QModelIndex &index);
+
+    void on_table_removed_computers_clicked(const QModelIndex &index);
+
+    void on_button_recover_scientists_clicked();
+
+    void on_button_recover_computers_clicked();
+
 private:
     void displayAllScientists();
-    void displayScientists(vector<Scientist> sceintists);
     void displayAllComputers();
+    void displayAllRemovedScientists();
+    void displayAllRemovedComputers();
+    void displayScientists(vector<Scientist> scientists);
     void displayComputers(vector<Computer> computers);
+    void displayRemovedScientists(vector<Scientist> scientists);
+    void displayRemovedComputers(vector<Computer> computers);
     vector<Scientist> currentlyDisplaydedScientists;
     vector<Computer> currentlyDisplaydedComputers;
+    vector<Scientist> currentlyRemovedScientists;
+    vector<Computer> currentlyRemovedComputers;
 
     Ui::MainWindow *ui;
     ServiceLayer _service;

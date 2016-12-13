@@ -33,10 +33,14 @@ QSqlQuery findScientists(Scientist sci)
 QSqlQuery findComputers(Computer comp)
 {
     QSqlQuery query;
-    query.prepare("SELECT ID FROM Computers WHERE name LIKE '%'||:name||'%' AND type LIKE '%'||:type||'%' AND ifMade LIKE '%'||:ifMade||'%' AND yearMade LIKE '%'||:yearMade||'%' AND valid = 1");
+    query.prepare("SELECT ID FROM Computers"
+                  " WHERE name LIKE '%'||:name||'%' "
+                  "AND type LIKE '%'||:type||'%' "
+                  "AND ifMade LIKE '%'||:ifMade||'%' "
+                  "AND yearMade LIKE '%'||:yearMade||'%'");
     query.bindValue(":name", QString::fromStdString(comp.getName()));
     query.bindValue(":type", QString::fromStdString(comp.getType()));
-    query.bindValue(":ifMade", comp.getIfMade());
+    query.bindValue(":ifMade", QString::number(comp.getIfMade()));
     query.bindValue(":yearMade", QString::number(comp.getYearMade()));
     query.exec();
     query.first();
@@ -152,7 +156,8 @@ vector<Scientist> DataLayer::getDeletedSci()
 vector<Computer> DataLayer::getDeletedComp()
 {
     QSqlQuery query;
-    query.prepare("SELECT name, ifMade, yearMade, type FROM Computers WHERE valid = 0");
+    query.prepare("SELECT name, type, ifMade, yearMade FROM Computers WHERE valid = 0");
+    query.exec();
 
     vector<Computer> returnVector;
     while(query.next())
@@ -160,10 +165,10 @@ vector<Computer> DataLayer::getDeletedComp()
         QString qName = query.value(0).toString();
         string name = qName.toStdString();
 
-        QString qType = query.value(3).toString();
+        QString qType = query.value(1).toString();
         string type = qType.toStdString();
 
-        Computer newComp(query.value(1).toInt(), name, type, query.value(2).toInt());
+        Computer newComp(query.value(2).toInt(), name, type, query.value(3).toInt());
 
         returnVector.push_back(newComp);
 
@@ -173,24 +178,26 @@ vector<Computer> DataLayer::getDeletedComp()
 
 bool DataLayer::recycleSci(Scientist sci)
 {
+    bool returnValue = false;
     QSqlQuery sciQuery = findScientists(sci);
-
+    
     QSqlQuery query;
     query.prepare("UPDATE Scientists SET valid = 1 WHERE id = (:ID)");
     query.bindValue(":ID", sciQuery.value(0).toInt());
-    bool returnValue = query.exec();
+    returnValue = query.exec();
 
     return returnValue;
 }
 
 bool DataLayer::recycleComp(Computer comp)
 {
+    bool returnValue = false;
     QSqlQuery compQuery = findComputers(comp);
 
     QSqlQuery query;
     query.prepare("UPDATE Computers SET valid = 1 WHERE id = (:ID)");
     query.bindValue(":ID", compQuery.value(0).toInt());
-    bool returnValue = query.exec();
+    returnValue = query.exec();
 
     return returnValue;
 }

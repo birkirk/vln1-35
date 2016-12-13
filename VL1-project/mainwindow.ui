@@ -165,7 +165,7 @@ font-weight: bold;
 font: 25 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="text">
-               <string>Remove</string>
+               <string>Remove Selected</string>
               </property>
              </widget>
             </item>
@@ -322,7 +322,7 @@ font-weight: bold;
 font: 25 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="text">
-               <string>Remove</string>
+               <string>Remove Selected</string>
               </property>
              </widget>
             </item>
@@ -360,8 +360,183 @@ font: 13pt &quot;Helvetica&quot;;</string>
          <normaloff>images/bin.png</normaloff>images/bin.png</iconset>
        </attribute>
        <attribute name="title">
-        <string/>
+        <string>Bin</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_removed_scientists">
+            <property name="font">
+             <font>
+              <family>Helvetica</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>&lt;h4&gt;Removed Scientists&lt;/h4&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="table_removed_scientists">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="sortingEnabled">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>140</number>
+            </attribute>
+            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Name</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Year Born</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Year Died</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Gender</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_recover_scientists">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 0px solid #333;
+padding: 7px 0 5px 0;
+background-color: #5EC748;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Recover Selected Scientist</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_removed_computers">
+            <property name="font">
+             <font>
+              <family>Helvetica</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>&lt;h4&gt;Removed Computers&lt;/h4&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="table_removed_computers">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="sortingEnabled">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>150</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Name</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Type</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>If Made</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Year Made</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_recover_computers">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 0px solid #333;
+padding: 7px 0 5px 0;
+background-color: #5EC748;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Recover Selected Computer</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_status_bin">
+          <property name="font">
+           <font>
+            <family>Helvetica</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
