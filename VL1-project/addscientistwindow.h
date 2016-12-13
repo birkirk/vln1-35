@@ -24,7 +24,7 @@ private slots:
 
 private:
     ServiceLayer _service;
-    vector<Scientist> scientistVector;
+    vector<Scientist> _scientistVector;
     Ui::addScientistWindow *ui;
 };
 

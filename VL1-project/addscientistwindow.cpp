@@ -50,7 +50,7 @@ void addScientistWindow::on_pushbutton_add_scientist_clicked()
         if(sGender == "Male") gender = 'm';
         else if(sGender == "Female") gender = 'f';
         Scientist newScientist(name, gender, birth, death);
-        scientistVector.push_back(newScientist);
+        _scientistVector.push_back(newScientist);
         ui->label_birth_alarm->setText(QString::fromStdString(""));
         ui->label_name_alarm->setText(QString::fromStdString(""));
         ui->label_gender_alarm->setText(QString::fromStdString(""));
@@ -63,9 +63,9 @@ void addScientistWindow::on_pushbutton_add_scientist_clicked()
 
 void addScientistWindow::on_pushbutton_done_clicked()
 {
-    for(unsigned int i = 0; i < scientistVector.size(); i++)
+    for(unsigned int i = 0; i < _scientistVector.size(); i++)
     {
-        _service.addScientitst(scientistVector[i]);
+        _service.addScientitst(_scientistVector[i]);
     }
     this->done(1);
 }

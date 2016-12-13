@@ -3,6 +3,7 @@
 #include "servicelayer.h"
 #include "computer.h"
 #include <string>
+#include "computer.h"
 
 
 #include <QDialog>
@@ -26,7 +27,10 @@ private slots:
     void on_pushButton_add_compter_clicked();
 
 
+    void on_pushButton_done_clicked();
+
 private:
+    vector<Computer> _computerVector;
     Ui::addComputerWindow *ui;
     ServiceLayer _service;
 };
