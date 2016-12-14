@@ -52,6 +52,9 @@
          <height>20</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid #333;</string>
+       </property>
        <property name="maxLength">
         <number>50</number>
        </property>
@@ -109,6 +112,9 @@
      </item>
      <item>
       <widget class="QLineEdit" name="input_addcomp_yearmade">
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid #333;</string>
+       </property>
        <property name="maxLength">
         <number>4</number>
        </property>

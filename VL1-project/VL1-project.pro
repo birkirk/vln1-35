@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     servicelayer.cpp \
     mainwindow.cpp \
     addscientistwindow.cpp \
-    addcomputerwindow.cpp
+    addcomputerwindow.cpp \
+    scientistinfowindow.cpp
 
 
 HEADERS += \
@@ -29,10 +30,12 @@ HEADERS += \
     const.h \
     mainwindow.h \
     addscientistwindow.h \
-    addcomputerwindow.h
+    addcomputerwindow.h \
+    scientistinfowindow.h
 
 
 FORMS += \
     mainwindow.ui \
-    addscientistwindow.ui \
-    addcomputerwindow.ui
+    addcomputerwindow.ui \
+    scientistinfowindow.ui \
+    addscientistwindow.ui

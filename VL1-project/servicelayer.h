@@ -20,6 +20,7 @@ public:
     bool recycleComp(Computer comp);
     bool recycleSci(Scientist sci);
 
+    bool addScientitstPicture(Scientist sci, QByteArray image);
     bool addScientitst(Scientist aScientist);
     bool addComputer(Computer aComputer);
     bool closeData();

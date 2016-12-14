@@ -22,6 +22,8 @@ private slots:
 
     void on_button_addsci_done_clicked();
 
+    void on_pushButton_browse_clicked();
+
 private:
     ServiceLayer _service;
     vector<Scientist> _scientistVector;
