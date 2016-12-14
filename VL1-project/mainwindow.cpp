@@ -254,7 +254,7 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
     ui->table_removed_computers->clearContents();
     ui->table_removed_computers->setRowCount(computers.size());
 
-    if(cmoputers.size() > 0)
+    if(computers.size() > 0)
     {
         ui->button_recover_all_computers->setEnabled(true);
     }
