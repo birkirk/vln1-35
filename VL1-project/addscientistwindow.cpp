@@ -17,36 +17,34 @@ addScientistWindow::~addScientistWindow()
     delete ui;
 }
 
-void addScientistWindow::on_pushbutton_add_scientist_clicked()
+void addScientistWindow::on_button_addsci_add_clicked()
 {
-    string name = ui->lineEdit_name_input->text().toStdString();
-    string sBirth = ui->lineEdit_birth_input->text().toStdString();
-    string sGender = ui->comboBox_gender_input->currentText().toStdString();
-    QString qBirth = ui->lineEdit_birth_input->text();
-    QString qDeath = ui->lineEdit_death_input->text();
+    string name = ui->input_addsci_name->text().toStdString();
+    string sBirth = ui->input_addsci_born->text().toStdString();
+    string sGender = ui->input_addsci_died->text().toStdString();
+    QString qBirth = ui->input_addsci_born->text();
+    QString qDeath = ui->input_addsci_died->text();
     int birth = qBirth.toInt();
     int death = qDeath.toInt();
     if(name.length() == 0)
     {
-        ui->label_name_alarm->setText(QString::fromStdString("Name cannot be empty!"));
+        ui->label_addsci_status->setText(QString::fromStdString("Name cannot be empty!"));
         // do nothing
     }
-    if(sBirth.length() == 0)
+    else if(sBirth.length() == 0)
     {
-        ui->label_birth_alarm->setText(QString::fromStdString("Year of birth cannot be empty!"));
+        ui->label_addsci_status->setText(QString::fromStdString("Year of birth cannot be empty!"));
     }
-    if(sGender.length() == 0)
+    else if(sGender.length() == 0)
     {
-        ui->label_gender_alarm->setText(QString::fromStdString("Gender cannot be empty!"));
+        ui->label_addsci_status->setText(QString::fromStdString("Gender cannot be empty!"));
     }
 
     if(name.length() > 0 && sBirth.length() > 0 && sGender.length() > 0 )
     {
-
         char gender;
         if(sGender == "Male") gender = 'm';
         else if(sGender == "Female") gender = 'f';
-
         QFile file(ui->lineEdit_file_path->text());
 
         if(ui->lineEdit_file_path->text().length() != 0 && file.open(QIODevice::ReadOnly))
@@ -60,17 +58,15 @@ void addScientistWindow::on_pushbutton_add_scientist_clicked()
             Scientist newScientist(name, gender, birth, death);
             _scientistVector.push_back(newScientist);
         }
-        ui->label_birth_alarm->setText(QString::fromStdString(""));
-        ui->label_name_alarm->setText(QString::fromStdString(""));
-        ui->label_gender_alarm->setText(QString::fromStdString(""));
-        ui->lineEdit_name_input->setText(QString::fromStdString(""));
-        ui->lineEdit_death_input->setText(QString::fromStdString(""));
-        ui->lineEdit_birth_input->setText(QString::fromStdString(""));
-        ui->comboBox_gender_input->setCurrentIndex(0);
+        ui->label_addsci_status->setText(QString::fromStdString(""));
+        ui->input_addsci_name->setText(QString::fromStdString(""));
+        ui->input_addsci_born->setText(QString::fromStdString(""));
+        ui->input_addsci_died->setText(QString::fromStdString(""));
+        ui->input_addsci_gender->setCurrentIndex(0);
     }
 }
 
-void addScientistWindow::on_pushbutton_done_clicked()
+void addScientistWindow::on_button_addsci_done_clicked()
 {
     for(unsigned int i = 0; i < _scientistVector.size(); i++)
     {
@@ -79,7 +75,7 @@ void addScientistWindow::on_pushbutton_done_clicked()
     this->done(1);
 }
 
-void addScientistWindow::on_pushButton_browse_clicked()
+void addScientistWindow::on_button_addsci_browse_clicked()
 {
     QString filePath = QFileDialog::getOpenFileName(this,
                                     "Search for image",

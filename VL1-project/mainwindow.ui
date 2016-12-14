@@ -21,7 +21,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -123,6 +123,9 @@ font-size: 16px;</string>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QPushButton" name="button_details_scientists">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 4px 0;
@@ -138,6 +141,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_edit_scientists">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 4px 0;
@@ -156,6 +162,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 4px 0;
@@ -173,6 +182,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
           </item>
           <item>
            <widget class="QPushButton" name="button_addnew_scientists">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="autoFillBackground">
              <bool>false</bool>
             </property>
@@ -283,6 +295,9 @@ font-size: 16px;</string>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
              <widget class="QPushButton" name="button_details_computers">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 4px 0;
@@ -298,6 +313,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_edit_computers">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 4px 0;
@@ -313,6 +331,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_remove_computers">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 4px 0;
@@ -330,6 +351,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
           </item>
           <item>
            <widget class="QPushButton" name="button_addnew_computers">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="autoFillBackground">
              <bool>false</bool>
             </property>
@@ -424,6 +448,9 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
@@ -438,6 +465,9 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_recover_all_scientists">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
@@ -520,6 +550,9 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
@@ -534,6 +567,9 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_recover_all_computers">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;

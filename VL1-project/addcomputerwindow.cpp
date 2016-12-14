@@ -8,17 +8,17 @@ addComputerWindow::addComputerWindow(QWidget *parent) :
     ui->setupUi(this);
     vector<string> types = _service.getTypes();
 
-    ui->combobox_type->addItem(QString::fromStdString(""));
+    ui->input_addcomp_type->addItem(QString::fromStdString(""));
     for(unsigned int i = 0; i < types.size(); i++)
     {
-        ui->combobox_type->addItem(QString::fromStdString(types[i]));
+        ui->input_addcomp_type->addItem(QString::fromStdString(types[i]));
     }
-    ui->combobox_type->addItem(QString::fromStdString("Add new type"));
-    ui->lineEdit_year_made->setReadOnly(true);
+    ui->input_addcomp_type->addItem(QString::fromStdString("Add new type"));
+    ui->input_addcomp_yearmade->setReadOnly(true);
 
     QPalette *palette = new QPalette();
     palette->setColor(QPalette::Base,Qt::gray);
-    ui->lineEdit_year_made->setPalette(*palette);
+    ui->input_addcomp_yearmade->setPalette(*palette);
 }
 
 addComputerWindow::~addComputerWindow()
@@ -27,70 +27,68 @@ addComputerWindow::~addComputerWindow()
 }
 
 
-void addComputerWindow::on_checkBox_made_stateChanged(int arg1)
+void addComputerWindow::on_checkbox_addcomp_made_stateChanged(int arg1)
 {
-    if(ui->checkBox_made->isChecked())
+    if(ui->checkbox_addcomp_made->isChecked())
     {
-        ui->lineEdit_year_made->setReadOnly(false);
+        ui->input_addcomp_yearmade->setReadOnly(false);
         QPalette *palette = new QPalette();
         palette->setColor(QPalette::Base,Qt::white);
-        ui->lineEdit_year_made->setPalette(*palette);
+        ui->input_addcomp_yearmade->setPalette(*palette);
     }
     else
     {
-        ui->lineEdit_year_made->setReadOnly(true);
+        ui->input_addcomp_yearmade->setReadOnly(true);
         QPalette *palette = new QPalette();
         palette->setColor(QPalette::Base,Qt::gray);
-        ui->lineEdit_year_made->setPalette(*palette);
+        ui->input_addcomp_yearmade->setPalette(*palette);
     }
 }
 
-void addComputerWindow::on_pushButton_add_compter_clicked()
+void addComputerWindow::on_button_addcomp_add_clicked()
 {
     bool isValidEntry = true;
-    if(ui->lineEdit_name_input->text().length() == 0)
+    if(ui->input_addcomp_name->text().length() == 0)
     {
-        ui->label_name_alarm->setText(QString::fromStdString("Name cannot be empty!"));
+        ui->label_addcomp_status->setText(QString::fromStdString("Name cannot be empty!"));
         isValidEntry = false;
     }
-    if(ui->checkBox_made->isChecked() && ui->lineEdit_year_made->text().length() == 0)
+    if(ui->checkbox_addcomp_made->isChecked() && ui->input_addcomp_yearmade->text().length() == 0)
     {
-        ui->label_made_alarm->setText(QString::fromStdString("Dont forget to input year made!"));
+        ui->label_addcomp_status->setText(QString::fromStdString("Dont forget to input year made!"));
         isValidEntry = false;
     }
-    if(ui->combobox_type->currentText().length() == 0)
+    if(ui->input_addcomp_type->currentText().length() == 0)
     {
-        ui->label_type_alarm->setText("Type cannot be empty!");
+        ui->label_addcomp_status->setText("Type cannot be empty!");
         isValidEntry = false;
     }
 
     if(isValidEntry)
     {
         int yearMade;
-        if(ui->checkBox_made->isChecked())
+        if(ui->checkbox_addcomp_made->isChecked())
         {
-            QString qYearMade = ui->lineEdit_year_made->text();
+            QString qYearMade = ui->input_addcomp_yearmade->text();
             string sYearMade = qYearMade.toStdString();
             yearMade = atoi(sYearMade.c_str());
         }
         else yearMade = 0;
-        Computer newComp(ui->checkBox_made->isChecked(), ui->lineEdit_name_input->text().toStdString(),
-                         ui->combobox_type->currentText().toStdString(), yearMade);
+        Computer newComp(ui->checkbox_addcomp_made->isChecked(), ui->input_addcomp_name->text().toStdString(),
+                         ui->input_addcomp_type->currentText().toStdString(), yearMade);
         _computerVector.push_back(newComp);
 
-        ui->checkBox_made->setChecked(false);
-        ui->label_made_alarm->setText(QString::fromStdString(""));
-        ui->label_name_alarm->setText(QString::fromStdString(""));
-        ui->label_type_alarm->setText(QString::fromStdString(""));
-        ui->lineEdit_name_input->setText(QString::fromStdString(""));
-        ui->lineEdit_year_made->setText(QString::fromStdString(""));
-        ui->combobox_type->setCurrentIndex(0);
+        ui->checkbox_addcomp_made->setChecked(false);
+        ui->label_addcomp_status->setText(QString::fromStdString(""));
+        ui->input_addcomp_name->setText(QString::fromStdString(""));
+        ui->input_addcomp_yearmade->setText(QString::fromStdString(""));
+        ui->input_addcomp_type->setCurrentIndex(0);
     }
 }
 
 
 
-void addComputerWindow::on_pushButton_done_clicked()
+void addComputerWindow::on_button_addcomp_done_clicked()
 {
     for(unsigned int i = 0; i < _computerVector.size(); i++)
     {

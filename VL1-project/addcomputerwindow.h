@@ -22,12 +22,12 @@ public:
 
 private slots:
 
-    void on_checkBox_made_stateChanged(int arg1);
+    void on_checkbox_addcomp_made_stateChanged(int arg1);
 
-    void on_pushButton_add_compter_clicked();
+    void on_button_addcomp_add_clicked();
 
 
-    void on_pushButton_done_clicked();
+    void on_button_addcomp_done_clicked();
 
 private:
     vector<Computer> _computerVector;

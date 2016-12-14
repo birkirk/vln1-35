@@ -36,6 +36,6 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui \
-    addscientistwindow.ui \
     addcomputerwindow.ui \
-    scientistinfowindow.ui
+    scientistinfowindow.ui \
+    addscientistwindow.ui
