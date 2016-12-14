@@ -21,7 +21,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -123,6 +123,9 @@ font-size: 16px;</string>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QPushButton" name="button_details_scientists">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -141,6 +144,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_edit_scientists">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -295,6 +301,9 @@ font-size: 16px;</string>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
              <widget class="QPushButton" name="button_details_computers">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -313,6 +322,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_edit_computers">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -331,6 +343,9 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_remove_computers">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>

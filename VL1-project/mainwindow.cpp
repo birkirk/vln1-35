@@ -3,6 +3,8 @@
 #include "addscientistwindow.h"
 #include "addcomputerwindow.h"
 #include "scientistinfowindow.h"
+#include "computerinfowindow.h"
+#include "const.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -130,6 +132,7 @@ void MainWindow::on_input_search_scientists_textChanged(const QString &arg1)
 void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 {
     ui->button_remove_scientists->setEnabled(true);
+    ui->button_details_scientists->setEnabled(true);
     ui->label_status_scientists->setText("");
 }
 
@@ -167,6 +170,7 @@ void MainWindow::on_input_search_computers_textChanged(const QString &arg1)
 void MainWindow::on_table_display_computers_clicked(const QModelIndex &index)
 {
     ui->button_remove_computers->setEnabled(true);
+    ui->button_details_computers->setEnabled(true);
     ui->label_status_computers->setText("");
 }
 
@@ -213,7 +217,7 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         QString name = QString::fromStdString(scientists[i].getName());
         QString born = QString::number(scientists[i].getBirth());
         QString died;
-        if(scientists[i].getDeath() == 3000)
+        if(scientists[i].getDeath() == ifDead)
         {
             died = QString::fromStdString("?");
         }
@@ -377,10 +381,20 @@ void MainWindow::on_button_addnew_computers_clicked()
     addComp.exec();
 }
 
-
 void MainWindow::on_button_details_scientists_clicked()
 {
 
-    scientistInfoWindow sciInfo;
-    sciInfo.exec();
+
+    scientistInfoWindow infoSci();
+    infoSci.exec();
+}
+
+void MainWindow::on_button_details_computers_clicked()
+{
+    int selectedComputerRow = ui->table_display_computers->currentIndex().row();
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(selectedComputerRow);
+
+    computerInfoWindow infoComp(selectedComputer);
+    infoComp.exec();
+
 }
