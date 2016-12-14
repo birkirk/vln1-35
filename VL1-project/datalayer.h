@@ -33,9 +33,9 @@ public:
     void addType(string type);
     vector<Scientist> readSci(string com);
     vector<Computer> readComp(string com);
-    vector<int> getCon();
     vector<Scientist> searchSci(string input);
     vector<Computer> searchComp(string input);
+    vector<int> getCon();
     vector<Computer> findConnectedComp(Scientist sci);
     vector<Scientist> findConnectedSci(Computer comp);
     vector<string> readManual();

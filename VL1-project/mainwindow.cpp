@@ -77,7 +77,7 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
         ui->table_display_scientists->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_display_scientists->setItem(i, 3, new QTableWidgetItem(gender));
     }
-    currentlyDisplaydedScientists = scientists;
+    _currentlyDisplaydedScientists = scientists;
 }
 
 void MainWindow::displayComputers(vector<Computer> computers)
@@ -113,7 +113,7 @@ void MainWindow::displayComputers(vector<Computer> computers)
         ui->table_display_computers->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_display_computers->setItem(i, 3, new QTableWidgetItem(yearMade));
     }
-    currentlyDisplaydedComputers = computers;
+    _currentlyDisplaydedComputers = computers;
 }
 
 void MainWindow::on_input_search_scientists_textChanged(const QString &arg1)
@@ -136,7 +136,7 @@ void MainWindow::on_button_remove_scientists_clicked()
 {
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
 
-    Scientist selectedScientist = currentlyDisplaydedScientists.at(selectedScientistRow);
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
 
     bool scientistWasRemoved = _service.deleteSci(selectedScientist);
     if(scientistWasRemoved)
@@ -173,7 +173,7 @@ void MainWindow::on_button_remove_computers_clicked()
 {
     int selectedComputerRow = ui->table_display_computers->currentIndex().row();
 
-    Computer selectedComputer = currentlyDisplaydedComputers.at(selectedComputerRow);
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(selectedComputerRow);
 
     bool computerWasRemoved = _service.deleteComp(selectedComputer);
     if(computerWasRemoved)
@@ -235,7 +235,7 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         ui->table_removed_scientists->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_removed_scientists->setItem(i, 3, new QTableWidgetItem(gender));
     }
-    currentlyRemovedScientists = scientists;
+    _currentlyRemovedScientists = scientists;
 }
 
 void MainWindow::displayRemovedComputers(vector<Computer> computers)
@@ -271,14 +271,14 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
         ui->table_removed_computers->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_removed_computers->setItem(i, 3, new QTableWidgetItem(yearMade));
     }
-    currentlyRemovedComputers = computers;
+    _currentlyRemovedComputers = computers;
 }
 
 void MainWindow::on_button_recover_scientists_clicked()
 {
     int selectedRecoverScientistRow = ui->table_removed_scientists->currentIndex().row();
 
-    Scientist selectedScientist = currentlyRemovedScientists.at(selectedRecoverScientistRow);
+    Scientist selectedScientist = _currentlyRemovedScientists.at(selectedRecoverScientistRow);
 
     bool scientistWasRecovered = _service.recycleSci(selectedScientist);
     if(scientistWasRecovered)
@@ -298,7 +298,7 @@ void MainWindow::on_button_recover_computers_clicked()
 {
     int selectedRecoverComputerRow = ui->table_removed_computers->currentIndex().row();
 
-    Computer selectedComputer = currentlyRemovedComputers.at(selectedRecoverComputerRow);
+    Computer selectedComputer = _currentlyRemovedComputers.at(selectedRecoverComputerRow);
 
     bool computerWasRecovered = _service.recycleComp(selectedComputer);
     if(computerWasRecovered)
@@ -317,9 +317,9 @@ void MainWindow::on_button_recover_computers_clicked()
 void MainWindow::on_button_recover_all_scientists_clicked()
 {
     bool allWentOk = true;
-    for(size_t i = 0; i < currentlyRemovedScientists.size(); i++)
+    for(size_t i = 0; i < _currentlyRemovedScientists.size(); i++)
     {
-        Scientist selectedScientist = currentlyRemovedScientists[i];
+        Scientist selectedScientist = _currentlyRemovedScientists[i];
 
         bool scientistWasRecovered = _service.recycleSci(selectedScientist);
         if(!scientistWasRecovered)
@@ -342,9 +342,9 @@ void MainWindow::on_button_recover_all_scientists_clicked()
 void MainWindow::on_button_recover_all_computers_clicked()
 {
     bool allWentOk = true;
-    for(size_t i = 0; i < currentlyRemovedComputers.size(); i++)
+    for(size_t i = 0; i < _currentlyRemovedComputers.size(); i++)
     {
-        Computer selectedComputer = currentlyRemovedComputers[i];
+        Computer selectedComputer = _currentlyRemovedComputers[i];
 
         bool computerWasRecovered = _service.recycleComp(selectedComputer);
         if(!computerWasRecovered)
@@ -375,3 +375,4 @@ void MainWindow::on_button_addnew_computers_clicked()
     addComputerWindow addComp;
     addComp.exec();
 }
+
