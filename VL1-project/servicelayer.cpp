@@ -248,7 +248,16 @@ bool ServiceLayer::addScientitstPicture(Scientist sci, QByteArray image)
     return returnValue;
 }
 
+bool ServiceLayer::addInfo(Scientist sci, QByteArray inf)
+{
+    bool returnValue = _dataL.addInfo(sci, inf);
+    return returnValue;
+}
 
-
+QByteArray ServiceLayer::getInfo(Scientist sci)
+{
+    QByteArray returnValue = _dataL.getInfo(sci);
+    return returnValue;
+}
 
 
