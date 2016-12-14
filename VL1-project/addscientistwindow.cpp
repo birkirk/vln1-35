@@ -1,8 +1,7 @@
 #include "addscientistwindow.h"
-#include "addscientistwindow.h"
+#include "ui_addscientistwindow.h"
 #include <string>
 
-#include <string>
 addScientistWindow::addScientistWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::addScientistWindow)
@@ -15,10 +14,6 @@ addScientistWindow::~addScientistWindow()
 {
     delete ui;
 }
-
-
-
-
 
 void addScientistWindow::on_pushbutton_add_scientist_clicked()
 {
