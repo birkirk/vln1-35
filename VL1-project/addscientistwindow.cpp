@@ -45,9 +45,9 @@ void addScientistWindow::on_button_addsci_add_clicked()
         char gender;
         if(sGender == "Male") gender = 'm';
         else if(sGender == "Female") gender = 'f';
-        QFile file(ui->lineEdit_file_path->text());
+        QFile file(ui->input_addsci_path->text());
 
-        if(ui->lineEdit_file_path->text().length() != 0 && file.open(QIODevice::ReadOnly))
+        if(ui->input_addsci_path->text().length() != 0 && file.open(QIODevice::ReadOnly))
         {
             QByteArray inByteArray = file.readAll();
             Scientist newScientist(name, gender, birth, death, inByteArray);
@@ -81,5 +81,5 @@ void addScientistWindow::on_button_addsci_browse_clicked()
                                     "Search for image",
                                     "",
                                     "Image files (*.png *.jpg");
-    ui->lineEdit_file_path->setText(filePath);
+    ui->input_addsci_path->setText(filePath);
 }

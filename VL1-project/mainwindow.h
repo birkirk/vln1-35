@@ -51,6 +51,8 @@ private slots:
 
     void on_button_recover_all_computers_clicked();
 
+    void on_button_details_scientists_clicked();
+
 private:
     void displayAllScientists();
     void displayAllComputers();

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "addscientistwindow.h"
 #include "addcomputerwindow.h"
+#include "scientistinfowindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -376,3 +377,12 @@ void MainWindow::on_button_addnew_computers_clicked()
     addComp.exec();
 }
 
+
+void MainWindow::on_button_details_scientists_clicked()
+{
+    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
+
+    scientistInfoWindow sciInfo;
+    sciInfo.exec();
+}

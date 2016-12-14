@@ -22,7 +22,7 @@ private slots:
 
     void on_button_addsci_done_clicked();
 
-    void on_pushButton_browse_clicked();
+    void on_button_addsci_browse_clicked();
 
 private:
     ServiceLayer _service;

@@ -38,6 +38,10 @@ public:
     vector<Scientist> searchSci(string input);
     vector<Computer> searchComp(string input);
     vector<int> getCon();
+
+    bool addInfo(Scientist sci, QByteArray inf);
+    QByteArray getInfo(Scientist sci);
+
     vector<Computer> findConnectedComp(Scientist sci);
     vector<Scientist> findConnectedSci(Computer comp);
     vector<string> readManual();
