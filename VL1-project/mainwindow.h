@@ -60,10 +60,10 @@ private:
     void displayComputers(vector<Computer> computers);
     void displayRemovedScientists(vector<Scientist> scientists);
     void displayRemovedComputers(vector<Computer> computers);
-    vector<Scientist> currentlyDisplaydedScientists;
-    vector<Computer> currentlyDisplaydedComputers;
-    vector<Scientist> currentlyRemovedScientists;
-    vector<Computer> currentlyRemovedComputers;
+    vector<Scientist> _currentlyDisplaydedScientists;
+    vector<Computer> _currentlyDisplaydedComputers;
+    vector<Scientist> _currentlyRemovedScientists;
+    vector<Computer> _currentlyRemovedComputers;
 
     Ui::MainWindow *ui;
     ServiceLayer _service;
