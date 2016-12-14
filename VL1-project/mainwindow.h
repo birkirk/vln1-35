@@ -53,6 +53,8 @@ private slots:
 
     void on_button_details_scientists_clicked();
 
+    void on_button_details_computers_clicked();
+
 private:
     void displayAllScientists();
     void displayAllComputers();

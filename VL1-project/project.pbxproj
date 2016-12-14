@@ -136,6 +136,36 @@
 					);
 			};
 		};
+		E8BB1F3193C3455DD98FFCF3 = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/scientistinfowindow.cpp";
+			name = "scientistinfowindow.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		694E43611A55B230A46A1516 = {
+			fileRef = "E8BB1F3193C3455DD98FFCF3";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		0FB8D3AE53EBFC824F48CC81 = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/computerinfowindow.cpp";
+			name = "computerinfowindow.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		BC50E2FF51C7752A592FD7C2 = {
+			fileRef = "0FB8D3AE53EBFC824F48CC81";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
 		5BE7FD5A2F8BC6ED98953B73 = {
 			isa = PBXFileReference;
 			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/moc_mainwindow.cpp";
@@ -181,10 +211,54 @@
 					);
 			};
 		};
+		2D856E6D4FF3DBCFA024F3CD = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/moc_scientistinfowindow.cpp";
+			name = "moc_scientistinfowindow.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		C3BDF5B0C0B24D9C7718B07E = {
+			fileRef = "2D856E6D4FF3DBCFA024F3CD";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		7076CE97C838CAC0715F8D70 = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/moc_computerinfowindow.cpp";
+			name = "moc_computerinfowindow.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		DC5EF6ECBD3932830B2224D1 = {
+			fileRef = "7076CE97C838CAC0715F8D70";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
 		1E594A6D7F7F97619D80BB41 = {
 			isa = PBXFileReference;
 			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/ui_mainwindow.h";
 			name = "ui_mainwindow.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		2766A788FF52910B4E8E9981 = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/ui_addcomputerwindow.h";
+			name = "ui_addcomputerwindow.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		564AD2D534EFF20E72C7C5B0 = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/ui_scientistinfowindow.h";
+			name = "ui_scientistinfowindow.h";
 			sourceTree = "<absolute>";
 			lastKnownFileType = "sourcecode.c.h";
 		};
@@ -195,10 +269,10 @@
 			sourceTree = "<absolute>";
 			lastKnownFileType = "sourcecode.c.h";
 		};
-		2766A788FF52910B4E8E9981 = {
+		3924B85D30C107F1A25427A0 = {
 			isa = PBXFileReference;
-			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/ui_addcomputerwindow.h";
-			name = "ui_addcomputerwindow.h";
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/ui_computerinfowindow.h";
+			name = "ui_computerinfowindow.h";
 			sourceTree = "<absolute>";
 			lastKnownFileType = "sourcecode.c.h";
 		};
@@ -258,6 +332,20 @@
 			sourceTree = "<absolute>";
 			lastKnownFileType = "sourcecode.c.h";
 		};
+		C8F0315EBE60F1D7E68F49F0 = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/scientistinfowindow.h";
+			name = "scientistinfowindow.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		03E09D46C9F161BDB46E3F2A = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/computerinfowindow.h";
+			name = "computerinfowindow.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
 		E18357EBC97C264E16A9C5C4 = {
 			isa = PBXFileReference;
 			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/VL1-project.pro";
@@ -285,20 +373,6 @@
 					);
 			};
 		};
-		A23F57702CB4688AAB4C6FCF = {
-			isa = PBXFileReference;
-			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/addscientistwindow.ui";
-			name = "addscientistwindow.ui";
-			sourceTree = "<absolute>";
-		};
-		DDCABD23FE9336B2372BD251 = {
-			fileRef = "A23F57702CB4688AAB4C6FCF";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
 		FEE269D5E9919A8397A412FD = {
 			isa = PBXFileReference;
 			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/addcomputerwindow.ui";
@@ -313,15 +387,61 @@
 					);
 			};
 		};
+		3C5D9E177F1A39B2CFC8AAF6 = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/scientistinfowindow.ui";
+			name = "scientistinfowindow.ui";
+			sourceTree = "<absolute>";
+		};
+		56ADDE248DF764645E085C75 = {
+			fileRef = "3C5D9E177F1A39B2CFC8AAF6";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		A23F57702CB4688AAB4C6FCF = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/addscientistwindow.ui";
+			name = "addscientistwindow.ui";
+			sourceTree = "<absolute>";
+		};
+		DDCABD23FE9336B2372BD251 = {
+			fileRef = "A23F57702CB4688AAB4C6FCF";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		7B59456335CF1B438737AD1A = {
+			isa = PBXFileReference;
+			path = "/Users/Birkir/Desktop/vln1-35/VL1-project/computerinfowindow.ui";
+			name = "computerinfowindow.ui";
+			sourceTree = "<absolute>";
+		};
+		12FC4CE53C19BD5A32A00376 = {
+			fileRef = "7B59456335CF1B438737AD1A";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
 		25B08E2869634E9BCBA333A2 = {
 			isa = PBXGroup;
 			children = (
 				"5BE7FD5A2F8BC6ED98953B73",
 				"8C3A3A620E84718EB8D56BB5",
 				"8DBCAAA11003F7B84907F369",
+				"2D856E6D4FF3DBCFA024F3CD",
+				"7076CE97C838CAC0715F8D70",
 				"1E594A6D7F7F97619D80BB41",
+				"2766A788FF52910B4E8E9981",
+				"564AD2D534EFF20E72C7C5B0",
 				"883BB56E81BDA8A4FC4F7D5E",
-				"2766A788FF52910B4E8E9981");
+				"3924B85D30C107F1A25427A0");
 			name = "Generated Sources";
 			sourceTree = "<group>";
 		};
@@ -336,6 +456,8 @@
 				"9B4CC28B1B79AC4934BED026",
 				"A837DCC7B8ABDED9FBFC58DD",
 				"2E01DA5DFDF6CF217CFF6351",
+				"E8BB1F3193C3455DD98FFCF3",
+				"0FB8D3AE53EBFC824F48CC81",
 				"AAD21BA7D2D6FC8959FBE573",
 				"46DF96AC62E55FF7B40F2CB6",
 				"BF847FF066DE8C8DE44B88D4",
@@ -343,7 +465,9 @@
 				"64940B294F2E05A944EFE67F",
 				"9033B1871E522844B54971A5",
 				"AC633AE7A6DB64DB75831C41",
-				"3B82A419523A0F5E956FADFC");
+				"3B82A419523A0F5E956FADFC",
+				"C8F0315EBE60F1D7E68F49F0",
+				"03E09D46C9F161BDB46E3F2A");
 			name = "Sources";
 			sourceTree = "<group>";
 		};
@@ -351,8 +475,10 @@
 			isa = PBXGroup;
 			children = (
 				"86698406988C7B702D49324E",
+				"FEE269D5E9919A8397A412FD",
+				"3C5D9E177F1A39B2CFC8AAF6",
 				"A23F57702CB4688AAB4C6FCF",
-				"FEE269D5E9919A8397A412FD");
+				"7B59456335CF1B438737AD1A");
 			name = "Sources [uic]";
 			sourceTree = "<group>";
 		};
@@ -386,9 +512,13 @@
 				"AC9F6A45184CDE0E5194BE82",
 				"A4D320C5B1FA71A25A193261",
 				"FABFAB1CD7D592F6CEDE2F14",
+				"694E43611A55B230A46A1516",
+				"BC50E2FF51C7752A592FD7C2",
 				"5650C7D269AB0D54328E0AB7",
 				"D38A1A3B785E5FE00EED4456",
-				"DA1E3CE14374434A588A42D3");
+				"DA1E3CE14374434A588A42D3",
+				"C3BDF5B0C0B24D9C7718B07E",
+				"DC5EF6ECBD3932830B2224D1");
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
 			name = "Compile Sources";
