@@ -21,7 +21,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -480,6 +480,9 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_recover_all_scientists">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -582,6 +585,9 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="button_recover_all_computers">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>

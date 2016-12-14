@@ -2,6 +2,7 @@
 #define COMPUTERINFOWINDOW_H
 #include "servicelayer.h"
 #include "computer.h"
+#include "const.h"
 #include <QDialog>
 
 namespace Ui {
@@ -24,6 +25,8 @@ private:
     void setUpComp(Computer selectedComputer);
     void displayConnections(Computer selectedComputer);
     Ui::computerInfoWindow *ui;
+
+    ServiceLayer _service;
 };
 
 #endif // COMPUTERINFOWINDOW_H
