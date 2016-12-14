@@ -383,6 +383,6 @@ void MainWindow::on_button_details_scientists_clicked()
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
     Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
 
-    scientistInfoWindow sciInfo;
+    scientistInfoWindow sciInfo(selectedScientist);
     sciInfo.exec();
 }

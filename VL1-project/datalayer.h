@@ -24,7 +24,7 @@ public:
     DataLayer(const QString& path);
     vector<string> getTypes();
 
-    bool addScientistPicture(Scientist sci, QByteArray image);
+    bool addScientistPicture(Scientist sci, QByteArray pict);
 
     bool recycleComp(Computer comp);
     bool recycleSci(Scientist sci);

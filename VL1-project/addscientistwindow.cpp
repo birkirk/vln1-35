@@ -21,7 +21,7 @@ void addScientistWindow::on_button_addsci_add_clicked()
 {
     string name = ui->input_addsci_name->text().toStdString();
     string sBirth = ui->input_addsci_born->text().toStdString();
-    string sGender = ui->input_addsci_died->text().toStdString();
+    string sGender = ui->input_addsci_gender->currentText().toStdString();
     QString qBirth = ui->input_addsci_born->text();
     QString qDeath = ui->input_addsci_died->text();
     int birth = qBirth.toInt();
@@ -72,6 +72,7 @@ void addScientistWindow::on_button_addsci_done_clicked()
     {
         _service.addScientitst(_scientistVector[i]);
     }
+
     this->done(1);
 }
 

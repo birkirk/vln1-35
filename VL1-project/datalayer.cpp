@@ -672,14 +672,15 @@ vector<string> DataLayer::readManual()
     return manual;
 }
 
-bool DataLayer::addScientistPicture(Scientist sci, QByteArray image)
+bool DataLayer::addScientistPicture(Scientist sci, QByteArray pict)
 {
     QSqlQuery scientistQuery = findScientists(sci);
 
     QSqlQuery query;
-    query.prepare("UPDATE Scientists set image = (:image) WHERE ID = (:ID)");
-    query.bindValue(":image", image);
+    query.prepare("UPDATE Scientists SET picture = (:picture) WHERE ID = (:ID)");
+    query.bindValue(":picture", pict);
     query.bindValue(":ID", scientistQuery.value(0).toInt());
+    qDebug() << query.exec();
     bool returnValue = query.exec();
     return returnValue;
 }

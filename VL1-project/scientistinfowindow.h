@@ -1,5 +1,6 @@
 #ifndef SCIENTISTINFOWINDOW_H
 #define SCIENTISTINFOWINDOW_H
+#include "scientist.h"
 
 #include <QDialog>
 
@@ -13,6 +14,7 @@ class scientistInfoWindow : public QDialog
 
 public:
     explicit scientistInfoWindow(QWidget *parent = 0);
+
     ~scientistInfoWindow();
 
 private:
