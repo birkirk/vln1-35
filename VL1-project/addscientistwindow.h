@@ -18,9 +18,9 @@ public:
     ~addScientistWindow();
 
 private slots:
-    void on_pushbutton_add_scientist_clicked();
+    void on_button_addsci_add_clicked();
 
-    void on_pushbutton_done_clicked();
+    void on_button_addsci_done_clicked();
 
 private:
     ServiceLayer _service;
