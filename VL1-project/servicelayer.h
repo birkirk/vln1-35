@@ -12,6 +12,7 @@ public:
     ServiceLayer();
     
     bool addScientitstPicture(Scientist sci, QByteArray image);
+    QByteArray getScientistPicture(Scientist sci);
     bool addScientitst(Scientist aScientist);
     bool addScientistInfo(Scientist sci, QByteArray inf);
     bool recycleSci(Scientist sci);

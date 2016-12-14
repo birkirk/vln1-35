@@ -697,6 +697,17 @@ bool DataLayer::addScientistPicture(Scientist sci, QByteArray pict)
     return returnValue;
 }
 
+QByteArray DataLayer::getScientistPicture(Scientist sci)
+{
+    QSqlQuery sciQuery = findScientists(sci);
+    QSqlQuery query;
+    query.prepare("SELECT picture FROM Scientist WHERE ID = (:ID)");
+    query.bindValue(":ID", sciQuery.value(0).toInt());
+    query.exec();
+    QByteArray returnPict = query.value(0).toByteArray();
+    return returnPict;
+}
+
 QByteArray DataLayer::getInfo(Scientist sci)
 {
     QSqlQuery sciQuery = findScientists(sci);

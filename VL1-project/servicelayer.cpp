@@ -74,6 +74,12 @@ bool ServiceLayer::addScientitst(Scientist aScientist)
     return success;
 }
 
+QByteArray ServiceLayer::getScientistPicture(Scientist sci)
+{
+    QByteArray returnPict = _dataL.getScientistPicture(sci);
+    return returnPict;
+}
+
 bool ServiceLayer::addComputer(Computer aComputer)
 {
     bool success = false;

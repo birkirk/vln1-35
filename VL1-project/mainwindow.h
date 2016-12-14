@@ -55,6 +55,10 @@ private slots:
 
     void on_button_details_computers_clicked();
 
+    void on_table_display_computers_doubleClicked(const QModelIndex &index);
+
+    void on_table_display_scientists_doubleClicked(const QModelIndex &index);
+
 private:
     void displayAllScientists();
     void displayAllComputers();

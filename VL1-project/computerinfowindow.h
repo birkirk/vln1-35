@@ -17,8 +17,12 @@ public:
     explicit computerInfoWindow(Computer selectedComputer, QWidget *parent = 0);
     ~computerInfoWindow();
 
+private slots:
+    void on_button_infocomp_done_clicked();
+
 private:
     void setUpComp(Computer selectedComputer);
+    void displayConnections(Computer selectedComputer);
     Ui::computerInfoWindow *ui;
 };
 

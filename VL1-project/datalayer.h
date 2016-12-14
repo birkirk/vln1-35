@@ -41,6 +41,7 @@ public:
     vector<Scientist> searchSci(string input);
     vector<Computer> searchComp(string input);
     vector<int> getCon();
+    QByteArray getScientistPicture(Scientist sci);
 
     bool addInfo(Scientist sci, QByteArray inf);
     QByteArray getInfo(Scientist sci);
