@@ -266,6 +266,12 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>table_infocomp_connections</tabstop>
+  <tabstop>button_infocomp_add</tabstop>
+  <tabstop>button_infocomp_remove</tabstop>
+  <tabstop>button_infocomp_done</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
