@@ -3,7 +3,7 @@
 #include "servicelayer.h"
 #include "computer.h"
 #include <string>
-#include "computer.h"
+
 
 
 #include <QDialog>

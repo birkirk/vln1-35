@@ -2,7 +2,7 @@
 #include "addscientistwindow.h"
 #include <string>
 
-#include <string>
+
 addScientistWindow::addScientistWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::addScientistWindow)
