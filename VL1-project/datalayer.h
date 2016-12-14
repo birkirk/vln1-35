@@ -26,6 +26,7 @@ public:
 
     bool addScientistPicture(Scientist sci, QByteArray pict);
     bool addComputerPicture(Computer comp, QByteArray pict);
+    QByteArray getComputerPicture(Computer comp);
 
     bool recycleComp(Computer comp);
     bool recycleSci(Scientist sci);

@@ -19,6 +19,8 @@ public:
     vector<Scientist> getDeletedSci();
     bool deleteSci(Scientist newSci);
 
+    QByteArray getComputerPicture(Computer comp);
+
 
     vector<string> getTypes();
     void addType(string type);

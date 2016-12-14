@@ -50,6 +50,12 @@ void computerInfoWindow::setUpComp(Computer selectedComputer)
     ui->label_infocomp_type->setText(type);
     ui->label_infocomp_ifmade->setText(ifMade);
     ui->label_infocomp_yearmade->setText(yearMade);
+
+    QByteArray picture = _service.getComputerPicture(selectedComputer);
+    QPixmap image;
+    image.loadFromData(picture);
+
+    ui->label_infocomp_image->setPixmap(image);
 }
 
 void computerInfoWindow::displayConnections(Computer selectedComputer)

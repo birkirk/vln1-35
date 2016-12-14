@@ -11,6 +11,7 @@ Computer::Computer(bool ifMade, string name, string type, int yearMade)
     _name = name;
     _ifMade = ifMade;
     _type = type;
+    _hasPicture = false;
     _yearMade = yearMade;
 
 }
@@ -21,6 +22,7 @@ Computer::Computer(bool ifMade, string name, string type, int yearMade, QByteArr
     _ifMade = ifMade;
     _type = type;
     _yearMade = yearMade;
+    _hasPicture = true;
     _picture = pict;
 
 }

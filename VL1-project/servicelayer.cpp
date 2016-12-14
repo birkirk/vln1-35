@@ -85,11 +85,13 @@ bool ServiceLayer::addComputer(Computer aComputer)
     bool success = false;
     if(aComputer.hasPicture())
     {
+        qDebug() << "HAS PICTURE";
         bool addedComp = _dataL.addComputer(aComputer);
         bool addedPict= _dataL.addComputerPicture(aComputer, aComputer.getPicture());
         if(addedComp && addedPict)
         {
             success = true;
+            qDebug() << "IS SUCCESSFUL";
         }
     }
     else
@@ -99,6 +101,12 @@ bool ServiceLayer::addComputer(Computer aComputer)
 
 
     return success;
+}
+
+QByteArray ServiceLayer::getComputerPicture(Computer comp)
+{
+    QByteArray returnPict = _dataL.getComputerPicture(comp);
+    return returnPict;
 }
 
 vector<Scientist> ServiceLayer::searchSci(string input)

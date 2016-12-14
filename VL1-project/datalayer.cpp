@@ -67,6 +67,7 @@ DataLayer::DataLayer()
                             " 'name' VARCHAR NOT NULL ,"
                             " 'type' VARCHAR NOT NULL ,"
                             " 'ifMade' BOOL NOT NULL ,"
+                            " 'picture' BLOB, "
                             " 'yearMade' INTEGER, 'valid' BOOL NOT NULL  DEFAULT 1)");
         createQuery.exec();
 
@@ -381,41 +382,41 @@ vector<Computer> DataLayer::readComp(string com)
 
     if(com == "alpha")
     {
-        query.exec("SELECT * FROM Computers ORDER BY name");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY name");
     }
     else if(com == "ralpha")
     {
-        query.exec("SELECT * FROM Computers ORDER BY name DESC");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY name DESC");
     }
     else if(com == "ageasc")
     {
-        query.exec("SELECT * FROM Computers ORDER BY yearMade DESC");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY yearMade DESC");
     }
     else if(com == "agedesc")
     {
-        query.exec("SELECT * FROM Computers ORDER BY yearMade");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY yearMade");
     }
     else if(com == "made")
     {
-        query.exec("SELECT * FROM Computers WHERE ifMade = 1");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers WHERE ifMade = 1");
     }
     else if(com == "notmade")
     {
-        query.exec("SELECT * FROM Computers WHERE ifMade = 0");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers WHERE ifMade = 0");
     }
     else if(com == "type")
     {
-        query.exec("SELECT * FROM Computers ORDER BY type");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY type");
     }
     else if(com == "non")
     {
-        query.exec("SELECT * FROM Computers");
+        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers");
     }
 
 
     while (query.next())
     {
-        int valid = query.value(5).toInt();
+        int valid = query.value(6).toInt();
         if(valid == 1)
         {
             QString name = query.value(1).toString();
@@ -705,6 +706,18 @@ QByteArray DataLayer::getScientistPicture(Scientist sci)
     QSqlQuery query;
     query.prepare("SELECT picture FROM Scientists WHERE ID = (:ID)");
     query.bindValue(":ID", sciQuery.value(0).toInt());
+    query.exec();
+    query.first();
+    QByteArray returnPict = query.value(0).toByteArray();
+    return returnPict;
+}
+
+QByteArray DataLayer::getComputerPicture(Computer comp)
+{
+    QSqlQuery compQuery = findComputers(comp);
+    QSqlQuery query;
+    query.prepare("SELECT picture FROM Computers WHERE ID = (:ID)");
+    query.bindValue("ID", compQuery.value(0).toInt());
     query.exec();
     query.first();
     QByteArray returnPict = query.value(0).toByteArray();
