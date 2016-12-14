@@ -57,7 +57,7 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
         QString name = QString::fromStdString(scientists[i].getName());
         QString born = QString::number(scientists[i].getBirth());
         QString died;
-        if(scientists[i].getDeath() == 3000)
+        if(scientists[i].getDeath() == ifDead)
         {
             died = QString::fromStdString("?");
         }
@@ -138,6 +138,7 @@ void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 
 void MainWindow::on_button_remove_scientists_clicked()
 {
+    ui->button_recover_all_scientists->setEnabled(true);
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
 
     Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
@@ -176,6 +177,7 @@ void MainWindow::on_table_display_computers_clicked(const QModelIndex &index)
 
 void MainWindow::on_button_remove_computers_clicked()
 {
+    ui->button_recover_all_computers->setEnabled(true);
     int selectedComputerRow = ui->table_display_computers->currentIndex().row();
 
     Computer selectedComputer = _currentlyDisplaydedComputers.at(selectedComputerRow);
@@ -212,6 +214,10 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
     ui->table_removed_scientists->clearContents();
     ui->table_removed_scientists->setRowCount(scientists.size());
 
+    if(scientists.size() > 0)
+    {
+        ui->button_recover_all_scientists->setEnabled(true);
+    }
     for(size_t i = 0; i < scientists.size(); i++)
     {
         QString name = QString::fromStdString(scientists[i].getName());
@@ -248,6 +254,10 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
     ui->table_removed_computers->clearContents();
     ui->table_removed_computers->setRowCount(computers.size());
 
+    if(cmoputers.size() > 0)
+    {
+        ui->button_recover_all_computers->setEnabled(true);
+    }
     for(size_t i = 0; i < computers.size(); i++)
     {
         QString name = QString::fromStdString(computers[i].getName());
@@ -321,6 +331,7 @@ void MainWindow::on_button_recover_computers_clicked()
 
 void MainWindow::on_button_recover_all_scientists_clicked()
 {
+    ui->button_recover_all_scientists->setEnabled(false);
     bool allWentOk = true;
     for(size_t i = 0; i < _currentlyRemovedScientists.size(); i++)
     {
@@ -346,6 +357,7 @@ void MainWindow::on_button_recover_all_scientists_clicked()
 
 void MainWindow::on_button_recover_all_computers_clicked()
 {
+    ui->button_recover_all_computers->setEnabled(false);
     bool allWentOk = true;
     for(size_t i = 0; i < _currentlyRemovedComputers.size(); i++)
     {
