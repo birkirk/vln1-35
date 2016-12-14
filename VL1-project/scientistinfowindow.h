@@ -25,6 +25,10 @@ private slots:
 
     void on_button_infosci_done_clicked();
 
+    void on_table_infosci_connections_clicked(const QModelIndex &index);
+
+    void on_button_infosci_remove_clicked();
+
 private:
     void setUpSci(Scientist selectedScientist);
     void displayConnections(Scientist selectedScientist);

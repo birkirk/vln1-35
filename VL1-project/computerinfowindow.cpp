@@ -93,3 +93,13 @@ void computerInfoWindow::on_button_infocomp_done_clicked()
 {
     this->done(1);
 }
+
+void computerInfoWindow::on_table_infocomp_connections_clicked(const QModelIndex &index)
+{
+    ui->button_infocomp_remove->setEnabled(true);
+}
+
+void computerInfoWindow::on_button_infocomp_remove_clicked()
+{
+    int selectedComputerRow = ui->table_infocomp_connections->currentIndex().row();
+}

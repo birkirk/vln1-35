@@ -21,6 +21,10 @@ public:
 private slots:
     void on_button_infocomp_done_clicked();
 
+    void on_table_infocomp_connections_clicked(const QModelIndex &index);
+
+    void on_button_infocomp_remove_clicked();
+
 private:
     void setUpComp(Computer selectedComputer);
     void displayConnections(Computer selectedComputer);

@@ -98,3 +98,13 @@ void scientistInfoWindow::on_button_infosci_done_clicked()
 {
     this->done(1);
 }
+
+void scientistInfoWindow::on_table_infosci_connections_clicked(const QModelIndex &index)
+{
+    ui->button_infosci_remove->setEnabled(true);
+}
+
+void scientistInfoWindow::on_button_infosci_remove_clicked()
+{
+    int selectedScientistRow = ui->table_infosci_connections->currentIndex().row();
+}
