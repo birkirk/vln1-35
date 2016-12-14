@@ -11,27 +11,31 @@ class ServiceLayer
 public:
     ServiceLayer();
     
+    bool addScientitstPicture(Scientist sci, QByteArray image);
+    bool addScientitst(Scientist aScientist);
+    bool addScientistInfo(Scientist sci, QByteArray inf);
+    bool recycleSci(Scientist sci);
+    vector<Scientist> getDeletedSci();
+    bool deleteSci(Scientist newSci);
+
+
     vector<string> getTypes();
     void addType(string type);
 
     vector<Computer> getDeletedComp();
-    vector<Scientist> getDeletedSci();
 
     bool recycleComp(Computer comp);
-    bool recycleSci(Scientist sci);
 
-    bool addInfo(Scientist sci, QByteArray inf);
     QByteArray getInfo(Scientist sci);
 
-    bool addScientitstPicture(Scientist sci, QByteArray image);
-    bool addScientitst(Scientist aScientist);
     bool addComputer(Computer aComputer);
     bool closeData();
-    bool deleteSci(Scientist newSci);
     bool deleteComp(Computer newComp);
     bool connect(Scientist Sci, Computer Comp);
     
     void clearData(string com);
+
+    bool addComputerPicture(Computer comp, QByteArray pict);
     
     vector<int> receiveCon(int usedid, string which);
     vector<Computer> getConnectedComp(Scientist sci);

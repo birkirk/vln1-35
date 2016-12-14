@@ -1,5 +1,6 @@
 #include "addcomputerwindow.h"
 #include "ui_addcomputerwindow.h"
+#include <QFileDialog>
 
 addComputerWindow::addComputerWindow(QWidget *parent) :
     QDialog(parent),
@@ -74,9 +75,23 @@ void addComputerWindow::on_button_addcomp_add_clicked()
             yearMade = atoi(sYearMade.c_str());
         }
         else yearMade = 0;
-        Computer newComp(ui->checkbox_addcomp_made->isChecked(), ui->input_addcomp_name->text().toStdString(),
-                         ui->input_addcomp_type->currentText().toStdString(), yearMade);
-        _computerVector.push_back(newComp);
+
+        QFile file(ui->input_addcomp_image_path->text());
+        if(ui->input_addcomp_image_path->text().length() != 0 && file.open(QIODevice::ReadOnly))
+        {
+            QByteArray picture = file.readAll();
+            Computer newComputer(ui->checkbox_addcomp_made->isChecked(), ui->input_addcomp_name->text().toStdString(),
+                                 ui->input_addcomp_type->currentText().toStdString(), yearMade, picture);
+            _computerVector.push_back(newComputer);
+        }
+        else
+        {
+            Computer newComp(ui->checkbox_addcomp_made->isChecked(), ui->input_addcomp_name->text().toStdString(),
+                             ui->input_addcomp_type->currentText().toStdString(), yearMade);
+
+            _computerVector.push_back(newComp);
+        }
+
 
         ui->checkbox_addcomp_made->setChecked(false);
         ui->label_addcomp_status->setText(QString::fromStdString(""));
@@ -95,4 +110,13 @@ void addComputerWindow::on_button_addcomp_done_clicked()
         _service.addComputer(_computerVector[i]);
     }
     this->done(1);
+}
+
+void addComputerWindow::on_button_addcomp_browse_image_clicked()
+{
+    QString filePath = QFileDialog::getOpenFileName(this,
+                                    "Search for image",
+                                    "",
+                                    "Image files (*.png *.jpg");
+    ui->input_addcomp_image_path->setText(filePath);
 }

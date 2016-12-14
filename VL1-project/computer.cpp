@@ -12,6 +12,17 @@ Computer::Computer(bool ifMade, string name, string type, int yearMade)
     _ifMade = ifMade;
     _type = type;
     _yearMade = yearMade;
+
+}
+
+Computer::Computer(bool ifMade, string name, string type, int yearMade, QByteArray pict)
+{
+    _name = name;
+    _ifMade = ifMade;
+    _type = type;
+    _yearMade = yearMade;
+    _picture = pict;
+
 }
 
 bool Computer::getIfMade()
@@ -32,4 +43,14 @@ string Computer::getType()
 int Computer::getYearMade()
 {
     return _yearMade;
+}
+
+QByteArray Computer::getPicture()
+{
+    return _picture;
+}
+
+bool Computer::hasPicture()
+{
+    return _hasPicture;
 }

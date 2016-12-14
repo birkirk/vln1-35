@@ -274,6 +274,18 @@ bool DataLayer::addComputer(Computer comp)
     return success;
 }
 
+bool DataLayer::addComputerPicture(Computer comp, QByteArray pict)
+{
+    QSqlQuery compQuery = findComputers(comp);
+    QSqlQuery query;
+    query.prepare("UPDATE Computers SET picture = (:picture) WHERE ID = (:ID)");
+    query.bindValue(":ID", compQuery.value(0).toInt());
+    query.bindValue(":picture", pict);
+    bool returnValue = query.exec();
+
+    return returnValue;
+}
+
 bool DataLayer::deleteComputer(Computer newComp)
 {
     QSqlQuery query = findComputers(newComp);

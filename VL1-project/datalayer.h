@@ -25,9 +25,12 @@ public:
     vector<string> getTypes();
 
     bool addScientistPicture(Scientist sci, QByteArray pict);
+    bool addComputerPicture(Computer comp, QByteArray pict);
 
     bool recycleComp(Computer comp);
     bool recycleSci(Scientist sci);
+
+
 
     vector<Computer> getDeletedComp();
     vector<Scientist> getDeletedSci();
@@ -45,17 +48,19 @@ public:
     vector<Computer> findConnectedComp(Scientist sci);
     vector<Scientist> findConnectedSci(Computer comp);
     vector<string> readManual();
-    
-    bool closeDatabase();
-    void writeFile(vector<Scientist> vScientist);
+
     bool addScientist(Scientist sci);
     bool deleteScientist(Scientist newSci);
-    bool deleteComputer(Computer newComp);
-    bool connect(Scientist newSci, Computer newComp);
+    
     bool addComputer(Computer comp);
+    bool deleteComputer(Computer newComp);
 
-    void clearDataFile();
+    bool closeDatabase();
+    void writeFile(vector<Scientist> vScientist);
+    bool connect(Scientist newSci, Computer newComp);
+
     void clearSci();
+    void clearDataFile();
     void clearComp();
     void clearCon();
 

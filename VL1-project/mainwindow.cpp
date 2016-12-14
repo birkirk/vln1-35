@@ -380,9 +380,7 @@ void MainWindow::on_button_addnew_computers_clicked()
 
 void MainWindow::on_button_details_scientists_clicked()
 {
-    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
-    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
 
-    scientistInfoWindow sciInfo(selectedScientist);
+    scientistInfoWindow sciInfo;
     sciInfo.exec();
 }

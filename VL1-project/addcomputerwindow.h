@@ -29,6 +29,8 @@ private slots:
 
     void on_button_addcomp_done_clicked();
 
+    void on_button_addcomp_browse_image_clicked();
+
 private:
     vector<Computer> _computerVector;
     Ui::addComputerWindow *ui;

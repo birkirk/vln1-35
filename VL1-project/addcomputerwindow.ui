@@ -6,10 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>235</width>
-    <height>196</height>
-    <width>260</width>
-    <height>318</height>
+    <width>496</width>
+    <height>281</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,6 +120,27 @@
        </property>
        <property name="placeholderText">
         <string>Year made</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Add picture (optional)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLineEdit" name="input_addcomp_image_path"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_addcomp_browse_image">
+       <property name="text">
+        <string>Browse</string>
        </property>
       </widget>
      </item>

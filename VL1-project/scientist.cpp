@@ -12,22 +12,22 @@ Scientist::Scientist(string name, char gender, int born, int death)
     _gender = gender;
     _born = born;
     _death = death;
-    _hasImage = false;
+    _hasPicture = false;
 
 }
-Scientist::Scientist(string name, char gender, int born, int death, QByteArray img)
+Scientist::Scientist(string name, char gender, int born, int death, QByteArray pict)
 {
     _name = name;
     _gender = gender;
     _born = born;
     _death = death;
-    _image = img;
-    _hasImage = true;
+    _picture = pict;
+    _hasPicture = true;
 }
 
-bool Scientist::hasImage()
+bool Scientist::hasPicture()
 {
-    return _hasImage;
+    return _hasPicture;
 }
 
 int Scientist::getBirth()
@@ -50,8 +50,8 @@ string Scientist::getName()
     return _name;
 }
 
-QByteArray Scientist::getImage()
+QByteArray Scientist::getPicture()
 {
-    return _image;
+    return _picture;
 }
 

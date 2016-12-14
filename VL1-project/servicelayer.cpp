@@ -62,10 +62,10 @@ bool ServiceLayer::deleteComp(Computer newComp)
 bool ServiceLayer::addScientitst(Scientist aScientist)
 {
     bool success;
-    if(aScientist.hasImage())
+    if(aScientist.hasPicture())
     {
         bool success = _dataL.addScientist(aScientist);
-        _dataL.addScientistPicture(aScientist, aScientist.getImage());
+        _dataL.addScientistPicture(aScientist, aScientist.getPicture());
     }
     else
     {
@@ -76,7 +76,22 @@ bool ServiceLayer::addScientitst(Scientist aScientist)
 
 bool ServiceLayer::addComputer(Computer aComputer)
 {
-    bool success = _dataL.addComputer(aComputer);
+    bool success = false;
+    if(aComputer.hasPicture())
+    {
+        bool addedComp = _dataL.addComputer(aComputer);
+        bool addedPict= _dataL.addComputerPicture(aComputer, aComputer.getPicture());
+        if(addedComp && addedPict)
+        {
+            success = true;
+        }
+    }
+    else
+    {
+        success = _dataL.addComputer(aComputer);
+    }
+
+
     return success;
 }
 
@@ -242,13 +257,19 @@ vector<string> ServiceLayer::getManual()
     return manual;
 }
 
-bool ServiceLayer::addScientitstPicture(Scientist sci, QByteArray image)
+bool ServiceLayer::addComputerPicture(Computer comp, QByteArray pict)
 {
-    bool returnValue = _dataL.addScientistPicture(sci, image);
+    bool returnValue = _dataL.addComputerPicture(comp, pict);
     return returnValue;
 }
 
-bool ServiceLayer::addInfo(Scientist sci, QByteArray inf)
+bool ServiceLayer::addScientitstPicture(Scientist sci, QByteArray pict)
+{
+    bool returnValue = _dataL.addScientistPicture(sci, pict);
+    return returnValue;
+}
+
+bool ServiceLayer::addScientistInfo(Scientist sci, QByteArray inf)
 {
     bool returnValue = _dataL.addInfo(sci, inf);
     return returnValue;
