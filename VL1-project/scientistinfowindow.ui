@@ -179,21 +179,45 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_infosci_add">
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 0px solid #333;
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="button_infosci_add">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
 background-color: #5EC748;
 color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
-     </property>
-     <property name="text">
-      <string>Add connected computer</string>
-     </property>
-    </widget>
+       </property>
+       <property name="text">
+        <string>Add connected computer</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_infosci_remove">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="cursor">
+        <cursorShape>SplitHCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid #333;
+padding: 7px 0 5px 0;
+background-color: #E94949;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Remove connected connection</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QLabel" name="label_infosci_status">
@@ -238,6 +262,12 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>table_infosci_connections</tabstop>
+  <tabstop>button_infosci_add</tabstop>
+  <tabstop>button_infosci_remove</tabstop>
+  <tabstop>button_infosci_done</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

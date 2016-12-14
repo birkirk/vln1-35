@@ -183,21 +183,45 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_infocomp_add">
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 0px solid #333;
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="button_infocomp_add">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
 background-color: #5EC748;
 color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
-     </property>
-     <property name="text">
-      <string>Add connected scientist</string>
-     </property>
-    </widget>
+       </property>
+       <property name="text">
+        <string>Add connected scientist</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_infocomp_remove">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid #333;
+padding: 7px 0 5px 0;
+background-color: #E94949;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Remove selected connection</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QLabel" name="label_infocomp_status">
@@ -242,6 +266,12 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>table_infocomp_connections</tabstop>
+  <tabstop>button_infocomp_add</tabstop>
+  <tabstop>button_infocomp_remove</tabstop>
+  <tabstop>button_infocomp_done</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

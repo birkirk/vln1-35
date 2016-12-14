@@ -287,6 +287,17 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>input_addsci_name</tabstop>
+  <tabstop>input_addsci_gender</tabstop>
+  <tabstop>input_addsci_born</tabstop>
+  <tabstop>input_addsci_died</tabstop>
+  <tabstop>input_addsci_path</tabstop>
+  <tabstop>button_addsci_browse</tabstop>
+  <tabstop>input_addsci_info</tabstop>
+  <tabstop>button_addsci_add</tabstop>
+  <tabstop>button_addsci_done</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
