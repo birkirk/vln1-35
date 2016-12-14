@@ -398,3 +398,21 @@ void MainWindow::on_button_details_computers_clicked()
     computerInfoWindow infoComp(selectedComputer);
     infoComp.exec();
 }
+
+void MainWindow::on_table_display_scientists_doubleClicked(const QModelIndex &index)
+{
+    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
+
+    scientistInfoWindow infoSci(selectedScientist);
+    infoSci.exec();
+}
+
+void MainWindow::on_table_display_computers_doubleClicked(const QModelIndex &index)
+{
+    int selectedComputerRow = ui->table_display_computers->currentIndex().row();
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(selectedComputerRow);
+
+    computerInfoWindow infoComp(selectedComputer);
+    infoComp.exec();
+}

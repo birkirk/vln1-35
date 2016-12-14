@@ -15,6 +15,7 @@ computerInfoWindow::computerInfoWindow(Computer selectedComputer, QWidget *paren
     ui->setupUi(this);
 
     setUpComp(selectedComputer);
+    displayConnections(selectedComputer);
 }
 
 computerInfoWindow::~computerInfoWindow()
@@ -25,4 +26,14 @@ computerInfoWindow::~computerInfoWindow()
 void computerInfoWindow::setUpComp(Computer selectedComputer)
 {
 
+}
+
+void computerInfoWindow::displayConnections(Computer selectedComputer)
+{
+
+}
+
+void computerInfoWindow::on_button_infocomp_done_clicked()
+{
+    this->done(1);
 }
