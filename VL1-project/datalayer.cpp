@@ -320,31 +320,7 @@ vector<Scientist> DataLayer::readSci(string com)
     vector<Scientist> tempV;
     QSqlQuery query;
 
-    if(com == "alpha")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY name");
-    }
-    else if(com == "ralpha")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY name DESC");
-    }
-    else if(com == "ageasc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfBirth DESC");
-    }
-    else if(com == "agedesc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfBirth");
-    }
-    else if(com == "deathasc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfDeath");
-    }
-    else if(com == "deathdesc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfDeath DESC");
-    }
-    else if(com == "non")
+    if(com == "non")
     {
         query.exec("SELECT * FROM Scientists");
     }
@@ -377,35 +353,7 @@ vector<Computer> DataLayer::readComp(string com)
     vector<Computer> tempV;
     QSqlQuery query;
 
-    if(com == "alpha")
-    {
-        query.exec("SELECT * FROM Computers ORDER BY name");
-    }
-    else if(com == "ralpha")
-    {
-        query.exec("SELECT * FROM Computers ORDER BY name DESC");
-    }
-    else if(com == "ageasc")
-    {
-        query.exec("SELECT * FROM Computers ORDER BY yearMade DESC");
-    }
-    else if(com == "agedesc")
-    {
-        query.exec("SELECT * FROM Computers ORDER BY yearMade");
-    }
-    else if(com == "made")
-    {
-        query.exec("SELECT * FROM Computers WHERE ifMade = 1");
-    }
-    else if(com == "notmade")
-    {
-        query.exec("SELECT * FROM Computers WHERE ifMade = 0");
-    }
-    else if(com == "type")
-    {
-        query.exec("SELECT * FROM Computers ORDER BY type");
-    }
-    else if(com == "non")
+    if(com == "non")
     {
         query.exec("SELECT * FROM Computers");
     }
