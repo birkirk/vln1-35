@@ -76,6 +76,7 @@ DataLayer::DataLayer()
                             "'yearOfBirth' VARCHAR,"
                             "'yearOfDeath' VARCHAR,"
                             " 'gender' CHAR NOT NULL  DEFAULT N,"
+                            " 'picture' BLOB, "
                             " 'valid' DOUBLE NOT NULL  DEFAULT 1)");
         createQuery.exec();
 
@@ -669,5 +670,17 @@ vector<string> DataLayer::readManual()
         manual.push_back("Ahh.. Could not find and open readMe.txt, I guess you'll have manage without it. Sorry...");
     }
     return manual;
+}
+
+bool DataLayer::addScientistPicture(Scientist sci, QByteArray image)
+{
+    QSqlQuery scientistQuery = findScientists(sci);
+
+    QSqlQuery query;
+    query.prepare("UPDATE Scientists set image = (:image) WHERE ID = (:ID)");
+    query.bindValue(":image", image);
+    query.bindValue(":ID", scientistQuery.value(0).toInt());
+    bool returnValue = query.exec();
+    return returnValue;
 }
 

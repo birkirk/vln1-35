@@ -1,6 +1,7 @@
 #include "addscientistwindow.h"
-#include "addscientistwindow.h"
+#include "ui_addscientistwindow.h"
 #include <string>
+#include <QFileDialog>
 
 
 addScientistWindow::addScientistWindow(QWidget *parent) :
@@ -15,10 +16,6 @@ addScientistWindow::~addScientistWindow()
 {
     delete ui;
 }
-
-
-
-
 
 void addScientistWindow::on_pushbutton_add_scientist_clicked()
 {
@@ -49,8 +46,20 @@ void addScientistWindow::on_pushbutton_add_scientist_clicked()
         char gender;
         if(sGender == "Male") gender = 'm';
         else if(sGender == "Female") gender = 'f';
-        Scientist newScientist(name, gender, birth, death);
-        _scientistVector.push_back(newScientist);
+
+        QFile file(ui->lineEdit_file_path->text());
+
+        if(ui->lineEdit_file_path->text().length() != 0 && file.open(QIODevice::ReadOnly))
+        {
+            QByteArray inByteArray = file.readAll();
+            Scientist newScientist(name, gender, birth, death, inByteArray);
+            _scientistVector.push_back(newScientist);
+        }
+        else
+        {
+            Scientist newScientist(name, gender, birth, death);
+            _scientistVector.push_back(newScientist);
+        }
         ui->label_birth_alarm->setText(QString::fromStdString(""));
         ui->label_name_alarm->setText(QString::fromStdString(""));
         ui->label_gender_alarm->setText(QString::fromStdString(""));
@@ -68,4 +77,13 @@ void addScientistWindow::on_pushbutton_done_clicked()
         _service.addScientitst(_scientistVector[i]);
     }
     this->done(1);
+}
+
+void addScientistWindow::on_pushButton_browse_clicked()
+{
+    QString filePath = QFileDialog::getOpenFileName(this,
+                                    "Search for image",
+                                    "",
+                                    "Image files (*.png *.jpg");
+    ui->lineEdit_file_path->setText(filePath);
 }

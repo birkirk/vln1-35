@@ -61,7 +61,16 @@ bool ServiceLayer::deleteComp(Computer newComp)
 
 bool ServiceLayer::addScientitst(Scientist aScientist)
 {
-    bool success = _dataL.addScientist(aScientist);
+    bool success;
+    if(aScientist.hasImage())
+    {
+        bool success = _dataL.addScientist(aScientist);
+        _dataL.addScientistPicture(aScientist, aScientist.getImage());
+    }
+    else
+    {
+        success = _dataL.addScientist(aScientist);
+    }
     return success;
 }
 
@@ -231,6 +240,12 @@ vector<string> ServiceLayer::getManual()
 {
     vector<string> manual = _dataL.readManual();
     return manual;
+}
+
+bool ServiceLayer::addScientitstPicture(Scientist sci, QByteArray image)
+{
+    bool returnValue = _dataL.addScientistPicture(sci, image);
+    return returnValue;
 }
 
 
