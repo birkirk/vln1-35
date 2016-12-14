@@ -94,7 +94,7 @@ DataLayer::DataLayer()
         QSqlQuery insert;
         insert.prepare("INSERT INTO types (type) VALUES(:type) ");
         insert.bindValue(":type", QString::fromStdString("Mechanical"));
-        qDebug() << insert.exec();
+        insert.exec();
         insert.bindValue(":type", QString::fromStdString("Electronic"));
         insert.exec();
         insert.bindValue(":type", QString::fromStdString("Transistor Machine"));
@@ -351,11 +351,13 @@ vector<Scientist> DataLayer::readSci(string com)
 
     while (query.next())
     {
-        int valid = query.value(5).toInt();
+
+        int valid = query.value(6).toInt();
         if(valid == 1)
         {
             QString name = query.value(1).toString();
             string theName = name.toStdString();
+
 
             int yearBorn = query.value(2).toInt();
 
@@ -692,7 +694,7 @@ bool DataLayer::addScientistPicture(Scientist sci, QByteArray pict)
     query.prepare("UPDATE Scientists SET picture = (:picture) WHERE ID = (:ID)");
     query.bindValue(":picture", pict);
     query.bindValue(":ID", scientistQuery.value(0).toInt());
-    qDebug() << query.exec();
+    query.exec();
     bool returnValue = query.exec();
     return returnValue;
 }
@@ -701,9 +703,10 @@ QByteArray DataLayer::getScientistPicture(Scientist sci)
 {
     QSqlQuery sciQuery = findScientists(sci);
     QSqlQuery query;
-    query.prepare("SELECT picture FROM Scientist WHERE ID = (:ID)");
+    query.prepare("SELECT picture FROM Scientists WHERE ID = (:ID)");
     query.bindValue(":ID", sciQuery.value(0).toInt());
     query.exec();
+    query.first();
     QByteArray returnPict = query.value(0).toByteArray();
     return returnPict;
 }
