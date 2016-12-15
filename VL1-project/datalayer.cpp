@@ -454,14 +454,18 @@ vector<Scientist> DataLayer::searchSci(string input)
                  << "' UNION "
                  << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT gender, name, yearOfBirth, yearOfDeat, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+
+
+
 
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Scientist> scientists;
 
 
-    QSqlQuery query(_db);
 
+    QSqlQuery query(_db);
+    qDebug() << query.exec(sqlQ);
     if (!query.exec(sqlQ))
     {
         return scientists;
