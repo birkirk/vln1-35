@@ -16,6 +16,7 @@ computerInfoWindow::computerInfoWindow(Computer selectedComputer, QWidget *paren
 
     setUpComp(selectedComputer);
     displayConnections(selectedComputer);
+    setComputer(selectedComputer);
 }
 
 computerInfoWindow::~computerInfoWindow()
@@ -61,6 +62,7 @@ void computerInfoWindow::setUpComp(Computer selectedComputer)
 void computerInfoWindow::displayConnections(Computer selectedComputer)
 {
     vector<Scientist> connectedScientists = _service.getConnectedSci(selectedComputer);
+    ui->table_infocomp_connections->hideColumn(4);
 
     ui->table_infocomp_connections->clearContents();
     ui->table_infocomp_connections->setRowCount(connectedScientists.size());
@@ -87,13 +89,20 @@ void computerInfoWindow::displayConnections(Computer selectedComputer)
         {
             gender = QString::fromStdString("Female");
         }
+        QString ID = QString::number(i);
 
         ui->table_infocomp_connections->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_infocomp_connections->setItem(i, 1, new QTableWidgetItem(born));
         ui->table_infocomp_connections->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_infocomp_connections->setItem(i, 3, new QTableWidgetItem(gender));
+        ui->table_infocomp_connections->setItem(i, 4, new QTableWidgetItem(ID));
     }
     _currentlyConnected = connectedScientists;
+}
+
+void computerInfoWindow::setComputer(Computer selectedComputer)
+{
+    _selectedComputer = selectedComputer;
 }
 
 void computerInfoWindow::on_button_infocomp_done_clicked()
@@ -104,11 +113,26 @@ void computerInfoWindow::on_button_infocomp_done_clicked()
 void computerInfoWindow::on_table_infocomp_connections_clicked(const QModelIndex &index)
 {
     ui->button_infocomp_remove->setEnabled(true);
+    ui->label_infocomp_status->setText("");
 }
 
 void computerInfoWindow::on_button_infocomp_remove_clicked()
 {
-    int selectedComputerRow = ui->table_infocomp_connections->currentIndex().row();
+    int selectedScientistRow = ui->table_infocomp_connections->currentIndex().row();
+    QString ID = ui->table_infocomp_connections->item(selectedScientistRow, 4)->text();
+    int scientistID = ID.toInt();
+    Scientist selectedScientist = _currentlyConnected.at(scientistID);
+    bool wasRemoved = _service.deleteConnection(_selectedComputer, selectedScientist);
+    if(wasRemoved)
+    {
+        displayConnections(_selectedComputer);
+        ui->button_infocomp_remove->setEnabled(false);
+        ui->label_infocomp_status->setText("<span style='color: #5EC748'>Connection successfully removed</span>");
+    }
+    else
+    {
+        ui->label_infocomp_status->setText("<span style='color: #E94949'>Connection could not be removed</span>");
+    }
 }
 
 void computerInfoWindow::on_button_infocomp_add_clicked()

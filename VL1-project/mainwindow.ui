@@ -51,7 +51,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -100,8 +100,8 @@ font-size: 16px;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -151,6 +151,11 @@ font-size: 16px;</string>
             <column>
              <property name="text">
               <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>
@@ -361,8 +366,8 @@ font-size: 16px;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -412,6 +417,11 @@ font-size: 16px;</string>
             <column>
              <property name="text">
               <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>
@@ -614,8 +624,8 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="editTriggers">
@@ -659,6 +669,11 @@ font: 13pt &quot;Helvetica&quot;;</string>
             <column>
              <property name="text">
               <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>
@@ -763,8 +778,8 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="editTriggers">
@@ -805,6 +820,11 @@ font: 13pt &quot;Helvetica&quot;;</string>
             <column>
              <property name="text">
               <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>

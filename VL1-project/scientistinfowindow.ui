@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>596</width>
-    <height>409</height>
+    <height>423</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -177,6 +177,16 @@
      <column>
       <property name="text">
        <string>Year Made</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
       </property>
      </column>
     </widget>
