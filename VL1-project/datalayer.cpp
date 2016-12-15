@@ -579,7 +579,7 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
         updateQuery.prepare("UPDATE scicomp SET valid = 1 WHERE scientistID = (:scientistID) AND computerID = (:computerID)");
         updateQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
         updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
-        updated = updateQuery.exec();
+        updateQuery.exec();
         returnValue = true;
         qDebug() << "updated";
     }
@@ -591,7 +591,7 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
         insertQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
         insertQuery.bindValue(":computerID", compQuery.value(0).toInt());
         insertQuery.bindValue(":valid", QString::number(1));
-        inserted = insertQuery.exec();
+        insertQuery.exec();
         qDebug() << "inserted";
         returnValue = true;
 
@@ -641,7 +641,7 @@ vector<Scientist> DataLayer::findConnectedSci(Computer comp)
     QSqlQuery compQuery = findComputers(comp);
 
     QSqlQuery sciCompQuery;
-    sciCompQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:ID)");
+    sciCompQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:ID) AND valid = 1");
     sciCompQuery.bindValue(":ID", compQuery.value(0).toInt());
     sciCompQuery.exec();
 
