@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>737</width>
-    <height>303</height>
+    <height>347</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
 padding: 5px;</string>
      </property>
      <property name="placeholderText">
-      <string>Search for avalible scientists...</string>
+      <string>Search for scientists...</string>
      </property>
     </widget>
    </item>
@@ -84,6 +84,23 @@ padding: 5px;</string>
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="label_concomp_status">
+     <property name="font">
+      <font>
+       <family>Helvetica</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="button_concomp_connect">
      <property name="enabled">
       <bool>false</bool>
@@ -104,20 +121,20 @@ font: 13pt &quot;Helvetica&quot;;</string>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_concomp_cancel">
+    <widget class="QPushButton" name="button_concomp_done">
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">border: 0px solid #333;
 padding: 7px 0 4px 0;
-background-color: #E94949;
+background-color: #555;
 color: #fff;
 font-weight: bold;
 font: 25 13pt &quot;Helvetica&quot;;</string>
      </property>
      <property name="text">
-      <string>Cancel</string>
+      <string>Done</string>
      </property>
     </widget>
    </item>
