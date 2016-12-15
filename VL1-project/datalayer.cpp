@@ -347,7 +347,7 @@ vector<Scientist> DataLayer::readSci(string com)
 
     if(com == "non")
     {
-        query.exec("SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists");
+        query.exec("SELECT gender, name, yearOfBirth, yearOfDeath, valid, info FROM Scientists");
     }
 
     while (query.next())
@@ -368,6 +368,7 @@ vector<Scientist> DataLayer::readSci(string com)
             char theGender = gender.at(0).toLatin1();
 
             Scientist newSci(theName, theGender, yearBorn, yearDied);
+            newSci.addInfo(query.value("info").toString().toStdString());
             tempV.push_back(newSci);
         }
     }
