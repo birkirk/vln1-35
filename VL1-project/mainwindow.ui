@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>709</width>
-    <height>448</height>
+    <height>450</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>650</width>
+    <height>450</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Scientists and Computers</string>
@@ -17,11 +29,23 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabs">
+      <property name="minimumSize">
+       <size>
+        <width>500</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -38,6 +62,18 @@
           </property>
           <item>
            <widget class="QLineEdit" name="input_search_scientists">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>800</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="styleSheet">
              <string notr="true">border: 1px solid #333;
 padding: 4px 0 3px 4px;
@@ -50,6 +86,18 @@ font-size: 16px;</string>
           </item>
           <item>
            <widget class="QTableWidget" name="table_display_scientists">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>800</width>
+              <height>2000</height>
+             </size>
+            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
@@ -126,6 +174,18 @@ font-size: 16px;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>50</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -146,6 +206,18 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
              <widget class="QPushButton" name="button_edit_scientists">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>50</height>
+               </size>
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
@@ -168,6 +240,18 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>50</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -188,6 +272,18 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
           </item>
           <item>
            <widget class="QPushButton" name="button_addnew_scientists">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>900</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
@@ -222,6 +318,18 @@ font: 13pt &quot;Helvetica&quot;;</string>
           </property>
           <item>
            <widget class="QLineEdit" name="input_search_computers">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>800</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="styleSheet">
              <string notr="true">border: 1px solid #333;
 padding: 4px 0 3px 4px;
@@ -234,6 +342,18 @@ font-size: 16px;</string>
           </item>
           <item>
            <widget class="QTableWidget" name="table_display_computers">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>800</width>
+              <height>2000</height>
+             </size>
+            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
@@ -304,6 +424,18 @@ font-size: 16px;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>50</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -324,6 +456,18 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
              <widget class="QPushButton" name="button_edit_computers">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>50</height>
+               </size>
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
@@ -346,6 +490,18 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>50</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -366,6 +522,18 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
           </item>
           <item>
            <widget class="QPushButton" name="button_addnew_computers">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>900</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
@@ -416,6 +584,24 @@ font: 13pt &quot;Helvetica&quot;;</string>
           </item>
           <item>
            <widget class="QTableWidget" name="table_removed_scientists">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>800</width>
+              <height>2000</height>
+             </size>
+            </property>
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
             </property>
@@ -463,6 +649,18 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>50</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -482,6 +680,18 @@ font: 13pt &quot;Helvetica&quot;;</string>
              <widget class="QPushButton" name="button_recover_all_scientists">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>50</height>
+               </size>
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
@@ -524,6 +734,18 @@ font: 13pt &quot;Helvetica&quot;;</string>
           </item>
           <item>
            <widget class="QTableWidget" name="table_removed_computers">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>800</width>
+              <height>2000</height>
+             </size>
+            </property>
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
             </property>
@@ -568,6 +790,18 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>50</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -588,6 +822,18 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>50</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -600,6 +846,62 @@ font: 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="text">
                <string>Recover All Computers</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QCheckBox" name="checkbox_bin_clear">
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>180</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Enable clear button</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_bin_clear">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>600</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: 0px solid #333;
+padding: 7px 0 4px 0;
+background-color: #E94949;
+color: #fff;
+font-weight: bold;
+font: 25 13pt &quot;Helvetica&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Clear the whole database (this action can not be undone)</string>
               </property>
              </widget>
             </item>
@@ -647,6 +949,29 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>tabs</tabstop>
+  <tabstop>input_search_scientists</tabstop>
+  <tabstop>table_display_scientists</tabstop>
+  <tabstop>button_details_scientists</tabstop>
+  <tabstop>button_edit_scientists</tabstop>
+  <tabstop>button_remove_scientists</tabstop>
+  <tabstop>button_addnew_scientists</tabstop>
+  <tabstop>input_search_computers</tabstop>
+  <tabstop>table_display_computers</tabstop>
+  <tabstop>button_details_computers</tabstop>
+  <tabstop>button_edit_computers</tabstop>
+  <tabstop>button_remove_computers</tabstop>
+  <tabstop>button_addnew_computers</tabstop>
+  <tabstop>table_removed_scientists</tabstop>
+  <tabstop>button_recover_scientists</tabstop>
+  <tabstop>button_recover_all_scientists</tabstop>
+  <tabstop>table_removed_computers</tabstop>
+  <tabstop>button_recover_computers</tabstop>
+  <tabstop>button_recover_all_computers</tabstop>
+  <tabstop>checkbox_bin_clear</tabstop>
+  <tabstop>button_bin_clear</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

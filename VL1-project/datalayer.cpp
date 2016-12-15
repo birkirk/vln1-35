@@ -357,37 +357,9 @@ vector<Computer> DataLayer::readComp(string com)
     QSqlQuery query;
 
 
-    if(com == "alpha")
+    if(com == "non")
     {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers ORDER BY name");
-    }
-    else if(com == "ralpha")
-    {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers ORDER BY name DESC");
-    }
-    else if(com == "ageasc")
-    {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers ORDER BY yearMade DESC");
-    }
-    else if(com == "agedesc")
-    {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers ORDER BY yearMade");
-    }
-    else if(com == "made")
-    {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers WHERE ifMade = 1");
-    }
-    else if(com == "notmade")
-    {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers WHERE ifMade = 0");
-    }
-    else if(com == "type")
-    {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers ORDER BY type");
-    }
-    else if(com == "non")
-    {
-        qDebug() << query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers");
+        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers");
     }
 
 
@@ -470,7 +442,7 @@ vector<Scientist> DataLayer::searchSci(string input)
 
     while (query.next())
     {
-        int valid = query.value(5).toInt();
+        int valid = query.value(6).toInt();
         if(valid == 1)
         {
             QString gender = query.value(4).toString();
@@ -512,7 +484,7 @@ vector<Computer> DataLayer::searchComp(string input)
 
     while (query.next())
     {
-        int valid = query.value(5).toInt();
+        int valid = query.value(6).toInt();
         if(valid == 1)
         {
             QString qName = query.value(1).toString();
@@ -526,7 +498,7 @@ vector<Computer> DataLayer::searchComp(string input)
             QString qType = query.value(2).toString();
             string nType = qType.toStdString();
 
-            int nYearMade = query.value(4).toInt();
+            int nYearMade = query.value(5).toInt();
 
             Computer newComp(nIfMade, nName, nType, nYearMade);
             computers.push_back(newComp);
