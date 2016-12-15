@@ -141,6 +141,7 @@ void MainWindow::on_input_search_scientists_textChanged(const QString &arg1)
 void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 {
     ui->button_remove_scientists->setEnabled(true);
+    ui->button_edit_scientists->setEnabled(true);
     ui->button_details_scientists->setEnabled(true);
     ui->label_status_scientists->setText("");
 }
@@ -183,6 +184,7 @@ void MainWindow::on_table_display_computers_clicked(const QModelIndex &index)
 {
     ui->button_remove_computers->setEnabled(true);
     ui->button_details_computers->setEnabled(true);
+    ui->button_edit_computers->setEnabled(true);
     ui->label_status_computers->setText("");
 }
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addComputerWindow</class>
- <widget class="QDialog" name="addComputerWindow">
+ <class>editComputerWindow</class>
+ <widget class="QDialog" name="editComputerWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>496</width>
-    <height>418</height>
+    <width>579</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QLabel" name="label_3">
      <property name="text">
@@ -25,9 +25,9 @@
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_6">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -45,7 +45,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_addcomp_name">
+      <widget class="QLineEdit" name="input_addcomp_name_2">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -64,7 +64,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="label_7">
        <property name="font">
         <font>
          <family>Helvetica</family>
@@ -76,7 +76,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="input_addcomp_type">
+      <widget class="QComboBox" name="input_addcomp_type_2">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -91,9 +91,9 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QCheckBox" name="checkbox_addcomp_made">
+      <widget class="QCheckBox" name="checkbox_addcomp_made_2">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -111,7 +111,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_addcomp_yearmade">
+      <widget class="QLineEdit" name="input_addcomp_yearmade_2">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -136,12 +136,12 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QLineEdit" name="input_addcomp_image_path"/>
+      <widget class="QLineEdit" name="input_addcomp_image_path_2"/>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addcomp_browse_image">
+      <widget class="QPushButton" name="button_addcomp_browse_image_2">
        <property name="text">
         <string>Browse</string>
        </property>
@@ -183,9 +183,9 @@
     <widget class="QPlainTextEdit" name="plainTextEdit"/>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QPushButton" name="button_addcomp_add">
+      <widget class="QPushButton" name="button_addcomp_add_2">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
@@ -202,7 +202,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addcomp_done">
+      <widget class="QPushButton" name="button_addcomp_done_2">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
