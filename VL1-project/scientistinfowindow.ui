@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
+    <width>646</width>
     <height>423</height>
    </rect>
   </property>
@@ -166,7 +166,7 @@
      </column>
      <column>
       <property name="text">
-       <string>New Column</string>
+       <string>Type</string>
       </property>
      </column>
      <column>
@@ -216,7 +216,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
         <bool>false</bool>
        </property>
        <property name="cursor">
-        <cursorShape>SplitHCursor</cursorShape>
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border: 0px solid #333;

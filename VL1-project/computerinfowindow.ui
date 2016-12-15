@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>617</width>
-    <height>393</height>
+    <width>686</width>
+    <height>423</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -173,7 +173,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Type</string>
+       <string>Year Born</string>
       </property>
      </column>
      <column>

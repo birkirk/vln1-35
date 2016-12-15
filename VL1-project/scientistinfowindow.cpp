@@ -1,5 +1,6 @@
 #include "scientistinfowindow.h"
 #include "ui_scientistinfowindow.h"
+#include "addcontosci.h"
 
 scientistInfoWindow::scientistInfoWindow(QWidget *parent) :
     QDialog(parent),
@@ -136,5 +137,6 @@ void scientistInfoWindow::on_button_infosci_remove_clicked()
 
 void scientistInfoWindow::on_button_infosci_add_clicked()
 {
-
+    addConToSci conSci(_selectedScientist);
+    conSci.exec();
 }
