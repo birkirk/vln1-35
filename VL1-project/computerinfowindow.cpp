@@ -18,6 +18,7 @@ computerInfoWindow::computerInfoWindow(Computer selectedComputer, QWidget *paren
     setUpComp(selectedComputer);
     displayConnections(selectedComputer);
     setComputer(selectedComputer);
+    _selectedComputer = selectedComputer;
 }
 
 computerInfoWindow::~computerInfoWindow()
@@ -140,4 +141,5 @@ void computerInfoWindow::on_button_infocomp_add_clicked()
 {
     addConToComp conComp(_selectedComputer);
     conComp.exec();
+    displayConnections(_selectedComputer);
 }

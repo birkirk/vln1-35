@@ -406,12 +406,14 @@ void MainWindow::on_button_addnew_scientists_clicked()
 {
     addScientistWindow addSci;
     addSci.exec();
+    displayAllScientists();
 }
 
 void MainWindow::on_button_addnew_computers_clicked()
 {
     addComputerWindow addComp;
     addComp.exec();
+    displayAllComputers();
 }
 
 void MainWindow::on_button_details_scientists_clicked()

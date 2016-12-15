@@ -442,20 +442,22 @@ vector<int> DataLayer::getCon()
 
 vector<Scientist> DataLayer::searchSci(string input)
 {
+
+    if (!_db.isOpen())
+    {
+        qDebug() << "Opened db";
+        _db.open();
+    }
     stringstream sqlQuery;
-        sqlQuery << "SELECT * FROM Scientists WHERE name LIKE '%" << input << "%"
+        sqlQuery << "SELECT gender, name, yearOfBirth, yearOfDeath , valid FROM Scientists WHERE name LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT * FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
+                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT * FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+                 << "SELECT gender, name, yearOfBirth, yearOfDeat, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
 
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Scientist> scientists;
 
-    if (!_db.isOpen())
-    {
-        _db.open();
-    }
 
     QSqlQuery query(_db);
 
@@ -466,10 +468,10 @@ vector<Scientist> DataLayer::searchSci(string input)
 
     while (query.next())
     {
-        int valid = query.value(6).toInt();
+        int valid = query.value(4).toInt();
         if(valid == 1)
         {
-            QString gender = query.value(4).toString();
+            QString gender = query.value(0).toString();
             char gChar = gender.at(0).toLatin1();
 
             QString qName = query.value(1).toString();
@@ -528,7 +530,6 @@ vector<Computer> DataLayer::searchComp(string input)
             computers.push_back(newComp);
         }
     }
-
     return computers;
 }
 
@@ -562,17 +563,45 @@ void DataLayer::clearCon()
 
 bool DataLayer::connect(Scientist newSci, Computer newComp)
 {
+    bool returnValue;
     QSqlQuery sciQuery = findScientists(newSci);
     QSqlQuery compQuery = findComputers(newComp);
 
-    QSqlQuery updateQuery;
-    updateQuery.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid)");
+    QSqlQuery checkExistanceQuery;
+    checkExistanceQuery.prepare("SELECT valid FROM scicomp WHERE scientistID = (:sID) AND computerID = (:cID)");
+    checkExistanceQuery.bindValue(":sID", sciQuery.value(0).toInt());
+    checkExistanceQuery.bindValue(":cID", compQuery.value(0).toInt());
+    checkExistanceQuery.exec();
 
+    if(checkExistanceQuery.first() && checkExistanceQuery.value(0).toInt() != 1)
+    {
+        QSqlQuery updateQuery;
+        updateQuery.prepare("UPDATE scicomp SET valid = 1 WHERE scientistID = (:scientistID) AND computerID = (:computerID)");
+        updateQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
+        updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
+        updateQuery.exec();
+        returnValue = true;
+        qDebug() << "updated";
+    }
+    else if(!checkExistanceQuery.first())
+    {
 
-    updateQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
-    updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
-    updateQuery.bindValue(":valid", QString::number(1));
-    bool returnValue = updateQuery.exec();
+        QSqlQuery insertQuery;
+        insertQuery.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid)");
+        insertQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
+        insertQuery.bindValue(":computerID", compQuery.value(0).toInt());
+        insertQuery.bindValue(":valid", QString::number(1));
+        insertQuery.exec();
+        qDebug() << "inserted";
+        returnValue = true;
+
+    }
+    else
+    {
+        qDebug() <<"got to final else";
+        returnValue = false;
+    }
+    qDebug() << returnValue;
     return returnValue;
 
 }
@@ -612,7 +641,7 @@ vector<Scientist> DataLayer::findConnectedSci(Computer comp)
     QSqlQuery compQuery = findComputers(comp);
 
     QSqlQuery sciCompQuery;
-    sciCompQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:ID)");
+    sciCompQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:ID) AND valid = 1");
     sciCompQuery.bindValue(":ID", compQuery.value(0).toInt());
     sciCompQuery.exec();
 
