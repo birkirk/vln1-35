@@ -1,6 +1,7 @@
 #ifndef SCIENTISTINFOWINDOW_H
 #define SCIENTISTINFOWINDOW_H
 #include "scientist.h"
+#include "computer.h"
 #include "servicelayer.h"
 #include "const.h"
 
@@ -34,9 +35,11 @@ private slots:
 private:
     void setUpSci(Scientist selectedScientist);
     void displayConnections(Scientist selectedScientist);
+    void setScientist(Scientist selectedScientist);
     Ui::scientistInfoWindow *ui;
 
     ServiceLayer _service;
+    Scientist _selectedScientist;
     vector<Computer> _currentlyConnected;
 };
 

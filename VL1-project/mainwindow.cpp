@@ -226,7 +226,7 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
 {
     ui->table_removed_scientists->clearContents();
     ui->table_removed_scientists->setRowCount(scientists.size());
-    ui->table_display_computers->hideColumn(4);
+    ui->table_removed_scientists->hideColumn(4);
 
     if(scientists.size() > 0)
     {
@@ -269,7 +269,7 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
 {
     ui->table_removed_computers->clearContents();
     ui->table_removed_computers->setRowCount(computers.size());
-    ui->table_display_computers->hideColumn(4);
+    ui->table_removed_computers->hideColumn(4);
 
     if(computers.size() > 0)
     {

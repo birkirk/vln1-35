@@ -16,6 +16,7 @@ scientistInfoWindow::scientistInfoWindow(Scientist selectedScientist, QWidget *p
     ui->setupUi(this);
     setUpSci(selectedScientist);
     displayConnections(selectedScientist);
+    setScientist(selectedScientist);
 }
 
 scientistInfoWindow::~scientistInfoWindow()
@@ -60,6 +61,7 @@ void scientistInfoWindow::setUpSci(Scientist selectedScientist)
 void scientistInfoWindow::displayConnections(Scientist selectedScientist)
 {
     vector<Computer> connectedComputers = _service.getConnectedComp(selectedScientist);
+    ui->table_infosci_connections->hideColumn(4);
 
     ui->table_infosci_connections->clearContents();
     ui->table_infosci_connections->setRowCount(connectedComputers.size());
@@ -86,13 +88,20 @@ void scientistInfoWindow::displayConnections(Scientist selectedScientist)
         {
             yearMade = QString::number(connectedComputers[i].getYearMade());
         }
+        QString ID = QString::number(i);
 
         ui->table_infosci_connections->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_infosci_connections->setItem(i, 1, new QTableWidgetItem(type));
         ui->table_infosci_connections->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_infosci_connections->setItem(i, 3, new QTableWidgetItem(yearMade));
+        ui->table_infosci_connections->setItem(i, 4, new QTableWidgetItem(ID));
     }
     _currentlyConnected = connectedComputers;
+}
+
+void scientistInfoWindow::setScientist(Scientist selectedScientist)
+{
+    _selectedScientist = selectedScientist;
 }
 
 void scientistInfoWindow::on_button_infosci_done_clicked()
@@ -103,11 +112,26 @@ void scientistInfoWindow::on_button_infosci_done_clicked()
 void scientistInfoWindow::on_table_infosci_connections_clicked(const QModelIndex &index)
 {
     ui->button_infosci_remove->setEnabled(true);
+    ui->label_infosci_status->setText("");
 }
 
 void scientistInfoWindow::on_button_infosci_remove_clicked()
 {
-    int selectedScientistRow = ui->table_infosci_connections->currentIndex().row();
+    int selectedComputerRow = ui->table_infosci_connections->currentIndex().row();
+    QString ID = ui->table_infosci_connections->item(selectedComputerRow, 4)->text();
+    int computerID = ID.toInt();
+    Computer selectedComputer = _currentlyConnected.at(computerID);
+    bool wasRemoved = _service.deleteConnection(selectedComputer, _selectedScientist);
+    if(wasRemoved)
+    {
+        displayConnections(_selectedScientist);
+        ui->button_infosci_remove->setEnabled(false);
+        ui->label_infosci_status->setText("<span style='color: #5EC748'>Connection successfully removed</span>");
+    }
+    else
+    {
+        ui->label_infosci_status->setText("<span style='color: #E94949'>Connection could not be removed</span>");
+    }
 }
 
 void scientistInfoWindow::on_button_infosci_add_clicked()

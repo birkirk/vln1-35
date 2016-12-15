@@ -2,6 +2,7 @@
 #define COMPUTERINFOWINDOW_H
 #include "servicelayer.h"
 #include "computer.h"
+#include "scientist.h"
 #include "const.h"
 #include <QDialog>
 
@@ -30,8 +31,10 @@ private slots:
 private:
     void setUpComp(Computer selectedComputer);
     void displayConnections(Computer selectedComputer);
+    void setComputer(Computer selectedComputer);
     Ui::computerInfoWindow *ui;
 
+    Computer _selectedComputer;
     ServiceLayer _service;
     vector<Scientist> _currentlyConnected;
 };
