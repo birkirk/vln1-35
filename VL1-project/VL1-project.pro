@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     addcomputerwindow.cpp \
     scientistinfowindow.cpp \
     computerinfowindow.cpp \
-    addtypewindow.cpp
+    addtypewindow.cpp \
+    helpwindow.cpp
 
 
 HEADERS += \
@@ -35,7 +36,8 @@ HEADERS += \
     addcomputerwindow.h \
     scientistinfowindow.h \
     computerinfowindow.h \
-    addtypewindow.h
+    addtypewindow.h \
+    helpwindow.h
 
 
 FORMS += \
@@ -44,4 +46,5 @@ FORMS += \
     scientistinfowindow.ui \
     addscientistwindow.ui \
     computerinfowindow.ui \
-    addtypewindow.ui
+    addtypewindow.ui \
+    helpwindow.ui

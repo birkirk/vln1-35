@@ -25,10 +25,10 @@ void addScientistWindow::on_button_addsci_add_clicked()
     string sDeath = ui->input_addsci_died->text().toStdString();
     QString qBirth = ui->input_addsci_born->text();
     QString qDeath = ui->input_addsci_died->text();
+    QFile file(ui->input_addsci_path->text());
+    file.open(QIODevice::ReadOnly);
     int birth = atoi(sBirth.c_str());
     int death = atoi(sDeath.c_str());
-    qDebug() << birth;
-
     bool validInput = true;
 
     if(name.length() == 0)
@@ -54,15 +54,21 @@ void addScientistWindow::on_button_addsci_add_clicked()
     {
         ui->label_addsci_status->setText(QString::fromStdString("Gender cannot be empty!"));
     }
+    else if(!file.isOpen() && ui->input_addsci_path->text() != "")
+    {
+        ui->label_addsci_status->setText(QString::fromStdString("Invalid input for image path!"));
+        validInput = false;
+    }
+
 
     if(name.length() > 0 && sBirth.length() > 0 && sGender.length() > 0 && validInput)
     {
         char gender;
         if(sGender == "Male") gender = 'm';
         else if(sGender == "Female") gender = 'f';
-        QFile file(ui->input_addsci_path->text());
 
-        if(ui->input_addsci_path->text().length() != 0 && file.open(QIODevice::ReadOnly))
+
+        if(ui->input_addsci_path->text().length() != 0 && file.isOpen())
         {
             QByteArray inByteArray = file.readAll();
             Scientist newScientist(name, gender, birth, death, inByteArray);
@@ -77,6 +83,7 @@ void addScientistWindow::on_button_addsci_add_clicked()
         ui->input_addsci_name->setText(QString::fromStdString(""));
         ui->input_addsci_born->setText(QString::fromStdString(""));
         ui->input_addsci_died->setText(QString::fromStdString(""));
+        //ui->input_addsci_path->setText(QString::fromStdString(""));
         ui->input_addsci_gender->setCurrentIndex(0);
     }
 }
