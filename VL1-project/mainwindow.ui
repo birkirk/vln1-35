@@ -992,7 +992,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionHelp"/>
+    <addaction name="manual"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -1001,7 +1001,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
     <string>Close program</string>
    </property>
   </action>
-  <action name="actionHelp">
+  <action name="manual">
    <property name="text">
     <string>Help</string>
    </property>
