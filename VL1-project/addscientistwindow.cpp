@@ -22,10 +22,15 @@ void addScientistWindow::on_button_addsci_add_clicked()
     string name = ui->input_addsci_name->text().toStdString();
     string sBirth = ui->input_addsci_born->text().toStdString();
     string sGender = ui->input_addsci_gender->currentText().toStdString();
+    string sDeath = ui->input_addsci_died->text().toStdString();
     QString qBirth = ui->input_addsci_born->text();
     QString qDeath = ui->input_addsci_died->text();
-    int birth = qBirth.toInt();
-    int death = qDeath.toInt();
+    int birth = atoi(sBirth.c_str());
+    int death = atoi(sDeath.c_str());
+    qDebug() << birth;
+
+    bool validInput = true;
+
     if(name.length() == 0)
     {
         ui->label_addsci_status->setText(QString::fromStdString("Name cannot be empty!"));
@@ -35,12 +40,22 @@ void addScientistWindow::on_button_addsci_add_clicked()
     {
         ui->label_addsci_status->setText(QString::fromStdString("Year of birth cannot be empty!"));
     }
+    else if(birth <= 0)
+    {
+        ui->label_addsci_status->setText(QString::fromStdString("Invalid input in year of birth!"));
+        validInput = false;
+    }
+    else if(death <= 0 && qDeath.length() != 0)
+    {
+        validInput = false;
+        ui->label_addsci_status->setText(QString::fromStdString("Invalid input in year of death!"));
+    }
     else if(sGender.length() == 0)
     {
         ui->label_addsci_status->setText(QString::fromStdString("Gender cannot be empty!"));
     }
 
-    if(name.length() > 0 && sBirth.length() > 0 && sGender.length() > 0 )
+    if(name.length() > 0 && sBirth.length() > 0 && sGender.length() > 0 && validInput)
     {
         char gender;
         if(sGender == "Male") gender = 'm';

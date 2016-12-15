@@ -528,7 +528,6 @@ vector<Computer> DataLayer::searchComp(string input)
             computers.push_back(newComp);
         }
     }
-
     return computers;
 }
 
