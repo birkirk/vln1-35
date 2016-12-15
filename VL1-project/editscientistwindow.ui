@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>317</width>
-    <height>467</height>
+    <width>337</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="label_addsci_header">
      <property name="text">
-      <string>&lt;h3&gt;Add a new scientist&lt;/h3&gt;</string>
+      <string>&lt;h3&gt;Edit scientist&lt;/h3&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -45,7 +45,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_addsci_name">
+      <widget class="QLineEdit" name="input_editsci_name">
        <property name="styleSheet">
         <string notr="true">border: 1px solid #333;</string>
        </property>
@@ -62,7 +62,7 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="1">
-      <widget class="QComboBox" name="input_addsci_gender">
+      <widget class="QComboBox" name="input_editsci_gender">
        <item>
         <property name="text">
          <string/>
@@ -93,7 +93,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="input_addsci_born">
+      <widget class="QLineEdit" name="input_editsci_born">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -112,7 +112,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="input_addsci_died">
+      <widget class="QLineEdit" name="input_editsci_died">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -174,10 +174,10 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QLineEdit" name="input_addsci_path"/>
+      <widget class="QLineEdit" name="input_editsci_path"/>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addsci_browse">
+      <widget class="QPushButton" name="button_editsci_browse">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
@@ -229,7 +229,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
     </spacer>
    </item>
    <item>
-    <widget class="QTextEdit" name="input_addsci_info">
+    <widget class="QTextEdit" name="input_editsci_info">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -247,7 +247,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="button_addsci_add">
+      <widget class="QPushButton" name="button_editsci_save">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
@@ -259,24 +259,24 @@ color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
        </property>
        <property name="text">
-        <string>Add Scientist</string>
+        <string>Save</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addsci_done">
+      <widget class="QPushButton" name="button_editsci_cancel">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
-background-color: #555;
+background-color: #E94949;
 color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
        </property>
        <property name="text">
-        <string>Done</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>
