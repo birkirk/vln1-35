@@ -359,22 +359,22 @@ vector<Computer> DataLayer::readComp(string com)
 
     if(com == "non")
     {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers");
+        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers");
     }
 
 
     while (query.next())
     {
-        int valid = query.value(6).toInt();
+        int valid = query.value(4).toInt();
         if(valid == 1)
         {
-            QString name = query.value(1).toString();
+            QString name = query.value(0).toString();
             string theName = name.toStdString();
 
-            QString type = query.value(2).toString();
+            QString type = query.value(1).toString();
             string theType = type.toStdString();
 
-            int made = query.value(3).toInt();
+            int made = query.value(2).toInt();
             bool ifMade;
             if(made == 1)
             {
@@ -385,7 +385,7 @@ vector<Computer> DataLayer::readComp(string com)
                 ifMade = false;
             }
 
-            int yearMade = query.value(4).toInt();
+            int yearMade = query.value(3).toInt();
 
             Computer newComp(ifMade, theName, theType, yearMade);
             tempV.push_back(newComp);
@@ -665,8 +665,9 @@ QByteArray DataLayer::getComputerPicture(Computer comp)
 {
     QSqlQuery compQuery = findComputers(comp);
     QSqlQuery query;
+
     query.prepare("SELECT picture FROM Computers WHERE ID = (:ID)");
-    query.bindValue("ID", compQuery.value(0).toInt());
+    query.bindValue(":ID", compQuery.value(0).toInt());
     query.exec();
     query.first();
     QByteArray returnPict = query.value(0).toByteArray();
