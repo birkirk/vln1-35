@@ -51,7 +51,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -146,6 +146,11 @@ font-size: 16px;</string>
             <column>
              <property name="text">
               <string>Gender</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>ID</string>
              </property>
             </column>
            </widget>
@@ -651,6 +656,11 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <string>Gender</string>
              </property>
             </column>
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </column>
            </widget>
           </item>
           <item>
@@ -790,6 +800,11 @@ font: 13pt &quot;Helvetica&quot;;</string>
             <column>
              <property name="text">
               <string>Year Made</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>ID</string>
              </property>
             </column>
            </widget>
@@ -953,10 +968,22 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionHelp"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <action name="actionClose_program">
    <property name="text">
     <string>Close program</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
    </property>
   </action>
  </widget>
