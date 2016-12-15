@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>796</width>
-    <height>450</height>
+    <width>800</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>650</width>
-    <height>450</height>
+    <width>800</width>
+    <height>700</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -51,7 +51,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -688,7 +688,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="minimumSize">
                <size>
                 <width>100</width>
-                <height>25</height>
+                <height>34</height>
                </size>
               </property>
               <property name="maximumSize">
@@ -720,7 +720,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="minimumSize">
                <size>
                 <width>100</width>
-                <height>25</height>
+                <height>34</height>
                </size>
               </property>
               <property name="maximumSize">
@@ -839,7 +839,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="minimumSize">
                <size>
                 <width>100</width>
-                <height>25</height>
+                <height>34</height>
                </size>
               </property>
               <property name="maximumSize">
@@ -871,7 +871,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="minimumSize">
                <size>
                 <width>100</width>
-                <height>25</height>
+                <height>34</height>
                </size>
               </property>
               <property name="maximumSize">
@@ -926,7 +926,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               <property name="minimumSize">
                <size>
                 <width>100</width>
-                <height>25</height>
+                <height>34</height>
                </size>
               </property>
               <property name="maximumSize">
@@ -984,8 +984,8 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>796</width>
-     <height>22</height>
+     <width>800</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1009,7 +1009,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>Quit</string>
    </property>
   </action>
  </widget>
