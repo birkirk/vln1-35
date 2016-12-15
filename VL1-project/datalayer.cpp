@@ -442,7 +442,7 @@ vector<Scientist> DataLayer::searchSci(string input)
 
     while (query.next())
     {
-        int valid = query.value(5).toInt();
+        int valid = query.value(6).toInt();
         if(valid == 1)
         {
             QString gender = query.value(4).toString();
@@ -484,7 +484,7 @@ vector<Computer> DataLayer::searchComp(string input)
 
     while (query.next())
     {
-        int valid = query.value(5).toInt();
+        int valid = query.value(6).toInt();
         if(valid == 1)
         {
             QString qName = query.value(1).toString();
@@ -498,7 +498,7 @@ vector<Computer> DataLayer::searchComp(string input)
             QString qType = query.value(2).toString();
             string nType = qType.toStdString();
 
-            int nYearMade = query.value(4).toInt();
+            int nYearMade = query.value(5).toInt();
 
             Computer newComp(nIfMade, nName, nType, nYearMade);
             computers.push_back(newComp);

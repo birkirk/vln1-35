@@ -438,3 +438,8 @@ void MainWindow::on_button_bin_clear_clicked()
         ui->label_status_bin->setText("<span style='color: #E94949'>Database will be cleared!</span>");
     }
 }
+
+void MainWindow::on_tabs_tabBarClicked(int index)
+{
+    ui->checkbox_bin_clear->setChecked(false);
+}

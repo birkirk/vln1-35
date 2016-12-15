@@ -61,6 +61,8 @@ private slots:
 
     void on_button_bin_clear_clicked();
 
+    void on_tabs_tabBarClicked(int index);
+
 private:
     void displayAllScientists();
     void displayAllComputers();
