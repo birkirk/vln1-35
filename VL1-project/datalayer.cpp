@@ -352,7 +352,6 @@ vector<Scientist> DataLayer::readSci(string com)
 
     while (query.next())
     {
-
         int valid = query.value(4).toInt();
         if(valid == 1)
         {
