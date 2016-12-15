@@ -29,12 +29,15 @@ private slots:
 
     void on_button_infosci_remove_clicked();
 
+    void on_button_infosci_add_clicked();
+
 private:
     void setUpSci(Scientist selectedScientist);
     void displayConnections(Scientist selectedScientist);
     Ui::scientistInfoWindow *ui;
 
     ServiceLayer _service;
+    vector<Computer> _currentlyConnected;
 };
 
 #endif // SCIENTISTINFOWINDOW_H
