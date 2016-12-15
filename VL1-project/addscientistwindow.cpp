@@ -72,11 +72,19 @@ void addScientistWindow::on_button_addsci_add_clicked()
         {
             QByteArray inByteArray = file.readAll();
             Scientist newScientist(name, gender, birth, death, inByteArray);
+            if(ui->input_addsci_info->toPlainText() != "")
+            {
+                newScientist.addInfo(ui->input_addsci_info->toPlainText().toStdString());
+            }
             _scientistVector.push_back(newScientist);
         }
         else
         {
             Scientist newScientist(name, gender, birth, death);
+            if(ui->input_addsci_info->toPlainText() != "")
+            {
+                newScientist.addInfo(ui->input_addsci_info->toPlainText().toStdString());
+            }
             _scientistVector.push_back(newScientist);
         }
         ui->label_addsci_status->setText(QString::fromStdString(""));

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>388</width>
-    <height>466</height>
+    <width>272</width>
+    <height>383</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -173,7 +173,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_addsci_picture">
      <property name="font">
       <font>
        <family>Helvetica</family>
@@ -209,6 +209,13 @@ font: 13pt &quot;Helvetica&quot;;</string>
     </layout>
    </item>
    <item>
+    <widget class="QLabel" name="label_addsci_description">
+     <property name="text">
+      <string>Add scientist description: (optional)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer_6">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -222,7 +229,20 @@ font: 13pt &quot;Helvetica&quot;;</string>
     </spacer>
    </item>
    <item>
-    <widget class="QTextEdit" name="input_addsci_info"/>
+    <widget class="QTextEdit" name="input_addsci_info">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>250</height>
+      </size>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="label_addsci_status">

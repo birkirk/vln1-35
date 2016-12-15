@@ -139,4 +139,5 @@ void scientistInfoWindow::on_button_infosci_add_clicked()
 {
     addConToSci conSci(_selectedScientist);
     conSci.exec();
+    displayConnections(_selectedScientist);
 }
