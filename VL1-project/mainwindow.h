@@ -67,6 +67,8 @@ private slots:
 
     void on_manual_triggered();
 
+    void on_actionExit_triggered();
+
 private:
     void displayAllScientists();
     void displayAllComputers();

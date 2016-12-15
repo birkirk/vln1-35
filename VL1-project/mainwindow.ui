@@ -993,6 +993,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
      <string>File</string>
     </property>
     <addaction name="manual"/>
+    <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -1004,6 +1005,11 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
   <action name="manual">
    <property name="text">
     <string>Help</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
    </property>
   </action>
  </widget>
