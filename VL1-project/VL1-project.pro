@@ -24,7 +24,9 @@ SOURCES += main.cpp \
     addtypewindow.cpp \
     helpwindow.cpp \
     addcontosci.cpp \
-    addcontocomp.cpp
+    addcontocomp.cpp \
+    editcomputerwindow.cpp \
+    editscientistwindow.cpp
 
 
 HEADERS += \
@@ -41,7 +43,9 @@ HEADERS += \
     addtypewindow.h \
     helpwindow.h \
     addcontosci.h \
-    addcontocomp.h
+    addcontocomp.h \
+    editcomputerwindow.h \
+    editscientistwindow.h
 
 
 FORMS += \
@@ -53,4 +57,6 @@ FORMS += \
     addtypewindow.ui \
     helpwindow.ui \
     addcontosci.ui \
-    addcontocomp.ui
+    addcontocomp.ui \
+    editcomputerwindow.ui \
+    editscientistwindow.ui

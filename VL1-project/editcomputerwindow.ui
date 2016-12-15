@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addComputerWindow</class>
- <widget class="QDialog" name="addComputerWindow">
+ <class>editComputerWindow</class>
+ <widget class="QDialog" name="editComputerWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>496</width>
-    <height>418</height>
+    <width>579</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>&lt;h3&gt;Add a new computer&lt;/h3&gt;</string>
+      <string>&lt;h3&gt;Edit computer&lt;/h3&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -25,9 +25,9 @@
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_6">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -45,7 +45,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_addcomp_name">
+      <widget class="QLineEdit" name="input_editcomp_name">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -64,7 +64,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="label_7">
        <property name="font">
         <font>
          <family>Helvetica</family>
@@ -76,7 +76,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="input_addcomp_type">
+      <widget class="QComboBox" name="input_editcomp_type">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -91,9 +91,9 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QCheckBox" name="checkbox_addcomp_made">
+      <widget class="QCheckBox" name="checkbox_editcomp_made">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -111,7 +111,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_addcomp_yearmade">
+      <widget class="QLineEdit" name="editcomp_yearmade">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -136,12 +136,19 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QLineEdit" name="input_addcomp_image_path"/>
+      <widget class="QLineEdit" name="input_editcomp_image_path"/>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addcomp_browse_image">
+      <widget class="QPushButton" name="button_editcomp_browse_image">
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid #333;
+padding: 7px 4px 5px 4px;
+background-color: #555;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+       </property>
        <property name="text">
         <string>Browse</string>
        </property>
@@ -180,12 +187,12 @@
     </widget>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit"/>
+    <widget class="QPlainTextEdit" name="input_editcomp_description"/>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QPushButton" name="button_addcomp_add">
+      <widget class="QPushButton" name="button_editcomp_save">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
@@ -197,24 +204,24 @@ color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
        </property>
        <property name="text">
-        <string>Add Computer</string>
+        <string>Save</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addcomp_done">
+      <widget class="QPushButton" name="button_editcomp_cancel">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
-background-color: #555;
+background-color: #E94949;
 color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
        </property>
        <property name="text">
-        <string>Done</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>

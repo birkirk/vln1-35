@@ -17,7 +17,8 @@ scientistInfoWindow::scientistInfoWindow(Scientist selectedScientist, QWidget *p
     ui->setupUi(this);
     setUpSci(selectedScientist);
     displayConnections(selectedScientist);
-    setScientist(selectedScientist);
+    _selectedScientist = selectedScientist;
+
 }
 
 scientistInfoWindow::~scientistInfoWindow()
@@ -46,6 +47,12 @@ void scientistInfoWindow::setUpSci(Scientist selectedScientist)
     else
     {
         gender = QString::fromStdString("Female");
+    }
+
+    qDebug() << selectedScientist.hasInfo();
+    if(selectedScientist.hasInfo())
+    {
+        ui->textbrowser_sciinfo_info->setText(QString::fromStdString(selectedScientist.getInfo()));
     }
 
     ui->label_infosci_name->setText(name);
@@ -100,10 +107,7 @@ void scientistInfoWindow::displayConnections(Scientist selectedScientist)
     _currentlyConnected = connectedComputers;
 }
 
-void scientistInfoWindow::setScientist(Scientist selectedScientist)
-{
-    _selectedScientist = selectedScientist;
-}
+
 
 void scientistInfoWindow::on_button_infosci_done_clicked()
 {

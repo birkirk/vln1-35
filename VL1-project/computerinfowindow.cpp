@@ -17,7 +17,6 @@ computerInfoWindow::computerInfoWindow(Computer selectedComputer, QWidget *paren
 
     setUpComp(selectedComputer);
     displayConnections(selectedComputer);
-    setComputer(selectedComputer);
     _selectedComputer = selectedComputer;
 }
 
@@ -102,10 +101,6 @@ void computerInfoWindow::displayConnections(Computer selectedComputer)
     _currentlyConnected = connectedScientists;
 }
 
-void computerInfoWindow::setComputer(Computer selectedComputer)
-{
-    _selectedComputer = selectedComputer;
-}
 
 void computerInfoWindow::on_button_infocomp_done_clicked()
 {

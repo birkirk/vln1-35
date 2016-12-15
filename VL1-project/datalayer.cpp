@@ -347,12 +347,11 @@ vector<Scientist> DataLayer::readSci(string com)
 
     if(com == "non")
     {
-        query.exec("SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists");
+        query.exec("SELECT gender, name, yearOfBirth, yearOfDeath, valid, info FROM Scientists");
     }
 
     while (query.next())
     {
-
         int valid = query.value(4).toInt();
         if(valid == 1)
         {
@@ -368,6 +367,7 @@ vector<Scientist> DataLayer::readSci(string com)
             char theGender = gender.at(0).toLatin1();
 
             Scientist newSci(theName, theGender, yearBorn, yearDied);
+            newSci.addInfo(query.value("info").toString().toStdString());
             tempV.push_back(newSci);
         }
     }
@@ -453,14 +453,18 @@ vector<Scientist> DataLayer::searchSci(string input)
                  << "' UNION "
                  << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT gender, name, yearOfBirth, yearOfDeat, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+
+
+
 
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Scientist> scientists;
 
 
-    QSqlQuery query(_db);
 
+    QSqlQuery query(_db);
+    qDebug() << query.exec(sqlQ);
     if (!query.exec(sqlQ))
     {
         return scientists;

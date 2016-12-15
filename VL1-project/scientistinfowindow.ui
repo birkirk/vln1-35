@@ -99,26 +99,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_infosci_text">
-     <property name="minimumSize">
-      <size>
-       <width>40</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Helvetica</family>
-       <italic>true</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
+    <widget class="QTextBrowser" name="textbrowser_sciinfo_info"/>
    </item>
    <item>
     <widget class="Line" name="line">
