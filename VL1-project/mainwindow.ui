@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>709</width>
+    <width>796</width>
     <height>450</height>
    </rect>
   </property>
@@ -51,7 +51,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -921,7 +921,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
             <item>
              <widget class="QPushButton" name="button_bin_clear">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="minimumSize">
                <size>
@@ -984,7 +984,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>709</width>
+     <width>796</width>
      <height>22</height>
     </rect>
    </property>
@@ -992,7 +992,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionHelp"/>
+    <addaction name="manual"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -1001,7 +1001,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
     <string>Close program</string>
    </property>
   </action>
-  <action name="actionHelp">
+  <action name="manual">
    <property name="text">
     <string>Help</string>
    </property>

@@ -4,6 +4,7 @@
 #include "addcomputerwindow.h"
 #include "scientistinfowindow.h"
 #include "computerinfowindow.h"
+#include "helpwindow.h"
 #include "const.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -474,4 +475,11 @@ void MainWindow::on_tabs_tabBarClicked(int index)
     ui->checkbox_bin_clear->setChecked(false);
     ui->button_details_computers->setEnabled(false);
     ui->button_details_scientists->setEnabled(false);
+}
+
+
+void MainWindow::on_manual_triggered()
+{
+    helpWindow manual;
+    manual.exec();
 }

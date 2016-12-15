@@ -1,5 +1,6 @@
 #include "computerinfowindow.h"
 #include "ui_computerinfowindow.h"
+#include "addcontocomp.h"
 
 computerInfoWindow::computerInfoWindow(QWidget *parent) :
     QDialog(parent),
@@ -137,5 +138,6 @@ void computerInfoWindow::on_button_infocomp_remove_clicked()
 
 void computerInfoWindow::on_button_infocomp_add_clicked()
 {
-
+    addConToComp conComp(_selectedComputer);
+    conComp.exec();
 }
