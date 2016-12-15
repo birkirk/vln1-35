@@ -52,6 +52,8 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
 {
     ui->table_display_scientists->clearContents();
     ui->table_display_scientists->setRowCount(scientists.size());
+
+    // Column 4 er falinn í öllum töflum. Það er ID til þess að sorting rugli ekki lóðréttum staðsetningum aðila í töflum.
     ui->table_display_scientists->hideColumn(4);
 
     for(size_t i = 0; i < scientists.size(); i++)
@@ -77,6 +79,7 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
             gender = QString::fromStdString("Female");
         }
 
+        //Generate-uð ID tala sem er falin í column 4.
         QString ID = QString::number(i);
 
         ui->table_display_scientists->setItem(i, 0, new QTableWidgetItem(name));
@@ -117,6 +120,7 @@ void MainWindow::displayComputers(vector<Computer> computers)
             yearMade = QString::number(computers[i].getYearMade());
         }
 
+        // Falin ID tala
         QString ID = QString::number(i);
 
         ui->table_display_computers->setItem(i, 0, new QTableWidgetItem(name));
@@ -135,11 +139,14 @@ void MainWindow::on_input_search_scientists_textChanged(const QString &arg1)
     vector<Scientist> searchedScientists = _service.searchSci(searchScientistsInput);
 
     displayScientists(searchedScientists);
+
+    //Villu-label-ið hreinsað
     ui->label_status_scientists->setText("");
 }
 
 void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 {
+    //Takkar með hlutverk fyrir ákveðna aðila í töflunni gerðir virktir þegar smellt er á einhvern í töflunni.
     ui->button_remove_scientists->setEnabled(true);
     ui->button_edit_scientists->setEnabled(true);
     ui->button_details_scientists->setEnabled(true);
@@ -149,18 +156,23 @@ void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 void MainWindow::on_button_remove_scientists_clicked()
 {
     ui->button_recover_all_scientists->setEnabled(true);
+
+    //Þegar eitthvað/einhver er valinn úr töflu er farið í gegnum eftirfarandi ferli til að rugla ekki aðilum saman þegar notandi notar sort.
+    //Fyrst tekin röðin, næst tekin falna ID talan úr þeim dálki, svo búið til tilvik af scientist sem tekur aðila í því mengi sem eru birtir í töflunni sem er númer ID.
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
     QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
     int scientistID = ID.toInt();
-
     Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
 
+    //Þó nafnið deleteSci gefi annað til kynna er engöngu að gera valid bitann 0 en ekki eyða Scientist
     bool scientistWasRemoved = _service.deleteSci(selectedScientist);
     if(scientistWasRemoved)
     {
         ui->input_search_scientists->setText("");
         displayAllScientists();
         ui->button_remove_scientists->setEnabled(false);
+
+        //Success skilaboð eru græn en villuskilaboð rauð.
         ui->label_status_scientists->setText("<span style='color: #5EC748'>Scientist successfully removed</span>");
     }
     else
@@ -182,6 +194,7 @@ void MainWindow::on_input_search_computers_textChanged(const QString &arg1)
 
 void MainWindow::on_table_display_computers_clicked(const QModelIndex &index)
 {
+    //Takkar með hlutverk fyrir ákveðnar tölvur í töflunni gerðir virktir þegar smellt er á einhverja tölvu í töflunni.
     ui->button_remove_computers->setEnabled(true);
     ui->button_details_computers->setEnabled(true);
     ui->button_edit_computers->setEnabled(true);
@@ -191,10 +204,11 @@ void MainWindow::on_table_display_computers_clicked(const QModelIndex &index)
 void MainWindow::on_button_remove_computers_clicked()
 {
     ui->button_recover_all_computers->setEnabled(true);
+
+    //Fyrst tekin röðin, næst tekin falna ID talan úr þeim dálki, svo búið til tilvik af computer sem tekur aðila í því mengi sem eru birtir í töflunni sem er númer ID.
     int selectedComputerRow = ui->table_display_computers->currentIndex().row();
     QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
     int computerID = ID.toInt();
-
     Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
 
     bool computerWasRemoved = _service.deleteComp(selectedComputer);
@@ -228,6 +242,8 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
 {
     ui->table_removed_scientists->clearContents();
     ui->table_removed_scientists->setRowCount(scientists.size());
+
+    //Geymd ID sem eru falin.
     ui->table_removed_scientists->hideColumn(4);
 
     if(scientists.size() > 0)
@@ -239,6 +255,8 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         QString name = QString::fromStdString(scientists[i].getName());
         QString born = QString::number(scientists[i].getBirth());
         QString died;
+
+        //ifDead er fasti í const.h sem er talan ef viðkomandi er ekki enn dáinn.
         if(scientists[i].getDeath() == ifDead)
         {
             died = QString::fromStdString("?");
@@ -256,6 +274,8 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         {
             gender = QString::fromStdString("Female");
         }
+
+        //Faldar ID tölur eins og í öllum display table föllum.
         QString ID = QString::number(i);
 
         ui->table_removed_scientists->setItem(i, 0, new QTableWidgetItem(name));
@@ -267,6 +287,7 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
     _currentlyRemovedScientists = scientists;
 }
 
+//Sama tækni notuð hér eins og í öllum display table föllum. Sjá fyrir ofan.
 void MainWindow::displayRemovedComputers(vector<Computer> computers)
 {
     ui->table_removed_computers->clearContents();
@@ -310,6 +331,7 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
     _currentlyRemovedComputers = computers;
 }
 
+//Sjá commentað fyrir ofan, sama tækni í þessu falli eins og flestum button föllum með virkni sem þarf staðsetningu í töflunni.
 void MainWindow::on_button_recover_scientists_clicked()
 {
     int selectedRecoverScientistRow = ui->table_removed_scientists->currentIndex().row();
@@ -331,6 +353,7 @@ void MainWindow::on_button_recover_scientists_clicked()
     displayAllScientists();
 }
 
+//Sjá commentað fyrir ofan, sama tækni í þessu falli eins og flestum button föllum með virkni sem þarf staðsetningu í töflunni.
 void MainWindow::on_button_recover_computers_clicked()
 {
     int selectedRecoverComputerRow = ui->table_removed_computers->currentIndex().row();
@@ -355,6 +378,8 @@ void MainWindow::on_button_recover_computers_clicked()
 void MainWindow::on_button_recover_all_scientists_clicked()
 {
     ui->button_recover_all_scientists->setEnabled(false);
+
+    //bool fyrir ef náðist að recover-a alla úr bin.
     bool allWentOk = true;
     for(size_t i = 0; i < _currentlyRemovedScientists.size(); i++)
     {
@@ -381,9 +406,12 @@ void MainWindow::on_button_recover_all_scientists_clicked()
 void MainWindow::on_button_recover_all_computers_clicked()
 {
     ui->button_recover_all_computers->setEnabled(false);
+
+    //bool fyrir ef náðist að recover-a alla úr bin.
     bool allWentOk = true;
     for(size_t i = 0; i < _currentlyRemovedComputers.size(); i++)
     {
+        //hér skiptir röðin ekki enis miklu máli og í föllum sem þurfa nákvæma staðsetningu í töflum, þess vegna er ekk notast við falda ID-ið.
         Computer selectedComputer = _currentlyRemovedComputers[i];
 
         bool computerWasRecovered = _service.recycleComp(selectedComputer);
@@ -406,6 +434,7 @@ void MainWindow::on_button_recover_all_computers_clicked()
 
 void MainWindow::on_button_addnew_scientists_clicked()
 {
+    //Keyrir nýjan glugga sem sér um add scientist.
     addScientistWindow addSci;
     addSci.exec();
     displayAllScientists();
@@ -413,11 +442,14 @@ void MainWindow::on_button_addnew_scientists_clicked()
 
 void MainWindow::on_button_addnew_computers_clicked()
 {
+    //Keyrir nýjan glugga sem sér um add computer.
     addComputerWindow addComp;
     addComp.exec();
     displayAllComputers();
 }
 
+
+//í detail button fyrir scientist og computer er fyrst sóttur réttur aðili og svo hann sendur inn í nýja glugga sem birta upplýsingar um viðkomandi.
 void MainWindow::on_button_details_scientists_clicked()
 {
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
@@ -441,6 +473,7 @@ void MainWindow::on_button_details_computers_clicked()
 
 }
 
+// í table doubleclicked er nákvæmlega sama virkni og ef maður ýtir á details, til að auka þægindi fyrir notendur.
 void MainWindow::on_table_display_scientists_doubleClicked(const QModelIndex &index)
 {
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
@@ -463,10 +496,12 @@ void MainWindow::on_table_display_computers_doubleClicked(const QModelIndex &ind
     infoComp.exec();
 }
 
+//Hreinsar allan databaseinn, deletar en ekki bara stillt valid á 0. Notandinn getur byrjað strax að gera nýjan database eftir það.
 void MainWindow::on_button_bin_clear_clicked()
 {
     if(ui->checkbox_bin_clear->isChecked())
     {
+        //Fallið er opið fyrir fleiri möguleikum en clear all. Finnst óþarfi að hafa það í forritinu.
         _service.clearData("all");
         ui->label_status_bin->setText("<span style='color: #E94949'>Database will be cleared!</span>");
     }
@@ -474,18 +509,20 @@ void MainWindow::on_button_bin_clear_clicked()
 
 void MainWindow::on_tabs_tabBarClicked(int index)
 {
+    //Checkbox gert óvirkt ef farið er úr bin tabinu, til að gera öruggara fyrir að notandinn eyði ekki óvart databaseinum.
     ui->checkbox_bin_clear->setChecked(false);
     ui->button_details_computers->setEnabled(false);
     ui->button_details_scientists->setEnabled(false);
 }
 
-
+//Birtir readme skrá með upplýsingum fyrir notanda.
 void MainWindow::on_manual_triggered()
 {
     helpWindow manual;
     manual.exec();
 }
 
+//Slekkur á forritinu eftir að hafa lokað database.
 void MainWindow::on_actionExit_triggered()
 {
     _service.closeData();
