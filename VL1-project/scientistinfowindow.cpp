@@ -92,6 +92,7 @@ void scientistInfoWindow::displayConnections(Scientist selectedScientist)
         ui->table_infosci_connections->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_infosci_connections->setItem(i, 3, new QTableWidgetItem(yearMade));
     }
+    _currentlyConnected = connectedComputers;
 }
 
 void scientistInfoWindow::on_button_infosci_done_clicked()
@@ -107,4 +108,9 @@ void scientistInfoWindow::on_table_infosci_connections_clicked(const QModelIndex
 void scientistInfoWindow::on_button_infosci_remove_clicked()
 {
     int selectedScientistRow = ui->table_infosci_connections->currentIndex().row();
+}
+
+void scientistInfoWindow::on_button_infosci_add_clicked()
+{
+
 }

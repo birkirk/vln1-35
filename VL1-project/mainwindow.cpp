@@ -114,10 +114,13 @@ void MainWindow::displayComputers(vector<Computer> computers)
             yearMade = QString::number(computers[i].getYearMade());
         }
 
+        QString ID = QString::number(i);
+
         ui->table_display_computers->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_display_computers->setItem(i, 1, new QTableWidgetItem(type));
         ui->table_display_computers->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_display_computers->setItem(i, 3, new QTableWidgetItem(yearMade));
+        ui->table_display_computers->setItem(i, 4, new QTableWidgetItem(ID));
     }
     _currentlyDisplaydedComputers = computers;
 }
@@ -408,7 +411,9 @@ void MainWindow::on_button_details_scientists_clicked()
 void MainWindow::on_button_details_computers_clicked()
 {
     int selectedComputerRow = ui->table_display_computers->currentIndex().row();
-    Computer selectedComputer = _currentlyDisplaydedComputers.at(selectedComputerRow);
+    QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
+    int computerID = ID.toInt();
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
 
     computerInfoWindow infoComp(selectedComputer);
     infoComp.exec();
