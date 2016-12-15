@@ -34,8 +34,8 @@ private slots:
 
 private:
     void setUpSci(Scientist selectedScientist);
-    void displayConnections(Scientist selectedScientist);
     void setScientist(Scientist selectedScientist);
+    void displayConnections(Scientist selectedScientist);
     Ui::scientistInfoWindow *ui;
 
     ServiceLayer _service;

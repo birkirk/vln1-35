@@ -612,7 +612,7 @@ vector<Scientist> DataLayer::findConnectedSci(Computer comp)
     QSqlQuery compQuery = findComputers(comp);
 
     QSqlQuery sciCompQuery;
-    sciCompQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:ID)");
+    sciCompQuery.prepare("SELECT scientistID FROM scicomp WHERE computerID = (:ID) AND valid = 1");
     sciCompQuery.bindValue(":ID", compQuery.value(0).toInt());
     sciCompQuery.exec();
 
