@@ -483,3 +483,9 @@ void MainWindow::on_manual_triggered()
     helpWindow manual;
     manual.exec();
 }
+
+void MainWindow::on_actionExit_triggered()
+{
+    _service.closeData();
+    close();
+}
