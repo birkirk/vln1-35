@@ -321,31 +321,7 @@ vector<Scientist> DataLayer::readSci(string com)
     vector<Scientist> tempV;
     QSqlQuery query;
 
-    if(com == "alpha")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY name");
-    }
-    else if(com == "ralpha")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY name DESC");
-    }
-    else if(com == "ageasc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfBirth DESC");
-    }
-    else if(com == "agedesc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfBirth");
-    }
-    else if(com == "deathasc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfDeath");
-    }
-    else if(com == "deathdesc")
-    {
-        query.exec("SELECT * FROM Scientists ORDER BY yearOfDeath DESC");
-    }
-    else if(com == "non")
+    if(com == "non")
     {
         query.exec("SELECT * FROM Scientists");
     }
@@ -379,6 +355,7 @@ vector<Computer> DataLayer::readComp(string com)
 {
     vector<Computer> tempV;
     QSqlQuery query;
+
 
     if(com == "alpha")
     {
