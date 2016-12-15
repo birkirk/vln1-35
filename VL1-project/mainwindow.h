@@ -63,6 +63,8 @@ private slots:
 
     void on_tabs_tabBarClicked(int index);
 
+    void on_actionInstruction_manual_triggered();
+
 private:
     void displayAllScientists();
     void displayAllComputers();

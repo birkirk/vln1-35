@@ -12,3 +12,4 @@ helpWindow::~helpWindow()
 {
     delete ui;
 }
+
