@@ -51,7 +51,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -100,8 +100,8 @@ font-size: 16px;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -151,6 +151,11 @@ font-size: 16px;</string>
             <column>
              <property name="text">
               <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>
@@ -361,8 +366,8 @@ font-size: 16px;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -412,6 +417,11 @@ font-size: 16px;</string>
             <column>
              <property name="text">
               <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>
@@ -614,8 +624,8 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="editTriggers">
@@ -625,13 +635,13 @@ font: 13pt &quot;Helvetica&quot;;</string>
              <enum>QAbstractItemView::SelectRows</enum>
             </property>
             <property name="sortingEnabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>140</number>
             </attribute>
             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-             <bool>false</bool>
+             <bool>true</bool>
             </attribute>
             <attribute name="horizontalHeaderStretchLastSection">
              <bool>true</bool>
@@ -654,6 +664,16 @@ font: 13pt &quot;Helvetica&quot;;</string>
             <column>
              <property name="text">
               <string>Gender</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>
@@ -758,8 +778,8 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
-              <height>2000</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="editTriggers">
@@ -769,7 +789,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
              <enum>QAbstractItemView::SelectRows</enum>
             </property>
             <property name="sortingEnabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>150</number>
@@ -795,6 +815,16 @@ font: 13pt &quot;Helvetica&quot;;</string>
             <column>
              <property name="text">
               <string>Year Made</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>
@@ -958,10 +988,22 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionHelp"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <action name="actionClose_program">
    <property name="text">
     <string>Close program</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
    </property>
   </action>
  </widget>

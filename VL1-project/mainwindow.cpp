@@ -225,6 +225,7 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
 {
     ui->table_removed_scientists->clearContents();
     ui->table_removed_scientists->setRowCount(scientists.size());
+    ui->table_removed_scientists->hideColumn(4);
 
     if(scientists.size() > 0)
     {
@@ -252,11 +253,13 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         {
             gender = QString::fromStdString("Female");
         }
+        QString ID = QString::number(i);
 
         ui->table_removed_scientists->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_removed_scientists->setItem(i, 1, new QTableWidgetItem(born));
         ui->table_removed_scientists->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_removed_scientists->setItem(i, 3, new QTableWidgetItem(gender));
+        ui->table_removed_scientists->setItem(i, 4, new QTableWidgetItem(ID));
     }
     _currentlyRemovedScientists = scientists;
 }
@@ -265,6 +268,7 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
 {
     ui->table_removed_computers->clearContents();
     ui->table_removed_computers->setRowCount(computers.size());
+    ui->table_removed_computers->hideColumn(4);
 
     if(computers.size() > 0)
     {
@@ -292,11 +296,13 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
         {
             yearMade = QString::number(computers[i].getYearMade());
         }
+        QString ID = QString::number(i);
 
         ui->table_removed_computers->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_removed_computers->setItem(i, 1, new QTableWidgetItem(type));
         ui->table_removed_computers->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_removed_computers->setItem(i, 3, new QTableWidgetItem(yearMade));
+        ui->table_removed_computers->setItem(i, 4, new QTableWidgetItem(ID));
     }
     _currentlyRemovedComputers = computers;
 }
@@ -304,8 +310,9 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
 void MainWindow::on_button_recover_scientists_clicked()
 {
     int selectedRecoverScientistRow = ui->table_removed_scientists->currentIndex().row();
-
-    Scientist selectedScientist = _currentlyRemovedScientists.at(selectedRecoverScientistRow);
+    QString ID = ui->table_removed_scientists->item(selectedRecoverScientistRow, 4)->text();
+    int scientistID = ID.toInt();
+    Scientist selectedScientist = _currentlyRemovedScientists.at(scientistID);
 
     bool scientistWasRecovered = _service.recycleSci(selectedScientist);
     if(scientistWasRecovered)
@@ -324,8 +331,9 @@ void MainWindow::on_button_recover_scientists_clicked()
 void MainWindow::on_button_recover_computers_clicked()
 {
     int selectedRecoverComputerRow = ui->table_removed_computers->currentIndex().row();
-
-    Computer selectedComputer = _currentlyRemovedComputers.at(selectedRecoverComputerRow);
+    QString ID = ui->table_removed_computers->item(selectedRecoverComputerRow, 4)->text();
+    int computerID = ID.toInt();
+    Computer selectedComputer = _currentlyRemovedComputers.at(computerID);
 
     bool computerWasRecovered = _service.recycleComp(selectedComputer);
     if(computerWasRecovered)
