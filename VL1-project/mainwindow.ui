@@ -965,14 +965,14 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>709</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionHelp"/>
+    <addaction name="manual"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -981,7 +981,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
     <string>Close program</string>
    </property>
   </action>
-  <action name="actionHelp">
+  <action name="manual">
    <property name="text">
     <string>Help</string>
    </property>
