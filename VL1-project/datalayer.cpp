@@ -725,3 +725,5 @@ bool DataLayer::addInfo(Scientist sci, QByteArray inf)
     return returnValue;
 
 }
+
+
