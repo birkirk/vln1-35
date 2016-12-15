@@ -454,7 +454,7 @@ vector<Scientist> DataLayer::searchSci(string input)
 
     if (!_db.isOpen())
     {
-        return scientists;
+        _db.open();
     }
 
     QSqlQuery query(_db);
@@ -496,7 +496,7 @@ vector<Computer> DataLayer::searchComp(string input)
 
     if (!_db.isOpen())
     {
-        return computers;
+        _db.open();
     }
 
     QSqlQuery query(_db);

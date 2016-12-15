@@ -18,12 +18,15 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>800</height>
+    <width>16777215</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Scientists and Computers</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -41,11 +44,14 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -70,7 +76,7 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
+              <width>16777215</width>
               <height>50</height>
              </size>
             </property>
@@ -182,7 +188,7 @@ font-size: 16px;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -215,7 +221,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -248,7 +254,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -280,7 +286,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>900</width>
+              <width>16777215</width>
               <height>50</height>
              </size>
             </property>
@@ -326,7 +332,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>800</width>
+              <width>16777215</width>
               <height>50</height>
              </size>
             </property>
@@ -398,6 +404,11 @@ font-size: 16px;</string>
               <string>Year Made</string>
              </property>
             </column>
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </column>
            </widget>
           </item>
           <item>
@@ -432,7 +443,7 @@ font-size: 16px;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -465,7 +476,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -498,7 +509,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>300</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -530,7 +541,7 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>900</width>
+              <width>16777215</width>
               <height>50</height>
              </size>
             </property>
@@ -657,7 +668,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>400</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -689,7 +700,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>400</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -798,7 +809,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>400</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -830,7 +841,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>400</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>
@@ -885,7 +896,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
               </property>
               <property name="maximumSize">
                <size>
-                <width>600</width>
+                <width>16777215</width>
                 <height>50</height>
                </size>
               </property>

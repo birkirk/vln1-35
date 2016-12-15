@@ -93,6 +93,7 @@ void computerInfoWindow::displayConnections(Computer selectedComputer)
         ui->table_infocomp_connections->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_infocomp_connections->setItem(i, 3, new QTableWidgetItem(gender));
     }
+    _currentlyConnected = connectedScientists;
 }
 
 void computerInfoWindow::on_button_infocomp_done_clicked()
@@ -108,4 +109,9 @@ void computerInfoWindow::on_table_infocomp_connections_clicked(const QModelIndex
 void computerInfoWindow::on_button_infocomp_remove_clicked()
 {
     int selectedComputerRow = ui->table_infocomp_connections->currentIndex().row();
+}
+
+void computerInfoWindow::on_button_infocomp_add_clicked()
+{
+
 }

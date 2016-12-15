@@ -25,12 +25,15 @@ private slots:
 
     void on_button_infocomp_remove_clicked();
 
+    void on_button_infocomp_add_clicked();
+
 private:
     void setUpComp(Computer selectedComputer);
     void displayConnections(Computer selectedComputer);
     Ui::computerInfoWindow *ui;
 
     ServiceLayer _service;
+    vector<Scientist> _currentlyConnected;
 };
 
 #endif // COMPUTERINFOWINDOW_H
