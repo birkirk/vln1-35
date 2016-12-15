@@ -51,6 +51,7 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
 {
     ui->table_display_scientists->clearContents();
     ui->table_display_scientists->setRowCount(scientists.size());
+    ui->table_display_scientists->hideColumn(4);
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
@@ -75,10 +76,13 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
             gender = QString::fromStdString("Female");
         }
 
+        QString ID = QString::number(i);
+
         ui->table_display_scientists->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_display_scientists->setItem(i, 1, new QTableWidgetItem(born));
         ui->table_display_scientists->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_display_scientists->setItem(i, 3, new QTableWidgetItem(gender));
+        ui->table_display_scientists->setItem(i, 4, new QTableWidgetItem(ID));
     }
     _currentlyDisplaydedScientists = scientists;
 }
@@ -87,6 +91,7 @@ void MainWindow::displayComputers(vector<Computer> computers)
 {
     ui->table_display_computers->clearContents();
     ui->table_display_computers->setRowCount(computers.size());
+    ui->table_display_computers->hideColumn(4);
 
     for(size_t i = 0; i < computers.size(); i++)
     {
@@ -143,8 +148,10 @@ void MainWindow::on_button_remove_scientists_clicked()
 {
     ui->button_recover_all_scientists->setEnabled(true);
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
+    QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
+    int scientistID = ID.toInt();
 
-    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
 
     bool scientistWasRemoved = _service.deleteSci(selectedScientist);
     if(scientistWasRemoved)
@@ -182,8 +189,10 @@ void MainWindow::on_button_remove_computers_clicked()
 {
     ui->button_recover_all_computers->setEnabled(true);
     int selectedComputerRow = ui->table_display_computers->currentIndex().row();
+    QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
+    int computerID = ID.toInt();
 
-    Computer selectedComputer = _currentlyDisplaydedComputers.at(selectedComputerRow);
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
 
     bool computerWasRemoved = _service.deleteComp(selectedComputer);
     if(computerWasRemoved)
@@ -399,7 +408,9 @@ void MainWindow::on_button_addnew_computers_clicked()
 void MainWindow::on_button_details_scientists_clicked()
 {
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
-    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
+    QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
+    int scientistID = ID.toInt();
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
 
     scientistInfoWindow infoSci(selectedScientist);
     infoSci.exec();
@@ -420,7 +431,9 @@ void MainWindow::on_button_details_computers_clicked()
 void MainWindow::on_table_display_scientists_doubleClicked(const QModelIndex &index)
 {
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
-    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
+    QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
+    int scientistID = ID.toInt();
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
 
     scientistInfoWindow infoSci(selectedScientist);
     infoSci.exec();
@@ -429,7 +442,9 @@ void MainWindow::on_table_display_scientists_doubleClicked(const QModelIndex &in
 void MainWindow::on_table_display_computers_doubleClicked(const QModelIndex &index)
 {
     int selectedComputerRow = ui->table_display_computers->currentIndex().row();
-    Computer selectedComputer = _currentlyDisplaydedComputers.at(selectedComputerRow);
+    QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
+    int computerID = ID.toInt();
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
 
     computerInfoWindow infoComp(selectedComputer);
     infoComp.exec();
