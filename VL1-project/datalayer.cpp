@@ -442,20 +442,22 @@ vector<int> DataLayer::getCon()
 
 vector<Scientist> DataLayer::searchSci(string input)
 {
+
+    if (!_db.isOpen())
+    {
+        qDebug() << "Opened db";
+        _db.open();
+    }
     stringstream sqlQuery;
-        sqlQuery << "SELECT * FROM Scientists WHERE name LIKE '%" << input << "%"
+        sqlQuery << "SELECT gender, name, yearOfBirth, yearOfDeath , valid FROM Scientists WHERE name LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT * FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
+                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT * FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+                 << "SELECT gender, name, yearOfBirth, yearOfDeat, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
 
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Scientist> scientists;
 
-    if (!_db.isOpen())
-    {
-        _db.open();
-    }
 
     QSqlQuery query(_db);
 
@@ -466,10 +468,10 @@ vector<Scientist> DataLayer::searchSci(string input)
 
     while (query.next())
     {
-        int valid = query.value(6).toInt();
+        int valid = query.value(4).toInt();
         if(valid == 1)
         {
-            QString gender = query.value(4).toString();
+            QString gender = query.value(0).toString();
             char gChar = gender.at(0).toLatin1();
 
             QString qName = query.value(1).toString();
