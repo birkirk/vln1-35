@@ -140,6 +140,12 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>input_concomp_search</tabstop>
+  <tabstop>table_concomp_connections</tabstop>
+  <tabstop>button_concomp_connect</tabstop>
+  <tabstop>button_concomp_done</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
