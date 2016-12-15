@@ -485,11 +485,11 @@ vector<Scientist> DataLayer::searchSci(string input)
 vector<Computer> DataLayer::searchComp(string input)
 {
     stringstream sqlQuery;
-        sqlQuery << "SELECT * FROM Computers WHERE name LIKE '%" << input << "%"
+        sqlQuery << "SELECT name, yearMade, ifMade, type, valid FROM Computers WHERE name LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT * FROM Computers WHERE type LIKE '%" << input << "%"
+                 << "SELECT name, yearMade, ifMade, type, valid FROM Computers WHERE type LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT * FROM Computers WHERE yearMade LIKE '%" << input << "%'";
+                 << "SELECT name, yearMade, ifMade, type, valid FROM Computers WHERE yearMade LIKE '%" << input << "%'";
 
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Computer> computers;
@@ -508,21 +508,21 @@ vector<Computer> DataLayer::searchComp(string input)
 
     while (query.next())
     {
-        int valid = query.value(6).toInt();
+        int valid = query.value(4).toInt();
         if(valid == 1)
         {
-            QString qName = query.value(1).toString();
+            QString qName = query.value(0).toString();
             string nName = qName.toStdString();
 
-            QString qIfMade = query.value(3).toString();
+            QString qIfMade = query.value(2).toString();
             bool nIfMade;
             if(qIfMade == "1") nIfMade = true;
             else nIfMade = false;
 
-            QString qType = query.value(2).toString();
+            QString qType = query.value(3).toString();
             string nType = qType.toStdString();
 
-            int nYearMade = query.value(5).toInt();
+            int nYearMade = query.value(1).toInt();
 
             Computer newComp(nIfMade, nName, nType, nYearMade);
             computers.push_back(newComp);
