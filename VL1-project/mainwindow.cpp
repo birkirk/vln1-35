@@ -429,3 +429,12 @@ void MainWindow::on_table_display_computers_doubleClicked(const QModelIndex &ind
     computerInfoWindow infoComp(selectedComputer);
     infoComp.exec();
 }
+
+void MainWindow::on_button_bin_clear_clicked()
+{
+    if(ui->checkbox_bin_clear->isChecked())
+    {
+        _service.clearData("all");
+        ui->label_status_bin->setText("<span style='color: #E94949'>Database will be cleared!</span>");
+    }
+}

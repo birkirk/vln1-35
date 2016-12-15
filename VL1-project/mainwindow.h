@@ -59,6 +59,8 @@ private slots:
 
     void on_table_display_scientists_doubleClicked(const QModelIndex &index);
 
+    void on_button_bin_clear_clicked();
+
 private:
     void displayAllScientists();
     void displayAllComputers();

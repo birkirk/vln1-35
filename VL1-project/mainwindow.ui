@@ -605,6 +605,50 @@ font: 13pt &quot;Helvetica&quot;;</string>
             </item>
            </layout>
           </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QCheckBox" name="checkbox_bin_clear">
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Enable clear button</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_bin_clear">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: 0px solid #333;
+padding: 7px 0 4px 0;
+background-color: #E94949;
+color: #fff;
+font-weight: bold;
+font: 25 13pt &quot;Helvetica&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Clear the whole database (this action can not be undone)</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
          </layout>
         </item>
         <item>
@@ -647,6 +691,29 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>tabs</tabstop>
+  <tabstop>input_search_scientists</tabstop>
+  <tabstop>table_display_scientists</tabstop>
+  <tabstop>button_details_scientists</tabstop>
+  <tabstop>button_edit_scientists</tabstop>
+  <tabstop>button_remove_scientists</tabstop>
+  <tabstop>button_addnew_scientists</tabstop>
+  <tabstop>input_search_computers</tabstop>
+  <tabstop>table_display_computers</tabstop>
+  <tabstop>button_details_computers</tabstop>
+  <tabstop>button_edit_computers</tabstop>
+  <tabstop>button_remove_computers</tabstop>
+  <tabstop>button_addnew_computers</tabstop>
+  <tabstop>table_removed_scientists</tabstop>
+  <tabstop>button_recover_scientists</tabstop>
+  <tabstop>button_recover_all_scientists</tabstop>
+  <tabstop>table_removed_computers</tabstop>
+  <tabstop>button_recover_computers</tabstop>
+  <tabstop>button_recover_all_computers</tabstop>
+  <tabstop>checkbox_bin_clear</tabstop>
+  <tabstop>button_bin_clear</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

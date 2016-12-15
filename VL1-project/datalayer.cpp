@@ -357,35 +357,7 @@ vector<Computer> DataLayer::readComp(string com)
     QSqlQuery query;
 
 
-    if(com == "alpha")
-    {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY name");
-    }
-    else if(com == "ralpha")
-    {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY name DESC");
-    }
-    else if(com == "ageasc")
-    {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY yearMade DESC");
-    }
-    else if(com == "agedesc")
-    {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY yearMade");
-    }
-    else if(com == "made")
-    {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers WHERE ifMade = 1");
-    }
-    else if(com == "notmade")
-    {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers WHERE ifMade = 0");
-    }
-    else if(com == "type")
-    {
-        query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers ORDER BY type");
-    }
-    else if(com == "non")
+    if(com == "non")
     {
         query.exec("SELECT gender, name, type, ifMade, yearMade, valid FROM Computers");
     }
