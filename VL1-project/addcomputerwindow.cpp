@@ -120,3 +120,11 @@ void addComputerWindow::on_button_addcomp_browse_image_clicked()
                                     "Image files (*.png *.jpg");
     ui->input_addcomp_image_path->setText(filePath);
 }
+
+void addComputerWindow::on_input_addcomp_type_currentIndexChanged(int index)
+{
+    if(ui->input_addcomp_type->currentText() == "Add new")
+    {
+
+    }
+}

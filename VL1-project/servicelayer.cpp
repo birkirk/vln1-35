@@ -71,6 +71,11 @@ bool ServiceLayer::addScientitst(Scientist aScientist)
     {
         success = _dataL.addScientist(aScientist);
     }
+
+    if(aScientist.hasInfo())
+    {
+        _dataL.addScientistInfo(aScientist);
+    }
     return success;
 }
 
@@ -191,16 +196,21 @@ bool ServiceLayer::addScientitstPicture(Scientist sci, QByteArray pict)
     return returnValue;
 }
 
-bool ServiceLayer::addScientistInfo(Scientist sci, QByteArray inf)
+bool ServiceLayer::addScientistInfo(Scientist sci, string inf)
 {
-    bool returnValue = _dataL.addInfo(sci, inf);
+    bool returnValue = _dataL.addScientistInfo(sci);
     return returnValue;
 }
 
-QByteArray ServiceLayer::getInfo(Scientist sci)
+string ServiceLayer::getScientistInfo(Scientist sci)
 {
-    QByteArray returnValue = _dataL.getInfo(sci);
+    string returnValue = _dataL.getScientistInfo(sci);
     return returnValue;
 }
 
+bool ServiceLayer::deleteConnection(Computer comp, Scientist sci)
+{
+    bool returnValue = _dataL.deleteConnection(comp, sci);
+    return returnValue;
+}
 

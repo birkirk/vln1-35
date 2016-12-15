@@ -17,14 +17,17 @@ public:
     int getDeath();
     char getGender();
     string getName();
+    string getInfo();
     QByteArray getPicture();
     bool hasPicture();
+    bool hasInfo();
+    void addInfo(string ing);
 private:
     char _gender;
-    string _name;
+    string _name, _info;
     QByteArray _picture;
     int _born, _death;
-    bool _hasPicture;
+    bool _hasPicture, _hasInfo;
 };
 
 #endif // SCIENTIST_H

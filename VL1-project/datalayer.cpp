@@ -68,6 +68,7 @@ DataLayer::DataLayer()
                             " 'type' VARCHAR NOT NULL ,"
                             " 'ifMade' BOOL NOT NULL ,"
                             " 'picture' BLOB, "
+                            " 'info' TEXT, "
                             " 'yearMade' INTEGER, 'valid' BOOL NOT NULL  DEFAULT 1)");
         createQuery.exec();
 
@@ -78,6 +79,7 @@ DataLayer::DataLayer()
                             "'yearOfDeath' VARCHAR,"
                             " 'gender' CHAR NOT NULL  DEFAULT N,"
                             " 'picture' BLOB, "
+                            " 'info' TEXT, "
                             " 'valid' DOUBLE NOT NULL  DEFAULT 1)");
         createQuery.exec();
 
@@ -289,30 +291,52 @@ bool DataLayer::addComputerPicture(Computer comp, QByteArray pict)
 
 bool DataLayer::deleteComputer(Computer newComp)
 {
-    QSqlQuery query = findComputers(newComp);
+    QSqlQuery compQuery = findComputers(newComp);
+    QSqlQuery connectionQuery;
+    connectionQuery.prepare("SELECT rowid FROM scicomp WHERE computerID = (:ID)");
+    connectionQuery.bindValue(":ID", compQuery.value(0).toInt());
+    connectionQuery.exec();
 
-    query.first();
-    QSqlQuery deleteQuery;
-    deleteQuery.prepare("UPDATE Computers SET valid = 0 WHERE ID = (:ID)");
-    int a = query.value(0).toInt();
-    deleteQuery.bindValue(":ID", a);
-    deleteQuery.exec();
-    bool returnValue = deleteQuery.exec();
+    QSqlQuery deleteCompQuery;
+    deleteCompQuery.prepare("UPDATE Computers SET valid = 0 WHERE ID = (:ID)");
+    deleteCompQuery.bindValue(":ID", compQuery.value(0).toInt());
+    deleteCompQuery.exec();
+    bool returnValue = deleteCompQuery.exec();
+
+    while(connectionQuery.next())
+    {
+        QSqlQuery deleteConnectionsQuery;
+        deleteConnectionsQuery.prepare("UPDATE scicomp SET valid = 0 WHERE rowid = (:ID)");
+        deleteConnectionsQuery.bindValue(":ID", connectionQuery.value(0).toInt());
+        deleteConnectionsQuery.exec();
+    }
     return returnValue;
 }
 
 
 bool DataLayer::deleteScientist(Scientist newSci)
 {
-    QSqlQuery query = findScientists(newSci);
+    QSqlQuery sciQuery = findScientists(newSci);
+    QSqlQuery connectionQuery;
 
-    query.first();
+    connectionQuery.prepare("SELECT rowid FROM scicomp WHERE scientistID = (:ID)");
+    connectionQuery.bindValue(":ID", sciQuery.value(0).toInt());
+    connectionQuery.exec();
+
     QSqlQuery deleteQuery;
     deleteQuery.prepare("UPDATE Scientists SET valid = 0 WHERE ID = (:ID)");
-    int a = query.value(0).toInt();
-    deleteQuery.bindValue(":ID", a);
+    deleteQuery.bindValue(":ID", sciQuery.value(0).toInt());
     deleteQuery.exec();
     bool returnValue = deleteQuery.exec();
+
+    while(connectionQuery.next())
+    {
+
+        QSqlQuery deleteConnectionsQuery;
+        deleteConnectionsQuery.prepare("UPDATE scicomp SET valid = 0 WHERE rowid = (:ID)");
+        deleteConnectionsQuery.bindValue(":ID", connectionQuery.value(0).toInt());
+        deleteConnectionsQuery.exec();
+    }
     return returnValue;
 }
 
@@ -674,7 +698,7 @@ QByteArray DataLayer::getComputerPicture(Computer comp)
     return returnPict;
 }
 
-QByteArray DataLayer::getInfo(Scientist sci)
+string DataLayer::getScientistInfo(Scientist sci)
 {
     QSqlQuery sciQuery = findScientists(sci);
     QSqlQuery query;
@@ -682,20 +706,35 @@ QByteArray DataLayer::getInfo(Scientist sci)
     query.bindValue(":ID", sciQuery.value(0).toInt());
     query.exec();
 
-    QByteArray returnValue = query.value(0).toByteArray();
+    QString inf = query.value(0).toString();
+    string returnValue = inf.toStdString();
     return returnValue;
 }
 
-bool DataLayer::addInfo(Scientist sci, QByteArray inf)
+bool DataLayer::addScientistInfo(Scientist sci)
 {
     QSqlQuery sciQuery = findScientists(sci);
     QSqlQuery query;
     query.prepare("UPDATE Scientists SET info = (:info) WHERE ID = (:ID)");
     query.bindValue(":ID", sciQuery.value(0).toInt());
-    query.bindValue(":info", inf);
+    query.bindValue(":info", QString::fromStdString(sci.getInfo()));
     bool returnValue = query.exec();
     return returnValue;
 
+}
+
+bool DataLayer::deleteConnection(Computer comp, Scientist sci)
+{
+    QSqlQuery compQuery = findComputers(comp);
+    QSqlQuery sciQuery = findScientists(sci);
+
+    QSqlQuery connectionQuery;
+    connectionQuery.prepare("UPDATE scicomp SET valid = 0 where scientistID = (:sciID)"
+                            " AND computerID = (:compID)");
+    connectionQuery.bindValue(":sciID", sciQuery.value(0).toInt());
+    connectionQuery.bindValue(":compID", compQuery.value(0).toInt());
+    bool returnValue = connectionQuery.exec();
+    return returnValue;
 }
 
 

@@ -14,7 +14,7 @@ public:
     bool addScientitstPicture(Scientist sci, QByteArray image);
     QByteArray getScientistPicture(Scientist sci);
     bool addScientitst(Scientist aScientist);
-    bool addScientistInfo(Scientist sci, QByteArray inf);
+    bool addScientistInfo(Scientist sci, string inf);
     bool recycleSci(Scientist sci);
     vector<Scientist> getDeletedSci();
     bool deleteSci(Scientist newSci);
@@ -23,19 +23,21 @@ public:
 
 
     vector<string> getTypes();
+
     void addType(string type);
 
     vector<Computer> getDeletedComp();
-
     bool recycleComp(Computer comp);
-
-    QByteArray getInfo(Scientist sci);
-
     bool addComputer(Computer aComputer);
-    bool closeData();
     bool deleteComp(Computer newComp);
+
+
+    string getScientistInfo(Scientist sci);
+
+    bool closeData();
     bool connect(Scientist Sci, Computer Comp);
-    
+    bool deleteConnection(Computer comp, Scientist sci);
+
     void clearData(string com);
 
     bool addComputerPicture(Computer comp, QByteArray pict);

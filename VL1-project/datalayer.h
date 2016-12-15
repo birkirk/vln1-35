@@ -44,8 +44,8 @@ public:
     vector<int> getCon();
     QByteArray getScientistPicture(Scientist sci);
 
-    bool addInfo(Scientist sci, QByteArray inf);
-    QByteArray getInfo(Scientist sci);
+    bool addScientistInfo(Scientist sci);
+    string getScientistInfo(Scientist sci);
 
     vector<Computer> findConnectedComp(Scientist sci);
     vector<Scientist> findConnectedSci(Computer comp);
@@ -60,6 +60,7 @@ public:
     bool closeDatabase();
     void writeFile(vector<Scientist> vScientist);
     bool connect(Scientist newSci, Computer newComp);
+    bool deleteConnection(Computer comp, Scientist sci);
 
     void clearSci();
     void clearDataFile();

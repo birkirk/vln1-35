@@ -31,6 +31,8 @@ private slots:
 
     void on_button_addcomp_browse_image_clicked();
 
+    void on_input_addcomp_type_currentIndexChanged(int index);
+
 private:
     vector<Computer> _computerVector;
     Ui::addComputerWindow *ui;
