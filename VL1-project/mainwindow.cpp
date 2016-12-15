@@ -398,7 +398,10 @@ void MainWindow::on_button_addnew_computers_clicked()
 
 void MainWindow::on_button_details_scientists_clicked()
 {
-    scientistInfoWindow infoSci;
+    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(selectedScientistRow);
+
+    scientistInfoWindow infoSci(selectedScientist);
     infoSci.exec();
 }
 
@@ -442,4 +445,6 @@ void MainWindow::on_button_bin_clear_clicked()
 void MainWindow::on_tabs_tabBarClicked(int index)
 {
     ui->checkbox_bin_clear->setChecked(false);
+    ui->button_details_computers->setEnabled(false);
+    ui->button_details_scientists->setEnabled(false);
 }
