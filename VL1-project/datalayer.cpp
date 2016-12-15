@@ -563,17 +563,45 @@ void DataLayer::clearCon()
 
 bool DataLayer::connect(Scientist newSci, Computer newComp)
 {
+    bool returnValue;
     QSqlQuery sciQuery = findScientists(newSci);
     QSqlQuery compQuery = findComputers(newComp);
 
-    QSqlQuery updateQuery;
-    updateQuery.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid)");
+    QSqlQuery checkExistanceQuery;
+    checkExistanceQuery.prepare("SELECT valid FROM scicomp WHERE scientistID = (:sID) AND computerID = (:cID)");
+    checkExistanceQuery.bindValue(":sID", sciQuery.value(0).toInt());
+    checkExistanceQuery.bindValue(":cID", compQuery.value(0).toInt());
+    checkExistanceQuery.exec();
 
+    if(checkExistanceQuery.first() && checkExistanceQuery.value(0).toInt() != 1)
+    {
+        QSqlQuery updateQuery;
+        updateQuery.prepare("UPDATE scicomp SET valid = 1 WHERE scientistID = (:scientistID) AND computerID = (:computerID)");
+        updateQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
+        updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
+        updated = updateQuery.exec();
+        returnValue = true;
+        qDebug() << "updated";
+    }
+    else if(!checkExistanceQuery.first())
+    {
 
-    updateQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
-    updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
-    updateQuery.bindValue(":valid", QString::number(1));
-    bool returnValue = updateQuery.exec();
+        QSqlQuery insertQuery;
+        insertQuery.prepare("INSERT INTO scicomp (scientistID, computerID, valid) VALUES(:scientistID, :computerID, :valid)");
+        insertQuery.bindValue(":scientistID", sciQuery.value(0).toInt());
+        insertQuery.bindValue(":computerID", compQuery.value(0).toInt());
+        insertQuery.bindValue(":valid", QString::number(1));
+        inserted = insertQuery.exec();
+        qDebug() << "inserted";
+        returnValue = true;
+
+    }
+    else
+    {
+        qDebug() <<"got to final else";
+        returnValue = false;
+    }
+    qDebug() << returnValue;
     return returnValue;
 
 }
