@@ -25,10 +25,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::displayAllScientists()
 {
-    qDebug() << "got to display all scientist";
     vector<Scientist> allScientists = _service.sciGet();
     displayScientists(allScientists);
-    qDebug() << "Got to display all";
 }
 
 void MainWindow::displayAllComputers()
@@ -56,7 +54,6 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
-        qDebug() << i;
         QString name = QString::fromStdString(scientists[i].getName());
         QString born = QString::number(scientists[i].getBirth());
         QString died;
