@@ -106,26 +106,14 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_infocomp_text">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Helvetica</family>
-       <italic>true</italic>
-      </font>
-     </property>
+    <widget class="QLabel" name="label_infocomp_description">
      <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      <string>Add description: (optional)</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <widget class="QTextBrowser" name="textbrowser_infocomp_description"/>
    </item>
    <item>
     <widget class="Line" name="line_2">
