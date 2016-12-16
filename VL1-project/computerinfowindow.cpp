@@ -57,7 +57,7 @@ void computerInfoWindow::setUpComp(Computer selectedComputer)
     QPixmap image;
     image.loadFromData(picture);
 
-    ui->label_infocomp_image->setPixmap(image.scaled(200,200, Qt::KeepAspectRatio);
+    ui->label_infocomp_image->setPixmap(image.scaled(200,200, Qt::KeepAspectRatio));
 }
 
 void computerInfoWindow::displayConnections(Computer selectedComputer)
