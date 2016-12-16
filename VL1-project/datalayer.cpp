@@ -513,11 +513,11 @@ vector<Scientist> DataLayer::searchSci(string input)
         _db.open();
     }
     stringstream sqlQuery;
-        sqlQuery << "SELECT gender, name, yearOfBirth, yearOfDeath , valid FROM Scientists WHERE name LIKE '%" << input << "%"
+        sqlQuery << "SELECT gender, name, yearOfBirth, yearOfDeath , valid, info FROM Scientists WHERE name LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
+                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid, info FROM Scientists WHERE yearOfBirth LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
+                 << "SELECT gender, name, yearOfBirth, yearOfDeath, valid, info FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
 
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Scientist> scientists;
@@ -539,7 +539,9 @@ vector<Scientist> DataLayer::searchSci(string input)
 
             QString qName = query.value(1).toString();
             string name = qName.toStdString();
+            string info = query.value(5).toString().toStdString();
             Scientist newSci(name, gChar, query.value(2).toInt(), query.value(3).toInt());
+            newSci.addInfo(info);
             scientists.push_back(newSci);
         }
     }
@@ -550,11 +552,11 @@ vector<Scientist> DataLayer::searchSci(string input)
 vector<Computer> DataLayer::searchComp(string input)
 {
     stringstream sqlQuery;
-        sqlQuery << "SELECT name, yearMade, ifMade, type, valid FROM Computers WHERE name LIKE '%" << input << "%"
+        sqlQuery << "SELECT name, yearMade, ifMade, type, valid, info FROM Computers WHERE name LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT name, yearMade, ifMade, type, valid FROM Computers WHERE type LIKE '%" << input << "%"
+                 << "SELECT name, yearMade, ifMade, type, valid, info FROM Computers WHERE type LIKE '%" << input << "%"
                  << "' UNION "
-                 << "SELECT name, yearMade, ifMade, type, valid FROM Computers WHERE yearMade LIKE '%" << input << "%'";
+                 << "SELECT name, yearMade, ifMade, type, valid, info FROM Computers WHERE yearMade LIKE '%" << input << "%'";
 
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Computer> computers;
@@ -590,6 +592,7 @@ vector<Computer> DataLayer::searchComp(string input)
             int nYearMade = query.value(1).toInt();
 
             Computer newComp(nIfMade, nName, nType, nYearMade);
+            newComp.addInfo(query.value(5).toString().toStdString());
             computers.push_back(newComp);
         }
     }
