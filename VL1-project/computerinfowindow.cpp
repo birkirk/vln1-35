@@ -97,11 +97,13 @@ void computerInfoWindow::displayConnections(Computer selectedComputer)
         }
         QString ID = QString::number(i);
 
+        ui->table_infocomp_connections->setSortingEnabled(false);
         ui->table_infocomp_connections->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_infocomp_connections->setItem(i, 1, new QTableWidgetItem(born));
         ui->table_infocomp_connections->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_infocomp_connections->setItem(i, 3, new QTableWidgetItem(gender));
         ui->table_infocomp_connections->setItem(i, 4, new QTableWidgetItem(ID));
+        ui->table_infocomp_connections->setSortingEnabled(true);
     }
     _currentlyConnected = connectedScientists;
 }
