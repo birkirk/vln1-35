@@ -122,6 +122,7 @@ void addComputerWindow::on_button_addcomp_add_clicked()
         ui->input_addcomp_name->setText(QString::fromStdString(""));
         ui->input_addcomp_yearmade->setText(QString::fromStdString(""));
         ui->input_addcomp_type->setCurrentIndex(0);
+        ui->input_addcomp_description->setPlainText(QString::fromStdString(""));
         ui->input_addcomp_image_path->setText(QString::fromStdString(""));
     }
 }

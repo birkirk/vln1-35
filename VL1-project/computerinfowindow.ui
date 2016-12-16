@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>677</width>
-    <height>575</height>
+    <width>537</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -119,7 +119,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextBrowser" name="textbrowser_infocomp_description"/>
+    <widget class="QTextBrowser" name="textbrowser_infocomp_description">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>100</height>
+      </size>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="Line" name="line_2">
