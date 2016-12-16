@@ -79,6 +79,7 @@ private slots:
     void on_button_facts_clicked();
 
 private:
+    void setUpAboutTab();
     void displayAllScientists();
     void displayAllComputers();
     void displayAllRemovedScientists();

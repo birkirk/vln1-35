@@ -8,6 +8,10 @@
 #include "computerinfowindow.h"
 #include "helpwindow.h"
 #include "const.h"
+#include <QLabel>
+
+//Grænn: #5EC748
+//Rauður: #E94949
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     displayAllComputers();
     displayAllRemovedScientists();
     displayAllRemovedComputers();
+    setUpAboutTab();
 }
 
 MainWindow::~MainWindow()
@@ -599,4 +604,19 @@ void MainWindow::on_button_facts_clicked()
         crazyFact = QString::fromStdString("100% of people try to plug their USB devices upside down!");
     }
     ui->label_facts->setText(crazyFact);
+}
+
+void MainWindow::setUpAboutTab()
+{
+    ui->label_contact_birkir->setOpenExternalLinks(true);
+    QString contactBirkir = QString::fromStdString("<a href='mailto:birkir.k@me.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
+    ui->label_contact_birkir->setText(contactBirkir);
+
+    ui->label_contact_siggi->setOpenExternalLinks(true);
+    QString contactSiggi = QString::fromStdString("<a href='mailto:comradesigurdur@gmail.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
+    ui->label_contact_siggi->setText(contactSiggi);
+
+    ui->label_contact_orn->setOpenExternalLinks(true);
+    QString contactOrn = QString::fromStdString("<a href='mailto:birkir.k@me.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
+    ui->label_contact_orn->setText(contactOrn);
 }

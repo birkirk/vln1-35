@@ -1,5 +1,6 @@
 #include "addscientistwindow.h"
 #include "ui_addscientistwindow.h"
+#include "const.h"
 #include <string>
 #include <QFileDialog>
 
@@ -33,35 +34,47 @@ void addScientistWindow::on_button_addsci_add_clicked()
 
     if(name.length() == 0)
     {
-        ui->label_addsci_status->setText(QString::fromStdString("Name cannot be empty!"));
-        // do nothing
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Name cannot be empty!</span>"));
+        validInput = false;
     }
     else if(sBirth.length() == 0)
     {
-        ui->label_addsci_status->setText(QString::fromStdString("Year of birth cannot be empty!"));
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Year of birth cannot be empty!</span>"));
+        validInput = false;
     }
     else if(birth <= 0)
     {
-        ui->label_addsci_status->setText(QString::fromStdString("Invalid input in year of birth!"));
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Invalid input in year of birth!</span>"));
+        validInput = false;
+    }
+    else if(birth > currentYear)
+    {
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Year of birth must be correct!</span>"));
         validInput = false;
     }
     else if(death <= 0 && qDeath.length() != 0)
     {
         validInput = false;
-        ui->label_addsci_status->setText(QString::fromStdString("Invalid input in year of death!"));
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Invalid input in year of death!</span>"));
+    }
+    else if(birth > death)
+    {
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>No one can die before they are born!</span>"));
+        validInput = false;
     }
     else if(sGender.length() == 0)
     {
-        ui->label_addsci_status->setText(QString::fromStdString("Gender cannot be empty!"));
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Gender cannot be empty!</span>"));
+        validInput = false;
     }
     else if(!file.isOpen() && ui->input_addsci_path->text() != "")
     {
-        ui->label_addsci_status->setText(QString::fromStdString("Invalid input for image path!"));
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Invalid input for image path!</span>"));
         validInput = false;
     }
 
 
-    if(name.length() > 0 && sBirth.length() > 0 && sGender.length() > 0 && validInput)
+    if(validInput)
     {
         char gender;
         if(sGender == "Male") gender = 'm';
