@@ -544,5 +544,59 @@ void MainWindow::on_button_edit_scientists_clicked()
 
 void MainWindow::on_button_edit_computers_clicked()
 {
+    int selectedComputerRow = ui->table_display_computers->currentIndex().row();
+    QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
+    int computerID = ID.toInt();
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
 
+    editComputerWindow editComp(selectedComputer);
+    editComp.exec();
+}
+
+//Just a fun bonus, and you get to .. learn things!
+void MainWindow::on_button_facts_clicked()
+{
+    int random = rand() % 10 + 1;
+    QString crazyFact;
+    if(random == 1)
+    {
+        crazyFact = QString::fromStdString("The first electronic computer ENIAC weighed \n more than 27 tons and took up 1800 square feet!");
+    }
+    else if(random == 2)
+    {
+        crazyFact = QString::fromStdString("TYPEWRITER is the longest word that you can write using \n the letters only on one row of the keyboard of your computer!");
+    }
+    else if(random == 3)
+    {
+        crazyFact = QString::fromStdString("The first ever hard disk drive was made \n in 1979, and could hold only 5MB of data!");
+    }
+    else if(random == 4)
+    {
+        crazyFact = QString::fromStdString("Most cats have hair!");
+    }
+    else if(random == 5)
+    {
+        crazyFact = QString::fromStdString("Dolphins can not climb trees!");
+    }
+    else if(random == 6)
+    {
+        crazyFact = QString::fromStdString("Over 1 million domain names are registered every month.");
+    }
+    else if(random == 7)
+    {
+        crazyFact = QString::fromStdString("On an average work day, a typist’s fingers travel about 12.6 miles!");
+    }
+    else if(random == 8)
+    {
+        crazyFact = QString::fromStdString("'Amazing facts' backwards is 'stcaf gnizamA'!");
+    }
+    else if(random == 9)
+    {
+        crazyFact = QString::fromStdString("A dentist named Alfred Southwick invented the electric chair!");
+    }
+    else if(random == 10)
+    {
+        crazyFact = QString::fromStdString("100% of people try to plug their USB devices upside down!");
+    }
+    ui->label_facts->setText(crazyFact);
 }

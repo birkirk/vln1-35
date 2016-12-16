@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Add Computers</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -142,6 +142,13 @@
      </item>
      <item>
       <widget class="QPushButton" name="button_addcomp_browse_image">
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid #333;
+padding: 7px 4px 5px 4px;
+background-color: #555;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+       </property>
        <property name="text">
         <string>Browse</string>
        </property>

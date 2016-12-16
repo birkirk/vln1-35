@@ -51,7 +51,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <property name="enabled">
@@ -989,6 +989,75 @@ font: 25 13pt &quot;Helvetica&quot;;</string>
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_facts">
+       <attribute name="title">
+        <string>Facts</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Helvetica</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #333;</string>
+            </property>
+            <property name="text">
+             <string>&lt;h3&gt;Crazy Fact Generator 2000&lt;/h3&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_facts">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 0px solid #333;
+padding: 15px;
+background-color: #E94949;
+color: #fff;
+font-weight: bold;
+font: 25 15pt &quot;Helvetica&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Hit me!</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_facts">
+            <property name="font">
+             <font>
+              <family>Helvetica</family>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
