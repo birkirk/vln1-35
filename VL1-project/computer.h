@@ -13,6 +13,9 @@ public:
     Computer(bool ifMade, string name, string type, int yearMade);
     Computer(bool ifMade, string name, string type, int yearMade, QByteArray pict);
     
+    string getInfo();
+    void addInfo(string inf);
+    bool hasInfo();
     QByteArray getPicture();
     int getYearMade();
     bool getIfMade();
@@ -20,8 +23,8 @@ public:
     string getType();
     bool hasPicture();
 private:
-    bool _ifMade, _hasPicture;
-    string _name, _type;
+    bool _ifMade, _hasPicture, _hasInfo;
+    string _name, _type, _info;
     int _yearMade;
     QByteArray _picture;
 };

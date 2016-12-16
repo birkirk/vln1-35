@@ -24,23 +24,27 @@ public:
     DataLayer(const QString& path);
     vector<string> getTypes();
 
-    bool addScientistPicture(Scientist sci, QByteArray pict);
     bool addComputerPicture(Computer comp, QByteArray pict);
     QByteArray getComputerPicture(Computer comp);
-
     bool recycleComp(Computer comp);
-    bool recycleSci(Scientist sci);
-
-
-
     vector<Computer> getDeletedComp();
+    vector<Computer> readComp(string com);
+    vector<Computer> searchComp(string input);
+    bool addComputerInfo(Computer comp);
+    string getComputerInfo(Computer comp);
+
+    bool addScientist(Scientist sci);
+    bool deleteScientist(Scientist newSci);
+    bool addScientistPicture(Scientist sci, QByteArray pict);
+    bool recycleSci(Scientist sci);
     vector<Scientist> getDeletedSci();
+    vector<Scientist> readSci(string com);
+    vector<Scientist> searchSci(string input);
+
+
+
 
     void addType(string type);
-    vector<Scientist> readSci(string com);
-    vector<Computer> readComp(string com);
-    vector<Scientist> searchSci(string input);
-    vector<Computer> searchComp(string input);
     vector<int> getCon();
     QByteArray getScientistPicture(Scientist sci);
 
@@ -51,8 +55,6 @@ public:
     vector<Scientist> findConnectedSci(Computer comp);
     vector<string> readManual();
 
-    bool addScientist(Scientist sci);
-    bool deleteScientist(Scientist newSci);
     
     bool addComputer(Computer comp);
     bool deleteComputer(Computer newComp);

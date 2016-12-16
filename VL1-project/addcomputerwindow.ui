@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>496</width>
-    <height>418</height>
+    <width>297</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -180,7 +180,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit"/>
+    <widget class="QPlainTextEdit" name="input_addcomp_description"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

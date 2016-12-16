@@ -56,3 +56,18 @@ bool Computer::hasPicture()
 {
     return _hasPicture;
 }
+
+void Computer::addInfo(string inf)
+{
+    _info = inf;
+}
+
+string Computer::getInfo()
+{
+    return _info;
+}
+
+bool Computer::hasInfo()
+{
+    return _hasInfo;
+}

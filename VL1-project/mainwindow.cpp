@@ -52,10 +52,11 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
 {
     ui->table_display_scientists->clearContents();
     ui->table_display_scientists->setRowCount(scientists.size());
-    ui->table_display_scientists->hideColumn(4);
+    //ui->table_display_scientists->hideColumn(4);
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
+
         QString name = QString::fromStdString(scientists[i].getName());
         QString born = QString::number(scientists[i].getBirth());
         QString died;
@@ -79,11 +80,15 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
 
         QString ID = QString::number(i);
 
+        qDebug() << name << " " << born <<" " <<  died << " " << ID;
+
+        ui->table_display_scientists->setSortingEnabled(false);
         ui->table_display_scientists->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_display_scientists->setItem(i, 1, new QTableWidgetItem(born));
         ui->table_display_scientists->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_display_scientists->setItem(i, 3, new QTableWidgetItem(gender));
         ui->table_display_scientists->setItem(i, 4, new QTableWidgetItem(ID));
+        ui->table_display_scientists->setSortingEnabled(true);
     }
     _currentlyDisplaydedScientists = scientists;
 }
@@ -118,12 +123,13 @@ void MainWindow::displayComputers(vector<Computer> computers)
         }
 
         QString ID = QString::number(i);
-
+        ui->table_display_computers->setSortingEnabled(false);
         ui->table_display_computers->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_display_computers->setItem(i, 1, new QTableWidgetItem(type));
         ui->table_display_computers->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_display_computers->setItem(i, 3, new QTableWidgetItem(yearMade));
         ui->table_display_computers->setItem(i, 4, new QTableWidgetItem(ID));
+        ui->table_display_computers->setSortingEnabled(true);
     }
     _currentlyDisplaydedComputers = computers;
 }
@@ -149,9 +155,14 @@ void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 void MainWindow::on_button_remove_scientists_clicked()
 {
     ui->button_recover_all_scientists->setEnabled(true);
-    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
+    qDebug() << "Checkpoint 1";
+    int selectedScientistRow = ui->table_display_scientists->currentRow();
+    qDebug() << "checkpoint 2";
+    qDebug() << ui->table_display_scientists->currentItem();
     QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
+    qDebug() << "checkpoint 3";
     int scientistID = ID.toInt();
+    qDebug() << "checkpoint 4";
 
     Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
 
@@ -258,11 +269,13 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         }
         QString ID = QString::number(i);
 
+        ui->table_removed_scientists->setSortingEnabled(false);
         ui->table_removed_scientists->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_removed_scientists->setItem(i, 1, new QTableWidgetItem(born));
         ui->table_removed_scientists->setItem(i, 2, new QTableWidgetItem(died));
         ui->table_removed_scientists->setItem(i, 3, new QTableWidgetItem(gender));
         ui->table_removed_scientists->setItem(i, 4, new QTableWidgetItem(ID));
+        ui->table_display_scientists->setSortingEnabled(true);
     }
     _currentlyRemovedScientists = scientists;
 }
@@ -301,11 +314,13 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
         }
         QString ID = QString::number(i);
 
+        ui->table_removed_computers->setSortingEnabled(false);
         ui->table_removed_computers->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_removed_computers->setItem(i, 1, new QTableWidgetItem(type));
         ui->table_removed_computers->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_removed_computers->setItem(i, 3, new QTableWidgetItem(yearMade));
         ui->table_removed_computers->setItem(i, 4, new QTableWidgetItem(ID));
+        ui->table_removed_computers->setSortingEnabled(true);
     }
     _currentlyRemovedComputers = computers;
 }

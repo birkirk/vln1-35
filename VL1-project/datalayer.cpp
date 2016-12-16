@@ -316,6 +316,7 @@ bool DataLayer::deleteComputer(Computer newComp)
 
 bool DataLayer::deleteScientist(Scientist newSci)
 {
+
     QSqlQuery sciQuery = findScientists(newSci);
     QSqlQuery connectionQuery;
 
@@ -337,6 +338,7 @@ bool DataLayer::deleteScientist(Scientist newSci)
         deleteConnectionsQuery.bindValue(":ID", connectionQuery.value(0).toInt());
         deleteConnectionsQuery.exec();
     }
+
     return returnValue;
 }
 
@@ -349,6 +351,7 @@ vector<Scientist> DataLayer::readSci(string com)
     {
         query.exec("SELECT gender, name, yearOfBirth, yearOfDeath, valid, info FROM Scientists");
     }
+
 
     while (query.next())
     {
@@ -384,7 +387,7 @@ vector<Computer> DataLayer::readComp(string com)
 
     if(com == "non")
     {
-        query.exec("SELECT name, type, ifMade, yearMade, valid FROM Computers");
+        query.exec("SELECT name, type, ifMade, yearMade, valid, info FROM Computers");
     }
 
 
@@ -413,6 +416,7 @@ vector<Computer> DataLayer::readComp(string com)
             int yearMade = query.value(3).toInt();
 
             Computer newComp(ifMade, theName, theType, yearMade);
+            newComp.addInfo(query.value("info").toString().toStdString());
             tempV.push_back(newComp);
         }
     }
@@ -465,7 +469,7 @@ vector<Scientist> DataLayer::searchSci(string input)
 
 
     QSqlQuery query(_db);
-    qDebug() << query.exec(sqlQ);
+    query.exec(sqlQ);
     if (!query.exec(sqlQ))
     {
         return scientists;
@@ -586,7 +590,6 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
         updateQuery.bindValue(":computerID", compQuery.value(0).toInt());
         updateQuery.exec();
         returnValue = true;
-        qDebug() << "updated";
     }
     else if(!checkExistanceQuery.first())
     {
@@ -597,16 +600,15 @@ bool DataLayer::connect(Scientist newSci, Computer newComp)
         insertQuery.bindValue(":computerID", compQuery.value(0).toInt());
         insertQuery.bindValue(":valid", QString::number(1));
         insertQuery.exec();
-        qDebug() << "inserted";
         returnValue = true;
 
     }
     else
     {
-        qDebug() <<"got to final else";
+
         returnValue = false;
     }
-    qDebug() << returnValue;
+
     return returnValue;
 
 }
@@ -755,6 +757,30 @@ bool DataLayer::addScientistInfo(Scientist sci)
     bool returnValue = query.exec();
     return returnValue;
 
+}
+
+bool DataLayer::addComputerInfo(Computer comp)
+{
+    QSqlQuery compQuery = findComputers(comp);
+    QSqlQuery query;
+    query.prepare("UPDATE Computers SET info = (:info) WHERE ID = (:ID)");
+    query.bindValue(":ID", compQuery.value(0).toInt());
+    query.bindValue(":info", QString::fromStdString(comp.getInfo()));
+    bool returnValue = query.exec();
+    return returnValue;
+}
+
+string DataLayer::getComputerInfo(Computer comp)
+{
+    QSqlQuery compQuery = findComputers(comp);
+    QSqlQuery query;
+    query.prepare("SELECT info FROM Computers WHERE ID = (:ID)");
+    query.bindValue(":ID", compQuery.value(0).toInt());
+    query.exec();
+
+    QString inf = query.value(0).toString();
+    string returnValue = inf.toStdString();
+    return returnValue;
 }
 
 bool DataLayer::deleteConnection(Computer comp, Scientist sci)

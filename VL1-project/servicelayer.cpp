@@ -87,24 +87,37 @@ QByteArray ServiceLayer::getScientistPicture(Scientist sci)
 
 bool ServiceLayer::addComputer(Computer aComputer)
 {
+    bool addedComp;
+    bool addedPict;
+    bool addedInfo;
     bool success = false;
     if(aComputer.hasPicture())
     {
         qDebug() << "HAS PICTURE";
-        bool addedComp = _dataL.addComputer(aComputer);
-        bool addedPict= _dataL.addComputerPicture(aComputer, aComputer.getPicture());
+        addedComp = _dataL.addComputer(aComputer);
+        addedPict= _dataL.addComputerPicture(aComputer, aComputer.getPicture());
         if(addedComp && addedPict)
         {
             success = true;
-            qDebug() << "IS SUCCESSFUL";
         }
     }
     else
     {
-        success = _dataL.addComputer(aComputer);
+        addedComp = _dataL.addComputer(aComputer);
+        success = addedComp;
     }
-
-
+    if(aComputer.hasInfo())
+    {
+        addedInfo = _dataL.addComputerInfo(aComputer);
+        if(success && addedInfo)
+        {
+            //do nothing
+        }
+        else
+        {
+            success = false;
+        }
+    }
     return success;
 }
 

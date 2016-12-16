@@ -98,12 +98,20 @@ void addComputerWindow::on_button_addcomp_add_clicked()
             QByteArray picture = file.readAll();
             Computer newComputer(ui->checkbox_addcomp_made->isChecked(), ui->input_addcomp_name->text().toStdString(),
                                  ui->input_addcomp_type->currentText().toStdString(), yearMade, picture);
+            if(ui->input_addcomp_description->toPlainText() != "")
+            {
+                newComputer.addInfo(ui->input_addcomp_description->toPlainText().toStdString());
+            }
             _computerVector.push_back(newComputer);
         }
         else
         {
             Computer newComp(ui->checkbox_addcomp_made->isChecked(), ui->input_addcomp_name->text().toStdString(),
                              ui->input_addcomp_type->currentText().toStdString(), yearMade);
+            if(ui->input_addcomp_description->toPlainText() != "")
+            {
+                newComp.addInfo(ui->input_addcomp_description->toPlainText().toStdString());
+            }
 
             _computerVector.push_back(newComp);
         }
