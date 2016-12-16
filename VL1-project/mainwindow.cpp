@@ -562,6 +562,7 @@ void MainWindow::on_button_edit_scientists_clicked()
 
     editScientistWindow editSci(selectedScientist);
     editSci.exec();
+    displayAllScientists();
 }
 
 void MainWindow::on_button_edit_computers_clicked()

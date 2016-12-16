@@ -30,13 +30,14 @@ public:
 
     //Endurheimtir einingar úr ruslafötunni og setur aftur á listann
     bool recycleComp(Computer comp);
+    bool recycleSci(Scientist sci);
+
     bool addComputerInfo(Computer comp);
     string getComputerInfo(Computer comp);
 
     bool addScientist(Scientist sci);
     bool deleteScientist(Scientist newSci);
     bool addScientistPicture(Scientist sci, QByteArray pict);
-    bool recycleSci(Scientist sci);
 
     //Býr til vectora af eyddum einingum fyrir ruslafötuna
     vector<Computer> getDeletedComp();
@@ -53,6 +54,8 @@ public:
 
     //Finnur allar tengingar sem eru í database-inu
     vector<int> getCon();
+
+    bool updateScientist(Scientist oldSci, Scientist newSci);
 
     QByteArray getScientistPicture(Scientist sci);
 

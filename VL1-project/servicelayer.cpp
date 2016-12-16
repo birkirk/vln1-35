@@ -121,6 +121,12 @@ bool ServiceLayer::addComputer(Computer aComputer)
     return success;
 }
 
+bool ServiceLayer::updateScientist(Scientist oldSci, Scientist newSci)
+{
+    bool returnValue = _dataL.updateScientist(oldSci, newSci);
+    return returnValue;
+}
+
 QByteArray ServiceLayer::getComputerPicture(Computer comp)
 {
     QByteArray returnPict = _dataL.getComputerPicture(comp);

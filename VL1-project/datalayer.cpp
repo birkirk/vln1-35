@@ -449,6 +449,24 @@ vector<int> DataLayer::getCon()
     return connected;
 }
 
+bool DataLayer::updateScientist(Scientist oldSci, Scientist newSci)
+{
+    QSqlQuery sciQuery = findScientists(oldSci);
+    QSqlQuery updateQuery;
+    updateQuery.prepare("UPDATE Scientists SET name = (:name), gender = (:gender),"
+                        "yearOfBirth = (:birth), yearOfDeath = (:death), valid = 1,"
+                        "info = (:info), picture = (:picture) WHERE ID = (:ID)");
+    updateQuery.bindValue(":ID", sciQuery.value(0).toInt());
+    updateQuery.bindValue(":name", QString::fromStdString(newSci.getName()));
+    updateQuery.bindValue(":birth", QString::number(newSci.getBirth()));
+    updateQuery.bindValue(":death", QString::number(newSci.getDeath()));
+    updateQuery.bindValue(":gender", QString(QChar(newSci.getGender())));
+    updateQuery.bindValue(":info", QString::fromStdString(newSci.getInfo()));
+    updateQuery.bindValue(":picture", newSci.getPicture());
+    bool returnValue = updateQuery.exec();
+    return returnValue;
+}
+
 vector<Scientist> DataLayer::searchSci(string input)
 {
 
@@ -673,6 +691,8 @@ vector<Scientist> DataLayer::findConnectedSci(Computer comp)
     }
     return returnVector;
 }
+
+
 
 vector<string> DataLayer::readManual()
 {

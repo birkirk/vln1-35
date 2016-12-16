@@ -21,6 +21,7 @@ public:
 
     QByteArray getComputerPicture(Computer comp);
 
+    bool updateScientist(Scientist oldSci, Scientist newSci);
 
     vector<string> getTypes();
 
