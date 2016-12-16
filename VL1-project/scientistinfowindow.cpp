@@ -49,7 +49,7 @@ void scientistInfoWindow::setUpSci(Scientist selectedScientist)
         gender = QString::fromStdString("Female");
     }
 
-    qDebug() << selectedScientist.hasInfo();
+
     if(selectedScientist.hasInfo())
     {
         ui->textbrowser_sciinfo_info->setText(QString::fromStdString(selectedScientist.getInfo()));
@@ -97,11 +97,13 @@ void scientistInfoWindow::displayConnections(Scientist selectedScientist)
         }
         QString ID = QString::number(i);
 
+        ui->table_infosci_connections->setSortingEnabled(false);
         ui->table_infosci_connections->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_infosci_connections->setItem(i, 1, new QTableWidgetItem(type));
         ui->table_infosci_connections->setItem(i, 2, new QTableWidgetItem(ifMade));
         ui->table_infosci_connections->setItem(i, 3, new QTableWidgetItem(yearMade));
         ui->table_infosci_connections->setItem(i, 4, new QTableWidgetItem(ID));
+        ui->table_infosci_connections->setSortingEnabled(true);
     }
     _currentlyConnected = connectedComputers;
 }

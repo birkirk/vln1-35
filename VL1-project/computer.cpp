@@ -60,6 +60,7 @@ bool Computer::hasPicture()
 void Computer::addInfo(string inf)
 {
     _info = inf;
+    _hasInfo = true;
 }
 
 string Computer::getInfo()

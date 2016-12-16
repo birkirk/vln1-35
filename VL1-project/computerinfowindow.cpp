@@ -27,6 +27,7 @@ computerInfoWindow::~computerInfoWindow()
 
 void computerInfoWindow::setUpComp(Computer selectedComputer)
 {
+
     QString name = QString::fromStdString(selectedComputer.getName());
     QString type = QString::fromStdString(selectedComputer.getType());
     QString ifMade;
@@ -48,6 +49,10 @@ void computerInfoWindow::setUpComp(Computer selectedComputer)
         yearMade = QString::number(selectedComputer.getYearMade());
     }
 
+    if(selectedComputer.hasInfo())
+    {
+        ui->textbrowser_infocomp_description->setText(QString::fromStdString(selectedComputer.getInfo()));
+    }
     ui->label_infocomp_name->setText(name);
     ui->label_infocomp_type->setText(type);
     ui->label_infocomp_ifmade->setText(ifMade);
