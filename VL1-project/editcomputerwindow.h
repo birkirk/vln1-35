@@ -27,6 +27,8 @@ private slots:
 
     void on_button_editcomp_save_clicked();
 
+    void on_input_editcomp_type_currentIndexChanged(int index);
+
 private:
     Ui::editComputerWindow *ui;
     ServiceLayer _service;

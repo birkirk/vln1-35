@@ -2,6 +2,7 @@
 #include "ui_editcomputerwindow.h"
 #include <string>
 #include <QFileDialog>
+#include "addtypewindow.h"
 
 editComputerWindow::editComputerWindow(QWidget *parent) :
     QDialog(parent),
@@ -145,5 +146,21 @@ void editComputerWindow::on_button_editcomp_save_clicked()
             _service.updateComputer(_selectedComputer, newComp);
         }
         this->done(1);
+    }
+}
+
+void editComputerWindow::on_input_editcomp_type_currentIndexChanged(int index)
+{
+    if(ui->input_editcomp_type->currentText() == "Add new type")
+    {
+        addTypeWindow newType;
+        newType.exec();
+        vector<string> types = _service.getTypes();
+        ui->input_editcomp_type->clear();
+        for(unsigned int i = 0; i < types.size(); i++)
+        {
+            ui->input_editcomp_type->addItem(QString::fromStdString(types[i]));
+        }
+        ui->input_editcomp_type->addItem(QString::fromStdString("Add new type"));
     }
 }
