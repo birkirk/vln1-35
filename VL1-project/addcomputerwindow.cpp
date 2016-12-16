@@ -21,7 +21,6 @@ addComputerWindow::addComputerWindow(QWidget *parent) :
     QPalette *palette = new QPalette();
     palette->setColor(QPalette::Base,Qt::gray);
     ui->input_addcomp_yearmade->setPalette(*palette);
-    qDebug() << "Got to palette change 1!";
 }
 
 addComputerWindow::~addComputerWindow()

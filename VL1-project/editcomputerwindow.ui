@@ -170,7 +170,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
     </widget>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="input_editcomp_info"/>
+    <widget class="QTextEdit" name="input_editcomp_info"/>
    </item>
    <item>
     <widget class="QLabel" name="label_editcomp_status">
@@ -242,17 +242,8 @@ font: 13pt &quot;Helvetica&quot;;</string>
   <tabstop>input_editcomp_yearmade</tabstop>
   <tabstop>input_editcomp_path</tabstop>
   <tabstop>button_editcomp_browse_image</tabstop>
-  <tabstop>input_editcomp_info</tabstop>
   <tabstop>button_editcomp_save</tabstop>
   <tabstop>button_editcomp_cancel</tabstop>
-  <tabstop>input_addcomp_image_path</tabstop>
-  <tabstop>button_addcomp_browse_image</tabstop>
-  <tabstop>button_addcomp_add</tabstop>
-  <tabstop>button_addcomp_done</tabstop>
-  <tabstop>checkbox_addcomp_made</tabstop>
-  <tabstop>input_addcomp_yearmade</tabstop>
-  <tabstop>input_addcomp_name</tabstop>
-  <tabstop>input_addcomp_type</tabstop>
  </tabstops>
  <resources/>
  <connections/>

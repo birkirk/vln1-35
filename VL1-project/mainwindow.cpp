@@ -574,6 +574,7 @@ void MainWindow::on_button_edit_computers_clicked()
 
     editComputerWindow editComp(selectedComputer);
     editComp.exec();
+    displayAllComputers();
 }
 
 //Just a fun bonus, and you get to .. learn things!

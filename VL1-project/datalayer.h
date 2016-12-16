@@ -56,6 +56,7 @@ public:
     vector<int> getCon();
 
     bool updateScientist(Scientist oldSci, Scientist newSci);
+    bool updateComputer(Computer oldComp, Computer newComp);
 
     QByteArray getScientistPicture(Scientist sci);
 
