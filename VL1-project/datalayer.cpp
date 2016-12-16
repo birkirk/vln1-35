@@ -50,7 +50,7 @@ QSqlQuery findComputers(Computer comp)
 
 DataLayer::DataLayer()
 {
-    //Opnar database-ið
+    //Opnar database-ið, býr til nýjan ef ekki er neitt til staðar.
     _db = QSqlDatabase::addDatabase("QSQLITE");
     if(QFile::exists(QString::fromStdString("../ScienceData.sqlite")))
     {
@@ -236,7 +236,7 @@ bool DataLayer::addScientist(Scientist sci)
 
     QSqlQuery countQuery = findScientists(sci);
 
-    //Gáir hvort búið sé að setja vísindamanninn inn nú þegar
+    //Athugar hvort búið sé að setja vísindamanninn inn nú þegar
     bool alreadyInDB = countQuery.isValid();
 
     QSqlQuery query;
@@ -262,7 +262,7 @@ bool DataLayer::addComputer(Computer comp)
     
     QSqlQuery countQuery = findComputers(comp);
 
-    //Gáir hvort búið sé að setja tölvuna inn nú þegar
+    //Athugar hvort búið sé að setja tölvuna inn nú þegar
     bool alreadyInDB = countQuery.isValid();
     
     QSqlQuery query;
