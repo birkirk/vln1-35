@@ -100,11 +100,11 @@ void addScientistWindow::on_button_addsci_add_clicked()
             }
             _scientistVector.push_back(newScientist);
         }
-        ui->label_addsci_status->setText(QString::fromStdString(""));
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #5EC748'>Scientist successfully added!</span>"));
         ui->input_addsci_name->setText(QString::fromStdString(""));
         ui->input_addsci_born->setText(QString::fromStdString(""));
         ui->input_addsci_died->setText(QString::fromStdString(""));
-        //ui->input_addsci_path->setText(QString::fromStdString(""));
+        ui->input_addsci_path->setText(QString::fromStdString(""));
         ui->input_addsci_gender->setCurrentIndex(0);
     }
 }
