@@ -22,6 +22,7 @@ public:
 
 private slots:
 
+    //Haka við hvort tölvan sé til
     void on_checkbox_addcomp_made_stateChanged(int arg1);
 
     void on_button_addcomp_add_clicked();
@@ -31,6 +32,7 @@ private slots:
 
     void on_button_addcomp_browse_image_clicked();
 
+    //Velja týpu af tölvu
     void on_input_addcomp_type_currentIndexChanged(int index);
 
 private:
