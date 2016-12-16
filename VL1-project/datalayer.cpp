@@ -50,6 +50,7 @@ QSqlQuery findComputers(Computer comp)
 
 DataLayer::DataLayer()
 {
+    //Opnar database-ið
     _db = QSqlDatabase::addDatabase("QSQLITE");
     if(QFile::exists(QString::fromStdString("../ScienceData.sqlite")))
     {
@@ -234,6 +235,8 @@ bool DataLayer::addScientist(Scientist sci)
     bool success = false;
 
     QSqlQuery countQuery = findScientists(sci);
+
+    //Gáir hvort búið sé að setja vísindamanninn inn nú þegar
     bool alreadyInDB = countQuery.isValid();
 
     QSqlQuery query;
@@ -258,6 +261,8 @@ bool DataLayer::addComputer(Computer comp)
     bool success = false;
     
     QSqlQuery countQuery = findComputers(comp);
+
+    //Gáir hvort búið sé að setja tölvuna inn nú þegar
     bool alreadyInDB = countQuery.isValid();
     
     QSqlQuery query;
@@ -355,7 +360,6 @@ vector<Scientist> DataLayer::readSci(string com)
 
     while (query.next())
     {
-
         int valid = query.value(4).toInt();
         if(valid == 1)
         {
@@ -460,13 +464,8 @@ vector<Scientist> DataLayer::searchSci(string input)
                  << "' UNION "
                  << "SELECT gender, name, yearOfBirth, yearOfDeath, valid FROM Scientists WHERE yearOfDeath LIKE '%" << input << "%'";
 
-
-
-
     QString sqlQ = QString::fromStdString(sqlQuery.str());
     vector<Scientist> scientists;
-
-
 
     QSqlQuery query(_db);
     query.exec(sqlQ);

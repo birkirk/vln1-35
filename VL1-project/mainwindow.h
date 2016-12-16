@@ -7,6 +7,9 @@ using namespace std;
 #include <string>
 #include <QMessageBox>
 
+//for random generator
+#include <stdlib.h>
+
 
 namespace Ui {
 class MainWindow;
@@ -69,7 +72,14 @@ private slots:
 
     void on_actionExit_triggered();
 
+    void on_button_edit_scientists_clicked();
+
+    void on_button_edit_computers_clicked();
+
+    void on_button_facts_clicked();
+
 private:
+    void setUpAboutTab();
     void displayAllScientists();
     void displayAllComputers();
     void displayAllRemovedScientists();

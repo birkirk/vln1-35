@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>646</width>
-    <height>423</height>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -257,6 +257,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
   </layout>
  </widget>
  <tabstops>
+  <tabstop>textbrowser_sciinfo_info</tabstop>
   <tabstop>table_infosci_connections</tabstop>
   <tabstop>button_infosci_add</tabstop>
   <tabstop>button_infosci_remove</tabstop>

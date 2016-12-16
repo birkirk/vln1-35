@@ -1,5 +1,9 @@
 #ifndef EDITSCIENTISTWINDOW_H
 #define EDITSCIENTISTWINDOW_H
+#include "scientist.h"
+#include "const.h"
+#include "computer.h"
+#include "servicelayer.h"
 
 #include <QDialog>
 
@@ -13,10 +17,20 @@ class editScientistWindow : public QDialog
 
 public:
     explicit editScientistWindow(QWidget *parent = 0);
+    explicit editScientistWindow(Scientist selectedScientist, QWidget *parent = 0);
     ~editScientistWindow();
+
+private slots:
+    void on_button_editsci_browse_clicked();
+
+    void on_button_editsci_cancel_clicked();
 
 private:
     Ui::editScientistWindow *ui;
+
+    void displayScientistInfo(Scientist selectedScientist);
+    ServiceLayer _service;
+    Scientist _selectedScientist;
 };
 
 #endif // EDITSCIENTISTWINDOW_H

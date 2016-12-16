@@ -33,6 +33,8 @@ private slots:
     void on_button_infosci_add_clicked();
 
 private:
+
+    //Setur upplýsingar um vísindamanninn, sem verið er að skoða, efst í gluggann
     void setUpSci(Scientist selectedScientist);
     void setScientist(Scientist selectedScientist);
     void displayConnections(Scientist selectedScientist);

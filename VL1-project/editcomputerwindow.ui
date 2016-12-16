@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edit Computer</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>&lt;h3&gt;Add a new computer&lt;/h3&gt;</string>
+      <string>&lt;h3&gt;Edit computer&lt;/h3&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -45,7 +45,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_addcomp_name_2">
+      <widget class="QLineEdit" name="input_editcomp_name">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -76,7 +76,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="input_addcomp_type_2">
+      <widget class="QComboBox" name="input_editcomp_type">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -93,7 +93,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QCheckBox" name="checkbox_addcomp_made_2">
+      <widget class="QCheckBox" name="checkbox_editcomp_made">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -111,7 +111,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_addcomp_yearmade_2">
+      <widget class="QLineEdit" name="input_editcomp_yearmade">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -120,6 +120,9 @@
        </property>
        <property name="frame">
         <bool>true</bool>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
        </property>
        <property name="placeholderText">
         <string>Year made</string>
@@ -131,17 +134,27 @@
    <item>
     <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>Add picture (optional)</string>
+      <string>Change/add picture:</string>
      </property>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QLineEdit" name="input_addcomp_image_path_2"/>
+      <widget class="QLineEdit" name="input_editcomp_path"/>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addcomp_browse_image_2">
+      <widget class="QPushButton" name="button_editcomp_browse_image">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid #333;
+padding: 7px 4px 5px 4px;
+background-color: #555;
+color: #fff;
+font: 13pt &quot;Helvetica&quot;;</string>
+       </property>
        <property name="text">
         <string>Browse</string>
        </property>
@@ -150,7 +163,17 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_addcomp_status">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Edit computer description:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="input_editcomp_info"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_editcomp_status">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -173,19 +196,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Add description: (optional)</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit"/>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QPushButton" name="button_addcomp_add_2">
+      <widget class="QPushButton" name="button_editcomp_save">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
@@ -197,24 +210,24 @@ color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
        </property>
        <property name="text">
-        <string>Add Computer</string>
+        <string>Save</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="button_addcomp_done_2">
+      <widget class="QPushButton" name="button_editcomp_cancel">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border: 0px solid #333;
 padding: 7px 0 5px 0;
-background-color: #555;
+background-color: #E94949;
 color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
        </property>
        <property name="text">
-        <string>Done</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>
@@ -222,6 +235,25 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>input_editcomp_name</tabstop>
+  <tabstop>input_editcomp_type</tabstop>
+  <tabstop>checkbox_editcomp_made</tabstop>
+  <tabstop>input_editcomp_yearmade</tabstop>
+  <tabstop>input_editcomp_path</tabstop>
+  <tabstop>button_editcomp_browse_image</tabstop>
+  <tabstop>input_editcomp_info</tabstop>
+  <tabstop>button_editcomp_save</tabstop>
+  <tabstop>button_editcomp_cancel</tabstop>
+  <tabstop>input_addcomp_image_path</tabstop>
+  <tabstop>button_addcomp_browse_image</tabstop>
+  <tabstop>button_addcomp_add</tabstop>
+  <tabstop>button_addcomp_done</tabstop>
+  <tabstop>checkbox_addcomp_made</tabstop>
+  <tabstop>input_addcomp_yearmade</tabstop>
+  <tabstop>input_addcomp_name</tabstop>
+  <tabstop>input_addcomp_type</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -1,125 +1,101 @@
-=======================================================
-                     ____  ___           _        _   
-                    | |  \/  |          | |      | |  
-  _ __ ___  __ _  __| | .  . | ___      | |___  _| |_ 
- | '__/ _ \/ _` |/ _` | |\/| |/ _ \     | __\ \/ / __|
- | | |  __/ (_| | (_| | |  | |  __/  _  | |_ >  <| |_ 
- |_|  \___|\__,_|\__,_\_|  |_/\___| (_)  \__/_/\_\\__|
+====================|Scientists and Computers Program - By Group 35|=====================
 
-=======================================================
 
-1) Adding a scientist:
-	--> While in the main menu, enter the command "add".
-	--> In the add menu, enter the command "sci".
-	--> Input the information in this order:
-		Name:  		_______ (Input name of a scientist)
-		Gender:		_______ (Input 'F' for female or 'M' for male)
-		Year of Birth:	_______ (Input year from 0 to 2016)
-		Is he alive?:	_______ (Input 'Y' for yes or 'N' for no)
-		Year of death:  _______ (Input year from birthyear to 2016)
-		
-		Notes: 	*Inputs are not case sensitive.
-			*Year of death only displays if the scientist is not still alive.
-	
-2) Adding a computer:
-	--> While in the main menu, enter the command "add".
-	--> In the add menu, enter the command "comp".
-	--> Input the information in this order:
-		Name:		_______ (Input name of a computer)
-		Type:		_______ (Input what type of computer it is)
-		Was it made?:	_______ (Input 'Y' for yes or 'N' for no)
-		Year made:	_______ (Input year from 0 to 2016)
-		
-		Notes:	*Inputs are not case sensitive.
-			*Year made only displays if the computer was actually made.
 
-3) Deleting an item:
-	--> While in the main menu, enter the command "delete".
-	--> In the delete menu, enter "sci" for scientists "comp" for computers.
-	--> This function uses the "Search" function to find the item you want to delete.
-		--> If the all parameters are left empty, the database displays all
-		    items on the list. The database searches for all items that contain
-         	    information you put into the search options.
-		--> If more than one item contains the same substrings
-		    from the search, a list of items is displayed where you have to
-		    select which of them you want to delete.
-	--> Confirm deletion by typing "Y" or cancel by typing "N".
+Program that contains 3 databases using sqlite. 
+One contains information about specific
+scientist, one contains information about specific computers and the last contains
+connections between them.
+ The user can add specific scientists and computers to the 
+database including information about them, 
+then edit them, delete, add pictures of them,
+and so on.
 
-		Notes:	*Inputs are not case sensitive.
-			*If no items match the substrings entered in the search, nothing
-			 is displayed.
-			*Selecting an item to delete out of multiple items after the search
-			 is done by entering the number of the item on the list, which is 
-			 found on the far left of the list.
-			*If an item is deleted, all connections to it are deleted as well.
 
-4) Displaying a list of items:
-	--> While in the main menu, enter the command "list".
-	--> In the list menu, enter "sci" for scientists, "comp" for computers or 
-	    "con" for connections between scientists and computers.
-	--> To choose how the list is set up, enter the number next to the order which
-	    you want the list to display the items.
-	--> You can also press b to go back to the main menu.
 
-5) Searching for items:
-	--> While in the main menu, enter the command "search".
-	--> In the delete menu, enter "sci" for scientists or "comp" for computers.
-	--> Fill out the search inputs you need to find the item you are looking for.
-	--> If the all inputs are left empty, the database displays all items on the list.
-		--> The function searches for all items in the database that contain
-          	    information you put into the search options and displays a list of
-		    items that match you search parameters.
+======================================
+=|USER GUIDE|======================================
 
-6) Connecting scientists and computers:
-	--> While in the main menu, enter the command "connect".
-	--> In the connect menu, enter "sci" to connect computers to scientists or "comp"
-	    to connect scientists to computers.
-i)	--> If you chose "sci", start by selecting a scientist ftom the displayed list
-	    by entering the scientist's ID number.
-	--> Then select one or multiple computers by entering their ID number seperated
-	    by spaces and enter "Q" to connect them. "Q" can also be used to go back to the
-	    main menu if no computers were selected.
-ii) 	--> If you chose "comp", start by selecting a computer ftom the displayed list
-	    by entering the computer's ID number.
-	--> Then select one or multiple scientists by entering their ID number seperated
-	    by spaces and enter "Q" to connect them. "Q" can also be used to go back to the
-	    main menu if no scientists were selected.
 
-		Notes: 	*For this function to work, there has to be at least 1 scientist 
-			 and at least 1 computer in the database.
-			*A message displayes to tell you if your connection was successful.
-			*If a item is deleted, all connections to it are deleted as well.
+1. Search for scientists and computers:
+	--> While either the 'Computers' tab or the 'Scientists' tab are open, type into
+	    the search bar on top of the displayed list of items.
+	--> The list will start showing results as you type.
 
-7) Clear the database:
-	--> While in the main menu, enter the command "connect".
-	--> In the clear menu, enter "sci" to clear all scientists from the database.
-	    Enter "comp" to clear all computers from the database.
-	    Enter "con" to clear all connections between scientists and computers.
-	    Enter "all" to clear everything from the database.
-	--> Confirm by typing "Y" or cancel by typing "N".
+2. Adding a scientist
+:
+	--> While in the main window click the 'Scientists' tab.
+	--> At the bottom of the screen, click the button that says 'Add New Scientist'.
+		--> In the add window, type in the information about the scientist you
+		    are adding into the text boxes.
+		--> Type in the name, select a gender and enter the year of birth.
+		--> If the person is still alive, leave the year of death input empty.
+		OPTIONAL:
+		--> You can add a picture with the scientist which is displayed along
+		    with his details. (See item 9)
+		--> Add a description or story about the scientist.
 
-		Notes:	*Cleared items cannot be retrieved unless you own a backup of the
-			 database.
+3. Adding a computer:
+	--> While in the main window click the 'Computers' tab.
+	--> At the bottom of the screen, click the button that says 'Add New Computer'
+		--> In the add window, type in the information about the computer you
+		    are adding into the text boxes.
+		--> Type in the name and select a type.
+		--> If the computer was made, check the 'Was it ever made?' box and input
+               	    the year it was made.
+		OPTIONAL:
+		--> You can add a picture with the computer which is displayed along with
+		    its details. (See item 9)
+		--> Add a description or story about the computer.
 
-8) Laugh:
-	--> While in the main menu, enter the command "joke".
-	--> Enjoy a randomly generated joke.
-	--> Feel good about yourself.
-	--> Gain a strong self image.
-	--> Become super productive.
-	--> Become a god among programmers.
-	--> Take over the world.
-	--> Get everything you ever wanted.
-	--> Become bored.
-	--> Become lazy.
-	--> Let others reclaim the world.
-	--> Type "joke".
-	--> Repeat steps 2 - 11.
+4. See details about scientists and computers:
+	--> While either the 'Scientists' tab or the 'Computers' tab is selected in the 
+	    main window, click on an item on the displayed list.
+	--> Then click the 'Details' button.
+		NOTE: You can also double click the item on the list to show details.
 
-9) I wonder which group made this database:
-	--> Enter the hidden command "info".
+5. Adding a connection:
 
-------------------------------------------------------------------------------------------
-		Notes:	*All commands need to be entered correctly.
-------------------------------------------------------------------------------------------
+	--> Go into 'Details' of the item you wish to connect. (See item 4)
+		--> While in the 'Details' window, click on the 'Add Connected Computer'
+		    if viewing a scientist, or 'Add Connected Scientist' if viewing a 
+		    computer.
+			--> Select an item from the displayed list and press the 'Connect
+			    Selected Computer/Scientist' (Depending on which you are
+			    connecting).
+			--> Repeat until you have connected all items you wish to connect.
+			--> Click the 'Done' button.
 
+6. Remove a connection:
+
+	--> Go into 'Details' of the item you wish to connect. (See item 4)
+		--> Select an item from the displayed list of connections.
+		--> Click 'Remove Selected Connection'.
+
+7. Remove a scientist or computer:
+
+	--> While in the main window, select the tab of items you wish to remove.
+	--> Select an item from the displayed list and click 'Remove Selected'.
+		NOTE: The item is moved to the 'Bin'.
+
+8. Recover scientists and computers:
+
+	--> While in the main window, select the 'Bin' tab.
+	--> Select the item you wish to recover from either the list of scientists or the
+	    list of computers (Depending on the item you wish to recover).
+		NOTE: You can also recover all items on either of the lists in the bin
+		      by clicking the 'Recover all ...' button.
+
+9. Edit a scientist or computer:
+
+	--> In the main window, select an item from the displayed list of either 
+	    scientists or computers.
+	--> Click 'Edit'.
+		--> Change any information you want.
+		--> Click 'Save' to save your changes or 'Cancel' to cancel the edit.
+
+10. Clearing the database:
+	--> In the main window, select the 'Bin' tab.
+	--> Check the failsafe 'Enable clear button' box.
+	--> Click the 'Clear Whole Database' button.
+		WARNING! This cannot be undone.

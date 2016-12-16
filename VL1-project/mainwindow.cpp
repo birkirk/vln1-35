@@ -2,10 +2,16 @@
 #include "ui_mainwindow.h"
 #include "addscientistwindow.h"
 #include "addcomputerwindow.h"
+#include "editscientistwindow.h"
+#include "editcomputerwindow.h"
 #include "scientistinfowindow.h"
 #include "computerinfowindow.h"
 #include "helpwindow.h"
 #include "const.h"
+#include <QLabel>
+
+//Grænn: #5EC748
+//Rauður: #E94949
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     displayAllComputers();
     displayAllRemovedScientists();
     displayAllRemovedComputers();
+    setUpAboutTab();
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +59,11 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
 {
     ui->table_display_scientists->clearContents();
     ui->table_display_scientists->setRowCount(scientists.size());
-    //ui->table_display_scientists->hideColumn(4);
+
+
+    // Column 4 er falinn í öllum töflum. Það er ID til þess að sorting rugli ekki lóðréttum staðsetningum aðila í töflum.
+    ui->table_display_scientists->hideColumn(4);
+
 
     for(size_t i = 0; i < scientists.size(); i++)
     {
@@ -78,11 +89,15 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
             gender = QString::fromStdString("Female");
         }
 
+        //Generate-uð ID tala sem er falin í column 4.
         QString ID = QString::number(i);
 
         qDebug() << name << " " << born <<" " <<  died << " " << ID;
 
+        //Nauðsynlegt að slökkva á sorting áður en taflan fær gildi
+        //annars fær hún vitlaus gildi
         ui->table_display_scientists->setSortingEnabled(false);
+
         ui->table_display_scientists->setItem(i, 0, new QTableWidgetItem(name));
         ui->table_display_scientists->setItem(i, 1, new QTableWidgetItem(born));
         ui->table_display_scientists->setItem(i, 2, new QTableWidgetItem(died));
@@ -122,6 +137,7 @@ void MainWindow::displayComputers(vector<Computer> computers)
             yearMade = QString::number(computers[i].getYearMade());
         }
 
+        // Falin ID tala
         QString ID = QString::number(i);
         ui->table_display_computers->setSortingEnabled(false);
         ui->table_display_computers->setItem(i, 0, new QTableWidgetItem(name));
@@ -141,11 +157,14 @@ void MainWindow::on_input_search_scientists_textChanged(const QString &arg1)
     vector<Scientist> searchedScientists = _service.searchSci(searchScientistsInput);
 
     displayScientists(searchedScientists);
+
+    //Villu-label-ið hreinsað
     ui->label_status_scientists->setText("");
 }
 
 void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 {
+    //Takkar með hlutverk fyrir ákveðna aðila í töflunni gerðir virktir þegar smellt er á einhvern í töflunni.
     ui->button_remove_scientists->setEnabled(true);
     ui->button_edit_scientists->setEnabled(true);
     ui->button_details_scientists->setEnabled(true);
@@ -155,23 +174,25 @@ void MainWindow::on_table_display_scientists_clicked(const QModelIndex &index)
 void MainWindow::on_button_remove_scientists_clicked()
 {
     ui->button_recover_all_scientists->setEnabled(true);
-    qDebug() << "Checkpoint 1";
-    int selectedScientistRow = ui->table_display_scientists->currentRow();
-    qDebug() << "checkpoint 2";
-    qDebug() << ui->table_display_scientists->currentItem();
+
+    //Þegar eitthvað/einhver er valinn úr töflu er farið í gegnum eftirfarandi ferli til að rugla ekki aðilum saman þegar notandi notar sort.
+    //Fyrst tekin röðin, næst tekin falna ID talan úr þeim dálki, svo búið til tilvik af scientist sem tekur aðila í því mengi sem eru birtir í töflunni sem er númer ID.
+    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
     QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
     qDebug() << "checkpoint 3";
     int scientistID = ID.toInt();
-    qDebug() << "checkpoint 4";
 
     Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
 
+    //Þó nafnið deleteSci gefi annað til kynna er engöngu að gera valid bitann 0 en ekki eyða Scientist
     bool scientistWasRemoved = _service.deleteSci(selectedScientist);
     if(scientistWasRemoved)
     {
         ui->input_search_scientists->setText("");
         displayAllScientists();
         ui->button_remove_scientists->setEnabled(false);
+
+        //Success skilaboð eru græn en villuskilaboð rauð.
         ui->label_status_scientists->setText("<span style='color: #5EC748'>Scientist successfully removed</span>");
     }
     else
@@ -193,6 +214,7 @@ void MainWindow::on_input_search_computers_textChanged(const QString &arg1)
 
 void MainWindow::on_table_display_computers_clicked(const QModelIndex &index)
 {
+    //Takkar með hlutverk fyrir ákveðnar tölvur í töflunni gerðir virktir þegar smellt er á einhverja tölvu í töflunni.
     ui->button_remove_computers->setEnabled(true);
     ui->button_details_computers->setEnabled(true);
     ui->button_edit_computers->setEnabled(true);
@@ -202,10 +224,11 @@ void MainWindow::on_table_display_computers_clicked(const QModelIndex &index)
 void MainWindow::on_button_remove_computers_clicked()
 {
     ui->button_recover_all_computers->setEnabled(true);
+
+    //Fyrst tekin röðin, næst tekin falna ID talan úr þeim dálki, svo búið til tilvik af computer sem tekur aðila í því mengi sem eru birtir í töflunni sem er númer ID.
     int selectedComputerRow = ui->table_display_computers->currentIndex().row();
     QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
     int computerID = ID.toInt();
-
     Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
 
     bool computerWasRemoved = _service.deleteComp(selectedComputer);
@@ -239,6 +262,8 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
 {
     ui->table_removed_scientists->clearContents();
     ui->table_removed_scientists->setRowCount(scientists.size());
+
+    //Geymd ID sem eru falin.
     ui->table_removed_scientists->hideColumn(4);
 
     if(scientists.size() > 0)
@@ -250,6 +275,8 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         QString name = QString::fromStdString(scientists[i].getName());
         QString born = QString::number(scientists[i].getBirth());
         QString died;
+
+        //ifDead er fasti í const.h sem er talan ef viðkomandi er ekki enn dáinn.
         if(scientists[i].getDeath() == ifDead)
         {
             died = QString::fromStdString("?");
@@ -267,6 +294,8 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
         {
             gender = QString::fromStdString("Female");
         }
+
+        //Faldar ID tölur eins og í öllum display table föllum.
         QString ID = QString::number(i);
 
         ui->table_removed_scientists->setSortingEnabled(false);
@@ -280,6 +309,7 @@ void MainWindow::displayRemovedScientists(vector<Scientist> scientists)
     _currentlyRemovedScientists = scientists;
 }
 
+//Sama tækni notuð hér eins og í öllum display table föllum. Sjá fyrir ofan.
 void MainWindow::displayRemovedComputers(vector<Computer> computers)
 {
     ui->table_removed_computers->clearContents();
@@ -325,6 +355,7 @@ void MainWindow::displayRemovedComputers(vector<Computer> computers)
     _currentlyRemovedComputers = computers;
 }
 
+//Sjá commentað fyrir ofan, sama tækni í þessu falli eins og flestum button föllum með virkni sem þarf staðsetningu í töflunni.
 void MainWindow::on_button_recover_scientists_clicked()
 {
     int selectedRecoverScientistRow = ui->table_removed_scientists->currentIndex().row();
@@ -346,6 +377,7 @@ void MainWindow::on_button_recover_scientists_clicked()
     displayAllScientists();
 }
 
+//Sjá commentað fyrir ofan, sama tækni í þessu falli eins og flestum button föllum með virkni sem þarf staðsetningu í töflunni.
 void MainWindow::on_button_recover_computers_clicked()
 {
     int selectedRecoverComputerRow = ui->table_removed_computers->currentIndex().row();
@@ -370,6 +402,8 @@ void MainWindow::on_button_recover_computers_clicked()
 void MainWindow::on_button_recover_all_scientists_clicked()
 {
     ui->button_recover_all_scientists->setEnabled(false);
+
+    //bool fyrir ef náðist að recover-a alla úr bin.
     bool allWentOk = true;
     for(size_t i = 0; i < _currentlyRemovedScientists.size(); i++)
     {
@@ -396,9 +430,12 @@ void MainWindow::on_button_recover_all_scientists_clicked()
 void MainWindow::on_button_recover_all_computers_clicked()
 {
     ui->button_recover_all_computers->setEnabled(false);
+
+    //bool fyrir ef náðist að recover-a alla úr bin.
     bool allWentOk = true;
     for(size_t i = 0; i < _currentlyRemovedComputers.size(); i++)
     {
+        //hér skiptir röðin ekki enis miklu máli og í föllum sem þurfa nákvæma staðsetningu í töflum, þess vegna er ekk notast við falda ID-ið.
         Computer selectedComputer = _currentlyRemovedComputers[i];
 
         bool computerWasRecovered = _service.recycleComp(selectedComputer);
@@ -421,6 +458,7 @@ void MainWindow::on_button_recover_all_computers_clicked()
 
 void MainWindow::on_button_addnew_scientists_clicked()
 {
+    //Keyrir nýjan glugga sem sér um add scientist.
     addScientistWindow addSci;
     addSci.exec();
     displayAllScientists();
@@ -428,11 +466,14 @@ void MainWindow::on_button_addnew_scientists_clicked()
 
 void MainWindow::on_button_addnew_computers_clicked()
 {
+    //Keyrir nýjan glugga sem sér um add computer.
     addComputerWindow addComp;
     addComp.exec();
     displayAllComputers();
 }
 
+
+//í detail button fyrir scientist og computer er fyrst sóttur réttur aðili og svo hann sendur inn í nýja glugga sem birta upplýsingar um viðkomandi.
 void MainWindow::on_button_details_scientists_clicked()
 {
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
@@ -456,6 +497,7 @@ void MainWindow::on_button_details_computers_clicked()
 
 }
 
+// í table doubleclicked er nákvæmlega sama virkni og ef maður ýtir á details, til að auka þægindi fyrir notendur.
 void MainWindow::on_table_display_scientists_doubleClicked(const QModelIndex &index)
 {
     int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
@@ -478,10 +520,12 @@ void MainWindow::on_table_display_computers_doubleClicked(const QModelIndex &ind
     infoComp.exec();
 }
 
+//Hreinsar allan databaseinn, deletar en ekki bara stillt valid á 0. Notandinn getur byrjað strax að gera nýjan database eftir það.
 void MainWindow::on_button_bin_clear_clicked()
 {
     if(ui->checkbox_bin_clear->isChecked())
     {
+        //Fallið er opið fyrir fleiri möguleikum en clear all. Finnst óþarfi að hafa það í forritinu.
         _service.clearData("all");
         ui->label_status_bin->setText("<span style='color: #E94949'>Database will be cleared!</span>");
     }
@@ -489,20 +533,107 @@ void MainWindow::on_button_bin_clear_clicked()
 
 void MainWindow::on_tabs_tabBarClicked(int index)
 {
+    //Checkbox gert óvirkt ef farið er úr bin tabinu, til að gera öruggara fyrir að notandinn eyði ekki óvart databaseinum.
     ui->checkbox_bin_clear->setChecked(false);
     ui->button_details_computers->setEnabled(false);
     ui->button_details_scientists->setEnabled(false);
 }
 
-
+//Birtir readme skrá með upplýsingum fyrir notanda.
 void MainWindow::on_manual_triggered()
 {
     helpWindow manual;
     manual.exec();
 }
 
+//Slekkur á forritinu eftir að hafa lokað database.
 void MainWindow::on_actionExit_triggered()
 {
     _service.closeData();
     close();
+}
+
+void MainWindow::on_button_edit_scientists_clicked()
+{
+    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
+    QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
+    int scientistID = ID.toInt();
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
+
+    editScientistWindow editSci(selectedScientist);
+    editSci.exec();
+}
+
+void MainWindow::on_button_edit_computers_clicked()
+{
+    int selectedComputerRow = ui->table_display_computers->currentIndex().row();
+    QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
+    int computerID = ID.toInt();
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
+
+    editComputerWindow editComp(selectedComputer);
+    editComp.exec();
+}
+
+//Just a fun bonus, and you get to .. learn things!
+void MainWindow::on_button_facts_clicked()
+{
+    int random = rand() % 10 + 1;
+    QString crazyFact;
+    if(random == 1)
+    {
+        crazyFact = QString::fromStdString("The first electronic computer ENIAC weighed \n more than 27 tons and took up 1800 square feet!");
+    }
+    else if(random == 2)
+    {
+        crazyFact = QString::fromStdString("TYPEWRITER is the longest word that you can write using \n the letters only on one row of the keyboard of your computer!");
+    }
+    else if(random == 3)
+    {
+        crazyFact = QString::fromStdString("The first ever hard disk drive was made \n in 1979, and could hold only 5MB of data!");
+    }
+    else if(random == 4)
+    {
+        crazyFact = QString::fromStdString("Most cats have hair!");
+    }
+    else if(random == 5)
+    {
+        crazyFact = QString::fromStdString("Dolphins can not climb trees!");
+    }
+    else if(random == 6)
+    {
+        crazyFact = QString::fromStdString("Over 1 million domain names are registered every month.");
+    }
+    else if(random == 7)
+    {
+        crazyFact = QString::fromStdString("On an average work day, a typist’s fingers travel about 12.6 miles!");
+    }
+    else if(random == 8)
+    {
+        crazyFact = QString::fromStdString("'Amazing facts' backwards is 'stcaf gnizamA'!");
+    }
+    else if(random == 9)
+    {
+        crazyFact = QString::fromStdString("A dentist named Alfred Southwick invented the electric chair!");
+    }
+    else if(random == 10)
+    {
+        crazyFact = QString::fromStdString("100% of people try to plug their USB devices upside down!");
+    }
+    ui->label_facts->setText(crazyFact);
+}
+
+void MainWindow::setUpAboutTab()
+{
+    ui->label_contact_birkir->setOpenExternalLinks(true);
+    QString contactBirkir = QString::fromStdString("<a href='mailto:birkir.k@me.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
+    ui->label_contact_birkir->setText(contactBirkir);
+
+    ui->label_contact_siggi->setOpenExternalLinks(true);
+    QString contactSiggi = QString::fromStdString("<a href='mailto:comradesigurdur@gmail.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
+    ui->label_contact_siggi->setText(contactSiggi);
+
+    ui->label_contact_orn->setOpenExternalLinks(true);
+    QString contactOrn = QString::fromStdString("<a href='mailto:birkir.k@me.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
+    ui->label_contact_orn->setText(contactOrn);
 }

@@ -26,10 +26,10 @@ public:
 
     bool addComputerPicture(Computer comp, QByteArray pict);
     QByteArray getComputerPicture(Computer comp);
+
+
+    //Endurheimtir einingar úr ruslafötunni og setur aftur á listann
     bool recycleComp(Computer comp);
-    vector<Computer> getDeletedComp();
-    vector<Computer> readComp(string com);
-    vector<Computer> searchComp(string input);
     bool addComputerInfo(Computer comp);
     string getComputerInfo(Computer comp);
 
@@ -37,22 +37,33 @@ public:
     bool deleteScientist(Scientist newSci);
     bool addScientistPicture(Scientist sci, QByteArray pict);
     bool recycleSci(Scientist sci);
+
+    //Býr til vectora af eyddum einingum fyrir ruslafötuna
+    vector<Computer> getDeletedComp();
     vector<Scientist> getDeletedSci();
-    vector<Scientist> readSci(string com);
-    vector<Scientist> searchSci(string input);
-
-
-
 
     void addType(string type);
+
+    //Les úr database-inu inn í vectora
+    vector<Scientist> readSci(string com);
+    vector<Computer> readComp(string com);
+
+    vector<Scientist> searchSci(string input);
+    vector<Computer> searchComp(string input);
+
+    //Finnur allar tengingar sem eru í database-inu
     vector<int> getCon();
+
     QByteArray getScientistPicture(Scientist sci);
 
     bool addScientistInfo(Scientist sci);
     string getScientistInfo(Scientist sci);
 
+    //Finnur ákveðnar tengingar
     vector<Computer> findConnectedComp(Scientist sci);
     vector<Scientist> findConnectedSci(Computer comp);
+
+    //Les úr readme.txt inn í vector
     vector<string> readManual();
 
     
@@ -60,7 +71,6 @@ public:
     bool deleteComputer(Computer newComp);
 
     bool closeDatabase();
-    void writeFile(vector<Scientist> vScientist);
     bool connect(Scientist newSci, Computer newComp);
     bool deleteConnection(Computer comp, Scientist sci);
 
