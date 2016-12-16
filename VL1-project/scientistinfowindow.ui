@@ -226,7 +226,7 @@ color: #fff;
 font: 13pt &quot;Helvetica&quot;;</string>
        </property>
        <property name="text">
-        <string>Remove connected connection</string>
+        <string>Remove selected connection</string>
        </property>
       </widget>
      </item>

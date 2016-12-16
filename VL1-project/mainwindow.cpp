@@ -638,6 +638,6 @@ void MainWindow::setUpAboutTab()
     ui->label_contact_siggi->setText(contactSiggi);
 
     ui->label_contact_orn->setOpenExternalLinks(true);
-    QString contactOrn = QString::fromStdString("<a href='mailto:birkir.k@me.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
+    QString contactOrn = QString::fromStdString("<a href='mailto:orn16@ru.is?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
     ui->label_contact_orn->setText(contactOrn);
 }

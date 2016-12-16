@@ -736,7 +736,7 @@ vector<string> DataLayer::readManual()
     string line;
     vector<string> manual;
     ifstream myFile;
-    myFile.open("../readme.txt");
+    myFile.open("/Users/Birkir/Desktop/vln1-35/readme.txt");
     if(myFile)
     {
         while(getline(myFile,line))
