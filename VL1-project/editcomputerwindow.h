@@ -25,6 +25,8 @@ private slots:
 
     void on_button_editcomp_cancel_clicked();
 
+    void on_button_editcomp_save_clicked();
+
 private:
     Ui::editComputerWindow *ui;
     ServiceLayer _service;

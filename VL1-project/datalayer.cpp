@@ -453,16 +453,53 @@ bool DataLayer::updateScientist(Scientist oldSci, Scientist newSci)
 {
     QSqlQuery sciQuery = findScientists(oldSci);
     QSqlQuery updateQuery;
-    updateQuery.prepare("UPDATE Scientists SET name = (:name), gender = (:gender),"
-                        "yearOfBirth = (:birth), yearOfDeath = (:death), valid = 1,"
-                        "info = (:info), picture = (:picture) WHERE ID = (:ID)");
+    if(!newSci.hasPicture())
+    {
+        updateQuery.prepare("UPDATE Scientists SET name = (:name), gender = (:gender),"
+                            "yearOfBirth = (:birth), yearOfDeath = (:death), valid = 1,"
+                            "info = (:info) WHERE ID = (:ID)");
+        updateQuery.bindValue(":picture", newSci.getPicture());
+    }
+    else
+    {
+        updateQuery.prepare("UPDATE Scientists SET name = (:name), gender = (:gender),"
+                            "yearOfBirth = (:birth), yearOfDeath = (:death), valid = 1,"
+                            "info = (:info), picture = (:picture) WHERE ID = (:ID)");
+
+    }
     updateQuery.bindValue(":ID", sciQuery.value(0).toInt());
     updateQuery.bindValue(":name", QString::fromStdString(newSci.getName()));
     updateQuery.bindValue(":birth", QString::number(newSci.getBirth()));
     updateQuery.bindValue(":death", QString::number(newSci.getDeath()));
     updateQuery.bindValue(":gender", QString(QChar(newSci.getGender())));
     updateQuery.bindValue(":info", QString::fromStdString(newSci.getInfo()));
-    updateQuery.bindValue(":picture", newSci.getPicture());
+    bool returnValue = updateQuery.exec();
+    return returnValue;
+}
+
+bool DataLayer::updateComputer(Computer oldComp, Computer newComp)
+{
+    QSqlQuery updateQuery;
+    if(!newComp.hasPicture())
+    {
+        updateQuery.prepare("UPDATE Computers SET name = (:name), type = (:type),"
+                            "ifMade = (:ifMade), yearMade = (:yearMade), valid = 1,"
+                            "info = (:info) WHERE ID = (:ID)");
+    }
+    else
+    {
+        updateQuery.prepare("UPDATE Computers SET name = (:name), type = (:type),"
+                            "ifMade = (:ifMade), yearMade = (:yearMade), valid = 1,"
+                            "info = (:info), picture = (:picture) WHERE ID = (:ID)");
+        updateQuery.bindValue(":picture", newComp.getPicture());
+    }
+    QSqlQuery compQuery = findComputers(oldComp);
+    updateQuery.bindValue(":ID", compQuery.value(0).toInt());
+    updateQuery.bindValue(":name", QString::fromStdString(newComp.getName()));
+    updateQuery.bindValue(":type", QString::fromStdString(newComp.getType()));
+    updateQuery.bindValue(":ifMade", QString::number(newComp.getIfMade()));
+    updateQuery.bindValue(":yearMade", QString:: number(newComp.getYearMade()));
+    updateQuery.bindValue(":info", QString::fromStdString(newComp.getInfo()));
     bool returnValue = updateQuery.exec();
     return returnValue;
 }

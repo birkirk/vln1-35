@@ -79,6 +79,7 @@ void editScientistWindow::on_button_editsci_cancel_clicked()
 
 void editScientistWindow::on_button_editsci_save_clicked()
 {
+
     string name = ui->input_editsci_name->text().toStdString();
     string sBirth = ui->input_editsci_born->text().toStdString();
     string sGender = ui->input_editsci_gender->currentText().toStdString();
@@ -153,12 +154,28 @@ void editScientistWindow::on_button_editsci_save_clicked()
         }
         else
         {
-            Scientist newScientist(name, gender, birth, death);
-            if(ui->input_editsci_info->toPlainText() != "")
+            qDebug() << _selectedScientist.hasPicture();
+            if(_selectedScientist.hasPicture())
             {
-                newScientist.addInfo(ui->input_editsci_info->toPlainText().toStdString());
+                Scientist newScientist(name, gender, birth, death, _selectedScientist.getPicture());
+                if(ui->input_editsci_info->toPlainText() != "")
+                {
+                    newScientist.addInfo(ui->input_editsci_info->toPlainText().toStdString());
+                }
+                _service.updateScientist(_selectedScientist, newScientist);
             }
-            _service.updateScientist(_selectedScientist, newScientist);
+            else
+            {
+                Scientist newScientist(name, gender, birth, death);
+                if(ui->input_editsci_info->toPlainText() != "")
+                {
+                    newScientist.addInfo(ui->input_editsci_info->toPlainText().toStdString());
+                }
+                _service.updateScientist(_selectedScientist, newScientist);
+            }
+
+
+
         }
         this->done(1);
     }
