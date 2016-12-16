@@ -625,6 +625,8 @@ void MainWindow::on_button_facts_clicked()
 
 void MainWindow::setUpAboutTab()
 {
+    //Opnar tölvupóstinn hjá notanda og fyllir út í eyður til að senda póst á okkur, virkar ekki ef notandi er ekki með svoleiðis forrit.
+
     ui->label_contact_birkir->setOpenExternalLinks(true);
     QString contactBirkir = QString::fromStdString("<a href='mailto:birkir.k@me.com?subject=VLN1' style='color: #fff; text-decoration: none; padding: 20px 40px;'>Contact</a>");
     ui->label_contact_birkir->setText(contactBirkir);

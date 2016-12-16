@@ -57,7 +57,7 @@ void addScientistWindow::on_button_addsci_add_clicked()
         validInput = false;
         ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>Invalid input in year of death!</span>"));
     }
-    else if(birth > death)
+    else if(birth > death && sDeath.length() != 0)
     {
         ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #E94949'>No one can die before they are born!</span>"));
         validInput = false;
@@ -100,11 +100,12 @@ void addScientistWindow::on_button_addsci_add_clicked()
             }
             _scientistVector.push_back(newScientist);
         }
-        ui->label_addsci_status->setText(QString::fromStdString(""));
+        ui->label_addsci_status->setText(QString::fromStdString("<span style='color: #5EC748'>Scientist successfully added!</span>"));
         ui->input_addsci_name->setText(QString::fromStdString(""));
         ui->input_addsci_born->setText(QString::fromStdString(""));
         ui->input_addsci_died->setText(QString::fromStdString(""));
-        //ui->input_addsci_path->setText(QString::fromStdString(""));
+        ui->input_addsci_path->setText(QString::fromStdString(""));
+        ui->input_addsci_info->setText(QString::fromStdString(""));
         ui->input_addsci_gender->setCurrentIndex(0);
     }
 }

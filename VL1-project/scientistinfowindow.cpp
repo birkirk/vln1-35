@@ -62,8 +62,7 @@ void scientistInfoWindow::setUpSci(Scientist selectedScientist)
     QByteArray picture = _service.getScientistPicture(selectedScientist);
     QPixmap image;
     image.loadFromData(picture);
-
-    ui->label_infosci_image->setPixmap(image);
+    ui->label_infosci_image->setPixmap(image.scaled(200,200, Qt::KeepAspectRatio));
 }
 
 void scientistInfoWindow::displayConnections(Scientist selectedScientist)

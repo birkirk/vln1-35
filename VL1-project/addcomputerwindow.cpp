@@ -58,28 +58,28 @@ void addComputerWindow::on_button_addcomp_add_clicked()
     bool isValidEntry = true;
     if(ui->input_addcomp_name->text().length() == 0)
     {
-        ui->label_addcomp_status->setText(QString::fromStdString("Name cannot be empty!"));
+        ui->label_addcomp_status->setText(QString::fromStdString("<span style='color: #E94949'>Name cannot be empty!</span>"));
         isValidEntry = false;
     }
     if(ui->checkbox_addcomp_made->isChecked() && ui->input_addcomp_yearmade->text().length() == 0)
     {
-        ui->label_addcomp_status->setText(QString::fromStdString("Dont forget to input year made!"));
+        ui->label_addcomp_status->setText(QString::fromStdString("<span style='color: #E94949'>Dont forget to input year made!</span>"));
         isValidEntry = false;
     }
     if(ui->input_addcomp_type->currentText().length() == 0)
     {
-        ui->label_addcomp_status->setText("Type cannot be empty!");
+        ui->label_addcomp_status->setText("<span style='color: #E94949'>Type cannot be empty!</span>");
         isValidEntry = false;
     }
     if(!file.isOpen() && ui->input_addcomp_image_path->text() != "")
     {
-        ui->label_addcomp_status->setText(QString::fromStdString("Invalid input in image path!"));
+        ui->label_addcomp_status->setText(QString::fromStdString("<span style='color: #E94949'>Invalid input in image path!</span>"));
         isValidEntry = false;
     }
     if(ui->input_addcomp_type->currentText() == "Add new type")
     {
         isValidEntry = false;
-        ui->label_addcomp_status->setText(QString::fromStdString("Choose type!"));
+        ui->label_addcomp_status->setText(QString::fromStdString("<span style='color: #E94949'>Choose type!</span>"));
     }
 
     if(isValidEntry)
@@ -118,7 +118,7 @@ void addComputerWindow::on_button_addcomp_add_clicked()
 
 
         ui->checkbox_addcomp_made->setChecked(false);
-        ui->label_addcomp_status->setText(QString::fromStdString(""));
+        ui->label_addcomp_status->setText(QString::fromStdString("<span style='color: #5EC748'>Computer successfully added!</span>"));
         ui->input_addcomp_name->setText(QString::fromStdString(""));
         ui->input_addcomp_yearmade->setText(QString::fromStdString(""));
         ui->input_addcomp_type->setCurrentIndex(0);
