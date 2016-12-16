@@ -1,5 +1,9 @@
 #ifndef EDITCOMPUTERWINDOW_H
 #define EDITCOMPUTERWINDOW_H
+#include "scientist.h"
+#include "const.h"
+#include "computer.h"
+#include "servicelayer.h"
 
 #include <QDialog>
 

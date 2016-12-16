@@ -69,6 +69,10 @@ private slots:
 
     void on_actionExit_triggered();
 
+    void on_button_edit_scientists_clicked();
+
+    void on_button_edit_computers_clicked();
+
 private:
     void displayAllScientists();
     void displayAllComputers();

@@ -131,7 +131,7 @@
    <item>
     <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>Add picture (optional)</string>
+      <string>Change/add picture:</string>
      </property>
     </widget>
    </item>
@@ -142,6 +142,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="button_editcomp_browse_image">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">border: 0px solid #333;
 padding: 7px 4px 5px 4px;
@@ -157,7 +160,17 @@ font: 13pt &quot;Helvetica&quot;;</string>
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_addcomp_status">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Edit computer description:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="input_editcomp_description"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_editcomp_status">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -178,16 +191,6 @@ font: 13pt &quot;Helvetica&quot;;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Add description: (optional)</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPlainTextEdit" name="input_editcomp_description"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">

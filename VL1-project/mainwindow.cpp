@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "addscientistwindow.h"
 #include "addcomputerwindow.h"
+#include "editscientistwindow.h"
+#include "editcomputerwindow.h"
 #include "scientistinfowindow.h"
 #include "computerinfowindow.h"
 #include "helpwindow.h"
@@ -527,4 +529,20 @@ void MainWindow::on_actionExit_triggered()
 {
     _service.closeData();
     close();
+}
+
+void MainWindow::on_button_edit_scientists_clicked()
+{
+    int selectedScientistRow = ui->table_display_scientists->currentIndex().row();
+    QString ID = ui->table_display_scientists->item(selectedScientistRow, 4)->text();
+    int scientistID = ID.toInt();
+    Scientist selectedScientist = _currentlyDisplaydedScientists.at(scientistID);
+
+    editScientistWindow editSci(selectedScientist);
+    editSci.exec();
+}
+
+void MainWindow::on_button_edit_computers_clicked()
+{
+
 }
