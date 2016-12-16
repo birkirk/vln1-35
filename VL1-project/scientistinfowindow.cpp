@@ -128,6 +128,7 @@ void scientistInfoWindow::on_button_infosci_remove_clicked()
     int computerID = ID.toInt();
     Computer selectedComputer = _currentlyConnected.at(computerID);
     bool wasRemoved = _service.deleteConnection(selectedComputer, _selectedScientist);
+    qDebug() << selectedComputer.getYearMade();
     if(wasRemoved)
     {
         displayConnections(_selectedScientist);

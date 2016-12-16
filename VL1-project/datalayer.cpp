@@ -694,7 +694,7 @@ vector<Computer> DataLayer::findConnectedComp(Scientist sci)
 
 
 
-        Computer newComp(compQuery.value(1).toInt(), name, type, compQuery.value(3).toInt());
+        Computer newComp(compQuery.value(1).toInt(), name, type, compQuery.value(2).toInt());
         returnVector.push_back(newComp);
     }
     return returnVector;
