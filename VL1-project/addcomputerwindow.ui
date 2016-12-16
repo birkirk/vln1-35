@@ -229,6 +229,17 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>input_addcomp_name</tabstop>
+  <tabstop>input_addcomp_type</tabstop>
+  <tabstop>checkbox_addcomp_made</tabstop>
+  <tabstop>input_addcomp_yearmade</tabstop>
+  <tabstop>input_addcomp_image_path</tabstop>
+  <tabstop>button_addcomp_browse_image</tabstop>
+  <tabstop>plainTextEdit</tabstop>
+  <tabstop>button_addcomp_add</tabstop>
+  <tabstop>button_addcomp_done</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

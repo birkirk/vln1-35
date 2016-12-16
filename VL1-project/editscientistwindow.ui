@@ -307,6 +307,17 @@ font: 13pt &quot;Helvetica&quot;;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>input_editsci_name</tabstop>
+  <tabstop>input_editsci_gender</tabstop>
+  <tabstop>input_editsci_born</tabstop>
+  <tabstop>input_editsci_died</tabstop>
+  <tabstop>input_editsci_path</tabstop>
+  <tabstop>button_editsci_browse</tabstop>
+  <tabstop>input_editsci_info</tabstop>
+  <tabstop>button_editsci_save</tabstop>
+  <tabstop>button_editsci_cancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
