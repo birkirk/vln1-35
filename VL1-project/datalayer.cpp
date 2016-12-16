@@ -458,13 +458,13 @@ bool DataLayer::updateScientist(Scientist oldSci, Scientist newSci)
         updateQuery.prepare("UPDATE Scientists SET name = (:name), gender = (:gender),"
                             "yearOfBirth = (:birth), yearOfDeath = (:death), valid = 1,"
                             "info = (:info) WHERE ID = (:ID)");
-        updateQuery.bindValue(":picture", newSci.getPicture());
     }
     else
     {
         updateQuery.prepare("UPDATE Scientists SET name = (:name), gender = (:gender),"
                             "yearOfBirth = (:birth), yearOfDeath = (:death), valid = 1,"
                             "info = (:info), picture = (:picture) WHERE ID = (:ID)");
+        updateQuery.bindValue(":picture", newSci.getPicture());
 
     }
     updateQuery.bindValue(":ID", sciQuery.value(0).toInt());

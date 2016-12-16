@@ -144,6 +144,8 @@ void editScientistWindow::on_button_editsci_save_clicked()
 
         if(ui->input_editsci_path->text().length() != 0 && file.isOpen())
         {
+            qDebug() << "Checkpoint 1";
+            qDebug() << ui->input_editsci_path->text().length();
             QByteArray inByteArray = file.readAll();
             Scientist newScientist(name, gender, birth, death, inByteArray);
             if(ui->input_editsci_info->toPlainText() != "")
@@ -154,7 +156,7 @@ void editScientistWindow::on_button_editsci_save_clicked()
         }
         else
         {
-            qDebug() << _selectedScientist.hasPicture();
+
             if(_selectedScientist.hasPicture())
             {
                 Scientist newScientist(name, gender, birth, death, _selectedScientist.getPicture());
