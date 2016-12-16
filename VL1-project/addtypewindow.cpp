@@ -19,6 +19,7 @@ void addTypeWindow::on_button_addtype__clicked()
     if(ui->input_addtype_type->text() != "")
     {
         _service.addType(ui->input_addtype_type->text().toStdString());
+        this->done(1);
     }
 }
 

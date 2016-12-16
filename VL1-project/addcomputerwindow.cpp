@@ -118,7 +118,7 @@ void addComputerWindow::on_button_addcomp_add_clicked()
 
 
         ui->checkbox_addcomp_made->setChecked(false);
-        ui->label_addcomp_status->setText(QString::fromStdString("<span style='color: #5EC748'>Computer successfully added!</span>"));
+        ui->label_addcomp_status->setText(QString::fromStdString("<span style='color: #5EC748'>Computer will be added!</span>"));
         ui->input_addcomp_name->setText(QString::fromStdString(""));
         ui->input_addcomp_yearmade->setText(QString::fromStdString(""));
         ui->input_addcomp_type->setCurrentIndex(0);
