@@ -23,6 +23,8 @@ public:
 private slots:
     void on_button_editsci_browse_clicked();
 
+    void on_button_editsci_cancel_clicked();
+
 private:
     Ui::editScientistWindow *ui;
 

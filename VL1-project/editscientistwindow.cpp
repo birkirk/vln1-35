@@ -67,3 +67,8 @@ void editScientistWindow::on_button_editsci_browse_clicked()
                                     "Image files (*.png *.jpg");
     ui->input_editsci_path->setText(filePath);
 }
+
+void editScientistWindow::on_button_editsci_cancel_clicked()
+{
+    this->done(1);
+}

@@ -111,7 +111,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="editcomp_yearmade">
+      <widget class="QLineEdit" name="input_editcomp_yearmade">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -120,6 +120,9 @@
        </property>
        <property name="frame">
         <bool>true</bool>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
        </property>
        <property name="placeholderText">
         <string>Year made</string>
@@ -138,7 +141,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QLineEdit" name="input_editcomp_image_path"/>
+      <widget class="QLineEdit" name="input_editcomp_path"/>
      </item>
      <item>
       <widget class="QPushButton" name="button_editcomp_browse_image">
@@ -167,7 +170,7 @@ font: 13pt &quot;Helvetica&quot;;</string>
     </widget>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="input_editcomp_description"/>
+    <widget class="QPlainTextEdit" name="input_editcomp_info"/>
    </item>
    <item>
     <widget class="QLabel" name="label_editcomp_status">

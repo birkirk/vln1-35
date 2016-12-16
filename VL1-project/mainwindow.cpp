@@ -544,5 +544,11 @@ void MainWindow::on_button_edit_scientists_clicked()
 
 void MainWindow::on_button_edit_computers_clicked()
 {
+    int selectedComputerRow = ui->table_display_computers->currentIndex().row();
+    QString ID = ui->table_display_computers->item(selectedComputerRow, 4)->text();
+    int computerID = ID.toInt();
+    Computer selectedComputer = _currentlyDisplaydedComputers.at(computerID);
 
+    editComputerWindow editComp(selectedComputer);
+    editComp.exec();
 }
