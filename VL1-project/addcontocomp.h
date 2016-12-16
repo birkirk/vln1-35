@@ -22,6 +22,8 @@ public:
     ~addConToComp();
 
 private slots:
+
+
     void on_input_concomp_search_textChanged(const QString &arg1);
 
     void on_table_concomp_connections_clicked(const QModelIndex &index);
